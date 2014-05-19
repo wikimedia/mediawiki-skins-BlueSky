@@ -1,0 +1,199 @@
+.tool_count {
+	float: right;
+	padding-right: 14px;
+	text-align: right;
+	width: 120px;
+	color:#212121;
+	margin-top:20px;
+}
+
+.tool_count h3 {
+	font-size:28px;
+	font-weight: bold;
+	background: none;
+	color: #212121;
+	margin: 0;
+	line-height: normal;
+}
+
+.tool_count span {
+	font-size: 12px;
+}
+
+.tool {
+	margin-top:-28px;
+}
+
+.tool_header {
+	background-color: #f6f5f4;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+    border:1px solid #e5e5e5;
+    border-top:none;
+	padding:25px;
+	font-size: 13px;
+	margin-bottom: 30px;
+}
+
+.tool h1 {
+	font-size: 19px;
+	margin-bottom: 20px;
+}
+
+.tool_help {
+	font-size: .85em;
+	background: url(/skins/WikiHow/images/icon_help.jpg) 0 0 no-repeat;
+	padding-left: 15px;
+	margin-top: -14px;
+	margin-left: 0px;
+}
+
+.firstHeading a {
+	font-weight: normal;
+	color:#363;
+}
+
+.wh_block h5 {
+	color: #555555;
+	margin-bottom: 10px;
+	font-size: 1em;
+}
+
+.tool_box {
+	background-color: #f6f5f4;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding:25px;
+	margin-bottom: 30px;
+}
+
+.tool_header textarea {
+	height: 100px;
+}
+
+.tool textarea {
+	width:98%;
+	margin-bottom: 5px;
+}
+
+.tool input.tool_input {
+	border:2px solid #999999;
+	color:#000000;
+	font-size: 14px;
+}
+
+.minor_section ol, .minor_section ul {
+	margin: 10px 0 10px 23px;	
+}
+
+.minor_section ol li, .minor_section ul li{
+	margin: 15px 0;
+}
+
+#uploadtext {
+	margin-bottom: 20px;
+}
+
+#preferences fieldset {
+	padding: 0 20px;
+}
+
+fieldset fieldset legend {
+	font-size:16px;
+}
+
+.minor_section form {
+	margin: 15px 0;
+}
+
+.minor_section form td {
+	padding:5px;
+}
+
+.minor_section form select#wpLicense {
+	width: 400px;
+}
+.minor_section form .normal_font {
+	font-weight: normal;
+}
+.minor_section form .input_med {
+	font-size: 1em;
+}
+
+.minor_section form td.label, .move_article_label {
+	font-weight: bold;
+}
+
+.minor_section form input[type="checkbox"] {
+	height: 14px;
+	margin: 0 5px;
+}
+
+.minor_section h3 {
+	background: none;
+}
+
+#mwProtectSet {
+	margin-bottom: 15px;
+}
+
+#wpReason {
+	width: 300px;
+}
+
+.special_pages h2 {
+	padding: 20px 0;
+}
+
+.loginsuccess {
+	margin-top: 34px;
+}
+
+.tool_options_link{
+	float: right;
+	font-size: 12px;
+}
+
+.tool_options{
+	display:none;
+}
+
+.mw-listgrouprights-table { background-color: #EEE; }
+.mw-listgrouprights-table td { 
+	vertical-align: top; 
+	background-color: #F6F5F4;
+	padding: .3em;
+}
+
+/*table for Special:ListFiles*/
+.listfiles td { text-align: center; }
+
+/*table for Special:Drafts*/
+#drafts-list-table { font-size: .8em; }
+#drafts-list-table tr:nth-child(even) { background-color: #EEE; }
+#drafts-list-table td, #drafts-list-table th { padding: .5em; }
+
+/*Special:Upload*/
+#wpUploadDescription { width: 97%; }
+
+/*Generally Special*/
+.mw-specialpage-summary {
+	font-size: 1.1em;
+	padding-bottom: .5em;
+}
+
+/*table for Special:AllPages*/
+.allpageslist td { padding: 3px; }
+.allpageslist td.mw-allpages-alphaindexline { text-align: right; }
+
+/*collapsible content defaulted to collapsed*/
+.mw-collapsible-content { display: none; }
+
+/*formatting for Legend display*/
+.mw-collapsible-content dt {
+	float: left;
+	padding-right: .5em;
+	font-weight: bold;
+}
