@@ -1,4 +1,4 @@
-/*HEAD*/
+/* HEAD */
 #search_head {
 	background-color: #F5F5F5;
 	padding: 20px;
@@ -11,8 +11,8 @@
 	padding: 13px !important;
 }
 
-#search_head INPUT {
-    font-size: 1.3em;
+#search_head input {
+	font-size: 1.3em;
 }
 
 .lo_search_button {
@@ -22,10 +22,10 @@
 
 #search_head #keywords {
 	font-size: 1.6em;
-    color: #333333;
-    height: 30px;
-    padding: 5px 0 3px 10px;
-    width: 270px;
+	color: #333333;
+	height: 30px;
+	padding: 5px 0 3px 10px;
+	width: 270px;
 	float: left;
 	margin-right: 10px;
 }
@@ -53,25 +53,26 @@ h4 {
 	font-weight: normal;
 }
 
-
-/*THE RESULT LIST*/
-#searchresults_list{
+/* The result list */
+#searchresults_list {
 	font-size: .8em;
 	margin-top: 2em;
 	padding: 0;
 }
 
 #searchresults_list a.result_link {
-	font-size: 1.6em; 
+	font-size: 1.6em;
 }
 
-/*result node*/
+/* Result node */
 #searchresults_list .result {
 	padding: 1em 2em;
 	min-height: 75px;
 	border-bottom: 1px solid #f6f5f4;
 }
-#searchresults_list .result_last { border: none; }
+#searchresults_list .result_last {
+	border: none;
+}
 
 /* icon section */
 #searchresults_list ul.search_results_stats {
@@ -81,18 +82,22 @@ h4 {
 
 #searchresults_list ul.search_results_stats li {
 	display: inline;
-	background: url(/skins/WikiHow/images/search_icons.png) no-repeat left 5px;
+	/* @embed */
+	background: url(../images/search_icons.png) no-repeat left 5px;
 	padding-left: 16px;
 	margin-right: 15px;
 	line-height: 15px;
 }
-#searchresults_list ul.search_results_stats li.sr_video { background-position: 0 -16px; }
-#searchresults_list ul.search_results_stats li.sr_steps { background-position: 0 -36px; }
-#searchresults_list ul.search_results_stats li.sr_view { 
+#searchresults_list ul.search_results_stats li.sr_video {
+	background-position: 0 -16px;
+}
+#searchresults_list ul.search_results_stats li.sr_steps {
+	background-position: 0 -36px;
+}
+#searchresults_list ul.search_results_stats li.sr_view {
 	background-position: 0 -54px;
 	padding-left: 22px;
 }
-
 
 #searchresults_list div.result_thumb {
 	float: right;
@@ -104,20 +109,6 @@ h4 {
 	width: 75px;
 	height: 50px;
 }
-/*
-div.searchresult_0 {
-	width: 600px;	
-	margin-bottom: 5px;
-	padding: 3px;
-	padding-left: 10px;
-}
-div.searchresult_1 {
-	width: 600px;	
-	background: #eee;
-	margin-bottom: 5px;
-	padding: 3px;
-	padding-left: 10px;
-}*/
 
 .sr_suggest {
 	font-size: 1.2em;
@@ -132,9 +123,9 @@ div.searchresult_1 {
 }
 
 #searchresults_footer {
-	padding: 10px; 
+	padding: 10px;
 	margin: 0;
-	text-align: center;	
+	text-align: center;
 	font-size: .8em;
 }
 #searchresults_footer .sr_foot_results {
@@ -145,7 +136,9 @@ div.searchresult_1 {
 	margin-top: 2em;
 }
 
-#article_tabs_line { display: none; }
+#article_tabs_line {
+	display: none;
+}
 
 #article {
 	padding-top: 0 !important;
@@ -199,13 +192,13 @@ div.searchresult_1 {
 	font-size: 13px;
 }
 
-#adcontainer2{
-	width: 480px; 
+#adcontainer2 {
+	width: 480px;
 	margin-left: 20px;
 }
 
-#adcontainer1{
-	float: right; 
+#adcontainer1 {
+	float: right;
 	width: 300px;
-	margin-right:150px;
+	margin-right: 150px;
 }
