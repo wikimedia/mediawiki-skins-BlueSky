@@ -1931,8 +1931,8 @@ class WikiHowTemplate extends QuickTemplate {
 
 ?>
 <!DOCTYPE html>
-<?= $head_element ?><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-	<title><?= $pageTitle ?></title>
+<?php echo $head_element ?><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+	<title><?php echo $pageTitle ?></title>
 	<?php /*Hack to add variable WH as a global variable before loading script. This is need because load.php creates a closure when loading wikibits.js
 		    Add by Gershon Bialer on 12/2/2013*/?><script>
 <!--
@@ -1940,7 +1940,7 @@ var WH = WH || {};
 //-->
 </script>
 
-	<? if ( $showRUM ): ?>
+	<?php if ( $showRUM ): ?>
 <script>
 <!--
 window.UVPERF = {};
@@ -1948,24 +1948,24 @@ UVPERF.authtoken = 'b473c3f9-a845-4dc3-9432-7ad0441e00c3';
 UVPERF.start = new Date().getTime();
 //-->
 </script>
-	<? endif; ?>
-	<? if ( $wgIsDomainTest ): ?>
+	<?php endif; ?>
+	<?php if ( $wgIsDomainTest ): ?>
 	<base href="http://www.wikihow.com/" />
-	<? endif; ?>
+	<?php endif; ?>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<meta name="verify-v1" content="/Ur0RE4/QGQIq9F46KZyKIyL0ZnS96N5x1DwQJa7bR8=" />
 	<meta name="google-site-verification" content="Jb3uMWyKPQ3B9lzp5hZvJjITDKG8xI8mnEpWifGXUb0" />
 	<meta name="msvalidate.01" content="CFD80128CAD3E726220D4C2420D539BE" />
 	<meta name="y_key" content="1b3ab4fc6fba3ab3" />
 	<meta name="p:domain_verify" content="bb366527fa38aa5bc27356b728a2ec6f" />
-	<? if ( $isArticlePage || $isMainPage ): ?>
-	<link rel="alternate" media="only screen and (max-width: 640px)" href="http://<?php if ( $wgLanguageCode != 'en' ) { echo ( $wgLanguageCode . "." ); } ?>m.wikihow.com/<?= $wgTitle->getPartialUrl() ?>">
-	<? endif; ?>
-	<? // add CSS files to extensions/min/groupsConfig.php ?>
-	<style type="text/css" media="all">/*<![CDATA[*/ @import "<?= $fullCSSuri ?>"; /*]]>*/</style>
-	<? // below is the minified http://www.wikihow.com/extensions/min/f/skins/owl/printable.css ?>
-	<style type="text/css" media="<?=$printable_media?>">/*<![CDATA[*/ body{background-color:#FFF;font-size:1.2em}#header_outer{background:0 0;position:relative}#header{text-align:center;height:63px!important;width:242px!important;background:url(/skins/owl/images/logo_lightbg_242.jpg) no-repeat center center;margin-top:15px}#article_shell{margin:0 auto;float:none;padding-bottom:2em}.sticking{position:absolute!important;top:0!important}#actions,#article_rating,#article_tabs,#breadcrumb,#bubble_search,#cse-search-box,#end_options,#footer_outer,#header_space,#logo_link,#notification_count,#originators,#sidebar,#sliderbox,.edit,.editsection,.mwimg,.section.relatedwikihows,.section.video,.whvid_cont,.altadder_section{display:none!important} /*]]>*/</style>
-		<?
+	<?php if ( $isArticlePage || $isMainPage ): ?>
+	<link rel="alternate" media="only screen and (max-width: 640px)" href="http://<?php if ( $wgLanguageCode != 'en' ) { echo ( $wgLanguageCode . "." ); } ?>m.wikihow.com/<?php echo $wgTitle->getPartialUrl() ?>">
+	<?php endif; ?>
+	<?php // add CSS files to extensions/min/groupsConfig.php ?>
+	<style type="text/css" media="all">/*<![CDATA[*/ @import "<?php echo $fullCSSuri ?>"; /*]]>*/</style>
+	<?php // below is the minified http://www.wikihow.com/extensions/min/f/skins/owl/printable.css ?>
+	<style type="text/css" media="<?php echo$printable_media?>">/*<![CDATA[*/ body{background-color:#FFF;font-size:1.2em}#header_outer{background:0 0;position:relative}#header{text-align:center;height:63px!important;width:242px!important;background:url(/skins/owl/images/logo_lightbg_242.jpg) no-repeat center center;margin-top:15px}#article_shell{margin:0 auto;float:none;padding-bottom:2em}.sticking{position:absolute!important;top:0!important}#actions,#article_rating,#article_tabs,#breadcrumb,#bubble_search,#cse-search-box,#end_options,#footer_outer,#header_space,#logo_link,#notification_count,#originators,#sidebar,#sliderbox,.edit,.editsection,.mwimg,.section.relatedwikihows,.section.video,.whvid_cont,.altadder_section{display:none!important} /*]]>*/</style>
+		<?php
 		// Bootstapping certain javascript functions:
 		// A function to merge one object with another; stub funcs
 		// for button swapping (this should be done in CSS anyway);
@@ -1980,49 +1980,49 @@ UVPERF.start = new Date().getTime();
 			WH.mergeLang = function(A){for(i in A){v=A[i];if(typeof v==='string'){WH.lang[i]=v;}}};
 			//-->
 		</script>
-		<? if ( !$postLoadJS ): ?>
-			<?= $this->html( 'headscripts' ) ?>
-			<script type="text/javascript" src="<?= $fullJSuri ?>"></script>
-		<? endif ?>
+		<?php if ( !$postLoadJS ): ?>
+			<?php echo $this->html( 'headscripts' ) ?>
+			<script type="text/javascript" src="<?php echo $fullJSuri ?>"></script>
+		<?php endif ?>
 
-		<? $this->html( 'headlinks' ) ?>
+		<?php $this->html( 'headlinks' ) ?>
 
-	<? if ( !$wgIsDomainTest ) { ?>
-			<link rel='canonical' href='<?=$wgTitle->getFullURL()?>'/>
+	<?php if ( !$wgIsDomainTest ) { ?>
+			<link rel='canonical' href='<?php echo $wgTitle->getFullURL() ?>'/>
 			<link href="https://plus.google.com/102818024478962731382" rel="publisher" />
-		<? } ?>
+		<?php } ?>
 	<? if ( $sk->isUserAgentMobile() ): ?>
-			<link media="only screen and (max-device-width: 480px)" href="<?= wfGetPad( '/extensions/min/f/skins/WikiHow/iphone.css' ) ?>" type="text/css" rel="stylesheet" />
-		<? else : ?>
+			<link media="only screen and (max-device-width: 480px)" href="<?php echo wfGetPad( '/extensions/min/f/skins/WikiHow/iphone.css' ) ?>" type="text/css" rel="stylesheet" />
+		<?php else : ?>
 			<!-- not mobile -->
-		<? endif; ?>
+		<?php endif; ?>
 	<!--<![endif]-->
-	<?= $rtl_css ?>
+	<?php echo $rtl_css ?>
 	<link rel="alternate" type="application/rss+xml" title="wikiHow: How-to of the Day" href="http://www.wikihow.com/feed.rss"/>
-	<link rel="apple-touch-icon" href="<?= wfGetPad( '/skins/WikiHow/safari-large-icon.png' ) ?>" />
-	<?// = wfMessage('Test_setup')->text() ?>
-	<?
+	<link rel="apple-touch-icon" href="<?php echo wfGetPad( '/skins/WikiHow/safari-large-icon.png' ) ?>" />
+	<?php// = wfMessage('Test_setup')->text() ?>
+	<?php
 	if ( class_exists( 'CTALinks' ) && trim( wfMessage( 'cta_feature' )->inContentLanguage()->text() ) == "on" ) {
 		echo CTALinks::getGoogleControlScript();
 	}
 	?>
-	<?= $wgOut->getHeadItems() ?>
+	<?php echo $wgOut->getHeadItems() ?>
 
-	<? if ( $wgTitle && $wgTitle->getText() == "Get Caramel off Pots and Pans" ) {
+	<?php if ( $wgTitle && $wgTitle->getText() == "Get Caramel off Pots and Pans" ) {
 		echo wfMessage( 'Adunit_test_top' )->text();
 	} ?>
 
-	<?
+	<?php
 		$userdir = $wgLang->getDir();
 		$sitedir = $wgContLang->getDir();
 	?>
-	<? foreach ( $otherLanguageLinks as $lang => $url ): ?>
-			<link rel="alternate" hreflang="<?= $lang ?>" href="<?= htmlspecialchars( $url ) ?>" />
-		<? endforeach; ?>
+	<?php foreach ( $otherLanguageLinks as $lang => $url ): ?>
+			<link rel="alternate" hreflang="<?php echo $lang ?>" href="<?php echo htmlspecialchars( $url ) ?>" />
+		<?php endforeach; ?>
 		</head>
 		<body <?php if ( isset( $this->data['body_ondblclick'] ) && $this->data['body_ondblclick'] ) { ?>ondblclick="<?php $this->text( 'body_ondblclick' ) ?>"<?php } ?>
 			  <?php if ( isset( $this->data['body_onload'] ) && $this->data['body_onload'] ) { ?>onload="<?php $this->text( 'body_onload' ) ?>"<?php } ?>
-			  class="mediawiki <?=$userdir?>  sitedir-<?=$sitedir?>"
+			  class="mediawiki <?php echo$userdir?>  sitedir-<?php echo$sitedir?>"
 			>
 		<?php wfRunHooks( 'PageHeaderDisplay', array( $sk->isUserAgentMobile() ) ); ?>
 
@@ -2032,52 +2032,52 @@ UVPERF.start = new Date().getTime();
 		?>
 		<div id="header_outer"><div id="header">
 			<ul id="actions">
-				<? foreach ( $navTabs as $tabid => $tab ): ?>
-					<li id="<?= $tabid ?>_li">
+				<?php foreach ( $navTabs as $tabid => $tab ): ?>
+					<li id="<?php echo $tabid ?>_li">
 						<div class="nav_icon"></div>
-						<a id='<?= $tabid ?>' class='nav' href='<?= $tab['link'] ?>'><?= $tab['text'] ?></a>
-						<?= $tab['menu'] ?>
+						<a id='<?php echo $tabid ?>' class='nav' href='<?php echo $tab['link'] ?>'><?php echo $tab['text'] ?></a>
+						<?php echo $tab['menu'] ?>
 					</li>
-				<? endforeach; ?>
+				<?php endforeach; ?>
 			</ul><!--end actions-->
-			<? if ( isset( $sk->notifications_count ) && (int)$sk->notifications_count > 0 ): ?>
-				<div id="notification_count" class="notice"><?= $sk->notifications_count ?></div>
-			<? endif; ?>
-			<? $holidayLogo = SkinWikihowskin::getHolidayLogo();
+			<?php if ( isset( $sk->notifications_count ) && (int)$sk->notifications_count > 0 ): ?>
+				<div id="notification_count" class="notice"><?php echo $sk->notifications_count ?></div>
+			<?php endif; ?>
+			<?php $holidayLogo = SkinWikihowskin::getHolidayLogo();
 				$logoPath = $holidayLogo ? $holidayLogo : '/skins/owl/images/wikihow_logo.png';
 				if ( $wgLanguageCode != "en" ) {
 					$logoPath = "/skins/owl/images/wikihow_logo_intl.png";
 				}
 				?>
-			<a href='<?=$mainPageObj->getLocalURL(); ?>' id='logo_link'><img src="<?= wfGetPad( $logoPath ) ?>" class="logo" /></a>
-			<?= $top_search ?>
+			<a href='<?php echo $mainPageObj->getLocalURL(); ?>' id='logo_link'><img src="<?php echo wfGetPad( $logoPath ) ?>" class="logo" /></a>
+			<?php echo $top_search ?>
 			<?php wfRunHooks( 'EndOfHeader', array( &$wgOut ) ); ?>
 		</div></div><!--end header-->
 		<?php wfRunHooks( 'AfterHeader', array( &$wgOut ) ); ?>
-		<div id="main_container" class="<?= ( $isMainPage ? 'mainpage':'' ) ?>">
+		<div id="main_container" class="<?php echo ( $isMainPage ? 'mainpage':'' ) ?>">
 			<div id="header_space"></div>
 
 		<div id="main">
 		<?php wfRunHooks( 'BeforeActionbar', array( &$wgOut ) ); ?>
-		<div id="actionbar" class="<?= ( $isTool ? 'isTool':'' ) ?>">
-			<? if ( $showBreadCrumbs ): ?>
+		<div id="actionbar" class="<?php echo ( $isTool ? 'isTool':'' ) ?>">
+			<?php if ( $showBreadCrumbs ): ?>
 				<div id="gatBreadCrumb">
 					<ul id="breadcrumb" class="Breadcrumbs">
-						<?= $catLinksTop ?>
+						<?php echo $catLinksTop ?>
 					</ul>
 				</div>
-			<? endif; ?>
-			<? if ( count( $tabsArray ) > 0 ) {
+			<?php endif; ?>
+			<?php if ( count( $tabsArray ) > 0 ) {
 				echo $sk->getTabsHtml( $tabsArray );
 			} ?>
 
 		</div><!--end actionbar-->
 		<script>
 		<!--
-		WH.translationData = {<?= join( ',', $translationData ) ?>};
+		WH.translationData = {<?php echo join( ',', $translationData ) ?>};
 		//-->
 		</script>
-		<?= $mpActions ?>
+		<?php echo $mpActions ?>
 		<?php
 		$sidebar = !$showSideBar ? 'no_sidebar' : '';
 
@@ -2085,12 +2085,12 @@ UVPERF.start = new Date().getTime();
 		$langKeys = array( 'navlist_collapse', 'navlist_expand', 'usernameoremail', 'password' );
 		print Wikihow_i18n::genJSMsgs( $langKeys );
 		?>
-		<div id="container" class="<?= $sidebar ?>">
+		<div id="container" class="<?php echo $sidebar ?>">
 		<div id="article_shell">
-		<div id="article"<?= Microdata::genSchemaHeader() ?>>
+		<div id="article"<?php echo Microdata::genSchemaHeader() ?>>
 
 			<?php wfRunHooks( 'BeforeTabsLine', array( &$wgOut ) ); ?>
-			<?
+			<?php
 			if ( !$isArticlePage && !$isMainPage && $this->data['bodyheading'] ) {
 				echo '<div class="wh_block">' . $this->data['bodyheading'] . '</div>';
 			}
@@ -2106,18 +2106,18 @@ UVPERF.start = new Date().getTime();
 				?>
 
 				<div class="section">
-					<? if ( $showingArticleInfo ): ?>
-						<h2 class="section_head" id="article_info_header"><span><?= wfMessage( 'article_info' )->text() ?></span></h2>
+					<?php if ( $showingArticleInfo ): ?>
+						<h2 class="section_head" id="article_info_header"><span><?php echo wfMessage( 'article_info' )->text() ?></span></h2>
 						<div id="article_info" class="section_text">
-					<? else : ?>
-						<h2 class="section_head" id="article_tools_header"><span><?= wfMessage( 'article_tools' )->text() ?></span></h2>
+					<?php else : ?>
+						<h2 class="section_head" id="article_tools_header"><span><?php echo wfMessage( 'article_tools' )->text() ?></span></h2>
 						<div id="article_tools" class="section_text">
-					<? endif ?>
-						<?= $fa ?>
+					<?php endif ?>
+						<?php echo $fa ?>
 						<?php if ( $catLinks ): ?>
-							<p class="info"> <?= wfMessage( 'categories' )->text() ?>: <?= $catLinks ?></p>
+							<p class="info"> <?php echo wfMessage( 'categories' )->text() ?>: <?php echo $catLinks ?></p>
 						<?php endif; ?>
-						<p><?=$authors?></p>
+						<p><?php echo $authors ?></p>
 						<?php if ( is_array( $this->data['language_urls'] ) ) { ?>
 							<p class="info"><?php $this->msg( 'otherlanguages' ) ?>:</p>
 							<p class="info"><?php
@@ -2134,7 +2134,7 @@ UVPERF.start = new Date().getTime();
 								echo implode( "&#44;&nbsp;", $links );
 								?>
 							</p>
-						<? }
+						<?php }
 						// talk link
 						if ( $action == 'view' && MWNamespace::isTalk( $wgTitle->getNamespace() ) ) {
 							$talk_link = '#postcomment';
@@ -2143,85 +2143,85 @@ UVPERF.start = new Date().getTime();
 						}
 						?>
 						<ul id="end_options">
-							<li class="endop_discuss"><span></span><a href="<?= $talk_link ?>" id="gatDiscussionFooter"><?=wfMessage( 'at_discuss' )->text()?></a></li>
-							<li class="endop_print"><span></span><a href="<?= $wgTitle->getLocalUrl( 'printable=yes' ) ?>" id="gatPrintView"><?= wfMessage( 'print' )->text() ?></a></li>
-							<li class="endop_email"><span></span><a href="#" onclick="return emailLink();" id="gatSharingEmail"><?=wfMessage( 'at_email' )->text() ?></a></li>
-							<? if ( $isLoggedIn ): ?>
-								<? if ( $wgTitle->userIsWatching() ) { ?>
-									<li class="endop_watch"><span></span><a href="<?echo $wgTitle->getLocalURL( 'action=unwatch' ); ?>"><?=wfMessage( 'at_remove_watch' )->text()?></a></li>
-								<? } else { ?>
-									<li class="endop_watch"><span></span><a href="<?echo $wgTitle->getLocalURL( 'action=watch' ); ?>"><?=wfMessage( 'at_watch' )->text()?></a></li>
-								<? } ?>
-							<? endif; ?>
-							<li class="endop_edit"><span></span><a href="<?echo $wgTitle->getEditUrl(); ?>" id="gatEditFooter"><?echo wfMessage( 'edit' )->text(); ?></a></li>
-							<? if ( $wgTitle->getNamespace() == NS_MAIN ) { ?>
-								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?echo $wgTitle->getPrefixedURL(); ?>" id="gatThankAuthors"><?=wfMessage( 'at_fanmail' )->text()?></a></li>
-							<? } ?>
+							<li class="endop_discuss"><span></span><a href="<?php echo $talk_link ?>" id="gatDiscussionFooter"><?php echo wfMessage( 'at_discuss' )->text() ?></a></li>
+							<li class="endop_print"><span></span><a href="<?php echo $wgTitle->getLocalUrl( 'printable=yes' ) ?>" id="gatPrintView"><?php echo wfMessage( 'print' )->text() ?></a></li>
+							<li class="endop_email"><span></span><a href="#" onclick="return emailLink();" id="gatSharingEmail"><?php echo wfMessage( 'at_email' )->text() ?></a></li>
+							<?php if ( $isLoggedIn ): ?>
+								<?php if ( $wgTitle->userIsWatching() ) { ?>
+									<li class="endop_watch"><span></span><a href="<?php echo $wgTitle->getLocalURL( 'action=unwatch' ); ?>"><?php echo wfMessage( 'at_remove_watch' )->text()?></a></li>
+								<?php } else { ?>
+									<li class="endop_watch"><span></span><a href="<?php echo $wgTitle->getLocalURL( 'action=watch' ); ?>"><?php echo wfMessage( 'at_watch' )->text()?></a></li>
+								<?php } ?>
+							<?php endif; ?>
+							<li class="endop_edit"><span></span><a href="<?php echo $wgTitle->getEditUrl(); ?>" id="gatEditFooter"><?php echo wfMessage( 'edit' )->text(); ?></a></li>
+							<?php if ( $wgTitle->getNamespace() == NS_MAIN ) { ?>
+								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?php echo $wgTitle->getPrefixedURL(); ?>" id="gatThankAuthors"><?php echo wfMessage( 'at_fanmail' )->text()?></a></li>
+							<?php } ?>
 						</ul> <!--end end_options -->
-							<? if ( !in_array( $wgTitle->getNamespace(), array( NS_USER, NS_CATEGORY ) ) ): ?>
+							<?php if ( !in_array( $wgTitle->getNamespace(), array( NS_USER, NS_CATEGORY ) ) ): ?>
 
-							<? endif; ?>
+							<?php endif; ?>
 							<?php if ( $showAds && $wgTitle->getNamespace() == NS_MAIN ) {
 								// only show this ad on article pages
 								echo wikihowAds::getAdUnitPlaceholder( 7 );
 							} ?>
                         <div class="clearall"></div>
 					</div><!--end article_info section_text-->
-						<p class='page_stats'><?= $sk->pageStats() ?></p>
+						<p class='page_stats'><?php echo $sk->pageStats() ?></p>
 
 						<div id='article_rating'>
-							<?echo RateItem::showForm( 'article' ); ?>
+							<?php echo RateItem::showForm( 'article' ); ?>
 						</div>
 				</div><!--end section-->
 
-			<? }
+			<?php }
 
 			if ( $showUserCompletedImages ) { ?>
 				<div class="section">
-					<h2 class="section_head" id="uci_header"><span><?= wfMessage( 'user_completed_images' )->text() ?></span></h2>
+					<h2 class="section_head" id="uci_header"><span><?php echo wfMessage( 'user_completed_images' )->text() ?></span></h2>
 					<div id="uci_images" class="section_text">
-						<?= UCIPatrol::getHTMLForArticle( $this->getSkin()->getContext() ) ?>
+						<?php echo UCIPatrol::getHTMLForArticle( $this->getSkin()->getContext() ) ?>
 					</div> <!-- end section_text-->
 				</div><!--end section-->
-			<? }
+			<?php }
 			if ( in_array( $wgTitle->getNamespace(), array( NS_USER, NS_MAIN, NS_PROJECT ) ) && $action == 'view' && !$isMainPage ) {
 			?>
 
 		</div> <!-- article -->
 		<div id="">
 
-			<? } ?>
+			<?php } ?>
 		</div>  <!--end last_question-->
 		<div class="clearall"></div>
 
 		</div>  <!--end article_shell-->
 
 
-		<? if ( $showSideBar ):
+		<?php if ( $showSideBar ):
 			$loggedOutClass = "";
 			if ( $showAds && $wgTitle->getText() != 'Userlogin' && $wgTitle->getNamespace() == NS_MAIN ) {
 				$loggedOutClass = ' logged_out';
 			}
 		?>
 			<div id="sidebar">
-				<?= $siteNotice ?>
+				<?php echo $siteNotice ?>
 
 				<!-- Sidebar Top Widgets -->
-				<? foreach ( $sk->mSidebarTopWidgets as $sbWidget ): ?>
-					<?= $sbWidget ?>
-				<? endforeach; ?>
+				<?php foreach ( $sk->mSidebarTopWidgets as $sbWidget ): ?>
+					<?php echo $sbWidget ?>
+				<?php endforeach; ?>
 				<!-- END Sidebar Top Widgets -->
 
-				<? if ( !$isDocViewer ) {
+				<?php if ( !$isDocViewer ) {
 				?>
-				<div id="top_links" class="sidebox<?=$loggedOutClass?>" <?= is_numeric( wfMessage( 'top_links_padding' )->text() ) ? ' style="padding-left:' . wfMessage( 'top_links_padding' )->text() . 'px;padding-right:' . wfMessage( 'top_links_padding' )->text() . 'px;"' : '' ?>>
-					<a href="/Special:Randomizer" id="gatRandom" accesskey='x' class="button secondary"><?=wfMessage( 'randompage' )->text(); ?></a>
-					<a href="/Special:Createpage" id="gatWriteAnArticle" class="button secondary"><?=wfMessage( 'writearticle' )->text(); ?></a>
-					<? if ( class_exists( 'Randomizer' ) && Randomizer::DEBUG && $wgTitle && $wgTitle->getNamespace() == NS_MAIN && $wgTitle->getArticleId() ): ?>
-						<?= Randomizer::getReason( $wgTitle ) ?>
-					<? endif; ?>
+				<div id="top_links" class="sidebox<?php echo $loggedOutClass ?>" <?php echo is_numeric( wfMessage( 'top_links_padding' )->text() ) ? ' style="padding-left:' . wfMessage( 'top_links_padding' )->text() . 'px;padding-right:' . wfMessage( 'top_links_padding' )->text() . 'px;"' : '' ?>>
+					<a href="/Special:Randomizer" id="gatRandom" accesskey='x' class="button secondary"><?php echo wfMessage( 'randompage' )->text(); ?></a>
+					<a href="/Special:Createpage" id="gatWriteAnArticle" class="button secondary"><?php echo wfMessage( 'writearticle' )->text(); ?></a>
+					<?php if ( class_exists( 'Randomizer' ) && Randomizer::DEBUG && $wgTitle && $wgTitle->getNamespace() == NS_MAIN && $wgTitle->getArticleId() ): ?>
+						<?php echo Randomizer::getReason( $wgTitle ) ?>
+					<?php endif; ?>
 				</div><!--end top_links-->
-				<? } ?>
+				<?php } ?>
 				<?php if ( $showStaffStats ): ?>
 					<div class="sidebox" style="padding-top:10px" id="staff_stats_box"></div>
 				<?php endif; ?>
@@ -2249,7 +2249,7 @@ UVPERF.start = new Date().getTime();
 						//-->
 					</script>
 						<?php endif; ?>
-					<?
+					<?php
 					// only show this ad on article pages
 					// comment out next line to turn off HHM ad
 					if ( wikihowAds::isHHM() && $wgLanguageCode == 'en' )
@@ -2266,14 +2266,14 @@ UVPERF.start = new Date().getTime();
 				// <!-- <a href="#"><img src="/skins/WikiHow/images/imgad.jpg" /></a> -->
 				?>
 
-				<? $userLinks = $sk->getUserLinks(); ?>
-				<? if ( $userLinks ) { ?>
+				<?php $userLinks = $sk->getUserLinks(); ?>
+				<?php if ( $userLinks ) { ?>
 				<div class='sidebox'>
-					<?= $userLinks ?>
+					<?php echo $userLinks ?>
 				</div>
-				<? } ?>
+				<?php } ?>
 
-				<?
+				<?php
 				$related_articles = $sk->getRelatedArticlesBox( $this );
 				// disable custom link units
 				//  if (!$isLoggedIn && $wgTitle->getNamespace() == NS_MAIN && !$isMainPage)
@@ -2288,10 +2288,10 @@ UVPERF.start = new Date().getTime();
 
 				?>
 
-				<? if ( $showSocialSharing ): ?>
-					<div class="sidebox<?=$loggedOutClass?>" id="sidebar_share">
-						<h3><?= wfMessage( 'social_share' )->text() ?></h3>
-						<?
+				<?php if ( $showSocialSharing ): ?>
+					<div class="sidebox<?php echo$loggedOutClass?>" id="sidebar_share">
+						<h3><?php echo wfMessage( 'social_share' )->text() ?></h3>
+						<?php
 						if ( $isMainPage ) {
 							echo WikihowShare::getMainPageShareButtons();
 						} else {
@@ -2300,13 +2300,13 @@ UVPERF.start = new Date().getTime();
 						?>
 						<div style="clear:both; float:none;"></div>
 					</div>
-				<? endif; ?>
+				<?php endif; ?>
 
-				<? if ( $mpWorldwide !== "" ) { ?>
-					<?= $mpWorldwide ?>
-				<? }  ?>
+				<?php if ( $mpWorldwide !== "" ) { ?>
+					<?php echo $mpWorldwide ?>
+				<?php }  ?>
 
-				<? /*
+				<?php /*
 				<!--
 				<div class="sidebox_shell">
 					<div class='sidebar_top'></div>
@@ -2319,54 +2319,54 @@ UVPERF.start = new Date().getTime();
 				*/ ?>
 
 				<!-- Sidebar Widgets -->
-				<? foreach ( $sk->mSidebarWidgets as $sbWidget ): ?>
-					<?= $sbWidget ?>
-				<? endforeach; ?>
+				<?php foreach ( $sk->mSidebarWidgets as $sbWidget ): ?>
+					<?php echo $sbWidget ?>
+				<?php endforeach; ?>
 				<!-- END Sidebar Widgets -->
 
-				<? // if ($isLoggedIn) echo $navMenu; ?>
+				<?php // if ($isLoggedIn) echo $navMenu; ?>
 
 
-				<? if ( $showFeaturedArticlesSidebar ): ?>
+				<?php if ( $showFeaturedArticlesSidebar ): ?>
 					<div id="side_featured_articles" class="sidebox">
-						<?= $sk->getFeaturedArticlesBox( 4, 4 ) ?>
+						<?php echo $sk->getFeaturedArticlesBox( 4, 4 ) ?>
 					</div>
-				<? endif; ?>
+				<?php endif; ?>
 
-				<? if ( $showRCWidget ): ?>
+				<?php if ( $showRCWidget ): ?>
 					<div class="sidebox" id="side_rc_widget">
-						<? RCWidget::showWidget(); ?>
+						<?php RCWidget::showWidget(); ?>
 						<p class="bottom_link">
-							<? if ( $isLoggedIn ) { ?>
-								<?= wfMessage( 'welcome', $wgUser->getName(), $wgUser->getUserPage()->getLocalURL() )->text(); ?>
-							<? } else { ?>
-								<a href="/Special:Userlogin" id="gatWidgetBottom"><?=wfMessage( 'rcwidget_join_in' )->text()?></a>
-							<? } ?>
+							<?php if ( $isLoggedIn ) { ?>
+								<?php echo wfMessage( 'welcome', $wgUser->getName(), $wgUser->getUserPage()->getLocalURL() )->text(); ?>
+							<?php } else { ?>
+								<a href="/Special:Userlogin" id="gatWidgetBottom"><?php echo wfMessage( 'rcwidget_join_in' )->text()?></a>
+							<?php } ?>
 							<a href="" id="play_pause_button" onclick="rcTransport(this); return false;" ></a>
 						</p>
 					</div><!--end side_recent_changes-->
-				<? endif; ?>
+				<?php endif; ?>
 
-				<? if ( class_exists( 'FeaturedContributor' ) && ( $wgTitle->getNamespace() == NS_MAIN || $wgTitle->getNamespace() == NS_USER ) && !$isMainPage && !$isDocViewer ): ?>
+				<?php if ( class_exists( 'FeaturedContributor' ) && ( $wgTitle->getNamespace() == NS_MAIN || $wgTitle->getNamespace() == NS_USER ) && !$isMainPage && !$isDocViewer ): ?>
 					<div id="side_featured_contributor" class="sidebox">
-						<?  FeaturedContributor::showWidget();  ?>
-						<? if ( ! $isLoggedIn ): ?>
+						<?php FeaturedContributor::showWidget();  ?>
+						<?php if ( ! $isLoggedIn ): ?>
 							<p class="bottom_button">
 								<a href="/Special:Userlogin" class="button secondary" id="gatFCWidgetBottom" onclick='gatTrack("Browsing","Feat_contrib_cta","Feat_contrib_wgt");'><? echo wfMessage( 'fc_action' )->text() ?></a>
 							</p>
-						<? endif; ?>
+						<?php endif; ?>
 					</div><!--end side_featured_contributor-->
-				<? endif; ?>
+				<?php endif; ?>
 
-				<? // if (!$isLoggedIn) echo $navMenu; ?>
+				<?php // if (!$isLoggedIn) echo $navMenu; ?>
 
-				<? if ( $showFollowWidget ): ?>
+				<?php if ( $showFollowWidget ): ?>
 					<div class="sidebox">
-						<? FollowWidget::showWidget(); ?>
+						<?php FollowWidget::showWidget(); ?>
 					</div>
-				<? endif; ?>
+				<?php endif; ?>
 			</div><!--end sidebar-->
-		<? endif; // end if $showSideBar ?>
+		<?php endif; // end if $showSideBar ?>
 		<div class="clearall" ></div>
 		</div> <!--end container -->
 		</div><!--end main-->
@@ -2375,21 +2375,21 @@ UVPERF.start = new Date().getTime();
 		<div id="footer_outer">
 			<div id="footer">
 				<div id="footer_side">
-					<? if ( $isLoggedIn ): ?>
-						<?=wfMessage( 'site_footer_owl' )->parse(); ?>
-					<? else : ?>
-						<?=wfMessage( 'site_footer_owl_anon' )->parse(); ?>
-					<? endif; ?>
+					<?php if ( $isLoggedIn ): ?>
+						<?php echo wfMessage( 'site_footer_owl' )->parse(); ?>
+					<?php else : ?>
+						<?php echo wfMessage( 'site_footer_owl_anon' )->parse(); ?>
+					<?php endif; ?>
 				</div><!--end footer_side-->
 
 				<div id="footer_main">
 
 					<div id="sub_footer">
 						<?php if ( $isLoggedIn || $isMainPage ): ?>
-							<?= wfMessage( 'sub_footer_new', wfGetPad(), wfGetPad() )->text() ?>
+							<?php echo wfMessage( 'sub_footer_new', wfGetPad(), wfGetPad() )->text() ?>
 						<?php else : ?>
-							<?= wfMessage( 'sub_footer_new_anon', wfGetPad(), wfGetPad() )->text() ?>
-						<? endif; ?>
+							<?php echo wfMessage( 'sub_footer_new_anon', wfGetPad(), wfGetPad() )->text() ?>
+						<?php endif; ?>
 					</div>
 				</div><!--end footer_main-->
 			</div>
@@ -2397,7 +2397,7 @@ UVPERF.start = new Date().getTime();
 		</div><!--end footer-->
 		<div id="dialog-box" title=""></div>
 
-		<?
+		<?php
 		// Quick note/edit popup
 		if ( $action == 'diff' && $wgLanguageCode == 'en' ) {
 			echo QuickNoteEdit::displayQuicknote();
@@ -2413,13 +2413,13 @@ UVPERF.start = new Date().getTime();
 
 		<div id="fb-root" ></div>
 
-		<? if ( $postLoadJS ): ?>
-			<?= $this->html( 'headscripts' ) ?>
-			<script type="text/javascript" src="<?= $fullJSuri ?>"></script>
-		<? endif; ?>
+		<?php if ( $postLoadJS ): ?>
+			<?php echo $this->html( 'headscripts' ) ?>
+			<script type="text/javascript" src="<?php echo $fullJSuri ?>"></script>
+		<?php endif; ?>
 		<?php if ( $optimizelyJS ) { print $optimizelyJS; } ?>
 
-		<? if ( $showExitTimer ): ?>
+		<?php if ( $showExitTimer ): ?>
 			<script>
 				<!--
 				if (WH.ExitTimer) {
@@ -2427,16 +2427,16 @@ UVPERF.start = new Date().getTime();
 				}
 				//-->
 			</script>
-		<? endif; ?>
+		<?php endif; ?>
 
-		<? if ( $showRCWidget ): ?>
-			<? RCWidget::showWidgetJS() ?>
-		<? endif; ?>
+		<?php if ( $showRCWidget ): ?>
+			<?php RCWidget::showWidgetJS() ?>
+		<?php endif; ?>
 
 		<script type="text/javascript">
 			<!--
 			var _gaq = _gaq || [];
-	<? if ( $showGA ): ?>
+	<?php if ( $showGA ): ?>
 			_gaq.push(['_setAccount', 'UA-2375655-1']);
 			_gaq.push(['_setDomainName', '.wikihow.com']);
 			_gaq.push(['_trackPageview']);
@@ -2445,12 +2445,12 @@ UVPERF.start = new Date().getTime();
 				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 			})();
-	<? endif; ?>
+	<?php endif; ?>
 			//-->
 		</script>
 
-	<? if ( $showGA ): ?>
-		<? // Google Analytics Event Track ?>
+	<?php if ( $showGA ): ?>
+		<?php // Google Analytics Event Track ?>
 		<script type="text/javascript">
 			<!--
 			if (typeof Event =='undefined' || typeof Event.observe == 'undefined') {
@@ -2460,15 +2460,15 @@ UVPERF.start = new Date().getTime();
 			}
 			//-->
 		</script>
-		<? // END Google Analytics Event Track ?>
-		<?
+		<?php // END Google Analytics Event Track ?>
+		<?php
 		if ( class_exists( 'CTALinks' ) && trim( wfMessage( 'cta_feature' )->inContentLanguage()->text() ) == "on" ) {
 			echo CTALinks::getGoogleControlTrackingScript();
 			echo CTALinks::getGoogleConversionScript();
 		}
 		?>
-		<? // Load event listeners ?>
-		<? if ( $showGAevents ): ?>
+		<?php // Load event listeners ?>
+		<?php if ( $showGAevents ): ?>
 			<script type="text/javascript">
 				<!--
 				if (typeof Event =='undefined' || typeof Event.observe == 'undefined') {
@@ -2478,17 +2478,17 @@ UVPERF.start = new Date().getTime();
 				}
 				//-->
 			</script>
-		<? endif; ?>
-	<? endif; // $showGA ?>
+		<?php endif; ?>
+	<?php endif; // $showGA ?>
 
-		<? // Load event listeners all pages ?>
-		<?
+		<?php // Load event listeners all pages ?>
+		<?php
 		if ( class_exists( 'CTALinks' ) && trim( wfMessage( 'cta_feature' )->inContentLanguage()->text() ) == "on" ) {
 			echo CTALinks::getBlankCTA();
 		}
 		?>
 
-		<? if ( $showClickIgniter ): ?>
+		<?php if ( $showClickIgniter ): ?>
 			<script type="text/javascript">
 			(function() {
 				var ci = document.createElement('script'); ci.type = 'text/javascript'; ci.async = true;
@@ -2496,8 +2496,8 @@ UVPERF.start = new Date().getTime();
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ci, s);
 			})();
 			</script>
-		<? endif; ?>
-		<? if ( $showGoSquared ): ?>
+		<?php endif; ?>
+		<?php if ( $showGoSquared ): ?>
 			<script type="text/javascript">
 				var GoSquared = {};
 				GoSquared.acct = "GSN-491441-Y";
@@ -2516,8 +2516,8 @@ UVPERF.start = new Date().getTime();
 						w.attachEvent("onload", gs);
 				})(window);
 			</script>
-		<? endif; ?>
-		<? if ( $showRUM ): ?>
+		<?php endif; ?>
+		<?php if ( $showRUM ): ?>
 		<script>
 			(function(){
 				var a=document.createElement('script'); a.type='text/javascript'; a.async=true;
@@ -2525,21 +2525,21 @@ UVPERF.start = new Date().getTime();
 				var b=document.getElementsByTagName('script')[0]; b.parentNode.insertBefore(a,b);
 			})();
 		</script>
-		<? endif; ?>
-		<?  wfRunHooks( 'ArticleJustBeforeBodyClose', array() ); ?>
-		<? if ( ( $wgRequest->getVal( "action" ) == "edit"
+		<?php endif; ?>
+		<?php wfRunHooks( 'ArticleJustBeforeBodyClose', array() ); ?>
+		<?php if ( ( $wgRequest->getVal( "action" ) == "edit"
 				|| $wgRequest->getVal( "action" ) == "submit2" )
 			&& $wgRequest->getVal( 'advanced', null ) != 'true' ): ?>
 			<script type="text/javascript">
 				if (document.getElementById('steps') && document.getElementById('wpTextbox1') == null) {
-					InstallAC(document.editform,document.editform.q,document.editform.btnG,"./<?= $wgLang->getNsText( NS_SPECIAL ) . ":TitleSearch" ?>","en");
+					InstallAC(document.editform,document.editform.q,document.editform.btnG,"./<?php echo $wgLang->getNsText( NS_SPECIAL ) . ":TitleSearch" ?>","en");
 				}
 			</script>
-		<? endif; ?>
+		<?php endif; ?>
 
-		<? if ( $wgLanguageCode == 'en' && !$isLoggedIn && class_exists( 'GoogSearch' ) ): ?>
-			<?= GoogSearch::getSearchBoxJS() ?>
-		<? endif; ?>
+		<?php if ( $wgLanguageCode == 'en' && !$isLoggedIn && class_exists( 'GoogSearch' ) ): ?>
+			<?php echo GoogSearch::getSearchBoxJS() ?>
+		<?php endif; ?>
 
 <script type="text/javascript">
 	(function ($) {
@@ -2592,7 +2592,7 @@ UVPERF.start = new Date().getTime();
 		});
 	})(jQuery);
 </script>
-<?
+<?php
 			// Temporarily taking down Jane
 			/*
 			var r = Math.random();
@@ -2600,20 +2600,20 @@ UVPERF.start = new Date().getTime();
 				$('#starter_ad').show();
 			}*/
 ?>
-<? if ( $showStaffStats ): ?>
-	<?= Pagestats::getJSsnippet( "article" ) ?>
-<? endif; ?>
-<?= $wgOut->getBottomScripts() ?>
+<?php if ( $showStaffStats ): ?>
+	<?php echo Pagestats::getJSsnippet( "article" ) ?>
+<?php endif; ?>
+<?php echo $wgOut->getBottomScripts() ?>
 
-<? if ( class_exists( 'GoodRevision' ) ): ?>
-	<?
+<?php if ( class_exists( 'GoodRevision' ) ): ?>
+	<?php
 	$grevid = $wgTitle ? GoodRevision::getUsedRev( $wgTitle->getArticleID() ) : '';
 	$title = $this->getSkin()->getContext()->getTitle();
 	$latestRev = $title->getNamespace() == NS_MAIN ? $title->getLatestRevID() : '';
 	?>
-	<!-- shown patrolled revid=<?= $grevid ?>, latest=<?= $latestRev ?> -->
-<? endif; ?>
-<?= wfReportTime() ?>
+	<!-- shown patrolled revid=<?php echo $grevid ?>, latest=<?php echo $latestRev ?> -->
+<?php endif; ?>
+<?php echo wfReportTime() ?>
 <?php $this->printTrail(); ?>
 </body>
 </html>
