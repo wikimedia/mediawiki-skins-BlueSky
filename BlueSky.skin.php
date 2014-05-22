@@ -14,9 +14,10 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  *
  * @ingroup Skins
  */
-class SkinWikihowskin extends SkinTemplate {
+class SkinBlueSky extends SkinTemplate {
 
-	var $skinname = 'wikihowskin';
+	var $skinname = 'bluesky', $stylename = 'bluesky',
+		$template = 'BlueSkyTemplate', $useHeadElement = true;
 
 	public $mSidebarWidgets = array();
 	public $mSidebarTopWidgets = array();
@@ -613,7 +614,7 @@ class SkinWikihowskin extends SkinTemplate {
 	// overloaded from Skin class
 	function drawCategoryBrowser( $tree, &$skin, $count = 0 ) {
 		$return = '';
-		$viewMode = WikihowCategoryViewer::getViewModeArray( $this->getContext() );
+		//$viewMode = WikihowCategoryViewer::getViewModeArray( $this->getContext() );
 		foreach ( $tree as $element => $parent ) {
 			/*
 			if ($element == "Category:WikiHow" ||
@@ -641,10 +642,15 @@ class SkinWikihowskin extends SkinTemplate {
 				$return .= "\n";
 			} else {
 				# grab the others elements
-				$return .= $this->drawCategoryBrowser( $parent, $skin, $count ) ;
+				$return .= $this->drawCategoryBrowser( $parent, $skin, $count );
 			}
 			# add our current element to the list
-			$return .= "<li>$start " . Skin::link( $eltitle, $eltitle->getText(), array(), $viewMode ) . '</li>';
+			$return .= "<li>$start " . Skin::link(
+				$eltitle,
+				$eltitle->getText()/*,
+				array(),
+				$viewMode*/
+			) . '</li>';
 		}
 		return $return;
 	}
@@ -1140,15 +1146,21 @@ class SkinWikihowskin extends SkinTemplate {
 				if ( $isLoggedIn ) {
 					$html .= "<a href='$wgForumLink'>" . wfMessage( 'forums' )->text() . "</a>";
 				}
-				$html .= "<a href='/Special:Randomizer'>" . wfMessage( 'randompage' )->text() . "</a>";
+				$html .= Linker::link(
+					SpecialPage::getTitleFor( 'Randompage' ),
+					wfMessage( 'randompage' )->plain()
+				);
 				if ( !$isLoggedIn ) {
-					$html .= Linker::link( Title::makeTitle( NS_PROJECT, 'About-wikiHow' ), wfMessage( 'navmenu_aboutus' )->text() );
+					$html .= Linker::link(
+						Title::newFromText( wfMessage( 'aboutpage' )->text() ),
+						wfMessage( 'navmenu_aboutus' )->text()
+					);
 				}
-				$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'Categorylisting' ), wfMessage( 'navmenu_categories' )->text() ) .
-						Linker::link( Title::makeTitle( NS_SPECIAL, 'Recentchanges' ), wfMessage( 'recentchanges' )->text() );
+				$html .= Linker::link( SpecialPage::getTitleFor( 'Categories' ), wfMessage( 'navmenu_categories' )->text() ) .
+						Linker::link( SpecialPage::getTitleFor( 'Recentchanges' ), wfMessage( 'recentchanges' )->text() );
 				if ( $isLoggedIn ) {
-					$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'Specialpages' ), wfMessage( 'specialpages' )->text() );
-					$html .= Linker::link( Title::makeTitle( NS_PROJECT_TALK, 'Help-Team' ), wfMessage( 'help' )->text() );
+					$html .= Linker::link( SpecialPage::getTitleFor( 'Specialpages' ), wfMessage( 'specialpages' )->text() );
+					$html .= Linker::link( Title::newFromText( wfMessage( 'helppage' )->text() ), wfMessage( 'help' )->text() );
 				}
 				break;
 			case 'help':
@@ -1176,12 +1188,13 @@ class SkinWikihowskin extends SkinTemplate {
 				}
 				break;
 			case 'messages':
-
 				if ( class_exists( 'EchoEvent' ) && $wgUser->hasCookies() ) {
 					$maxNotesShown = 5;
 					$notif = ApiEchoNotifications::getNotifications( $wgUser, 'html', $maxNotesShown );
 
 					if ( $notif ) {
+						$notificationsPage = SpecialPage::getTitleFor( 'Notifications' );
+
 						// show those notifications
 						foreach ( $notif as $note ) {
 							$this_note = $note['*'];
@@ -1201,13 +1214,20 @@ class SkinWikihowskin extends SkinTemplate {
 						$this->notifications_count = $notifUser->getNotificationCount();
 
 						if ( $this->notifications_count > $maxNotesShown ) {
-							$unshown = '<br /><a href="/Special:Notifications">(' . ( $this->notifications_count - $maxNotesShown ) . ' unread)</a>';
+							$unshown = '<br />' . Linker::link(
+								$notificationsPage,
+								wfMessage( 'parentheses',
+									( $this->notifications_count - $maxNotesShown ) . ' unread' // @todo FIXME: proper i18n
+								)->text()
+							);
 						} else {
 							$unshown = '';
 						}
 
 						// add view all link
-						$html .= '<div class="menu_message_morelink"><a href="/Special:Notifications">' . wfMessage( 'more-notifications-link' )->text() . '</a>' . $unshown . '</div>';
+						$html .= '<div class="menu_message_morelink">';
+						$html .= Linker::link( $notificationsPage, wfMessage( 'more-notifications-link' )->plain() );
+						$html .= $unshown . '</div>';
 					} else {
 						// no notifications
 						$html .= '<div class="menu_message_morelink">' . wfMessage( 'no-notifications' )->parse() . '</div>';
@@ -1314,23 +1334,34 @@ class SkinWikihowskin extends SkinTemplate {
 		return $tpl;
 	}
 
+	/**
+	 * If it's holiday season, get a festive logo instead of the standard one!
+	 *
+	 * @return string Path to the logo image (during a festive season) or an empty string
+	 */
 	static function getHolidayLogo() {
-		// Note 1: you should take into account 24h varnish page caching when
+		global $wgStylePath;
+
+		// Note 1: you should take into account 24h Varnish page caching when
 		//   considering these dates!
 		// Note 2: we use full dates for safety rather than figuring out what year
 		//   we're in! We just need to change these once a year.
 		$holidayLogos = array(
-			array( 'logo' => '/skins/owl/images/wikihow_logo_halloween.png',
+			array(
+				'logo' => $wgStylePath . '/BlueSky/resources/images/wikihow_logo_halloween.png',
 				'start' => strtotime( 'October 25, 2013 PST' ),
 				'end' => strtotime( 'November 1, 2013 PST' ),
 			),
 		);
+
 		$now = time();
+
 		foreach ( $holidayLogos as $hl ) {
 			if ( $hl['start'] <= $now && $now <= $hl['end'] ) {
 				return $hl['logo'];
 			}
 		}
+
 		return '';
 	}
 
@@ -1365,7 +1396,7 @@ class SkinWikihowskin extends SkinTemplate {
 
 }
 
-class WikiHowTemplate extends QuickTemplate {
+class BlueSkyTemplate extends BaseTemplate {
 
 	/**
 	 * Template filter callback for BlueSky skin.
@@ -1374,11 +1405,11 @@ class WikiHowTemplate extends QuickTemplate {
 	 * outputs a formatted page.
 	 */
 	public function execute() {
-		global $wgUser, $wgLang, $wgTitle, $wgRequest, $wgParser, $wgGoogleSiteVerification;
+		global $wgUser, $wgLang, $wgTitle, $wgRequest;
 		global $wgOut, $wgScript, $wgStylePath, $wgLanguageCode, $wgForumLink;
 		global $wgContLang, $wgXhtmlDefaultNamespace, $wgContLanguageCode;
-		global $wgWikiHowSections, $IP, $wgServer, $wgServerName, $wgIsDomainTest;
-		global $wgSSLsite, $wgSpecialPages;
+		global $IP, $wgServer, $wgIsDomainTest;
+		global $wgSSLsite;
 
 		$prefix = '';
 
@@ -1427,7 +1458,7 @@ class WikiHowTemplate extends QuickTemplate {
 
 		$isIndexed = RobotPolicy::isIndexable( $wgTitle );
 
-		$pageTitle = SkinWikihowSkin::getHTMLTitle( $wgOut->getHTMLTitle(), $this->data['title'], $isMainPage );
+		$pageTitle = SkinBlueSky::getHTMLTitle( $wgOut->getHTMLTitle(), $this->data['title'], $isMainPage );
 
 		// set the title and what not
 		$avatar = '';
@@ -1913,7 +1944,7 @@ var WH = WH || {};
 	<?php endif; ?>
 	<?php // add CSS files to extensions/min/groupsConfig.php ?>
 	<style type="text/css" media="all">/*<![CDATA[*/ @import "<?php echo $fullCSSuri ?>"; /*]]>*/</style>
-	<?php // below is the minified http://www.wikihow.com/extensions/min/f/skins/owl/printable.css ?>
+	<?php // below is the minified /resources/css/printable.css ?>
 	<style type="text/css" media="<?php echo$printable_media?>">/*<![CDATA[*/ body{background-color:#FFF;font-size:1.2em}#header_outer{background:0 0;position:relative}#header{text-align:center;height:63px!important;width:242px!important;background:url(/skins/owl/images/logo_lightbg_242.jpg) no-repeat center center;margin-top:15px}#article_shell{margin:0 auto;float:none;padding-bottom:2em}.sticking{position:absolute!important;top:0!important}#actions,#article_rating,#article_tabs,#breadcrumb,#bubble_search,#cse-search-box,#end_options,#footer_outer,#header_space,#logo_link,#notification_count,#originators,#sidebar,#sliderbox,.edit,.editsection,.mwimg,.section.relatedwikihows,.section.video,.whvid_cont,.altadder_section{display:none!important} /*]]>*/</style>
 		<?php
 		// Bootstapping certain javascript functions:
@@ -1994,12 +2025,13 @@ var WH = WH || {};
 			<?php if ( isset( $sk->notifications_count ) && (int)$sk->notifications_count > 0 ): ?>
 				<div id="notification_count" class="notice"><?php echo $sk->notifications_count ?></div>
 			<?php endif; ?>
-			<?php $holidayLogo = SkinWikihowskin::getHolidayLogo();
-				$logoPath = $holidayLogo ? $holidayLogo : '/skins/owl/images/wikihow_logo.png';
+			<?php
+				$holidayLogo = SkinBlueSky::getHolidayLogo();
+				$logoPath = $holidayLogo ? $holidayLogo : $wgStylePath . '/BlueSky/resources/images/wikihow_logo.png';
 				if ( $wgLanguageCode != 'en' ) {
-					$logoPath = '/skins/owl/images/wikihow_logo_intl.png';
+					$logoPath = $wgStylePath . '/BlueSky/resources/images/wikihow_logo_intl.png';
 				}
-				?>
+			?>
 			<a href='<?php echo $mainPageObj->getLocalURL(); ?>' id='logo_link'><img src="<?php echo wfGetPad( $logoPath ) ?>" class="logo" /></a>
 			<?php echo $top_search ?>
 			<?php wfRunHooks( 'EndOfHeader', array( &$wgOut ) ); ?>
@@ -2210,14 +2242,7 @@ var WH = WH || {};
 					} else {
 						echo wikihowAds::getCategoryAd();
 					}
-
-					// Temporairily taking down Jane
-					/*if (class_exists('StarterTool')) {
-						//spellchecker test "ad"
-						echo "<a href='/Special:StarterTool?ref=1' style='display:none' id='starter_ad'><img src='" . wfGetPad('/skins/WikiHow/images/sidebar_spelling3.png') . "' nopin='nopin' /></a>";
-					}*/
 				}
-				// <!-- <a href="#"><img src="/skins/WikiHow/images/imgad.jpg" /></a> -->
 				?>
 
 				<?php $userLinks = $sk->getUserLinks(); ?>
@@ -2229,10 +2254,6 @@ var WH = WH || {};
 
 				<?php
 				$related_articles = $sk->getRelatedArticlesBox( $this );
-				// disable custom link units
-				// if (!$isLoggedIn && $wgTitle->getNamespace() == NS_MAIN && !$isMainPage)
-				// if ($related_articles != "")
-				// $related_articles .= WikiHowTemplate::getAdUnitPlaceholder(2, true);
 				if ( $action == 'view' && $related_articles != '' ) {
 					$related_articles = '<div id="side_related_articles" class="sidebox">'
 						. $related_articles . '</div><!--end side_related_articles-->';
