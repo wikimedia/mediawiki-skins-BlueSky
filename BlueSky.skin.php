@@ -1814,11 +1814,6 @@ class WikiHowTemplate extends QuickTemplate {
 			}
 		}
 
-		// Reuben (11/2013): Micro-customization as a test for BR
-		// $slowSpeedUsers = array('BR');
-		$slowSpeedUsers = array();
-		$isSlowSpeedUser = $wgUser && in_array( $wgUser->getName(), $slowSpeedUsers );
-
 		$optimizelyJS = false;
 		if ( class_exists( 'OptimizelyPageSelector' ) && $wgTitle ) {
 			if ( OptimizelyPageSelector::isArticleEnabled( $wgTitle ) && OptimizelyPageSelector::isUserEnabled( $wgUser ) ) {
@@ -1866,7 +1861,6 @@ class WikiHowTemplate extends QuickTemplate {
 			$wgTitle &&
 			$wgTitle->exists() &&
 			$wgTitle->getNamespace() == NS_MAIN &&
-			!$isSlowSpeedUser &&
 			$action == 'view' &&
 			class_exists( 'WikihowShare' );
 
@@ -1897,14 +1891,11 @@ class WikiHowTemplate extends QuickTemplate {
 			$showAltMethod = true;
 		}
 
-		$showExitTimer = $wgLanguageCode == 'en' && class_exists( 'BounceTimeLogger' ) && !$isSlowSpeedUser;
+		$showExitTimer = $wgLanguageCode == 'en' && class_exists( 'BounceTimeLogger' );
 
-		$showRUM = false; // ($isArticlePage || $isMainPage) && !$isBehindHttpAuth && !$isSlowSpeedUser;
+		$showRUM = false; // ($isArticlePage || $isMainPage) && !$isBehindHttpAuth;
 		$showGoSquared = ( $isArticlePage || $isMainPage ) && !$isLoggedIn && !$isBehindHttpAuth && mt_rand( 1, 100 ) <= 30; // 30% chance
 		$showClickIgniter = !$isLoggedIn && !$isBehindHttpAuth && !$wgSSLsite;
-
-		$showGA = !$isSlowSpeedUser;
-		$showGAevents = $wgLanguageCode == 'en' && $isMainPage && !$isSlowSpeedUser;
 
 		$isLiquid = false;// !$isMainPage && ( $wgTitle->getNameSpace() == NS_CATEGORY );
 
@@ -2520,54 +2511,6 @@ UVPERF.start = new Date().getTime();
 				RCWidget::showWidgetJS();
 			}
 		?>
-
-		<script type="text/javascript">
-			<!--
-			var _gaq = _gaq || [];
-	<?php if ( $showGA ): ?>
-			_gaq.push(['_setAccount', 'UA-2375655-1']);
-			_gaq.push(['_setDomainName', '.wikihow.com']);
-			_gaq.push(['_trackPageview']);
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-	<?php endif; ?>
-			//-->
-		</script>
-
-	<?php if ( $showGA ): ?>
-		<?php // Google Analytics Event Track ?>
-		<script type="text/javascript">
-			<!--
-			if (typeof Event =='undefined' || typeof Event.observe == 'undefined') {
-				jQuery(window).load(gatStartObservers);
-			} else {
-				Event.observe(window, 'load', gatStartObservers);
-			}
-			//-->
-		</script>
-		<?php // END Google Analytics Event Track ?>
-		<?php
-		if ( class_exists( 'CTALinks' ) && trim( wfMessage( 'cta_feature' )->inContentLanguage()->text() ) == 'on' ) {
-			echo CTALinks::getGoogleControlTrackingScript();
-			echo CTALinks::getGoogleConversionScript();
-		}
-		?>
-		<?php // Load event listeners ?>
-		<?php if ( $showGAevents ): ?>
-			<script type="text/javascript">
-				<!--
-				if (typeof Event =='undefined' || typeof Event.observe == 'undefined') {
-					jQuery(window).load(initSA);
-				} else {
-					Event.observe(window, 'load', initSA);
-				}
-				//-->
-			</script>
-		<?php endif; ?>
-	<?php endif; // $showGA ?>
 
 		<?php // Load event listeners all pages ?>
 		<?php
