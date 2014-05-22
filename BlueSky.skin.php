@@ -1893,10 +1893,6 @@ class WikiHowTemplate extends QuickTemplate {
 
 		$showExitTimer = $wgLanguageCode == 'en' && class_exists( 'BounceTimeLogger' );
 
-		$showRUM = false; // ($isArticlePage || $isMainPage) && !$isBehindHttpAuth;
-		$showGoSquared = ( $isArticlePage || $isMainPage ) && !$isLoggedIn && !$isBehindHttpAuth && mt_rand( 1, 100 ) <= 30; // 30% chance
-		$showClickIgniter = !$isLoggedIn && !$isBehindHttpAuth && !$wgSSLsite;
-
 		$isLiquid = false;// !$isMainPage && ( $wgTitle->getNameSpace() == NS_CATEGORY );
 
 		$showFeaturedArticlesSidebar = $action == 'view'
@@ -2002,15 +1998,6 @@ var WH = WH || {};
 //-->
 </script>
 
-	<?php if ( $showRUM ): ?>
-<script>
-<!--
-window.UVPERF = {};
-UVPERF.authtoken = 'b473c3f9-a845-4dc3-9432-7ad0441e00c3';
-UVPERF.start = new Date().getTime();
-//-->
-</script>
-	<?php endif; ?>
 	<?php if ( $wgIsDomainTest ): ?>
 	<base href="http://www.wikihow.com/" />
 	<?php endif; ?>
@@ -2519,44 +2506,6 @@ UVPERF.start = new Date().getTime();
 		}
 		?>
 
-		<?php if ( $showClickIgniter ): ?>
-			<script type="text/javascript">
-			(function() {
-				var ci = document.createElement('script'); ci.type = 'text/javascript'; ci.async = true;
-				ci.src = 'http://cdn.clickigniter.io/ci.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ci, s);
-			})();
-			</script>
-		<?php endif; ?>
-		<?php if ( $showGoSquared ): ?>
-			<script type="text/javascript">
-				var GoSquared = {};
-				GoSquared.acct = "GSN-491441-Y";
-				(function(w){
-					function gs(){
-						w._gstc_lt = +new Date;
-						var d = document, g = d.createElement("script");
-						g.type = "text/javascript";
-						g.src = "//d1l6p2sc9645hc.cloudfront.net/tracker.js";
-						g.async = true;
-						var s = d.getElementsByTagName("script")[0];
-						s.parentNode.insertBefore(g, s);
-					}
-					w.addEventListener ?
-						w.addEventListener("load", gs, false) :
-						w.attachEvent("onload", gs);
-				})(window);
-			</script>
-		<?php endif; ?>
-		<?php if ( $showRUM ): ?>
-		<script>
-			(function(){
-				var a=document.createElement('script'); a.type='text/javascript'; a.async=true;
-				a.src='//yxjj4c.rumanalytics.com/sampler/basic2';
-				var b=document.getElementsByTagName('script')[0]; b.parentNode.insertBefore(a,b);
-			})();
-		</script>
-		<?php endif; ?>
 		<?php wfRunHooks( 'ArticleJustBeforeBodyClose', array() ); ?>
 		<?php if ( ( $wgRequest->getVal( "action" ) == "edit"
 				|| $wgRequest->getVal( "action" ) == "submit2" )
