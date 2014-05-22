@@ -1405,7 +1405,7 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * outputs a formatted page.
 	 */
 	public function execute() {
-		global $wgUser, $wgLang, $wgTitle, $wgRequest;
+		global $wgUser, $wgLang, $wgRequest;
 		global $wgOut, $wgScript, $wgStylePath, $wgLanguageCode, $wgForumLink;
 		global $wgContLang, $wgXhtmlDefaultNamespace, $wgContLanguageCode;
 		global $IP, $wgServer, $wgIsDomainTest;
@@ -1427,17 +1427,14 @@ class BlueSkyTemplate extends BaseTemplate {
 			$action = 'diff';
 		}
 
-		$isMainPage = $wgTitle
-			&& $wgTitle->getNamespace() == NS_MAIN
-			&& $wgTitle->getText() == wfMessage( 'mainpage' )->inContentLanguage()->text()
-			&& $action == 'view';
+		$title = $this->getSkin()->getTitle();
+		$isMainPage = ( $title->isMainPage() && $action == 'view' );
 
-		$isArticlePage = $wgTitle
-			&& !$isMainPage
-			&& $wgTitle->getNamespace() == NS_MAIN
-			&& $action == 'view';
+		$isArticlePage = !$isMainPage &&
+			$title->getNamespace() == NS_MAIN &&
+			$action == 'view';
 
-		$isDocViewer = $wgTitle->getText() == 'DocViewer';
+		$isDocViewer = $title->isSpecial( 'DocViewer' );
 
 		$isBehindHttpAuth = !empty( $_SERVER['HTTP_AUTHORIZATION'] );
 
@@ -1456,19 +1453,19 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$showAds = wikihowAds::isEligibleForAds();
 
-		$isIndexed = RobotPolicy::isIndexable( $wgTitle );
+		$isIndexed = RobotPolicy::isIndexable( $title );
 
 		$pageTitle = SkinBlueSky::getHTMLTitle( $wgOut->getHTMLTitle(), $this->data['title'], $isMainPage );
 
 		// set the title and what not
 		$avatar = '';
-		$namespace = $wgTitle->getNamespace();
+		$namespace = $title->getNamespace();
 		if ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
-			$username = $wgTitle->getText();
-			$usernameKey = $wgTitle->getDBKey();
-			$avatar = ( $wgLanguageCode == 'en' ) ? Avatar::getPicture( $usernameKey ) : '';
+			$username = $title->getText();
+			$usernameKey = $title->getDBKey();
+			$avatar = ( class_exists( 'Avatar' ) ) ? Avatar::getPicture( $usernameKey ) : '';
 			$h1 = $username;
-			if ( $wgTitle->getNamespace() == NS_USER_TALK ) {
+			if ( $title->getNamespace() == NS_USER_TALK ) {
 				$h1 = $wgLang->getNsText( NS_USER_TALK ) . ": $username";
 			} elseif ( $username == $wgUser->getName() ) {
 				// user's own page
@@ -1482,8 +1479,8 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 
 		$logoutPage = $wgLang->specialPage( 'Userlogout' );
-		$returnTarget = $wgTitle->getPrefixedURL();
-		$returnto = strcasecmp( urlencode( $logoutPage ), $returnTarget ) ? "returnto={$returnTarget}" : "";
+		$returnTarget = $title->getPrefixedURL();
+		$returnto = strcasecmp( urlencode( $logoutPage ), $returnTarget ) ? "returnto={$returnTarget}" : '';
 
 		$login = '';
 		if ( !$wgUser->isAnon() ) {
@@ -1512,16 +1509,16 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		// XX PROFILE EDIT/CREAT/DEL BOX DATE - need to check for pb flag in order to display this.
 		$pbDate = '';
-		if ( $wgTitle->getNamespace() == NS_USER ) {
-			if ( $u = User::newFromName( $wgTitle->getDBKey() ) ) {
-				if ( UserPagePolicy::isGoodUserPage( $wgTitle->getDBKey() ) ) {
+		if ( $title->getNamespace() == NS_USER ) {
+			if ( $u = User::newFromName( $title->getDBKey() ) ) {
+				if ( UserPagePolicy::isGoodUserPage( $title->getDBKey() ) ) {
 					$pbDate = ProfileBox::getPageTop( $u );
 				}
 			}
 		}
 
 		if ( !$sk->suppressH1Tag() ) {
-			if ( $wgTitle->getNamespace() == NS_MAIN && $wgTitle->exists() && $action == 'view' ) {
+			if ( $title->getNamespace() == NS_MAIN && $title->exists() && $action == 'view' ) {
 				if ( Microdata::showRecipeTags() && Microdata::showhRecipeTags() ) {
 					$itemprop_name1 = " fn'";
 					$itemprop_name2 = '';
@@ -1530,15 +1527,15 @@ class BlueSkyTemplate extends BaseTemplate {
 					$itemprop_name2 = " itemprop='url'";
 				}
 
-				$heading = "<h1 class='firstHeading" . $itemprop_name1 . "><a href=\"" . $wgTitle->getFullURL() . "\"" . $itemprop_name2 . ">" . wfMessage( 'howto', $this->data['title'] )->text() . "</a></h1>";
+				$heading = "<h1 class='firstHeading" . $itemprop_name1 . "><a href=\"" . $title->getFullURL() . "\"" . $itemprop_name2 . ">" . wfMessage( 'howto', $this->data['title'] )->text() . "</a></h1>";
 			} else {
-				if ( ( ( $wgTitle->getNamespace() == NS_USER && UserPagePolicy::isGoodUserPage( $wgTitle->getDBKey() ) ) || $wgTitle->getNamespace() == NS_USER_TALK ) ) {
+				if ( ( ( $title->getNamespace() == NS_USER && UserPagePolicy::isGoodUserPage( $title->getDBKey() ) ) || $title->getNamespace() == NS_USER_TALK ) ) {
 					$heading = '<h1 class="firstHeading">' . $this->data['title'] . '</h1> ' . $pbDate;
 					if ( $avatar ) {
 						$heading = $avatar . '<div id="avatarNameWrap">' . $heading . '</div><div style="clear: both;"> </div>';
 					}
 				} else {
-					if ( $this->data['title'] && ( strtolower( substr( $wgTitle->getText(), 0, 9 ) ) != 'userlogin' ) ) {
+					if ( $this->data['title'] && ( strtolower( substr( $title->getText(), 0, 9 ) ) != 'userlogin' ) ) {
 						$heading = "<h1 class='firstHeading'>" . $this->data['title'] . "</h1>";
 					}
 				}
@@ -1551,7 +1548,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$mainPageObj = Title::newMainPage();
 
 		$isPrintable = false;
-		if ( MWNamespace::isTalk( $wgTitle->getNamespace() ) && $action == 'view' ) {
+		if ( MWNamespace::isTalk( $title->getNamespace() ) && $action == 'view' ) {
 			$isPrintable = $wgRequest->getVal( 'printable' ) == 'yes';
 		}
 
@@ -1569,9 +1566,9 @@ class BlueSkyTemplate extends BaseTemplate {
 			wfMessage( 'randompage' )->text()
 		);
 
-		if ( $wgTitle->getNamespace() == NS_MAIN && !$isMainPage && $wgTitle->userCan( 'edit' ) ) {
+		if ( $title->getNamespace() == NS_MAIN && !$isMainPage && $title->userCan( 'edit' ) ) {
 			$links[] = array(
-				Title::makeTitle( NS_SPECIAL, 'Recentchangeslinked' )->getFullURL() . '/' . $wgTitle->getPrefixedURL(),
+				Title::makeTitle( NS_SPECIAL, 'Recentchangeslinked' )->getFullURL() . '/' . $title->getPrefixedURL(),
 				wfMessage( 'recentchangeslinked' )->text()
 			);
 		}
@@ -1590,7 +1587,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$relatedchangeslink = '';
 		if ( $isArticlePage ) {
 			$relatedchangeslink = '<li> <a href="' .
-				Title::makeTitle( NS_SPECIAL, 'Recentchangeslinked' )->getFullURL() . '/' . $wgTitle->getPrefixedURL() . '">'
+				Title::makeTitle( NS_SPECIAL, 'Recentchangeslinked' )->getFullURL() . '/' . $title->getPrefixedURL() . '">'
 				. wfMessage( 'recentchangeslinked' )->text() . '</a></li>';
 		}
 
@@ -1674,19 +1671,19 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$body = '';
 
-		if ( $wgTitle->userCan( 'edit' ) &&
+		if ( $title->userCan( 'edit' ) &&
 			$action != 'edit' &&
 			$action != 'diff' &&
 			$action != 'history' &&
-			( ( $isLoggedIn && !in_array( $wgTitle->getNamespace(), array( NS_USER, NS_USER_TALK, NS_IMAGE, NS_CATEGORY ) ) ) ||
-				!in_array( $wgTitle->getNamespace(), array( NS_USER, NS_USER_TALK, NS_IMAGE, NS_CATEGORY ) ) ) ) {
+			( ( $isLoggedIn && !in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_IMAGE, NS_CATEGORY ) ) ) ||
+				!in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_IMAGE, NS_CATEGORY ) ) ) ) {
 				// INTL: Need bigger buttons for non-english sites
-				$editlink_text = ( $wgTitle->getNamespace() == NS_MAIN ) ? wfMessage( 'editarticle' )->text() : wfMessage( 'edit' )->text();
-				$heading = '<a href="' . $wgTitle->getLocalURL( $sk->editUrlOptions() ) . '" class="editsection">' . $editlink_text . '</a>' . $heading;
+				$editlink_text = ( $title->getNamespace() == NS_MAIN ) ? wfMessage( 'editarticle' )->text() : wfMessage( 'edit' )->text();
+				$heading = '<a href="' . $title->getLocalURL( $sk->editUrlOptions() ) . '" class="editsection">' . $editlink_text . '</a>' . $heading;
 		}
 
-		if ( $isArticlePage || ( $wgTitle->getNamespace() == NS_PROJECT && $action == 'view' ) || ( $wgTitle->getNamespace() == NS_CATEGORY && !$wgTitle->exists() ) ) {
-			if ( $wgTitle->getNamespace() == NS_PROJECT && ( $wgTitle->getDbKey() == 'RSS-feed' || $wgTitle->getDbKey() == 'Rising-star-feed' ) ) {
+		if ( $isArticlePage || ( $title->getNamespace() == NS_PROJECT && $action == 'view' ) || ( $title->getNamespace() == NS_CATEGORY && !$title->exists() ) ) {
+			if ( $title->getNamespace() == NS_PROJECT && ( $title->getDBkey() == 'RSS-feed' || $title->getDBkey() == 'Rising-star-feed' ) ) {
 				$list_page = true;
 				$sticky = false;
 			} else {
@@ -1697,7 +1694,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			$body = '<div id="bodycontents">' . $body . '</div>';
 			$wikitext = ContentHandler::getContentText( $this->getSkin()->getContext()->getWikiPage()->getContent( Revision::RAW ) );
 			$magic = WikihowArticleHTML::grabTheMagic( $wikitext );
-			$this->data['bodytext'] = WikihowArticleHTML::processArticleHTML( $body, array( 'sticky-headers' => $sticky, 'ns' => $wgTitle->getNamespace(), 'list-page' => $list_page, 'magic-word' => $magic ) );
+			$this->data['bodytext'] = WikihowArticleHTML::processArticleHTML( $body, array( 'sticky-headers' => $sticky, 'ns' => $title->getNamespace(), 'list-page' => $list_page, 'magic-word' => $magic ) );
 		} else {
 			if ( $action == 'edit' ) $heading .= WikihowArticleEditor::grabArticleEditLinks( $wgRequest->getVal( "guidededitor" ) );
 			$this->data['bodyheading'] = $heading;
@@ -1715,7 +1712,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 
 		// post-process the Steps section HTML to get the numbers working
-		if ( $wgTitle->getNamespace() == NS_MAIN
+		if ( $title->getNamespace() == NS_MAIN
 			&& !$isMainPage
 			&& ( $action == 'view' || $action == 'purge' )
 		) {
@@ -1729,7 +1726,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 
 		// insert avatars into discussion, talk, and kudos pages
-		if ( MWNamespace::isTalk( $wgTitle->getNamespace() ) || $wgTitle->getNamespace() == NS_USER_KUDOS ) {
+		if ( MWNamespace::isTalk( $title->getNamespace() ) || $title->getNamespace() == NS_USER_KUDOS ) {
 			$this->data['bodytext'] = Avatar::insertAvatarIntoDiscussion( $this->data['bodytext'] );
 		}
 
@@ -1738,8 +1735,8 @@ class BlueSkyTemplate extends BaseTemplate {
 		$navTabs = $sk->genNavigationTabs();
 
 		$profileBoxIsUser = false;
-		if ( $isLoggedIn && $wgTitle && $wgTitle->getNamespace() == NS_USER ) {
-			$name = $wgTitle->getDBKey();
+		if ( $isLoggedIn && $title->getNamespace() == NS_USER ) {
+			$name = $title->getDBKey();
 			$profileBoxUser = User::newFromName( $name );
 			if ( $profileBoxUser && $wgUser->getID() == $profileBoxUser->getID() ) {
 				$profileBoxIsUser = true;
@@ -1747,8 +1744,8 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 
 		$optimizelyJS = false;
-		if ( class_exists( 'OptimizelyPageSelector' ) && $wgTitle ) {
-			if ( OptimizelyPageSelector::isArticleEnabled( $wgTitle ) && OptimizelyPageSelector::isUserEnabled( $wgUser ) ) {
+		if ( class_exists( 'OptimizelyPageSelector' ) ) {
+			if ( OptimizelyPageSelector::isArticleEnabled( $title ) && OptimizelyPageSelector::isUserEnabled( $wgUser ) ) {
 				$optimizelyJS = OptimizelyPageSelector::getOptimizelyTag();
 			}
 		}
@@ -1760,8 +1757,8 @@ class BlueSkyTemplate extends BaseTemplate {
 		$showBreadCrumbs = $sk->showBreadCrumbs();
 		$showSideBar = $sk->showSideBar();
 		$showHeadSection = $sk->showHeadSection();
-		$showArticleTabs = $wgTitle->getNamespace() != NS_SPECIAL && !$isMainPage;
-		if ( in_array( $wgTitle->getNamespace(), array( NS_IMAGE ) )
+		$showArticleTabs = $title->getNamespace() != NS_SPECIAL && !$isMainPage;
+		if ( in_array( $title->getNamespace(), array( NS_IMAGE ) )
 			&& ( empty( $action ) || $action == 'view' )
 			&& !$isLoggedIn )
 		{
@@ -1775,12 +1772,12 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$showRCWidget =
 			class_exists( 'RCWidget' ) &&
-			$wgTitle->getNamespace() != NS_USER &&
+			$title->getNamespace() != NS_USER &&
 			( !$isLoggedIn || $wgUser->getOption( 'recent_changes_widget_show', true ) == 1 ) &&
 			( $isLoggedIn || $isMainPage ) &&
-			!in_array( $wgTitle->getPrefixedText(),
+			!in_array( $title->getPrefixedText(),
 				array( 'Special:Avatar', 'Special:ProfileBox', 'Special:IntroImageAdder' ) ) &&
-			strpos( $wgTitle->getPrefixedText(), 'Special:Userlog' ) === false &&
+			strpos( $title->getPrefixedText(), 'Special:Userlog' ) === false &&
 			!$isDocViewer &&
 			$action != 'edit';
 
@@ -1790,17 +1787,16 @@ class BlueSkyTemplate extends BaseTemplate {
 			in_array( $wgLanguageCode, array( 'en', 'de', 'es', 'pt' ) );
 
 		$showSocialSharing =
-			$wgTitle &&
-			$wgTitle->exists() &&
-			$wgTitle->getNamespace() == NS_MAIN &&
+			$title->exists() &&
+			$title->getNamespace() == NS_MAIN &&
 			$action == 'view' &&
 			class_exists( 'WikihowShare' );
 
 		$showSliderWidget =
 			class_exists( 'Slider' ) &&
-			$wgTitle->exists() &&
-			$wgTitle->getNamespace() == NS_MAIN &&
-			!$wgTitle->isProtected() &&
+			$title->exists() &&
+			$title->getNamespace() == NS_MAIN &&
+			!$title->isProtected() &&
 			!$isPrintable &&
 			!$isMainPage &&
 			$isIndexed &&
@@ -1810,8 +1806,8 @@ class BlueSkyTemplate extends BaseTemplate {
 			( $wgRequest->getVal( 'action' ) == '' || $wgRequest->getVal( 'action' ) == 'view' );
 
 		$showTopTenTips =
-			$wgTitle->exists() &&
-			$wgTitle->getNamespace() == NS_MAIN &&
+			$title->exists() &&
+			$title->getNamespace() == NS_MAIN &&
 			$wgLanguageCode == 'en' &&
 			!$isPrintable &&
 			!$isMainPage &&
@@ -1823,32 +1819,32 @@ class BlueSkyTemplate extends BaseTemplate {
 			$showAltMethod = true;
 		}
 
-		$showExitTimer = $wgLanguageCode == 'en' && class_exists( 'BounceTimeLogger' );
+		$showExitTimer = class_exists( 'BounceTimeLogger' );
 
-		$isLiquid = false;// !$isMainPage && ( $wgTitle->getNameSpace() == NS_CATEGORY );
+		$isLiquid = false;// !$isMainPage && ( $title->getNameSpace() == NS_CATEGORY );
 
 		$showFeaturedArticlesSidebar = $action == 'view'
 			&& !$isMainPage
 			&& !$isDocViewer
 			&& !$wgSSLsite
-			&& $wgTitle->getNamespace() != NS_USER;
+			&& $title->getNamespace() != NS_USER;
 
-		$isSpecialPage = $wgTitle->getNamespace() == NS_SPECIAL
-			|| ( $wgTitle->getNamespace() == NS_MAIN && $wgRequest->getVal( 'action' ) == 'protect' )
-			|| ( $wgTitle->getNamespace() == NS_MAIN && $wgRequest->getVal( 'action' ) == 'delete' );
+		$isSpecialPage = $title->getNamespace() == NS_SPECIAL
+			|| ( $title->getNamespace() == NS_MAIN && $wgRequest->getVal( 'action' ) == 'protect' )
+			|| ( $title->getNamespace() == NS_MAIN && $wgRequest->getVal( 'action' ) == 'delete' );
 
 		$showTextScroller =
 			class_exists( 'TextScroller' ) &&
-			$wgTitle->exists() &&
-			$wgTitle->getNamespace() == NS_MAIN &&
+			$title->exists() &&
+			$title->getNamespace() == NS_MAIN &&
 			!$isPrintable &&
 			!$isMainPage &&
 			strpos( $this->data['bodytext'], 'textscroller_outer' ) !== false;
 
 		$showUserCompletedImages =
 			class_exists( 'UCIPatrol' ) &&
-			$wgTitle->exists() &&
-			$wgTitle->getNamespace() == NS_MAIN &&
+			$title->exists() &&
+			$title->getNamespace() == NS_MAIN &&
 			!$isMainPage &&
 			UCIPatrol::showUCI( $this->getSkin()->getContext()->getTitle() );
 
@@ -1858,15 +1854,15 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$showWikivideo =
 			class_exists( 'WHVid' ) &&
-			( ( $wgTitle->exists() && $wgTitle->getNamespace() == NS_MAIN && strpos( $this->data['bodytext'], 'whvid_cont' ) !== false )
-				|| $wgTitle->getNamespace() == NS_SPECIAL ) &&
+			( ( $title->exists() && $title->getNamespace() == NS_MAIN && strpos( $this->data['bodytext'], 'whvid_cont' ) !== false )
+				|| $title->getNamespace() == NS_SPECIAL ) &&
 			!$isPrintable &&
 			!$isMainPage;
 
 		$showStaffStats = !$isMainPage
 			&& $isLoggedIn
 			&& ( in_array( 'staff', $wgUser->getGroups() ) || in_array( 'staff_widget', $wgUser->getGroups() ) )
-			&& $wgTitle->getNamespace() == NS_MAIN
+			&& $title->getNamespace() == NS_MAIN
 			&& class_exists( 'Pagestats' );
 
 		$showThumbsUp = class_exists( 'ThumbsNotifications' );
@@ -1940,7 +1936,7 @@ var WH = WH || {};
 	<meta name="y_key" content="1b3ab4fc6fba3ab3" />
 	<meta name="p:domain_verify" content="bb366527fa38aa5bc27356b728a2ec6f" />
 	<?php if ( $isArticlePage || $isMainPage ): ?>
-	<link rel="alternate" media="only screen and (max-width: 640px)" href="http://<?php if ( $wgLanguageCode != 'en' ) { echo ( $wgLanguageCode . "." ); } ?>m.wikihow.com/<?php echo $wgTitle->getPartialUrl() ?>">
+	<link rel="alternate" media="only screen and (max-width: 640px)" href="http://<?php if ( $wgLanguageCode != 'en' ) { echo ( $wgLanguageCode . "." ); } ?>m.wikihow.com/<?php echo $title->getPartialUrl() ?>">
 	<?php endif; ?>
 	<?php // add CSS files to extensions/min/groupsConfig.php ?>
 	<style type="text/css" media="all">/*<![CDATA[*/ @import "<?php echo $fullCSSuri ?>"; /*]]>*/</style>
@@ -1969,7 +1965,7 @@ var WH = WH || {};
 		<?php $this->html( 'headlinks' ) ?>
 
 	<?php if ( !$wgIsDomainTest ) { ?>
-			<link rel='canonical' href='<?php echo $wgTitle->getFullURL() ?>'/>
+			<link rel='canonical' href='<?php echo $title->getFullURL() ?>'/>
 			<link href="https://plus.google.com/102818024478962731382" rel="publisher" />
 		<?php } ?>
 	<?php if ( $sk->isUserAgentMobile() ): ?>
@@ -1981,23 +1977,15 @@ var WH = WH || {};
 	<?php echo $rtl_css ?>
 	<link rel="alternate" type="application/rss+xml" title="wikiHow: How-to of the Day" href="http://www.wikihow.com/feed.rss"/>
 	<link rel="apple-touch-icon" href="<?php echo wfGetPad( '/skins/WikiHow/safari-large-icon.png' ) ?>" />
-	<?php// = wfMessage('Test_setup')->text() ?>
 	<?php
 	if ( class_exists( 'CTALinks' ) && trim( wfMessage( 'cta_feature' )->inContentLanguage()->text() ) == "on" ) {
 		echo CTALinks::getGoogleControlScript();
 	}
-	?>
-	<?php echo $wgOut->getHeadItems() ?>
 
-	<?php
-		if ( $wgTitle && $wgTitle->getText() == "Get Caramel off Pots and Pans" ) {
-			echo wfMessage( 'Adunit_test_top' )->text();
-		}
-	?>
+	echo $wgOut->getHeadItems();
 
-	<?php
-		$userdir = $wgLang->getDir();
-		$sitedir = $wgContLang->getDir();
+	$userdir = $wgLang->getDir();
+	$sitedir = $wgContLang->getDir();
 	?>
 	<?php foreach ( $otherLanguageLinks as $lang => $url ): ?>
 			<link rel="alternate" hreflang="<?php echo $lang ?>" href="<?php echo htmlspecialchars( $url ) ?>" />
@@ -2081,7 +2069,7 @@ var WH = WH || {};
 			echo $this->html( 'bodytext' );
 
 			$showingArticleInfo = 0;
-			if ( in_array( $wgTitle->getNamespace(), array( NS_MAIN, NS_PROJECT ) ) && $action == 'view' && !$isMainPage ) {
+			if ( in_array( $title->getNamespace(), array( NS_MAIN, NS_PROJECT ) ) && $action == 'view' && !$isMainPage ) {
 				$catLinks = $sk->getCategoryLinks( false );
 				$authors = ArticleAuthors::getAuthorFooter();
 				if ( $authors || is_array( $this->data['language_urls'] ) || $catLinks ) {
@@ -2120,42 +2108,31 @@ var WH = WH || {};
 							</p>
 						<?php }
 						// talk link
-						if ( $action == 'view' && MWNamespace::isTalk( $wgTitle->getNamespace() ) ) {
+						if ( $action == 'view' && MWNamespace::isTalk( $title->getNamespace() ) ) {
 							$talk_link = '#postcomment';
 						} else {
-							$talk_link = $wgTitle->getTalkPage()->getLocalURL();
+							$talk_link = $title->getTalkPage()->getLocalURL();
 						}
 						?>
 						<ul id="end_options">
 							<li class="endop_discuss"><span></span><a href="<?php echo $talk_link ?>" id="gatDiscussionFooter"><?php echo wfMessage( 'at_discuss' )->text() ?></a></li>
-							<li class="endop_print"><span></span><a href="<?php echo $wgTitle->getLocalUrl( 'printable=yes' ) ?>" id="gatPrintView"><?php echo wfMessage( 'print' )->text() ?></a></li>
+							<li class="endop_print"><span></span><a href="<?php echo $title->getLocalURL( 'printable=yes' ) ?>" id="gatPrintView"><?php echo wfMessage( 'print' )->text() ?></a></li>
 							<li class="endop_email"><span></span><a href="#" onclick="return emailLink();" id="gatSharingEmail"><?php echo wfMessage( 'at_email' )->text() ?></a></li>
 							<?php if ( $isLoggedIn ): ?>
-								<?php if ( $wgTitle->userIsWatching() ) { ?>
-									<li class="endop_watch"><span></span><a href="<?php echo $wgTitle->getLocalURL( 'action=unwatch' ); ?>"><?php echo wfMessage( 'at_remove_watch' )->text()?></a></li>
+								<?php if ( $title->userIsWatching() ) { ?>
+									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=unwatch' ); ?>"><?php echo wfMessage( 'at_remove_watch' )->text()?></a></li>
 								<?php } else { ?>
-									<li class="endop_watch"><span></span><a href="<?php echo $wgTitle->getLocalURL( 'action=watch' ); ?>"><?php echo wfMessage( 'at_watch' )->text()?></a></li>
+									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=watch' ); ?>"><?php echo wfMessage( 'at_watch' )->text()?></a></li>
 								<?php } ?>
 							<?php endif; ?>
-							<li class="endop_edit"><span></span><a href="<?php echo $wgTitle->getEditUrl(); ?>" id="gatEditFooter"><?php echo wfMessage( 'edit' )->text(); ?></a></li>
-							<?php if ( $wgTitle->getNamespace() == NS_MAIN ) { ?>
-								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?php echo $wgTitle->getPrefixedURL(); ?>" id="gatThankAuthors"><?php echo wfMessage( 'at_fanmail' )->text()?></a></li>
+							<li class="endop_edit"><span></span><a href="<?php echo $title->getEditUrl(); ?>" id="gatEditFooter"><?php echo wfMessage( 'edit' )->text(); ?></a></li>
+							<?php if ( $title->getNamespace() == NS_MAIN ) { ?>
+								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?php echo $title->getPrefixedURL(); ?>" id="gatThankAuthors"><?php echo wfMessage( 'at_fanmail' )->text()?></a></li>
 							<?php } ?>
 						</ul> <!--end end_options -->
-							<?php if ( !in_array( $wgTitle->getNamespace(), array( NS_USER, NS_CATEGORY ) ) ): ?>
-
-							<?php endif; ?>
-							<?php if ( $showAds && $wgTitle->getNamespace() == NS_MAIN ) {
-								// only show this ad on article pages
-								echo wikihowAds::getAdUnitPlaceholder( 7 );
-							} ?>
 						<div class="clearall"></div>
 					</div><!--end article_info section_text-->
-						<p class='page_stats'><?php echo $sk->pageStats() ?></p>
-
-						<div id='article_rating'>
-							<?php echo RateItem::showForm( 'article' ); ?>
-						</div>
+					<p class='page_stats'><?php echo $sk->pageStats() ?></p>
 				</div><!--end section-->
 
 			<?php }
@@ -2168,7 +2145,7 @@ var WH = WH || {};
 					</div> <!-- end section_text-->
 				</div><!--end section-->
 			<?php }
-			if ( in_array( $wgTitle->getNamespace(), array( NS_USER, NS_MAIN, NS_PROJECT ) ) && $action == 'view' && !$isMainPage ) {
+			if ( in_array( $title->getNamespace(), array( NS_USER, NS_MAIN, NS_PROJECT ) ) && $action == 'view' && !$isMainPage ) {
 			?>
 
 		</div> <!-- article -->
@@ -2183,7 +2160,7 @@ var WH = WH || {};
 
 		<?php if ( $showSideBar ):
 			$loggedOutClass = '';
-			if ( $showAds && $wgTitle->getText() != 'Userlogin' && $wgTitle->getNamespace() == NS_MAIN ) {
+			if ( $showAds && $title->getText() != 'Userlogin' && $title->getNamespace() == NS_MAIN ) {
 				$loggedOutClass = ' logged_out';
 			}
 		?>
@@ -2202,8 +2179,8 @@ var WH = WH || {};
 				<div id="top_links" class="sidebox<?php echo $loggedOutClass ?>" <?php echo is_numeric( wfMessage( 'top_links_padding' )->text() ) ? ' style="padding-left:' . wfMessage( 'top_links_padding' )->text() . 'px;padding-right:' . wfMessage( 'top_links_padding' )->text() . 'px;"' : '' ?>>
 					<a href="/Special:Randomizer" id="gatRandom" accesskey='x' class="button secondary"><?php echo wfMessage( 'randompage' )->text(); ?></a>
 					<a href="/Special:Createpage" id="gatWriteAnArticle" class="button secondary"><?php echo wfMessage( 'writearticle' )->text(); ?></a>
-					<?php if ( class_exists( 'Randomizer' ) && Randomizer::DEBUG && $wgTitle && $wgTitle->getNamespace() == NS_MAIN && $wgTitle->getArticleId() ): ?>
-						<?php echo Randomizer::getReason( $wgTitle ) ?>
+					<?php if ( class_exists( 'Randomizer' ) && Randomizer::DEBUG && $title->getNamespace() == NS_MAIN && $title->getArticleId() ): ?>
+						<?php echo Randomizer::getReason( $title ) ?>
 					<?php endif; ?>
 				</div><!--end top_links-->
 				<?php } ?>
@@ -2219,7 +2196,7 @@ var WH = WH || {};
 
 
 				<?php
-				if ( $showAds && $wgTitle->getText() != 'Userlogin' && $wgTitle->getNamespace() == NS_MAIN ) {
+				if ( $showAds && $title->getText() != 'Userlogin' && $title->getNamespace() == NS_MAIN ) {
 					// temporary ad code for amazon ad loading, added by Reuben 3/13, disabled 4/23, and re-enabled 5/28
 						if ( $wgLanguageCode == 'en' ):
 					?>
@@ -2318,7 +2295,7 @@ var WH = WH || {};
 					</div><!--end side_recent_changes-->
 				<?php endif; ?>
 
-				<?php if ( class_exists( 'FeaturedContributor' ) && ( $wgTitle->getNamespace() == NS_MAIN || $wgTitle->getNamespace() == NS_USER ) && !$isMainPage && !$isDocViewer ): ?>
+				<?php if ( class_exists( 'FeaturedContributor' ) && ( $title->getNamespace() == NS_MAIN || $title->getNamespace() == NS_USER ) && !$isMainPage && !$isDocViewer ): ?>
 					<div id="side_featured_contributor" class="sidebox">
 						<?php FeaturedContributor::showWidget(); ?>
 						<?php if ( !$isLoggedIn ): ?>
@@ -2505,8 +2482,7 @@ var WH = WH || {};
 	echo $wgOut->getBottomScripts();
 
 	if ( class_exists( 'GoodRevision' ) ) {
-		$grevid = $wgTitle ? GoodRevision::getUsedRev( $wgTitle->getArticleID() ) : '';
-		$title = $this->getSkin()->getContext()->getTitle();
+		$grevid = $title ? GoodRevision::getUsedRev( $title->getArticleID() ) : '';
 		$latestRev = $title->getNamespace() == NS_MAIN ? $title->getLatestRevID() : '';
 		echo '<!-- shown patrolled revid=' . $grevid . ', latest=' . $latestRev . ' -->';
 	}
@@ -2518,12 +2494,6 @@ var WH = WH || {};
 </body>
 </html>
 <?php
-	}
-
-	// AG - this function was copied from the template skin..it gets the debug toolbar working
-	// TODO shouldn't this go inside the body of the html???
-	function printTrail() { ?>
-<?php echo MWDebug::getDebugHTML( $this->getSkin()->getContext() );
 	}
 
 }
