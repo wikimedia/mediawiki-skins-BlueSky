@@ -457,7 +457,7 @@ class SkinBlueSky extends SkinTemplate {
 		if ( $wgLanguageCode == 'zh' ) {
 			$articleName = $wgContLang->convert( $articleName );
 		}
-		$html = "<div class='thumbnail' ><a href='{$t->getFullUrl()}'><img src='" . wfGetPad( $thumb->getUrl() ) . "' alt='' /><div class='text'><p>" . wfMessage( 'Howto', '' )->text() . "<br /><span>{$articleName}</span></p></div></a></div>";
+		$html = "<div class='thumbnail'><a href='{$t->getFullUrl()}'><img src='" . $thumb->getUrl() . "' alt='' /><div class='text'><p>" . wfMessage( 'Howto', '' )->text() . "<br /><span>{$articleName}</span></p></div></a></div>";
 
 		return $html;
 	}
@@ -686,12 +686,12 @@ class SkinBlueSky extends SkinTemplate {
 
 		$sep = self::BREADCRUMB_SEPARATOR;
 
-		$viewMode = WikihowCategoryViewer::getViewModeArray( $this->getContext() );
+		//$viewMode = WikihowCategoryViewer::getViewModeArray( $this->getContext() );
 		$categories = Linker::link(
-			Title::newFromText( 'Special:Categorylisting' ),
-			wfMessage( 'categories' )->text(),
+			SpecialPage::getTitleFor( 'Categories' ),
+			wfMessage( 'categories' )->text()/*,
 			array(),
-			$viewMode
+			$viewMode*/
 		);
 		$s = '<li class="home">' . Linker::link( $mainPageObj, wfMessage( 'home' )->text() ) . "</li> <li>$sep $categories</li>";
 
@@ -720,7 +720,9 @@ class SkinBlueSky extends SkinTemplate {
 
 			asort( $tempout );
 			$olds = $s;
-			if ( $tempout ) $s .= $tempout[0]; // this usually works
+			if ( $tempout ) {
+				$s .= $tempout[0]; // this usually works
+			}
 
 			if ( strpos( $s, "/Category:WikiHow" ) !== false
 				|| strpos( $s, "/Category:Featured" ) !== false
@@ -737,8 +739,8 @@ class SkinBlueSky extends SkinTemplate {
 					}
 				}
 			}
-
 		}
+
 		return $s;
 	}
 
@@ -919,7 +921,14 @@ class SkinBlueSky extends SkinTemplate {
 		}
 
 		// edit
-		if ( $wgTitle->getNamespace() != NS_CATEGORY && ( !in_array( $wgTitle->getNamespace(), array( NS_USER, NS_USER_TALK, NS_IMAGE ) ) || $action == 'edit' || $wgUser->getID() > 0 ) ) {
+		if (
+			$wgTitle->getNamespace() != NS_CATEGORY &&
+			(
+				!in_array( $wgTitle->getNamespace(), array( NS_USER, NS_USER_TALK, NS_FILE ) ) ||
+				$action == 'edit' || $wgUser->getID() > 0
+			)
+		)
+		{
 			$editTab->href = $wgTitle->getLocalURL( $skin->editUrlOptions() );
 			$editTab->text = wfMessage( 'edit' )->text();
 			$editTab->class = ( $action == 'edit' ) ? 'on' : '';
@@ -969,7 +978,7 @@ class SkinBlueSky extends SkinTemplate {
 			$textViewTab->href = $wgTitle->getLocalURL( 'viewMode=text' );
 			$textViewTab->text = wfMessage( 'text_view' )->text();
 			$textViewTab->class = $wgRequest->getVal( 'viewMode', 0 ) ? 'on' : '';
-			$textViewTab->id = "tab_text_view";
+			$textViewTab->id = 'tab_text_view';
 			$tabs[] = $textViewTab;
 		}
 
@@ -1005,33 +1014,36 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	function getTabsHtml( $tabs ) {
-		$html = "";
+		$html = '';
 
 		if ( count( $tabs ) > 0 ) {
-			$html .= "<div id='article_tabs'>";
-			$html .= "<ul id='tabs'>";
+			$html .= '<div id="article_tabs">';
+			$html .= '<ul id="tabs">';
+
 			foreach ( $tabs as $tab ) {
-				$attributes = "";
+				$attributes = '';
+
 				foreach ( $tab as $attribute => $value ) {
-					if ( $attribute != "text" ) {
+					if ( $attribute != 'text' ) {
 						$attributes .= " {$attribute}='{$value}'";
 					}
 				}
 
 				$html .= "<li><a {$attributes}>{$tab->text}</a>";
-				// $activeClass = $tab->active?'on':'';
-				// $html .= "<li><a href='{$tab->link}' id='{$tab->id}' class='{$activeClass}'>{$tab->text}";
 				if ( isset( $tab->hasSubMenu ) && $tab->hasSubMenu ) {
-					$html .= "<span class='admin_arrow'></span>";
-					$html .= "<div id='{$tab->subMenuName}' class='menu'>";
+					$html .= '<span class="admin_arrow"></span>';
+					$html .= "<div id=\"{$tab->subMenuName}\" class=\"menu\">";
+
 					foreach ( $tab->subMenu as $subTab ) {
-						$html .= "<a href='{$subTab->href}'/>{$subTab->text}</a>";
+						$html .= "<a href=\"{$subTab->href}\">{$subTab->text}</a>";
 					}
-					$html .= "</div>";
+					$html .= '</div>';
 				}
-				$html .= "</li>";
+
+				$html .= '</li>';
 			}
-			$html .= "</ul></div>";
+
+			$html .= '</ul></div>';
 		}
 
 		return $html;
@@ -1057,15 +1069,12 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	function genNavigationTabs() {
-		global $wgUser, $wgTitle, $wgLanguageCode;
+		global $wgUser;
 
 		$sk = $this->getSkin();
+		$title = $sk->getTitle();
 
 		$isLoggedIn = $wgUser->getID() > 0;
-		$mainPage = Title::newMainPage();
-		$loginPage = Title::makeTitle( NS_SPECIAL, 'Userlogin' );
-		$dashboardPage = $wgLanguageCode == 'en' ? Title::makeTitle( NS_SPECIAL, 'CommunityDashboard' ) : Title::makeTitle( NS_PROJECT, wfMessage( 'community' )->text() );
-		$communityPage = Title::makeTitle( NS_PROJECT, 'Community' );
 
 		$navTabs = array(
 			'nav_messages' => array(
@@ -1090,14 +1099,18 @@ class SkinBlueSky extends SkinTemplate {
 			)
 		);
 
-		if ( $wgTitle
-			&& $wgTitle->getNamespace() == NS_MAIN
-			&& $wgTitle->getText() != wfMessage( 'mainpage' )->inContentLanguage()->text()
-			&& $wgTitle->userCan( 'edit' )
-			&& $wgLanguageCode == 'en' )
+		if (
+			$title->getNamespace() == NS_MAIN &&
+			!$title->isMainPage() &&
+			$title->userCan( 'edit' )
+		)
 		{
-			$editPage = $wgTitle->getLocalURL( $sk->editUrlOptions() );
-			$navTabs['nav_edit'] = array( 'menu' => $sk->getHeaderMenu( 'edit' ), 'link' => $editPage, 'text' => strtoupper( wfMessage( 'edit' )->text() ) );
+			$editPage = $title->getLocalURL( $sk->editUrlOptions() );
+			$navTabs['nav_edit'] = array(
+				'menu' => $sk->getHeaderMenu( 'edit' ),
+				'link' => $editPage,
+				'text' => strtoupper( wfMessage( 'edit' )->text() )
+			);
 		}
 
 		return $navTabs;
@@ -1122,7 +1135,10 @@ class SkinBlueSky extends SkinTemplate {
 					$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'RelatedArticle' ), wfMessage( 'manage_related_articles' )->text(), array(), array( "target" => $wgTitle->getPrefixedURL() ) ) .
 							Linker::link( SpecialPage::getTitleFor( 'Articlestats', $wgTitle->getText() ), wfMessage( 'articlestats' )->text() );
 				}
-				$html .= '<a href="' . Title::makeTitle( NS_SPECIAL, 'Whatlinkshere' )->getLocalUrl() . '/' . $wgTitle->getPrefixedURL() . '">' . wfMessage( 'whatlinkshere' )->text() . '</a>';
+				$html .= Linker::link(
+					SpecialPage::getTitleFor( 'Whatlinkshere', $wgTitle->getPrefixedURL() ),
+					wfMessage( 'whatlinkshere' )->plain()
+				);
 				break;
 			case 'profile':
 				if ( $isLoggedIn ) {
@@ -1490,9 +1506,9 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 			$login = wfMessage( 'welcome_back', $wgUser->getUserPage()->getFullURL(), $uname )->text();
 
-			if ( $wgLanguageCode == 'en' && $wgUser->isFacebookUser() ) {
+			if ( method_exists( $wgUser, 'isFacebookUser' ) && $wgUser->isFacebookUser() ) {
 				$login = wfMessage( 'welcome_back_fb', $wgUser->getUserPage()->getFullURL() , $wgUser->getName() )->text();
-			} elseif ( $wgLanguageCode == 'en' && $wgUser->isGPlusUser() ) {
+			} elseif ( method_exists( $wgUser, 'isGPlusUser' ) && $wgUser->isGPlusUser() ) {
 				$gname = $wgUser->getName();
 				if ( substr( $gname, 0, 3 ) == 'GP_' ) {
 					$gname = substr( $gname, 0, 12 ) . '...';
@@ -1501,7 +1517,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 		} else {
 			if ( $wgLanguageCode == 'en' ) {
-				$login = wfMessage( 'signup_or_login', $returnto )->text() . " " . wfMessage( 'social_connect_header' )->text();
+				$login = wfMessage( 'signup_or_login', $returnto )->text() . ' ' . wfMessage( 'social_connect_header' )->text();
 			} else {
 				$login = wfMessage( 'signup_or_login', $returnto )->text();
 			}
@@ -1510,8 +1526,9 @@ class BlueSkyTemplate extends BaseTemplate {
 		// XX PROFILE EDIT/CREAT/DEL BOX DATE - need to check for pb flag in order to display this.
 		$pbDate = '';
 		if ( $title->getNamespace() == NS_USER ) {
-			if ( $u = User::newFromName( $title->getDBKey() ) ) {
-				if ( UserPagePolicy::isGoodUserPage( $title->getDBKey() ) ) {
+			$u = User::newFromName( $title->getDBkey() );
+			if ( $u ) {
+				if ( UserPagePolicy::isGoodUserPage( $title->getDBkey() ) ) {
 					$pbDate = ProfileBox::getPageTop( $u );
 				}
 			}
@@ -1519,17 +1536,32 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		if ( !$sk->suppressH1Tag() ) {
 			if ( $title->getNamespace() == NS_MAIN && $title->exists() && $action == 'view' ) {
-				if ( Microdata::showRecipeTags() && Microdata::showhRecipeTags() ) {
-					$itemprop_name1 = " fn'";
+				if (
+					class_exists( 'Microdata' ) &&
+					Microdata::showRecipeTags() &&
+					Microdata::showhRecipeTags()
+				)
+				{
+					$itemprop_name1 = ' fn"';
 					$itemprop_name2 = '';
 				} else {
-					$itemprop_name1 = "' itemprop='name'";
-					$itemprop_name2 = " itemprop='url'";
+					$itemprop_name1 = '" itemprop="name"';
+					$itemprop_name2 = ' itemprop="url"';
 				}
 
-				$heading = "<h1 class='firstHeading" . $itemprop_name1 . "><a href=\"" . $title->getFullURL() . "\"" . $itemprop_name2 . ">" . wfMessage( 'howto', $this->data['title'] )->text() . "</a></h1>";
+				$heading = '<h1 class="firstHeading' . $itemprop_name1 . '><a href="' . $title->getFullURL() . '"' . $itemprop_name2 . '>' . wfMessage( 'howto', $this->data['title'] )->text() . '</a></h1>';
 			} else {
-				if ( ( ( $title->getNamespace() == NS_USER && UserPagePolicy::isGoodUserPage( $title->getDBKey() ) ) || $title->getNamespace() == NS_USER_TALK ) ) {
+				if (
+					(
+						(
+							$title->getNamespace() == NS_USER &&
+							class_exists( 'UserPagePolicy' ) &&
+							UserPagePolicy::isGoodUserPage( $title->getDBKey() )
+						) ||
+						$title->getNamespace() == NS_USER_TALK
+					)
+				)
+				{
 					$heading = '<h1 class="firstHeading">' . $this->data['title'] . '</h1> ' . $pbDate;
 					if ( $avatar ) {
 						$heading = $avatar . '<div id="avatarNameWrap">' . $heading . '</div><div style="clear: both;"> </div>';
@@ -1554,7 +1586,6 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		// QWER links for everyone on all pages
 
-		// $helplink = Linker::link(Title::makeTitle(NS_PROJECT_TALK, 'Help-Team'), wfMessage('help')->text());
 		$logoutlink = Linker::link(
 			Title::makeTitle( NS_SPECIAL, 'Userlogout' ),
 			wfMessage( 'logout' )->text()
@@ -2050,7 +2081,7 @@ var WH = WH || {};
 		?>
 		<div id="container" class="<?php echo $sidebar ?>">
 		<div id="article_shell">
-		<div id="article"<?php echo Microdata::genSchemaHeader() ?>>
+		<div id="article"<?php if ( class_exists( 'Microdata' ) ) { echo Microdata::genSchemaHeader(); } ?>>
 
 			<?php wfRunHooks( 'BeforeTabsLine', array( &$wgOut ) ); ?>
 			<?php
