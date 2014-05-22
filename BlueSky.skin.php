@@ -1,24 +1,18 @@
 <?php
 /**
- * wikiHow html for article page and more
+ * BlueSky skin
  *
- * @todo document
- * @package MediaWiki
- * @subpackage Skins
+ * @file
  */
 
-if ( !defined( 'MEDIAWIKI' ) )
+if ( !defined( 'MEDIAWIKI' ) ) {
 	die();
-
-/** */
-global $IP;
-require_once( "$IP/includes/SkinTemplate.php" );
+}
 
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
- * @todo document
- * @package MediaWiki
- * @subpackage Skins
+ *
+ * @ingroup Skins
  */
 class SkinWikihowskin extends SkinTemplate {
 
@@ -28,6 +22,7 @@ class SkinWikihowskin extends SkinTemplate {
 	public $mSidebarTopWidgets = array();
 
 	function addWidget( $html, $class = '' ) {
+		$class = htmlspecialchars( $class ); // Healthy paranoia, just in case.
 		$display = "
 	<div class='sidebox $class'>
 		$html
@@ -37,28 +32,30 @@ class SkinWikihowskin extends SkinTemplate {
 		return;
 	}
 
-	/*
+	/**
 	 * A mild hack to allow for the language appropriate 'How to' to be added to
 	 * interwiki link titles. Note: German (de) is a straight pass-through
 	 * since the 'How to' is already stored in the de database
 	 */
 	function getInterWikiLinkText( $linkText, $langCode ) {
 		static $formatting = array(
-			"ar" => "$1 كيفية",
-			"de" => "$1",
-			"es" => "Cómo $1",
-			"en" => "How to $1",
-			"fa" => "$1 چگونه",
-			"fr" => "Comment $1",
-			"he" => "$1 איך",
-			"it" => "Come $1",
-			"ja" => "$1（する）方法",
-			"nl" => "$1",
-			"pt" => "Como $1",
+			'ar' => '$1 كيفية',
+			'de' => '$1',
+			'es' => 'Cómo $1',
+			'en' => 'How to $1',
+			'fa' => '$1 چگونه',
+			'fr' => 'Comment $1',
+			'he' => '$1 איך',
+			'it' => 'Come $1',
+			'ja' => '$1（する）方法',
+			'nl' => '$1',
+			'pt' => 'Como $1',
 		);
 
 		$result = $linkText;
-		if ( isset( $formatting[$langCode] ) ) $format = $formatting[$langCode];
+		if ( isset( $formatting[$langCode] ) ) {
+			$format = $formatting[$langCode];
+		}
 		if ( !empty( $format ) ) {
 			$result = preg_replace( "@(\\$1)@", $linkText, $format );
 		}
@@ -87,23 +84,34 @@ class SkinWikihowskin extends SkinTemplate {
 	}
 
 	function pageStats() {
-		global $wgOut, $wgLang, $wgRequest, $wgTitle;
+		global $wgOut, $wgLang, $wgRequest;
 		global $wgDisableCounters;
 
 		$context = $this->getSkin()->getContext();
-		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
-		if ( ! $wgOut->isArticle() ) { return ''; }
-		if ( isset( $oldid ) || isset( $diff ) ) { return ''; }
-		if ( !$context->canUseWikiPage() ) { return ''; }
+		$oldid = $wgRequest->getVal( 'oldid' );
+		$diff = $wgRequest->getVal( 'diff' );
+
+		if ( !$wgOut->isArticle() ) {
+			return '';
+		}
+
+		if ( isset( $oldid ) || isset( $diff ) ) {
+			return '';
+		}
+
+		if ( !$context->canUseWikiPage() ) {
+			return '';
+		}
 
 		$s = '';
 		if ( !$wgDisableCounters ) {
 			$count = $wgLang->formatNum( $context->getWikiPage()->getCount() );
 			if ( $count ) {
-				if ( $wgTitle->getNamespace() == NS_USER )
+				if ( $this->getTitle()->getNamespace() == NS_USER ) {
 					$s = wfMessage( 'viewcountuser', $count )->text();
-				else
+				} else {
 					$s = wfMessage( 'viewcount', $count )->text();
+				}
 			}
 		}
 
@@ -129,7 +137,7 @@ class SkinWikihowskin extends SkinTemplate {
 		// XXMOD Added for quick note feature
 		if ( $wgTitle->getNamespace() != NS_SPECIAL &&
 			$wgLanguageCode == 'en' &&
-			$wgRequest->getVal( "diff", "" ) )
+			$wgRequest->getVal( 'diff', '' ) )
 		{
 			$items[] = QuickNoteEdit::getQuickNoteLink( $wgTitle, $userId, $userText );
 		}
@@ -137,7 +145,7 @@ class SkinWikihowskin extends SkinTemplate {
 		$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
 		$items[] = Linker::linkKnown( $contribsPage, wfMsgHtml( 'contribslink' ) );
 
-		if ( $wgTitle->getNamespace() == NS_SPECIAL && $wgTitle->getText() == "Recentchanges" && $wgUser->isAllowed( 'patrol' ) ) {
+		if ( $wgTitle->isSpecial( 'Recentchanges' ) && $wgUser->isAllowed( 'patrol' ) ) {
 			$contribsPage = SpecialPage::getTitleFor( 'Bunchpatrol', $userText );
 			$items[] = Linker::linkKnown( $contribsPage , 'bunch' );
 		}
@@ -155,25 +163,30 @@ class SkinWikihowskin extends SkinTemplate {
 	/**
 	 * User links feature: users can get a list of their own links by specifying
 	 * a list in User:username/Mylinks
+	 *
+	 * @return string
 	 */
 	function getUserLinks() {
 		global $wgUser, $wgParser, $wgTitle;
-		$ret = "";
+
+		$ret = '';
+
 		if ( $wgUser->getID() > 0 ) {
-			$t = Title::makeTitle( NS_USER, $wgUser->getName() . "/Mylinks" );
+			$t = Title::makeTitle( NS_USER, $wgUser->getName() . '/Mylinks' );
 			if ( $t->getArticleID() > 0 ) {
 				$r = Revision::newFromTitle( $t );
 				$text = $r->getText();
-				if ( $text != "" ) {
-					$ret = "<h3>" . wfMessage( 'mylinks' )->text() . "</h3>";
-					$ret .= "<div id='my_links_list'>";
+				if ( $text != '' ) {
+					$ret = '<h3>' . wfMessage( 'mylinks' )->text() . '</h3>';
+					$ret .= '<div id="my_links_list">';
 					$options = new ParserOptions();
 					$output = $wgParser->parse( $text, $wgTitle, $options );
 					$ret .= $output->getText();
-					$ret .= "</div>";
+					$ret .= '</div>';
 				}
 			}
 		}
+
 		return $ret;
 	}
 
@@ -207,7 +220,9 @@ class SkinWikihowskin extends SkinTemplate {
 
 		$cachekey = wfMemcKey( 'relarticles_box', intval( $isBoxShape ), $wgTitle->getArticleID() );
 		$val = $wgMemc->get( $cachekey );
-		if ( $val ) return $val;
+		if ( $val ) {
+			return $val;
+		}
 
 		$cats = Categoryhelper::getCurrentParentCategories();
 		$cat = '';
@@ -215,7 +230,7 @@ class SkinWikihowskin extends SkinTemplate {
 			$keys = array_keys( $cats );
 			$templates = wfMessage( 'categories_to_ignore' )->inContentLanguage()->text();
 			$templates = explode( "\n", $templates );
-			$templates = str_replace( "http://www.wikihow.com/Category:", "", $templates );
+			$templates = str_replace( 'http://www.wikihow.com/Category:', '', $templates );
 			$templates = array_flip( $templates ); // make the array associative.
 			for ( $i = 0; $i < sizeof( $keys ); $i++ ) {
 				$t = Title::newFromText( $keys[$i] );
@@ -227,13 +242,15 @@ class SkinWikihowskin extends SkinTemplate {
 				}
 			}
 		}
+
 		// Populate related articles box with other articles in the category,
 		// displaying the featured articles first
-		$result = "";
+		$result = '';
 		if ( !empty( $cat ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$num = intval( wfMessage( 'num_related_articles_to_display' )->inContentLanguage()->text() );
-			$res = $dbr->select( array( 'categorylinks', 'page' ),
+			$res = $dbr->select(
+				array( 'categorylinks', 'page' ),
 				array( 'cl_from', 'page_is_featured, page_title' ),
 				array(
 					'cl_from = page_id',
@@ -243,30 +260,42 @@ class SkinWikihowskin extends SkinTemplate {
 					'(page_is_featured = 1 OR page_random > ' . wfRandom() . ')'
 				),
 				__METHOD__,
-				array( 'ORDER BY' => 'page_is_featured DESC' ) );
+				array( 'ORDER BY' => 'page_is_featured DESC' )
+			);
 
-			if ( $isBoxShape ) $result .= '<div class="related_square_row">';
+			if ( $isBoxShape ) {
+				$result .= '<div class="related_square_row">';
+			}
 
 			$count = 0;
 			foreach ( $res as $row ) {
-				if ( $count >= $num ) break;
-				if ( $row->cl_from == $wgTitle->getArticleID() ) continue;
+				if ( $count >= $num ) {
+					break;
+				}
+				if ( $row->cl_from == $wgTitle->getArticleID() ) {
+					continue;
+				}
 
 				$t = Title::newFromDBkey( $row->page_title );
-				if ( !$t || $this->needsFurtherEditing( $t ) ) continue;
+				if ( !$t || $this->needsFurtherEditing( $t ) ) {
+					continue;
+				}
 
 				if ( $isBoxShape ) {
 					// exit if there's a word that will be too long
 					$word_array = explode( ' ', $t->getText() );
 					foreach ( $word_array as $word ) {
-						if ( strlen( $word ) > 7 ) continue;
+						if ( strlen( $word ) > 7 ) {
+							continue;
+						}
 					}
 
 					$data = self::featuredArticlesAttrs( $t, $t->getFullText(), 200, 162 );
 					$result .= $this->relatedArticlesBox( $data, $num_cols );
-					if ( $count == 1 ) $result .= '</div><div class="related_square_row">';
-				}
-				else {
+					if ( $count == 1 ) {
+						$result .= '</div><div class="related_square_row">';
+					}
+				} else {
 					// $data = self::featuredArticlesAttrs($t, $t->getFullText());
 					$result .= self::getArticleThumb( $t, 127, 140 );
 				}
@@ -279,9 +308,9 @@ class SkinWikihowskin extends SkinTemplate {
 			if ( !empty( $result ) ) {
 				if ( $isBoxShape ) {
 					$result = "<div id='related_squares'>$result\n</div>";
+				} else {
+					$result = "<h3>" . wfMessage( 'relatedarticles' )->text() . "</h3>$result<div class='clearall'></div>\n";
 				}
-				else {
-					$result = "<h3>" . wfMessage( 'relatedarticles' )->text() . "</h3>$result<div class='clearall'></div>\n"; }
 			}
 		}
 		$wgMemc->set( $cachekey, $result );
@@ -362,10 +391,10 @@ class SkinWikihowskin extends SkinTemplate {
 					}
 				}
 			} else {
-				$image = Title::makeTitle( NS_IMAGE, "Book_266.png" );
+				$image = Title::makeTitle( NS_IMAGE, 'Book_266.png' );
 				$file = wfFindFile( $image, false );
 				if ( !$file ) {
-					$file = wfFindFile( "Book_266.png" );
+					$file = wfFindFile( 'Book_266.png' );
 				}
 				$sourceWidth = $file->getWidth();
 				$sourceHeight = $file->getHeight();
@@ -399,10 +428,10 @@ class SkinWikihowskin extends SkinTemplate {
 
 	static function getArticleThumb( &$t, $width, $height ) {
 		global $wgContLang, $wgLanguageCode;
-		$html = "";
+		$html = '';
 		$data = self::featuredArticlesAttrs( $t, $t->getText(), $width, $height );
 		$articleName = $t->getText();
-		if ( $wgLanguageCode == "zh" ) {
+		if ( $wgLanguageCode == 'zh' ) {
 			$articleName = $wgContLang->convert( $articleName );
 		}
 		$html .= "<div class='thumbnail' style='width:{$width}px; height:{$height}px;'><a href='{$data['url']}'><img src='{$data['img']}' alt='' /><div class='text'><p>" . wfMessage( 'Howto', '' )->text() . "<br /><span>{$articleName}</span></p></div></a></div>";
@@ -416,14 +445,15 @@ class SkinWikihowskin extends SkinTemplate {
 		$sourceWidth = $file->getWidth();
 		$sourceHeight = $file->getHeight();
 		$xScale = $width / $sourceWidth;
-		if ( $height > $xScale * $sourceHeight )
+		if ( $height > $xScale * $sourceHeight ) {
 			$heightPreference = true;
-		else
+		} else {
 			$heightPreference = false;
+		}
 		$thumb = WatermarkSupport::getUnwatermarkedThumbnail( $file, $width, $height, true, true, $heightPreference );
 		// removed the fixed width for now
 		$articleName = $t->getText();
-		if ( $wgLanguageCode == "zh" ) {
+		if ( $wgLanguageCode == 'zh' ) {
 			$articleName = $wgContLang->convert( $articleName );
 		}
 		$html = "<div class='thumbnail' ><a href='{$t->getFullUrl()}'><img src='" . wfGetPad( $thumb->getUrl() ) . "' alt='' /><div class='text'><p>" . wfMessage( 'Howto', '' )->text() . "<br /><span>{$articleName}</span></p></div></a></div>";
@@ -463,8 +493,7 @@ class SkinWikihowskin extends SkinTemplate {
 		if ( strlen( $data['text'] ) > 35 ) {
 			// too damn long
 			$the_title = substr( $data['text'], 0, 32 ) . '...';
-		}
-		else {
+		} else {
 			// we're good
 			$the_title = $data['text'];
 		}
@@ -487,14 +516,15 @@ class SkinWikihowskin extends SkinTemplate {
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$ids = array();
-		$res = $dbr->select( 'pagelist',
+		$res = $dbr->select(
+			'pagelist',
 			'pl_page',
 			array( 'pl_list' => 'risingstar' ),
 			__METHOD__,
-			array( 'ORDER BY' => 'pl_page desc', 'LIMIT' => 5 )
+			array( 'ORDER BY' => 'pl_page DESC', 'LIMIT' => 5 )
 		);
 
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$ids[] = $row->pl_page;
 		}
 
@@ -506,7 +536,7 @@ class SkinWikihowskin extends SkinTemplate {
 				array( 'page_namespace', 'page_title' ),
 				array( 'page_id IN (' . implode( ',', $ids ) . ')' ),
 				__METHOD__,
-				array( 'ORDER BY' => 'page_id desc', 'LIMIT' => 5 )
+				array( 'ORDER BY' => 'page_id DESC', 'LIMIT' => 5 )
 			);
 			foreach ( $res as $row ) {
 				$t = Title::makeTitle( NS_MAIN, $row->page_title );
@@ -636,10 +666,10 @@ class SkinWikihowskin extends SkinTemplate {
 		$embed = "<span dir='$dir'>";
 		$pop = '</span>';
 
-		if ( empty( $wgOut->mCategoryLinks["normal"] ) ) {
+		if ( empty( $wgOut->mCategoryLinks['normal'] ) ) {
 			$t = $embed . '' . $pop;
 		} else {
-			$t = $embed . implode ( "{$pop} | {$embed}" , $wgOut->mCategoryLinks["normal"] ) . $pop;
+			$t = $embed . implode( "{$pop} | {$embed}" , $wgOut->mCategoryLinks['normal'] ) . $pop;
 		}
 		if ( !$usebrowser ) {
 			return $t;
@@ -651,8 +681,13 @@ class SkinWikihowskin extends SkinTemplate {
 		$sep = self::BREADCRUMB_SEPARATOR;
 
 		$viewMode = WikihowCategoryViewer::getViewModeArray( $this->getContext() );
-		$categories = Linker::link( Title::newFromText( 'Special:Categorylisting' ), wfMessage( 'categories' )->text(), array(), $viewMode );
-		$s = "<li class='home'>" . Linker::link( $mainPageObj, wfMessage( 'home' )->text() ) . "</li> <li>$sep $categories</li>";
+		$categories = Linker::link(
+			Title::newFromText( 'Special:Categorylisting' ),
+			wfMessage( 'categories' )->text(),
+			array(),
+			$viewMode
+		);
+		$s = '<li class="home">' . Linker::link( $mainPageObj, wfMessage( 'home' )->text() ) . "</li> <li>$sep $categories</li>";
 
 		# optional 'dmoz-like' category browser. Will be shown under the list
 		# of categories an article belong to
@@ -660,18 +695,20 @@ class SkinWikihowskin extends SkinTemplate {
 			$s .= ' ';
 
 			# get a big array of the parents tree
-			$parenttree = Categoryhelper::getCurrentParentCategoryTree();
-			if ( is_array( $parenttree ) ) {
-				$parenttree = array_reverse( $parenttree );
+			$parentTree = Categoryhelper::getCurrentParentCategoryTree();
+			if ( is_array( $parentTree ) ) {
+				$parentTree = array_reverse( $parentTree );
 			} else {
 				return $s;
 			}
 			# Skin object passed by reference cause it can not be
 			# accessed under the method subfunction drawCategoryBrowser
-			$tempout = explode( "\n", $this->drawCategoryBrowser( $parenttree, $this ) );
+			$tempout = explode( "\n", $this->drawCategoryBrowser( $parentTree, $this ) );
 			$newarray = array();
 			foreach ( $tempout as $t ) {
-				if ( trim( $t ) != "" ) { $newarray[] = $t; }
+				if ( trim( $t ) != '' ) {
+					$newarray[] = $t;
+				}
 			}
 			$tempout = $newarray;
 
@@ -699,14 +736,26 @@ class SkinWikihowskin extends SkinTemplate {
 		return $s;
 	}
 
+	/**
+	 * Should the <h1> tag be suppressed or not?
+	 *
+	 * @todo This should support social tools' $wgSupressPageTitle [sic], but
+	 * since core doesn't define that, it's *technically* a register_globals
+	 * vuln...
+	 *
+	 * @return bool
+	 */
 	function suppressH1Tag() {
 		global $wgTitle, $wgLang;
-		$titleText = $wgTitle->getFullText();
 
-		if ( $titleText == wfMessage( 'mainpage' )->text() )
+		if ( $wgTitle->isMainPage() ) {
 			return true;
-		if ( mb_strtolower( $titleText ) == mb_strtolower( $wgLang->specialPage( "Userlogin" ) ) )
+		}
+
+		if ( $wgTitle->isSpecial( 'Userlogin' ) ) {
 			return true;
+		}
+
 		return false;
 	}
 
@@ -719,10 +768,14 @@ class SkinWikihowskin extends SkinTemplate {
 		} elseif ( !$hasCookies && $wgRequest->getVal( 'c' ) == 't' ) {
 			$siteNotice = wfMessage( 'sitenotice_cachedpage' )->parse();
 		} elseif ( !$wgUser->isAnon() ) {
-			if ( wfMessage( 'sitenotice_loggedin' )->text() == '-' || wfMessage( 'sitenotice_loggedin' )->text() == '' ) return '';
+			if ( wfMessage( 'sitenotice_loggedin' )->text() == '-' || wfMessage( 'sitenotice_loggedin' )->text() == '' ) {
+				return '';
+			}
 			$siteNotice = wfMessage( 'sitenotice_loggedin' )->parse();
 		} else {
-			if ( wfMessage( 'sitenotice' )->text() == '-' || wfMessage( 'sitenotice' )->text() == '' ) return '';
+			if ( wfMessage( 'sitenotice' )->text() == '-' || wfMessage( 'sitenotice' )->text() == '' ) {
+				return '';
+			}
 			$siteNotice = wfMessage( 'sitenotice' )->parse();
 		}
 
@@ -741,6 +794,8 @@ class SkinWikihowskin extends SkinTemplate {
 	/**
 	 * Calls the MobileWikihow class to determine whether or
 	 * not a browser's User-Agent string is that of a mobile browser.
+	 *
+	 * @return bool
 	 */
 	static function isUserAgentMobile() {
 		if ( class_exists( 'MobileWikihow' ) ) {
@@ -753,6 +808,8 @@ class SkinWikihowskin extends SkinTemplate {
 	/**
 	 * Calls the WikihowCSSDisplay class to determine whether or
 	 * not to display a "special" background.
+	 *
+	 * @return bool
 	 */
 	static function isSpecialBackground() {
 		if ( class_exists( 'WikihowCSSDisplay' ) ) {
@@ -765,6 +822,8 @@ class SkinWikihowskin extends SkinTemplate {
 	/**
 	 * Calls any hooks in place to see if a module has requested that the
 	 * right rail on the site shouldn't be displayed.
+	 *
+	 * @return bool
 	 */
 	static function showSideBar() {
 		global $wgTitle;
@@ -777,6 +836,8 @@ class SkinWikihowskin extends SkinTemplate {
 	 * Calls any hooks in place to see if a module has requested that the
 	 * bread crumb (category) links at the top of the article shouldn't
 	 * be displayed.
+	 *
+	 * @return bool
 	 */
 	static function showBreadCrumbs() {
 		global $wgTitle, $wgRequest;
@@ -796,20 +857,26 @@ class SkinWikihowskin extends SkinTemplate {
 	/**
 	 * Calls any hooks in place to see if a module has requested that the
 	 * right rail on the site shouldn't be displayed.
+	 *
+	 * @return bool
 	 */
 	static function showGrayContainer() {
 		global $wgTitle, $wgRequest;
+
 		$result = true;
 		wfRunHooks( 'ShowGrayContainer', array( &$result ) );
 
 		$action = $wgRequest ? $wgRequest->getVal( 'action' ) : '';
 
 		if ( $wgTitle->exists() || $wgTitle->getNamespace() == NS_USER ) {
-			if ( $wgTitle->getNamespace() == NS_USER ||
-				$wgTitle->getNameSpace() == NS_IMAGE ||
-				$wgTitle->getNameSpace() == NS_CATEGORY ||
-				( $wgTitle->getNamespace == NS_MAIN ) && ( $action == 'edit' || $action == 'submit2' ) ) {
-					$result = false;
+			if (
+				$wgTitle->getNamespace() == NS_USER ||
+				$wgTitle->getNamespace() == NS_IMAGE ||
+				$wgTitle->getNamespace() == NS_CATEGORY ||
+				( $wgTitle->getNamespace() == NS_MAIN ) && ( $action == 'edit' || $action == 'submit2' )
+			)
+			{
+				$result = false;
 			}
 		}
 		return $result;
@@ -819,7 +886,9 @@ class SkinWikihowskin extends SkinTemplate {
 		global $wgTitle, $wgUser, $wgRequest;
 
 		$action = $wgRequest->getVal( 'action', 'view' );
-		if ( $wgRequest->getVal( 'diff' ) ) $action = 'diff';
+		if ( $wgRequest->getVal( 'diff' ) ) {
+			$action = 'diff';
+		}
 		$skin = $this->getSkin();
 
 		$tabs = array();
@@ -830,15 +899,16 @@ class SkinWikihowskin extends SkinTemplate {
 			return $tabs;
 		}
 
-		if ( !$showArticleTabs )
+		if ( !$showArticleTabs ) {
 			return;
+		}
 
 		// article
 		if ( $wgTitle->getNamespace() != NS_CATEGORY ) {
 			$articleTab->href = $wgTitle->isTalkPage() ? $wgTitle->getSubjectPage()->getFullURL():$wgTitle->getFullURL();
-			$articleTab->text = $wgTitle->getSubjectPage()->getNamespace() == NS_USER ? wfMessage( "user" )->text():wfMessage( "article" )->text();
-			$articleTab->class = ( !MWNamespace::isTalk( $wgTitle->getNamespace() ) && $action != "edit" && $action != "history" ) ? "on":"";
-			$articleTab->id = "tab_article";
+			$articleTab->text = $wgTitle->getSubjectPage()->getNamespace() == NS_USER ? wfMessage( 'user' )->text() : wfMessage( 'article' )->text();
+			$articleTab->class = ( !MWNamespace::isTalk( $wgTitle->getNamespace() ) && $action != 'edit' && $action != 'history' ) ? 'on' : '';
+			$articleTab->id = 'tab_article';
 			$tabs[] = $articleTab;
 		}
 
@@ -846,8 +916,8 @@ class SkinWikihowskin extends SkinTemplate {
 		if ( $wgTitle->getNamespace() != NS_CATEGORY && ( !in_array( $wgTitle->getNamespace(), array( NS_USER, NS_USER_TALK, NS_IMAGE ) ) || $action == 'edit' || $wgUser->getID() > 0 ) ) {
 			$editTab->href = $wgTitle->getLocalURL( $skin->editUrlOptions() );
 			$editTab->text = wfMessage( 'edit' )->text();
-			$editTab->class = ( $action == "edit" ) ? "on":"";
-			$editTab->id = "tab_edit";
+			$editTab->class = ( $action == 'edit' ) ? 'on' : '';
+			$editTab->id = 'tab_edit';
 			$tabs[] = $editTab;
 		}
 
@@ -865,8 +935,8 @@ class SkinWikihowskin extends SkinTemplate {
 			}
 			$talkTab->href = $talklink;
 			$talkTab->text = $msg;
-			$talkTab->class = ( $wgTitle->isTalkPage() && $action != "edit" && $action != "history" ) ? "on":"";
-			$talkTab->id = "tab_discuss";
+			$talkTab->class = ( $wgTitle->isTalkPage() && $action != 'edit' && $action != 'history' ) ? 'on' : '';
+			$talkTab->id = 'tab_discuss';
 			$tabs[] = $talkTab;
 		}
 
@@ -874,8 +944,8 @@ class SkinWikihowskin extends SkinTemplate {
 		if ( !$wgUser->isAnon() && $wgTitle->getNamespace() != NS_CATEGORY ) {
 			$historyTab->href = $wgTitle->getLocalURL( 'action=history' );
 			$historyTab->text = wfMessage( 'history' )->text();
-			$historyTab->class = ( $action == "history" ) ? "on":"";
-			$historyTab->id = "tab_history";
+			$historyTab->class = ( $action == 'history' ) ? 'on' : '';
+			$historyTab->id = 'tab_history';
 			$tabs[] = $historyTab;
 		}
 
@@ -883,8 +953,8 @@ class SkinWikihowskin extends SkinTemplate {
 		if ( !$wgUser->isAnon() && $wgTitle->getNamespace() == NS_CATEGORY ) {
 			$imageViewTab->href = $wgTitle->getLocalURL();
 			$imageViewTab->text = wfMessage( 'image_view' )->text();
-			$imageViewTab->class = $wgRequest->getVal( 'viewMode', 0 ) ? "" : "on";
-			$imageViewTab->id = "tab_image_view";
+			$imageViewTab->class = $wgRequest->getVal( 'viewMode', 0 ) ? '' : 'on';
+			$imageViewTab->id = 'tab_image_view';
 			$tabs[] = $imageViewTab;
 		}
 
@@ -892,19 +962,19 @@ class SkinWikihowskin extends SkinTemplate {
 		if ( !$wgUser->isAnon() && $wgTitle->getNamespace() == NS_CATEGORY ) {
 			$textViewTab->href = $wgTitle->getLocalURL( 'viewMode=text' );
 			$textViewTab->text = wfMessage( 'text_view' )->text();
-			$textViewTab->class = $wgRequest->getVal( 'viewMode', 0 ) ? "on" : "";
+			$textViewTab->class = $wgRequest->getVal( 'viewMode', 0 ) ? 'on' : '';
 			$textViewTab->id = "tab_text_view";
 			$tabs[] = $textViewTab;
 		}
 
 		// admin
 		if ( $wgUser->isSysop() && $wgTitle->userCan( 'delete' ) ) {
-			$adminTab->href = "#";
+			$adminTab->href = '#';
 			$adminTab->text = wfMessage( 'admin_admin' )->text();
-			$adminTab->class = "";
-			$adminTab->id = "tab_admin";
+			$adminTab->class = '';
+			$adminTab->id = 'tab_admin';
 			$adminTab->hasSubMenu = true;
-			$adminTab->subMenuName = "AdminOptions";
+			$adminTab->subMenuName = 'AdminOptions';
 
 			$adminTab->subMenu = array();
 			$admin1->href = $wgTitle->getLocalURL( 'action=protect' );
@@ -1427,14 +1497,14 @@ class SkinWikihowskin extends SkinTemplate {
 	}
 
 	static function getHTMLTitle( $defaultHTMLTitle, $title, $isMainPage ) {
-		global $wgTitle, $wgRequest, $wgLanguageCode, $wgLang;
+		global $wgTitle, $wgRequest, $wgLanguageCode, $wgLang, $wgSitename;
 
 		$namespace = $wgTitle->getNamespace();
 		$action = $wgRequest->getVal( 'action', 'view' );
 
 		$htmlTitle = $defaultHTMLTitle;
 		if ( $isMainPage ) {
-			$htmlTitle = 'wikiHow - ' . wfMessage( 'main_title' )->text();
+			$htmlTitle = $wgSitename . ' - ' . wfMessage( 'main_title' )->text();
 		} elseif ( $namespace == NS_MAIN && $wgTitle->exists() && $action == 'view' ) {
 			if ( $wgLanguageCode == 'en' ) {
 				$titleTest = TitleTests::newFromTitle( $wgTitle );
@@ -1447,7 +1517,7 @@ class SkinWikihowskin extends SkinTemplate {
 			}
 		} elseif ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
 			$username = $wgTitle->getText();
-			$htmlTitle = $wgLang->getNsText( $namespace ) . ": $username - wikiHow";
+			$htmlTitle = $wgLang->getNsText( $namespace ) . ": $username - $wgSitename";
 		} elseif ( $namespace == NS_CATEGORY ) {
 			$htmlTitle = wfMessage( 'category_title_tag', $wgTitle->getText() )->text();
 		}
@@ -1460,7 +1530,7 @@ class SkinWikihowskin extends SkinTemplate {
 class WikiHowTemplate extends QuickTemplate {
 
 	/**
-	 * Template filter callback for wikiHow skin.
+	 * Template filter callback for BlueSky skin.
 	 * Takes an associative array of data set from a SkinTemplate-based
 	 * class, and a wrapper for MediaWiki's localization database, and
 	 * outputs a formatted page.
@@ -1527,7 +1597,7 @@ class WikiHowTemplate extends QuickTemplate {
 		if ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
 			$username = $wgTitle->getText();
 			$usernameKey = $wgTitle->getDBKey();
-			$avatar = ( $wgLanguageCode == 'en' ) ? Avatar::getPicture( $usernameKey ) : "";
+			$avatar = ( $wgLanguageCode == 'en' ) ? Avatar::getPicture( $usernameKey ) : '';
 			$h1 = $username;
 			if ( $wgTitle->getNamespace() == NS_USER_TALK ) {
 				$h1 = $wgLang->getNsText( NS_USER_TALK ) . ": $username";
@@ -1572,20 +1642,17 @@ class WikiHowTemplate extends QuickTemplate {
 		}
 
 		// XX PROFILE EDIT/CREAT/DEL BOX DATE - need to check for pb flag in order to display this.
-		$pbDate = "";
-		$pbDateFlag = 0;
-		$profilebox_name = wfMessage( 'profilebox-name' )->text();
+		$pbDate = '';
 		if ( $wgTitle->getNamespace() == NS_USER ) {
 			if ( $u = User::newFromName( $wgTitle->getDBKey() ) ) {
 				if ( UserPagePolicy::isGoodUserPage( $wgTitle->getDBKey() ) ) {
 					$pbDate = ProfileBox::getPageTop( $u );
-					$pbDateFlag = true;
 				}
 			}
 		}
 
-		if ( ! $sk->suppressH1Tag() ) {
-			if ( $wgTitle->getNamespace() == NS_MAIN && $wgTitle->exists() && $action == "view" ) {
+		if ( !$sk->suppressH1Tag() ) {
+			if ( $wgTitle->getNamespace() == NS_MAIN && $wgTitle->exists() && $action == 'view' ) {
 				if ( Microdata::showRecipeTags() && Microdata::showhRecipeTags() ) {
 					$itemprop_name1 = " fn'";
 					$itemprop_name2 = '';
@@ -1678,10 +1745,12 @@ class WikiHowTemplate extends QuickTemplate {
 			}
 		}
 
-		if ( !$isMainPage && !$isDocViewer && ( !isset( $_COOKIE['sitenoticebox'] ) || !$_COOKIE['sitenoticebox'] ) ) $siteNotice = $sk->getSiteNotice();
+		if ( !$isMainPage && !$isDocViewer && ( !isset( $_COOKIE['sitenoticebox'] ) || !$_COOKIE['sitenoticebox'] ) ) {
+			$siteNotice = $sk->getSiteNotice();
+		}
 
 		// Right-to-left languages
-		$dir = $wgContLang->isRTL() ? "rtl" : "ltr";
+		$dir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 		$head_element = "<html xmlns:fb=\"https://www.facebook.com/2008/fbml\" xmlns=\"{$wgXhtmlDefaultNamespace}\" xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" dir='$dir'>\n";
 
 		$rtl_css = '';
@@ -1798,12 +1867,6 @@ class WikiHowTemplate extends QuickTemplate {
 		// $navMenu = $sk->genNavigationMenu();
 
 		$navTabs = $sk->genNavigationTabs();
-
-		// set up the main page
-		$mpActions = '';
-		$mpWorldwide = '
-
-		';
 
 		$profileBoxIsUser = false;
 		if ( $isLoggedIn && $wgTitle && $wgTitle->getNamespace() == NS_USER ) {
@@ -2129,7 +2192,6 @@ var WH = WH || {};
 		WH.translationData = {<?php echo join( ',', $translationData ) ?>};
 		//-->
 		</script>
-		<?php echo $mpActions ?>
 		<?php
 		$sidebar = !$showSideBar ? 'no_sidebar' : '';
 
@@ -2355,12 +2417,6 @@ var WH = WH || {};
 						<div style="clear:both; float:none;"></div>
 					</div>
 				<?php endif; ?>
-
-				<?php
-					if ( $mpWorldwide !== '' ) {
-						echo $mpWorldwide;
-					}
-				?>
 
 				<?php /*
 				<!--
