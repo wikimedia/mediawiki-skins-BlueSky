@@ -1229,251 +1229,89 @@ class SkinWikihowskin extends SkinTemplate {
 		return $html;
 	}
 
-	function outputPage( OutputPage $out = null ) {
-		global $wgTitle, $wgArticle, $wgUser, $wgLang, $wgContLang, $wgOut;
-		global $wgScript, $wgStylePath, $wgLanguageCode, $wgContLanguageCode;
-		global $wgMimeType, $wgOutputEncoding, $wgUseDatabaseMessages;
-		global $wgRequest, $wgUseNewInterlanguage;
-		global $wgDisableCounters, $wgLogo, $action, $wgFeedClasses;
-		global $wgMaxCredits, $wgShowCreditsIfMax, $wgHideInterlanguageLinks;
-		global $wgServer;
+	/**
+	 * This is only available in MediaWiki 1.23+, but...
+	 *
+	 * @param OutputPage|null $out
+	 * @return QuickTemplate
+	 */
+	protected function prepareQuickTemplate( OutputPage $out = null ) {
+		global $wgContLang, $wgHideInterlanguageLinks, $wgUser;
+		wfProfileIn( __METHOD__ );
 
-		global $wgSquidMaxage, $IP;
+		$tpl = parent::prepareQuickTemplate( $out );
 
-		$fname = __METHOD__;
-		wfProfileIn( $fname );
-
-		wfRunHooks( 'BeforePageDisplay', array( &$wgOut, &$this ) );
-		$this->mTitle = $wgTitle;
-
-		extract( $wgRequest->getValues( 'oldid', 'diff' ) );
-
-		wfProfileIn( "$fname-init" );
-		// $this->initPage( $out );
-		$tpl = $this->setupTemplate( 'WikiHowTemplate', 'skins' );
-
-		$tpl->setTranslator( new MediaWiki_I18N() );
-		wfProfileOut( "$fname-init" );
-
-		wfProfileIn( "$fname-stuff" );
-		$this->thispage = $wgTitle->getPrefixedDbKey();
-		$this->thisurl = $wgTitle->getPrefixedURL();
-		$this->loggedin = $wgUser->getID() != 0;
-		$this->iscontent = ( $wgTitle->getNamespace() != NS_SPECIAL );
-		$this->iseditable = ( $this->iscontent and !( $action == 'edit' or $action == 'submit' ) );
-		$this->username = $wgUser->getName();
-		$this->userpage = $wgContLang->getNsText( NS_USER ) . ":" . $wgUser->getName();
-		$this->userpageUrlDetails = $this->makeUrlDetails( $this->userpage );
-
-		$this->usercss = $this->userjs = $this->userjsprev = false;
-		// $this->setupUserCss();
-		// $this->setupUserJs(false);
-		$this->titletxt = $wgTitle->getPrefixedText();
-		wfProfileOut( "$fname-stuff" );
-
-		// add utm
-
-		wfProfileIn( "$fname-stuff2" );
-		$tpl->set( 'title', $wgOut->getPageTitle() );
-
-		$tpl->setRef( "thispage", $this->thispage );
-		$undelete = $this->getUndeleteLink();
-		$tpl->set(
-			"undelete", !empty( $undelete ) ?
-				'<span class="subpages">' . $undelete . '</span>':
-				''
-		);
-		$tpl->set( 'headscripts', $out->getHeadScripts() . $out->getHeadItems() );
-		$description = ArticleMetaInfo::getCurrentTitleMetaDescription();
-		if ( $description ) {
-			$wgOut->addMeta( 'description', $description );
-		}
-		$keywords = ArticleMetaInfo::getCurrentTitleMetaKeywords();
-		if ( $keywords ) {
-			$wgOut->mKeywords = array();
-			$wgOut->addMeta( 'keywords', $keywords );
-		}
-
-		ArticleMetaInfo::addFacebookMetaProperties( $tpl->data['title'] );
-		ArticleMetaInfo::addTwitterMetaProperties();
-
-		if ( $wgOut->isSyndicated() ) {
-			$feeds = array();
-			foreach ( $wgFeedClasses as $format => $class ) {
-				$feeds[$format] = array(
-					'text' => $format,
-					'href' => $wgRequest->appendQuery( "feed=$format" ),
-					'ttip' => wfMessage( 'tooltip-' . $format )->text()
-				);
+		// Add various meta properties if the ArticleMetaInfo extension is
+		// available
+		if ( class_exists( 'ArticleMetaInfo' ) ) {
+			$description = ArticleMetaInfo::getCurrentTitleMetaDescription();
+			if ( $description ) {
+				$out->addMeta( 'description', $description );
 			}
-			$tpl->setRef( 'feeds', $feeds );
-		} else {
-			$tpl->set( 'feeds', false );
-		}
-		$tpl->setRef( 'mimetype', $wgMimeType );
-		$tpl->setRef( 'charset', $wgOutputEncoding );
-		$tpl->set( 'headlinks', $out->getHeadLinks() );
-		$tpl->setRef( 'wgScript', $wgScript );
-		$tpl->setRef( 'skinname', $this->skinname );
-		$tpl->setRef( 'stylename', $this->stylename );
-		$tpl->setRef( 'loggedin', $this->loggedin );
-		$tpl->set( 'nsclass', 'ns-' . $wgTitle->getNamespace() );
-		$tpl->set( 'notspecialpage', $wgTitle->getNamespace() != NS_SPECIAL );
-		/* XXX currently unused, might get useful later
-		$tpl->set( "editable", ($wgTitle->getNamespace() != NS_SPECIAL ) );
-		$tpl->set( "exists", $wgTitle->getArticleID() != 0 );
-		$tpl->set( "watch", $wgTitle->userIsWatching() ? "unwatch" : "watch" );
-		$tpl->set( "protect", count($wgTitle->isProtected()) ? "unprotect" : "protect" );
-		$tpl->set( "helppage", wfMessage('helppage')->text());
-		*/
-		$tpl->set( 'searchaction', $this->escapeSearchLink() );
-		$tpl->set( 'search', trim( $wgRequest->getVal( 'search' ) ) );
-		$tpl->setRef( 'stylepath', $wgStylePath );
-		$tpl->setRef( 'logopath', $wgLogo );
-		$tpl->setRef( "lang", $wgContLanguageCode );
-		$tpl->set( 'dir', $wgContLang->isRTL() ? "rtl" : "ltr" );
-		$tpl->set( 'rtl', $wgContLang->isRTL() );
-		$tpl->set( 'langname', $wgContLang->getLanguageName( $wgContLanguageCode ) );
-		$tpl->setRef( 'username', $this->username );
-		$tpl->setRef( 'userpage', $this->userpage );
-		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href'] );
-		$tpl->setRef( 'usercss', $this->usercss );
-		$tpl->setRef( 'userjs', $this->userjs );
-		$tpl->setRef( 'userjsprev', $this->userjsprev );
-
-		if ( $this->iseditable && $wgUser->getOption( 'editsectiononrightclick' ) ) {
-			$tpl->set( 'body_onload', 'setupRightClickEdit()' );
-		} else {
-			$tpl->set( 'body_onload', false );
-		}
-		global $wgUseSiteJs;
-		if ( $wgUseSiteJs ) {
-			if ( $this->loggedin ) {
-				$tpl->set( 'jsvarurl', $this->makeUrl( $this->userpage . '/-', 'action=raw&gen=js&maxage=' . $wgSquidMaxage ) );
-			} else {
-				$tpl->set( 'jsvarurl', $this->makeUrl( '-', 'action=raw&gen=js' ) );
+			$keywords = ArticleMetaInfo::getCurrentTitleMetaKeywords();
+			if ( $keywords ) {
+				$out->mKeywords = array();
+				$out->addMeta( 'keywords', $keywords );
 			}
-		} else {
-			$tpl->set( 'jsvarurl', false );
+
+			ArticleMetaInfo::addFacebookMetaProperties( $tpl->data['title'] );
+			ArticleMetaInfo::addTwitterMetaProperties();
+
+			ArticleMetaInfo::addFacebookMetaProperties( $tpl->data['title'] );
+			ArticleMetaInfo::addTwitterMetaProperties();
 		}
 
-		wfProfileOut( "$fname-stuff2" );
-
-		wfProfileIn( "$fname-stuff3" );
-		$tpl->setRef( 'newtalk', $ntl );
-		$tpl->setRef( 'skin', $this );
-		$tpl->set( 'logo', $this->logoText() );
+		// If the UserPagePolicy extension is installed and we're trying to
+		// view a User: page that doesn't match the criteria of a "good user page"
+		// (in other words, it's likely spam) and we're not logged in, force the
+		// article text to be a generic "Sorry, no such page" and force the
+		// correct HTTP headers
 		if (
-			$wgOut->isArticle() &&
-			( !isset( $oldid ) || isset( $diff ) ) &&
-			( $this->getContext()->canUseWikiPage() && 0 != $this->getContext()->getWikiPage()->getId() )
+			$out->getTitle()->getNamespace() == NS_USER &&
+			$wgUser->getId() == 0 &&
+			class_exists( 'UserPagePolicy' ) &&
+			!UserPagePolicy::isGoodUserPage( $out->getTitle()->getDBkey() )
 		)
 		{
-			if ( !$wgDisableCounters ) {
-				$viewcount = $this->getContext()->getWikiPage()->getCount() ;
-				if ( $viewcount ) {
-					$tpl->set( 'viewcount', wfMessage( 'viewcount', $viewcount )->text() );
-				} else {
-					$tpl->set( 'viewcount', false );
-				}
-			} else {
-				$tpl->set( 'viewcount', false );
-			}
-			$tpl->set( 'lastmod', $this->lastModified() );
-			$tpl->set( 'copyright', $this->getCopyright() );
-
-			$this->credits = false;
-
-			if ( isset( $wgMaxCredits ) && $wgMaxCredits != 0 ) {
-				require_once( "$IP/includes/Credits.php" );
-				$this->credits = getCredits( $wgArticle, $wgMaxCredits, $wgShowCreditsIfMax );
-			}
-
-			$tpl->setRef( 'credits', $this->credits );
-
-		} elseif ( isset( $oldid ) && !isset( $diff ) ) {
-			$tpl->set( 'copyright', $this->getCopyright() );
-			$tpl->set( 'viewcount', false );
-			$tpl->set( 'lastmod', false );
-			$tpl->set( 'credits', false );
-		} else {
-			$tpl->set( 'copyright', false );
-			$tpl->set( 'viewcount', false );
-			$tpl->set( 'lastmod', false );
-			$tpl->set( 'credits', false );
-		}
-		wfProfileOut( "$fname-stuff3" );
-
-		wfProfileIn( "$fname-stuff4" );
-		$tpl->set( 'copyrightico', $this->getCopyrightIcon() );
-		$tpl->set( 'poweredbyico', $this->getPoweredBy() );
-		$tpl->set( 'disclaimer', $this->disclaimerLink() );
-		$tpl->set( 'about', $this->aboutLink() );
-
-		$tpl->setRef( 'debug', $out->mDebugtext );
-
-		// $out->addHTML($printfooter);
-		$tpl->set( 'bottomscripts', $this->bottomScripts() );
-		if ( $wgTitle->getNamespace() == NS_USER && $wgUser->getId() == 0 && !UserPagePolicy::isGoodUserPage( $wgTitle->getDBKey() ) ) {
-			$txt = $out->parse( wfMessage( 'noarticletext_user' )->text() );
+			$txt = wfMessage( 'noarticletext_user' )->parse();
 			$tpl->setRef( 'bodytext', $txt );
 			header( 'HTTP/1.1 404 Not Found' );
-		} else {
-			if ( !is_null( $out ) ) {
-				$tpl->setRef( 'bodytext', $out->getHTML() );
-			}
 		}
 
-		# Language links
+		// Interlanguage links
 		$language_urls = array();
 		if ( !$wgHideInterlanguageLinks ) {
-			foreach ( $wgOut->getLanguageLinks() as $l ) {
+			foreach ( $out->getLanguageLinks() as $l ) {
 				$tmp = explode( ':', $l, 2 );
 				$class = 'interwiki-' . $tmp[0];
 				$code = $tmp[0];
 				$lTitle = $tmp[1];
 				unset( $tmp );
 				$nt = Title::newFromText( $l );
-				$language = $wgContLang->fetchLanguageName( $nt->getInterwiki(), $wgLanguageCode );
+				if ( $wgContLang->getLanguageName( $nt->getInterwiki() ) != '' ) {
+					$language = $wgContLang->getLanguageName( $nt->getInterwiki() );
+				} else {
+					$language = $l;
+				}
 				$language_urls[] = array(
 					'code' => $code,
 					'href' => $nt->getFullURL(),
 					'text' => $lTitle,
 					'class' => $class,
-					'language' => ( $language != '' ? Misc::capitalize( $language ) : $l ) . ": "
+					'language' => $language . ': '
 				);
 			}
 		}
+
 		if ( count( $language_urls ) ) {
 			$tpl->setRef( 'language_urls', $language_urls );
 		} else {
 			$tpl->set( 'language_urls', false );
 		}
-		wfProfileOut( "$fname-stuff4" );
 
-		# Personal toolbar
-		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
-		/*$content_actions = $this->buildContentActionUrls();
-		$tpl->setRef('content_actions', $content_actions);
+		wfProfileOut( __METHOD__ );
 
-		// XXX: attach this from javascript, same with section editing
-		if($this->iseditable && $wgUser->getOption("editondblclick") ) {
-			$tpl->set('body_ondblclick', 'document.location = "' .$content_actions['edit']['href'] .'";');
-		} else {
-			$tpl->set('body_ondblclick', false);
-		}
-		*/
-		// $tpl->set( 'navigation_urls', $this->buildNavigationUrls() );
-		// $tpl->set( 'nav_urls', $this->buildNavUrls() );
-
-		// execute template
-		wfProfileIn( "$fname-execute" );
-		$res = $tpl->execute();
-		wfProfileOut( "$fname-execute" );
-
-		// result may be an error
-		$this->printOrError( $res );
-		wfProfileOut( $fname );
+		return $tpl;
 	}
 
 	static function getHolidayLogo() {
