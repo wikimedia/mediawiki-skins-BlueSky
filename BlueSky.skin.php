@@ -1841,13 +1841,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			!$isMainPage &&
 			strpos( $this->data['bodytext'], 'textscroller_outer' ) !== false;
 
-		$showUserCompletedImages =
-			class_exists( 'UCIPatrol' ) &&
-			$title->exists() &&
-			$title->getNamespace() == NS_MAIN &&
-			!$isMainPage &&
-			UCIPatrol::showUCI( $this->getSkin()->getContext()->getTitle() );
-
 		$showImageFeedback =
 			class_exists( 'ImageFeedback' ) &&
 			ImageFeedback::isValidPage();
@@ -1884,7 +1877,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			( $isMainPage ? ',hp' : '' ) .
 			( $showWikivideo ? ',whv' : '' ) .
 			( $showImageFeedback ? ',ii' : '' ) .
-			( $showUserCompletedImages ? ',uci' : '' ) .
 			( $showTextScroller ? ',ts' : '' );
 
 		if ( $wgOut->mJSminCodes ) {
@@ -1903,7 +1895,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			( $showTextScroller ? ',tsc' : '' ) .
 			( $isMainPage ? ',hpc' : '' ) .
 			( $showImageFeedback ? ',iic' : '' ) .
-			( $showUserCompletedImages ? ',ucic' : '' ) .
 			( $isSpecialPage ? ',spc' : '' );
 
 		if ( $wgOut->mCSSminCodes ) {
@@ -2137,14 +2128,6 @@ var WH = WH || {};
 
 			<?php }
 
-			if ( $showUserCompletedImages ) { ?>
-				<div class="section">
-					<h2 class="section_head" id="uci_header"><span><?php echo wfMessage( 'user_completed_images' )->text() ?></span></h2>
-					<div id="uci_images" class="section_text">
-						<?php echo UCIPatrol::getHTMLForArticle( $this->getSkin()->getContext() ) ?>
-					</div> <!-- end section_text-->
-				</div><!--end section-->
-			<?php }
 			if ( in_array( $title->getNamespace(), array( NS_USER, NS_MAIN, NS_PROJECT ) ) && $action == 'view' && !$isMainPage ) {
 			?>
 
