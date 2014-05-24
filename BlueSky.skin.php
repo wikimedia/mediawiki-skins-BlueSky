@@ -1633,22 +1633,6 @@ class BlueSkyTemplate extends BaseTemplate {
 				<input type="submit" value="Search" id="search_site_bubble" class="search_button" />
 			</form>';
 
-		$text = $this->data['bodytext'];
-		// Remove stray table under video section. Probably should eventually do it at
-		// the source, but then have to go through all articles.
-		if ( strpos( $text, '<a name="Video">' ) !== false ) {
-			$vidpattern = "<p><br /></p>\n<center>\n<table width=\"375px\">\n<tr>\n<td><br /></td>\n<td align=\"left\"></td>\n</tr>\n</table>\n</center>\n<p><br /></p>";
-			$text = str_replace( $vidpattern, "", $text );
-		}
-		$this->data['bodytext'] = $text;
-
-		// hack to get the FA template working, remove after we go live
-		$fa = '';
-		if ( $wgLanguageCode != 'nl' && strpos( $this->data['bodytext'], 'featurestar' ) !== false ) {
-			$fa = '<p id="feature_star">' . wfMessage( 'featured_article' )->text() . '</p>';
-			// $this->data['bodytext'] = preg_replace("@<div id=\"featurestar\">(.|\n)*<div style=\"clear:both\"></div>@mU", '', $this->data['bodytext']);
-		}
-
 		$body = '';
 
 		if ( $title->userCan( 'edit' ) &&
@@ -2043,7 +2027,6 @@ var WH = WH || {};
 						<h2 class="section_head" id="article_tools_header"><span><?php echo wfMessage( 'article_tools' )->text() ?></span></h2>
 						<div id="article_tools" class="section_text">
 					<?php endif ?>
-						<?php echo $fa ?>
 						<?php if ( $catLinks ): ?>
 							<p class="info"> <?php echo wfMessage( 'categories' )->text() ?>: <?php echo $catLinks ?></p>
 						<?php endif; ?>
