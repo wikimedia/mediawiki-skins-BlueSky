@@ -392,7 +392,7 @@ class SkinBlueSky extends SkinTemplate {
 					}
 				}
 			} else {
-				$image = Title::makeTitle( NS_IMAGE, 'Book_266.png' );
+				$image = Title::makeTitle( NS_FILE, 'Book_266.png' );
 				$file = wfFindFile( $image, false );
 				if ( !$file ) {
 					$file = wfFindFile( 'Book_266.png' );
@@ -879,7 +879,7 @@ class SkinBlueSky extends SkinTemplate {
 		if ( $wgTitle->exists() || $wgTitle->getNamespace() == NS_USER ) {
 			if (
 				$wgTitle->getNamespace() == NS_USER ||
-				$wgTitle->getNamespace() == NS_IMAGE ||
+				$wgTitle->getNamespace() == NS_FILE ||
 				$wgTitle->getNamespace() == NS_CATEGORY ||
 				( $wgTitle->getNamespace() == NS_MAIN ) && ( $action == 'edit' || $action == 'submit2' )
 			)
@@ -995,7 +995,7 @@ class SkinBlueSky extends SkinTemplate {
 			$admin1->href = $wgTitle->getLocalURL( 'action=protect' );
 			$admin1->text = !$wgTitle->isProtected() ? wfMessage( 'protect' )->text() : wfMessage( 'unprotect' )->text();
 			$adminTab->subMenu[] = $admin1;
-			if ( $wgTitle->getNamespace() != NS_IMAGE ) {
+			if ( $wgTitle->getNamespace() != NS_FILE ) {
 				$admin2->href = SpecialPage::getTitleFor( 'Movepage', $wgTitle )->getLocalURL();
 			} else {
 				$admin2->href = SpecialPage::getTitleFor( 'Movepage' )->getLocalURL()
@@ -1655,8 +1655,8 @@ class BlueSkyTemplate extends BaseTemplate {
 			$action != 'edit' &&
 			$action != 'diff' &&
 			$action != 'history' &&
-			( ( $isLoggedIn && !in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_IMAGE, NS_CATEGORY ) ) ) ||
-				!in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_IMAGE, NS_CATEGORY ) ) ) ) {
+			( ( $isLoggedIn && !in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_FILE, NS_CATEGORY ) ) ) ||
+				!in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_FILE, NS_CATEGORY ) ) ) ) {
 				// INTL: Need bigger buttons for non-english sites
 				$editlink_text = ( $title->getNamespace() == NS_MAIN ) ? wfMessage( 'editarticle' )->text() : wfMessage( 'edit' )->text();
 				$heading = '<a href="' . $title->getLocalURL( $sk->editUrlOptions() ) . '" class="editsection">' . $editlink_text . '</a>' . $heading;
@@ -1729,7 +1729,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$showSideBar = $sk->showSideBar();
 		$showHeadSection = $sk->showHeadSection();
 		$showArticleTabs = $title->getNamespace() != NS_SPECIAL && !$isMainPage;
-		if ( in_array( $title->getNamespace(), array( NS_IMAGE ) )
+		if ( in_array( $title->getNamespace(), array( NS_FILE ) )
 			&& ( empty( $action ) || $action == 'view' )
 			&& !$isLoggedIn )
 		{
