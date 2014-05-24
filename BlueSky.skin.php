@@ -1584,47 +1584,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			$isPrintable = $wgRequest->getVal( 'printable' ) == 'yes';
 		}
 
-		// QWER links for everyone on all pages
-
-		$logoutlink = Linker::link(
-			Title::makeTitle( NS_SPECIAL, 'Userlogout' ),
-			wfMessage( 'logout' )->text()
-		);
-
-		$rsslink = '<a href="' . $wgServer . '/feed.rss">' . wfMessage( 'rss' )->text() . '</a>';
-		$rplink = Linker::link(
-			Title::makeTitle( NS_SPECIAL, 'Randompage' ),
-			wfMessage( 'randompage' )->text()
-		);
-
-		if ( $title->getNamespace() == NS_MAIN && !$isMainPage && $title->userCan( 'edit' ) ) {
-			$links[] = array(
-				Title::makeTitle( NS_SPECIAL, 'Recentchangeslinked' )->getFullURL() . '/' . $title->getPrefixedURL(),
-				wfMessage( 'recentchangeslinked' )->text()
-			);
-		}
-
-		// Editing tools
-		$uploadlink = '';
-		$freephotoslink = '';
-		$uploadlink = Linker::link(
-			Title::makeTitle( NS_SPECIAL, 'Upload' ),
-			wfMessage( 'upload' )->text()
-		);
-		$freephotoslink = Linker::link(
-			Title::makeTitle( NS_SPECIAL, 'ImportFreeImages' ),
-			wfMessage( 'imageimport' )->text()
-		);
-		$relatedchangeslink = '';
-		if ( $isArticlePage ) {
-			$relatedchangeslink = '<li> <a href="' .
-				Title::makeTitle( NS_SPECIAL, 'Recentchangeslinked' )->getFullURL() . '/' . $title->getPrefixedURL() . '">'
-				. wfMessage( 'recentchangeslinked' )->text() . '</a></li>';
-		}
-
-		// search
-		$searchTitle = Title::makeTitle( NS_SPECIAL, 'LSearch' );
-
 		$otherLanguageLinks = array();
 		$translationData = array();
 		if ( $this->data['language_urls'] ) {
@@ -1666,23 +1625,13 @@ class BlueSkyTemplate extends BaseTemplate {
 			$printable_media = 'all';
 		}
 
-		$top_search = '';
-		$footer_search = '';
-		if ( $wgLanguageCode == 'en' ) {
-			// INTL: Search options for the english site are a bit more complex
-			if ( !$isLoggedIn ) {
-				$top_search = GoogSearch::getSearchBox( 'cse-search-box' );
-			} else {
-				$top_search = '
-				<form id="bubble_search" name="search_site" action="' . $searchTitle->getFullURL() . '" method="get">
-					<input type="text" class="search_box" name="search" x-webkit-speech />
-					<input type="submit" value="Search" id="search_site_bubble" class="search_button" />
-				</form>';
-			}
-		} else {
-			// INTL: International search just uses Google custom search
-			$top_search = GoogSearch::getSearchBox( "cse-search-box" );
-		}
+		// search
+		$searchTitle = SpecialPage::getTitleFor( 'Search' );
+		$top_search = '
+			<form id="bubble_search" name="search_site" action="' . $searchTitle->getFullURL() . '" method="get">
+				<input type="text" id="searchInput" class="search_box" name="search" x-webkit-speech />
+				<input type="submit" value="Search" id="search_site_bubble" class="search_button" />
+			</form>';
 
 		$text = $this->data['bodytext'];
 		// Remove stray table under video section. Probably should eventually do it at
@@ -1764,15 +1713,6 @@ class BlueSkyTemplate extends BaseTemplate {
 		// $navMenu = $sk->genNavigationMenu();
 
 		$navTabs = $sk->genNavigationTabs();
-
-		$profileBoxIsUser = false;
-		if ( $isLoggedIn && $title->getNamespace() == NS_USER ) {
-			$name = $title->getDBKey();
-			$profileBoxUser = User::newFromName( $name );
-			if ( $profileBoxUser && $wgUser->getID() == $profileBoxUser->getID() ) {
-				$profileBoxIsUser = true;
-			}
-		}
 
 		$optimizelyJS = false;
 		if ( class_exists( 'OptimizelyPageSelector' ) ) {
