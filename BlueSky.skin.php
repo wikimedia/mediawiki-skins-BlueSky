@@ -22,6 +22,35 @@ class SkinBlueSky extends SkinTemplate {
 	public $mSidebarWidgets = array();
 	public $mSidebarTopWidgets = array();
 
+	/**
+	 * Basically just loads the skin's JavaScript via ResourceLoader.
+	 *
+	 * @param OutputPage $out
+	 */
+	public function initPage( OutputPage $out ) {
+		parent::initPage( $out );
+
+		// Load JavaScript via ResourceLoader
+		// @todo FIXME: not ready yet
+		#$out->addModules( 'skins.owl.js' );
+	}
+
+	/**
+	 * Load the skin's CSS via ResourceLoader.
+	 *
+	 * @param OutputPage $out
+	 */
+	function setupSkinUserCss( OutputPage $out ) {
+		parent::setupSkinUserCss( $out );
+
+		// Add CSS via ResourceLoader
+		$out->addModuleStyles( 'skins.owl' );
+
+		if ( $this->getUser()->isLoggedIn() ) {
+			$out->addModuleStyles( 'skins.owl.loggedin' );
+		}
+	}
+
 	function addWidget( $html, $class = '' ) {
 		$class = htmlspecialchars( $class ); // Healthy paranoia, just in case.
 		$display = "
@@ -135,9 +164,10 @@ class SkinBlueSky extends SkinTemplate {
 			$items[] = $this->userTalkLink( $userId, $userText );
 		}
 
-		// XXMOD Added for quick note feature
-		if ( $wgTitle->getNamespace() != NS_SPECIAL &&
-			$wgLanguageCode == 'en' &&
+		// Added for quick note feature
+		if (
+			$wgTitle->getNamespace() != NS_SPECIAL &&
+			class_exists( 'QuickNoteEdit' ) &&
 			$wgRequest->getVal( 'diff', '' ) )
 		{
 			$items[] = QuickNoteEdit::getQuickNoteLink( $wgTitle, $userId, $userText );
@@ -178,7 +208,7 @@ class SkinBlueSky extends SkinTemplate {
 				$r = Revision::newFromTitle( $t );
 				$text = $r->getText();
 				if ( $text != '' ) {
-					$ret = '<h3>' . wfMessage( 'mylinks' )->text() . '</h3>';
+					$ret = '<h3>' . wfMessage( 'bluesky-mylinks' )->text() . '</h3>';
 					$ret .= '<div id="my_links_list">';
 					$options = new ParserOptions();
 					$output = $wgParser->parse( $text, $wgTitle, $options );
@@ -349,8 +379,8 @@ class SkinBlueSky extends SkinTemplate {
 						$thumbDump = print_r( $thumb, true );
 						wfDebug( "problem getting thumb for article '{$title->getText()}' of size {$width}x{$height}, image file: {$file->getTitle()->getText()}, path: {$file->getPath()}, thumb: {$thumbDump}\n" );
 					} else {
-						$wgMemc->set( $cachekey, wfGetPad( $thumb->getUrl() ), 2 * 3600 ); // 2 hours
-						return wfGetPad( $thumb->getUrl() );
+						$wgMemc->set( $cachekey, $thumb->getUrl(), 2 * 3600 ); // 2 hours
+						return $thumb->getUrl();
 					}
 				}
 			}
@@ -387,8 +417,8 @@ class SkinBlueSky extends SkinTemplate {
 					}
 					$thumb = $file->getThumbnail( $width, $height, true, true, $heightPreference );
 					if ( $thumb ) {
-						$wgMemc->set( $cachekey, wfGetPad( $thumb->getUrl() ), 2 * 3600 ); // 2 hours
-						return wfGetPad( $thumb->getUrl() );
+						$wgMemc->set( $cachekey, $thumb->getUrl(), 2 * 3600 ); // 2 hours
+						return $thumb->getUrl();
 					}
 				}
 			} else {
@@ -406,8 +436,8 @@ class SkinBlueSky extends SkinTemplate {
 				}
 				$thumb = $file->getThumbnail( $width, $height, true, true, $heightPreference );
 				if ( $thumb ) {
-					$wgMemc->set( $cachekey, wfGetPad( $thumb->getUrl() ), 2 * 3600 ); // 2 hours
-					return wfGetPad( $thumb->getUrl() );
+					$wgMemc->set( $cachekey, $thumb->getUrl(), 2 * 3600 ); // 2 hours
+					return $thumb->getUrl();
 				}
 			}
 		}
@@ -612,7 +642,7 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	// overloaded from Skin class
-	function drawCategoryBrowser( $tree, &$skin, $count = 0 ) {
+	function drawCategoryBrowser( $tree ) {
 		$return = '';
 		//$viewMode = WikihowCategoryViewer::getViewModeArray( $this->getContext() );
 		foreach ( $tree as $element => $parent ) {
@@ -624,17 +654,7 @@ class SkinBlueSky extends SkinTemplate {
 			}
 			*/
 
-			$count++;
 			$start = ' ' . self::BREADCRUMB_SEPARATOR;
-
-			/*
-			//not too many...
-			if ($count > self::BREADCRUMB_LIMIT && !self::$bShortened) {
-				$return .= '<li class="bread_ellipsis"><span>'.$start.'</span> ... </li>';
-				self::$bShortened = true;
-				break;
-			}
-			*/
 
 			$eltitle = Title::newFromText( $element );
 			if ( empty( $parent ) ) {
@@ -642,7 +662,7 @@ class SkinBlueSky extends SkinTemplate {
 				$return .= "\n";
 			} else {
 				# grab the others elements
-				$return .= $this->drawCategoryBrowser( $parent, $skin, $count );
+				$return .= $this->drawCategoryBrowser( $parent );
 			}
 			# add our current element to the list
 			$return .= "<li>$start " . Skin::link(
@@ -659,9 +679,29 @@ class SkinBlueSky extends SkinTemplate {
 	const BREADCRUMB_LIMIT = 2;
 	static $bShortened = false;
 
-	function getCategoryLinks( $usebrowser ) {
-		global $wgOut, $wgContLang;
+	/**
+	 * Copied from /extensions/wikihow/Categoryhelper.body.php, 2014-05-22 release
+	 */
+	static function getCurrentParentCategoryTree() {
+		global $wgTitle, $wgMemc;
 
+		$cachekey = wfMemcKey( 'parentcattree', $wgTitle->getArticleId() );
+		$cats = $wgMemc->get( $cachekey );
+
+		if ( $cats ) {
+			return $cats;
+		}
+
+		$cats = $wgTitle->getParentCategoryTree();
+
+		$wgMemc->set( $cachekey, $cats );
+
+		return $cats;
+	}
+
+	function getCategoryLinks(/* $usebrowser */) {
+		global $wgOut, $wgContLang;
+		$usebrowser = false;
 		if ( !$usebrowser && empty( $wgOut->mCategoryLinks['normal'] ) ) {
 			return '';
 		}
@@ -675,7 +715,7 @@ class SkinBlueSky extends SkinTemplate {
 		if ( empty( $wgOut->mCategoryLinks['normal'] ) ) {
 			$t = $embed . '' . $pop;
 		} else {
-			$t = $embed . implode( "{$pop} | {$embed}" , $wgOut->mCategoryLinks['normal'] ) . $pop;
+			$t = $embed . implode( "{$pop} | {$embed}", $wgOut->mCategoryLinks['normal'] ) . $pop;
 		}
 		if ( !$usebrowser ) {
 			return $t;
@@ -701,7 +741,7 @@ class SkinBlueSky extends SkinTemplate {
 			$s .= ' ';
 
 			# get a big array of the parents tree
-			$parentTree = Categoryhelper::getCurrentParentCategoryTree();
+			$parentTree = self::getCurrentParentCategoryTree();
 			if ( is_array( $parentTree ) ) {
 				$parentTree = array_reverse( $parentTree );
 			} else {
@@ -767,21 +807,39 @@ class SkinBlueSky extends SkinTemplate {
 		return false;
 	}
 
+	/**
+	 * Check if user has editing or login cookies set
+	 *
+	 * Copied from wikiHow's /includes/User.php, 2014-05-22 release; originally
+	 * called just "hasCookies"; modified to take $wgCookiePrefix into account.
+	 *
+	 * @return bool
+	 */
+	private function userHasCookies() {
+		global $wgCookiePrefix;
+		foreach ( $_COOKIE as $cookie => $val ) {
+			if ( strpos( $cookie, $wgCookiePrefix ) === 0 ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	function getSiteNotice() {
 		global $wgUser, $wgRequest, $wgReadOnly;
 
-		$hasCookies = $wgUser && $wgUser->hasCookies();
+		$hasCookies = $wgUser && $this->userHasCookies();
 		if ( $hasCookies && $wgReadOnly ) {
 			$siteNotice = $wgReadOnly;
 		} elseif ( !$hasCookies && $wgRequest->getVal( 'c' ) == 't' ) {
 			$siteNotice = wfMessage( 'sitenotice_cachedpage' )->parse();
 		} elseif ( !$wgUser->isAnon() ) {
-			if ( wfMessage( 'sitenotice_loggedin' )->text() == '-' || wfMessage( 'sitenotice_loggedin' )->text() == '' ) {
+			if ( wfMessage( 'sitenotice_loggedin' )->isDisabled() ) {
 				return '';
 			}
 			$siteNotice = wfMessage( 'sitenotice_loggedin' )->parse();
 		} else {
-			if ( wfMessage( 'sitenotice' )->text() == '-' || wfMessage( 'sitenotice' )->text() == '' ) {
+			if ( wfMessage( 'sitenotice' )->isDisabled() ) {
 				return '';
 			}
 			$siteNotice = wfMessage( 'sitenotice' )->parse();
@@ -1080,22 +1138,22 @@ class SkinBlueSky extends SkinTemplate {
 			'nav_messages' => array(
 				'menu' => $sk->getHeaderMenu( 'messages' ),
 				'link' => '#',
-				'text' => wfMessage( 'navbar_messages' )->text()
+				'text' => wfMessage( 'bluesky-navbar-messages' )->plain()
 			),
 			'nav_profile' => array(
 				'menu' => $sk->getHeaderMenu( 'profile' ),
 				'link' => $isLoggedIn ? $wgUser->getUserPage()->getLocalURL() : '#',
-				'text' => $isLoggedIn ? strtoupper( wfMessage( 'navbar_profile' )->text() ) : strtoupper( wfMessage( 'login' )->text() )
+				'text' => $isLoggedIn ? strtoupper( wfMessage( 'bluesky-navbar-profile' )->plain() ) : strtoupper( wfMessage( 'login' )->plain() )
 			),
 			'nav_explore' => array(
 				'menu' => $sk->getHeaderMenu( 'explore' ),
 				'link' => '#',
-				'text' => wfMessage( 'navbar_explore' )->text()
+				'text' => wfMessage( 'bluesky-navbar-explore' )->plain()
 			),
 			'nav_help' => array(
 				'menu' => $sk->getHeaderMenu( 'help' ),
 				'link' => '#',
-				'text' => wfMessage( 'navbar_help' )->text()
+				'text' => wfMessage( 'bluesky-navbar-help' )->plain()
 			)
 		);
 
@@ -1109,7 +1167,7 @@ class SkinBlueSky extends SkinTemplate {
 			$navTabs['nav_edit'] = array(
 				'menu' => $sk->getHeaderMenu( 'edit' ),
 				'link' => $editPage,
-				'text' => strtoupper( wfMessage( 'edit' )->text() )
+				'text' => strtoupper( wfMessage( 'edit' )->plain() )
 			);
 		}
 
@@ -1117,50 +1175,64 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	function getHeaderMenu( $menu ) {
-		global $wgLanguageCode, $wgTitle, $wgUser, $wgForumLink;
+		global $wgLanguageCode, $wgUser, $wgForumLink;
 
 		$html = '';
 		$menu_css = 'menu';
 		$sk = $this->getSkin();
+		$title = $this->getTitle();
 		$isLoggedIn = $wgUser->getID() > 0;
 
 		switch ( $menu ) {
 			case 'edit':
-				$html = '<a href="' . $wgTitle->getLocalURL( $sk->editUrlOptions() ) . '">' . wfMessage( 'edit-this-article' )->text() . '</a>';
+				$html = Linker::link(
+					$title,
+					wfMessage( 'bluesky-edit-this-article' )->plain(),
+					array(),
+					$sk->editUrlOptions()
+				);
 				if ( !$isLoggedIn ) {
 					break;
 				}
+				/**
 				$html .= Linker::link( SpecialPage::getTitleFor( 'Importvideo', $wgTitle->getText() ), wfMessage( 'importvideo' )->text() );
 				if ( $wgLanguageCode == 'en' ) {
 					$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'RelatedArticle' ), wfMessage( 'manage_related_articles' )->text(), array(), array( "target" => $wgTitle->getPrefixedURL() ) ) .
 							Linker::link( SpecialPage::getTitleFor( 'Articlestats', $wgTitle->getText() ), wfMessage( 'articlestats' )->text() );
 				}
+				**/
 				$html .= Linker::link(
-					SpecialPage::getTitleFor( 'Whatlinkshere', $wgTitle->getPrefixedURL() ),
-					wfMessage( 'whatlinkshere' )->plain()
+					SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedURL() ),
+					wfMessage( 'whatlinkshere' )->plain(),
+					array(
+						'title' => Linker::titleAttrib( 't-whatlinkshere', 'withaccess' ),
+						'accesskey' => Linker::accesskey( 't-whatlinkshere' )
+					)
 				);
 				break;
 			case 'profile':
 				if ( $isLoggedIn ) {
 					$html = Linker::link( Title::makeTitle( NS_SPECIAL, 'Mytalk', 'post' ), wfMessage( 'mytalkpage' )->text() ) .
 							Linker::link( Title::makeTitle( NS_SPECIAL, 'Mypage' ), wfMessage( 'myauthorpage' )->text() ) .
-							Linker::link( Title::makeTitle( NS_SPECIAL, 'Notifications' ), wfMessage( 'mynotifications' )->text() ) .
+							#Linker::link( Title::makeTitle( NS_SPECIAL, 'Notifications' ), wfMessage( 'mynotifications' )->text() ) .
 							Linker::link( Title::makeTitle( NS_SPECIAL, 'Watchlist' ), wfMessage( 'watchlist' )->text() ) .
-							Linker::link( Title::makeTitle( NS_SPECIAL, 'Drafts' ), wfMessage( 'mydrafts' )->text() ) .
+							#Linker::link( Title::makeTitle( NS_SPECIAL, 'Drafts' ), wfMessage( 'mydrafts' )->text() ) .
 							Linker::link( SpecialPage::getTitleFor( 'Mypages', 'Contributions' ), wfMessage( 'mycontris' )->text() ) .
-							Linker::link( SpecialPage::getTitleFor( 'Mypages', 'Fanmail' ), wfMessage( 'myfanmail' )->text() ) .
+							#Linker::link( SpecialPage::getTitleFor( 'Mypages', 'Fanmail' ), wfMessage( 'myfanmail' )->text() ) .
 							Linker::link( Title::makeTitle( NS_SPECIAL, 'Preferences' ), wfMessage( 'mypreferences' )->text() ) .
 							Linker::link( Title::makeTitle( NS_SPECIAL, 'Userlogout' ), wfMessage( 'logout' )->text() );
 				} else {
-					$html = UserLoginBox::getLogin( true );
+					$html = /*( class_exists( 'UserLoginBox' ) ? UserLoginBox::getLogin( true ) :*/ '@todo FIXME' /*)*/;
 					$menu_css = 'menu_login';
 				}
 				break;
 			case 'explore':
-				$dashboardPage = $wgLanguageCode == 'en' ? Title::makeTitle( NS_SPECIAL, "CommunityDashboard" ) : Title::makeTitle( NS_PROJECT, wfMessage( "community" )->text() );
-				$html = Linker::link( $dashboardPage, wfMessage( 'community_dashboard' )->text() );
-				if ( $isLoggedIn ) {
-					$html .= "<a href='$wgForumLink'>" . wfMessage( 'forums' )->text() . "</a>";
+				$html = Linker::link(
+					Title::newFromText( wfMessage( 'portal-url' )->inContentLanguage()->text() ),
+					wfMessage( 'portal' )->plain()
+				);
+				if ( $isLoggedIn && isset( $wgForumLink ) ) {
+					$html .= "<a href=\"$wgForumLink\">" . wfMessage( 'forums' )->text() . '</a>';
 				}
 				$html .= Linker::link(
 					SpecialPage::getTitleFor( 'Randompage' ),
@@ -1169,18 +1241,39 @@ class SkinBlueSky extends SkinTemplate {
 				if ( !$isLoggedIn ) {
 					$html .= Linker::link(
 						Title::newFromText( wfMessage( 'aboutpage' )->text() ),
-						wfMessage( 'navmenu_aboutus' )->text()
+						wfMessage( 'bluesky-navmenu-aboutus' )->text()
 					);
 				}
-				$html .= Linker::link( SpecialPage::getTitleFor( 'Categories' ), wfMessage( 'navmenu_categories' )->text() ) .
+				$html .= Linker::link( SpecialPage::getTitleFor( 'Categories' ), wfMessage( 'bluesky-navmenu-categories' )->text() ) .
 						Linker::link( SpecialPage::getTitleFor( 'Recentchanges' ), wfMessage( 'recentchanges' )->text() );
 				if ( $isLoggedIn ) {
-					$html .= Linker::link( SpecialPage::getTitleFor( 'Specialpages' ), wfMessage( 'specialpages' )->text() );
-					$html .= Linker::link( Title::newFromText( wfMessage( 'helppage' )->text() ), wfMessage( 'help' )->text() );
+					$html .= Linker::link(
+						SpecialPage::getTitleFor( 'Specialpages' ),
+						wfMessage( 'specialpages' )->text()
+					);
+					$html .= Linker::link(
+						Title::newFromText( wfMessage( 'helppage' )->text() ),
+						wfMessage( 'help' )->text()
+					);
 				}
 				break;
 			case 'help':
-				$html = Linker::link( Title::makeTitle( NS_SPECIAL, 'CreatePage' ), wfMessage( 'Write-an-article' )->text() );
+				$editHelpTitle = Title::newFromText( wfMessage( 'edithelppage' )->text() );
+				// By default it's an (external) URL, hence not a valid Title.
+				// But because MediaWiki is by nature very customizable, someone
+				// might've changed it to point to a local page. Tricky!
+				if ( !$editHelpTitle instanceof Title ) {
+					$html = Linker::makeExternalLink(
+						wfMessage( 'edithelppage' )->text(),
+						wfMessage( 'edithelp' )->plain()
+					);
+				} else {
+					$html = Linker::link(
+						Title::newFromText( wfMessage( 'edithelppage' )->text() ),
+						wfMessage( 'edithelp' )->plain()
+					);
+				}
+				/**
 				if ( $wgLanguageCode == 'en' ) {
 					$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'RequestTopic' ), wfMessage( 'requesttopic' )->text() ) .
 							Linker::link( Title::makeTitle( NS_SPECIAL, 'ListRequestedTopics' ), wfMessage( 'listrequtestedtopics' )->text() );
@@ -1188,23 +1281,26 @@ class SkinBlueSky extends SkinTemplate {
 
 				if ( $isLoggedIn ) {
 					if ( $wgLanguageCode == 'en' ) {
-						$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'TipsPatrol' ), wfMessage( 'navmenu_tipspatrol' )->text() );
+						$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'TipsPatrol' ), wfMessage( 'bluesky-navmenu-tipspatrol' )->text() );
 					}
 					$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'RCPatrol' ), wfMessage( 'PatrolRC' )->text() );
 					if ( $wgLanguageCode == 'en' ) {
 						$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'Categorizer' ), wfMessage( 'categorize_articles' )->text() );
 					}
 				}
+				**/
 
-				if ( $wgLanguageCode == 'en' ) {
-					$html .= '<a href="/Special:CommunityDashboard">' . wfMessage( 'more-ideas' )->text() . '</a>';
-				} else {
-					$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'Uncategorizedpages' ), wfMessage( 'categorize_articles' )->text() ) .
-							'<a href="/Contribute-to-wikiHow">' . wfMessage( 'more-ideas' )->text() . '</a>';
-				}
+				$html .= Linker::link(
+					SpecialPage::getTitleFor( 'Uncategorizedpages' ),
+					'Categorize articles'#wfMessage( 'categorize_articles' )->text() // @todo FIXME
+				);
+				$html .= Linker::link(
+					Title::newFromText( wfMessage( 'bluesky-more-ideas-url' )->text() ),
+					wfMessage( 'bluesky-more-ideas' )->plain()
+				);
 				break;
 			case 'messages':
-				if ( class_exists( 'EchoEvent' ) && $wgUser->hasCookies() ) {
+				if ( class_exists( 'EchoEvent' ) && $this->userHasCookies() ) {
 					$maxNotesShown = 5;
 					$notif = ApiEchoNotifications::getNotifications( $wgUser, 'html', $maxNotesShown );
 
@@ -1233,7 +1329,9 @@ class SkinBlueSky extends SkinTemplate {
 							$unshown = '<br />' . Linker::link(
 								$notificationsPage,
 								wfMessage( 'parentheses',
-									( $this->notifications_count - $maxNotesShown ) . ' unread' // @todo FIXME: proper i18n
+									wfMessage( 'bluesky-unread-notifications' )->numParams(
+										( $this->notifications_count - $maxNotesShown )
+									)->parse()
 								)->text()
 							);
 						} else {
@@ -1251,7 +1349,10 @@ class SkinBlueSky extends SkinTemplate {
 
 				} else {
 					// old school
-					list( $html, $this->notifications_count ) = Notifications::loadNotifications();
+					$ret = Notifications::loadNotifications();
+					if ( is_array( $ret ) ) {
+						list( $html, $this->notifications_count ) = $ret;
+					}
 				}
 
 				$menu_css = 'menu_messages';
@@ -1391,7 +1492,7 @@ class SkinBlueSky extends SkinTemplate {
 		if ( $isMainPage ) {
 			$htmlTitle = $wgSitename . ' - ' . wfMessage( 'main_title' )->text();
 		} elseif ( $namespace == NS_MAIN && $wgTitle->exists() && $action == 'view' ) {
-			if ( $wgLanguageCode == 'en' ) {
+			if ( class_exists( 'TitleTests' ) ) {
 				$titleTest = TitleTests::newFromTitle( $wgTitle );
 				if ( $titleTest ) {
 					$htmlTitle = $titleTest->getTitle();
@@ -1462,14 +1563,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$sk = $this->getSkin();
 
-		wikihowAds::setCategories();
-		if ( !$isLoggedIn && $action == 'view' ) {
-			wikihowAds::getGlobalChannels();
-		}
-
-		$showAds = wikihowAds::isEligibleForAds();
-
-		$isIndexed = RobotPolicy::isIndexable( $title );
+		$isIndexed = class_exists( 'RobotPolicy' ) && RobotPolicy::isIndexable( $title );
 
 		$pageTitle = SkinBlueSky::getHTMLTitle( $wgOut->getHTMLTitle(), $this->data['title'], $isMainPage );
 
@@ -1500,10 +1594,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$login = '';
 		if ( !$wgUser->isAnon() ) {
-			$uname = $wgUser->getName();
-			if ( strlen( $uname ) > 16 ) {
-				$uname = substr( $uname, 0, 16 ) . '...';
-			}
+			$uname = $wgLang->truncate( $wgUser->getName(), 16 );
 			$login = wfMessage( 'welcome_back', $wgUser->getUserPage()->getFullURL(), $uname )->text();
 
 			if ( method_exists( $wgUser, 'isFacebookUser' ) && $wgUser->isFacebookUser() ) {
@@ -1516,11 +1607,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				$login = wfMessage( 'welcome_back_gp', $wgUser->getUserPage()->getFullURL(), $gname )->text();
 			}
 		} else {
-			if ( $wgLanguageCode == 'en' ) {
-				$login = wfMessage( 'signup_or_login', $returnto )->text() . ' ' . wfMessage( 'social_connect_header' )->text();
-			} else {
-				$login = wfMessage( 'signup_or_login', $returnto )->text();
-			}
+			$login = wfMessage( 'signup_or_login', $returnto )->text() . ' ' . wfMessage( 'social_connect_header' )->text();
 		}
 
 		// XX PROFILE EDIT/CREAT/DEL BOX DATE - need to check for pb flag in order to display this.
@@ -1601,6 +1688,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 		}
 
+		$siteNotice = '';
 		if ( !$isMainPage && !$isDocViewer && ( !isset( $_COOKIE['sitenoticebox'] ) || !$_COOKIE['sitenoticebox'] ) ) {
 			$siteNotice = $sk->getSiteNotice();
 		}
@@ -1611,7 +1699,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$rtl_css = '';
 		if ( $wgContLang->isRTL() ) {
-			$rtl_css = "<style type=\"text/css\" media=\"all\">/*<![CDATA[*/ @import \a" . wfGetPad( "/extensions/min/f/skins/WikiHow/rtl.css" ) . "\"; /*]]>*/</style>";
+			$rtl_css = "<style type=\"text/css\" media=\"all\">/*<![CDATA[*/ @import \a" . "/extensions/min/f/skins/WikiHow/rtl.css" . "\"; /*]]>*/</style>";
 			$rtl_css .= "
 	<!--[if IE]>
 	<style type=\"text/css\">
@@ -1634,6 +1722,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			</form>';
 
 		$body = '';
+		$heading = '';
 
 		if ( $title->userCan( 'edit' ) &&
 			$action != 'edit' &&
@@ -1654,17 +1743,33 @@ class BlueSkyTemplate extends BaseTemplate {
 				$list_page = false;
 				$sticky = true;
 			}
-			$body .= $heading . ArticleAuthors::getAuthorHeader() . $this->data['bodytext'];
+			$body .= $heading . ( class_exists( 'ArticleAuthors' ) ? ArticleAuthors::getAuthorHeader() : '' ) . $this->data['bodytext'];
 			$body = '<div id="bodycontents">' . $body . '</div>';
-			$wikitext = ContentHandler::getContentText( $this->getSkin()->getContext()->getWikiPage()->getContent( Revision::RAW ) );
-			$magic = WikihowArticleHTML::grabTheMagic( $wikitext );
-			$this->data['bodytext'] = WikihowArticleHTML::processArticleHTML( $body, array( 'sticky-headers' => $sticky, 'ns' => $title->getNamespace(), 'list-page' => $list_page, 'magic-word' => $magic ) );
+			if ( class_exists( 'WikihowArticleHTML' ) ) {
+				$wikitext = ContentHandler::getContentText( $this->getSkin()->getContext()->getWikiPage()->getContent( Revision::RAW ) );
+				$magic = WikihowArticleHTML::grabTheMagic( $wikitext );
+				$this->data['bodytext'] = WikihowArticleHTML::processArticleHTML(
+					$body,
+					array(
+						'sticky-headers' => $sticky,
+						'ns' => $title->getNamespace(),
+						'list-page' => $list_page,
+						'magic-word' => $magic
+					)
+				);
+			}
 		} else {
-			if ( $action == 'edit' ) $heading .= WikihowArticleEditor::grabArticleEditLinks( $wgRequest->getVal( "guidededitor" ) );
+			if ( $action == 'edit' && class_exists( 'WikihowArticleEditor' ) ) {
+				$heading .= WikihowArticleEditor::grabArticleEditLinks( $wgRequest->getVal( 'guidededitor' ) );
+			}
 			$this->data['bodyheading'] = $heading;
 			$body = '<div id="bodycontents">' . $this->data['bodytext'] . '</div>';
-			if ( !$isTool ) {
-				$this->data['bodytext'] = WikihowArticleHTML::processHTML( $body, $action, array( 'show-gray-container' => $sk->showGrayContainer() ) );
+			if ( !$isTool && class_exists( 'WikihowArticleHTML' ) ) {
+				$this->data['bodytext'] = WikihowArticleHTML::processHTML(
+					$body,
+					$action,
+					array( 'show-gray-container' => $sk->showGrayContainer() )
+				);
 			} else {
 				// a little hack to style the no such special page messages for special pages that actually
 				// exist
@@ -1676,22 +1781,25 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 
 		// post-process the Steps section HTML to get the numbers working
-		if ( $title->getNamespace() == NS_MAIN
-			&& !$isMainPage
-			&& ( $action == 'view' || $action == 'purge' )
-		) {
+		if (
+			$title->getNamespace() == NS_MAIN &&
+			!$isMainPage &&
+			( $action == 'view' || $action == 'purge' )
+		)
+		{
 			// for preview article after edit, you have to munge the
 			// steps of the previewHTML manually
 			$body = $this->data['bodytext'];
 			$opts = array();
-			if ( !$showAds )
-				$opts['no-ads'] = true;
 			// $this->data['bodytext'] = WikihowArticleHTML::postProcess($body, $opts);
 		}
 
 		// insert avatars into discussion, talk, and kudos pages
-		if ( MWNamespace::isTalk( $title->getNamespace() ) || $title->getNamespace() == NS_USER_KUDOS ) {
-			$this->data['bodytext'] = Avatar::insertAvatarIntoDiscussion( $this->data['bodytext'] );
+		// @todo FIXME: just remove this altogether, extensions should remain self-contained
+		if ( class_exists( 'Avatar' ) ) {
+			if ( MWNamespace::isTalk( $title->getNamespace() ) || $title->getNamespace() == NS_USER_KUDOS ) {
+				$this->data['bodytext'] = Avatar::insertAvatarIntoDiscussion( $this->data['bodytext'] );
+			}
 		}
 
 		// $navMenu = $sk->genNavigationMenu();
@@ -1718,11 +1826,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			&& !$isLoggedIn )
 		{
 			$showArticleTabs = false;
-		}
-
-		$showWikiTextWidget = false;
-		if ( class_exists( 'WikitextDownloader' ) ) {
-			$showWikiTextWidget = WikitextDownloader::isAuthorized() && !$isDocViewer;
 		}
 
 		$showRCWidget =
@@ -1755,7 +1858,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			!$isPrintable &&
 			!$isMainPage &&
 			$isIndexed &&
-			$wgLanguageCode == 'en' &&
 			// $showSocialSharing &&
 			$wgRequest->getVal( 'oldid' ) == '' &&
 			( $wgRequest->getVal( 'action' ) == '' || $wgRequest->getVal( 'action' ) == 'view' );
@@ -1763,7 +1865,6 @@ class BlueSkyTemplate extends BaseTemplate {
 		$showTopTenTips =
 			$title->exists() &&
 			$title->getNamespace() == NS_MAIN &&
-			$wgLanguageCode == 'en' &&
 			!$isPrintable &&
 			!$isMainPage &&
 			$wgRequest->getVal( 'oldid' ) == '' &&
@@ -1815,132 +1916,15 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$showThumbsUp = class_exists( 'ThumbsNotifications' );
 
-		$postLoadJS = $isArticlePage;
-
-		// add present JS files to extensions/min/groupsConfig.php
-		$fullJSuri = '/extensions/min/g/whjs' .
-			( !$isArticlePage ? ',jqui' : '' ) .
-			( $showExitTimer ? ',stu' : '' ) .
-			( $showRCWidget ? ',rcw' : '' ) .
-			( $showSpotlightRotate ? ',sp' : '' ) .
-			( $showFollowWidget ? ',fl' : '' ) .
-			( $showSliderWidget ? ',slj' : '' ) .
-			( $showThumbsUp ? ',thm' : '' ) .
-			( $showWikiTextWidget ? ',wkt' : '' ) .
-			( $showAltMethod ? ',altj' : '' ) .
-			( $showTopTenTips ? ',tpt' : '' ) .
-			( $isMainPage ? ',hp' : '' ) .
-			( $showWikivideo ? ',whv' : '' ) .
-			( $showImageFeedback ? ',ii' : '' ) .
-			( $showTextScroller ? ',ts' : '' );
-
-		if ( $wgOut->mJSminCodes ) {
-			$fullJSuri .= ',' . join( ',', $wgOut->mJSminCodes );
-		}
-		$cachedParam = $wgRequest && $wgRequest->getVal( 'c' ) == 't' ? '&c=t' : '';
-		$fullJSuri .= '&r=' . WH_SITEREV . $cachedParam . '&e=.js';
-
-		$fullCSSuri = '/extensions/min/g/whcss' .
-			( !$isArticlePage ? ',jquic,nona' : '' ) .
-			( $isLoggedIn ? ',li' : '' ) .
-			( $showSliderWidget ? ',slc' : '' ) .
-			( $showAltMethod ? ',altc' : '' ) .
-			( $showTopTenTips ? ',tptc' : '' ) .
-			( $showWikivideo ? ',whvc' : '' ) .
-			( $showTextScroller ? ',tsc' : '' ) .
-			( $isMainPage ? ',hpc' : '' ) .
-			( $showImageFeedback ? ',iic' : '' ) .
-			( $isSpecialPage ? ',spc' : '' );
-
-		if ( $wgOut->mCSSminCodes ) {
-			$fullCSSuri .= ',' . join( ',', $wgOut->mCSSminCodes );
-		}
-		$fullCSSuri .= '&r=' . WH_SITEREV . $cachedParam . '&e=.css';
-
 		$tabsArray = $sk->getTabsArray( $showArticleTabs );
 
 		wfRunHooks( 'JustBeforeOutputHTML', array( &$this ) );
 
-?>
-<!DOCTYPE html>
-<?php echo $head_element ?><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-	<title><?php echo $pageTitle ?></title>
-	<?php /*Hack to add variable WH as a global variable before loading script. This is need because load.php creates a closure when loading wikibits.js
-			Add by Gershon Bialer on 12/2/2013*/?><script>
-<!--
-var WH = WH || {};
-//-->
-</script>
+		// Output the doctype element and everything that goes before the HTML
+		// <body> tag
+		$this->html( 'headelement' );
 
-	<?php if ( $wgIsDomainTest ): ?>
-	<base href="http://www.wikihow.com/" />
-	<?php endif; ?>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<meta name="verify-v1" content="/Ur0RE4/QGQIq9F46KZyKIyL0ZnS96N5x1DwQJa7bR8=" />
-	<meta name="google-site-verification" content="Jb3uMWyKPQ3B9lzp5hZvJjITDKG8xI8mnEpWifGXUb0" />
-	<meta name="msvalidate.01" content="CFD80128CAD3E726220D4C2420D539BE" />
-	<meta name="y_key" content="1b3ab4fc6fba3ab3" />
-	<meta name="p:domain_verify" content="bb366527fa38aa5bc27356b728a2ec6f" />
-	<?php if ( $isArticlePage || $isMainPage ): ?>
-	<link rel="alternate" media="only screen and (max-width: 640px)" href="http://<?php if ( $wgLanguageCode != 'en' ) { echo ( $wgLanguageCode . "." ); } ?>m.wikihow.com/<?php echo $title->getPartialUrl() ?>">
-	<?php endif; ?>
-	<?php // add CSS files to extensions/min/groupsConfig.php ?>
-	<style type="text/css" media="all">/*<![CDATA[*/ @import "<?php echo $fullCSSuri ?>"; /*]]>*/</style>
-	<?php // below is the minified /resources/css/printable.css ?>
-	<style type="text/css" media="<?php echo$printable_media?>">/*<![CDATA[*/ body{background-color:#FFF;font-size:1.2em}#header_outer{background:0 0;position:relative}#header{text-align:center;height:63px!important;width:242px!important;background:url(/skins/owl/images/logo_lightbg_242.jpg) no-repeat center center;margin-top:15px}#article_shell{margin:0 auto;float:none;padding-bottom:2em}.sticking{position:absolute!important;top:0!important}#actions,#article_rating,#article_tabs,#breadcrumb,#bubble_search,#cse-search-box,#end_options,#footer_outer,#header_space,#logo_link,#notification_count,#originators,#sidebar,#sliderbox,.edit,.editsection,.mwimg,.section.relatedwikihows,.section.video,.whvid_cont,.altadder_section{display:none!important} /*]]>*/</style>
-		<?php
-		// Bootstapping certain javascript functions:
-		// A function to merge one object with another; stub funcs
-		// for button swapping (this should be done in CSS anyway);
-		// initialize the timer for bounce stats tracking.
-		?>
-		<script>
-			<!--
-			var WH = WH || {};
-			WH.lang = WH.lang || {};
-			button_swap = button_unswap = function(){};
-			WH.exitTimerStartTime = (new Date()).getTime();
-			WH.mergeLang = function(A){for(i in A){v=A[i];if(typeof v==='string'){WH.lang[i]=v;}}};
-			//-->
-		</script>
-		<?php if ( !$postLoadJS ): ?>
-			<?php echo $this->html( 'headscripts' ) ?>
-			<script type="text/javascript" src="<?php echo $fullJSuri ?>"></script>
-		<?php endif ?>
-
-		<?php $this->html( 'headlinks' ) ?>
-
-	<?php if ( !$wgIsDomainTest ) { ?>
-			<link rel='canonical' href='<?php echo $title->getFullURL() ?>'/>
-			<link href="https://plus.google.com/102818024478962731382" rel="publisher" />
-		<?php } ?>
-	<?php if ( $sk->isUserAgentMobile() ): ?>
-			<link media="only screen and (max-device-width: 480px)" href="<?php echo wfGetPad( '/extensions/min/f/skins/WikiHow/iphone.css' ) ?>" type="text/css" rel="stylesheet" />
-		<?php else : ?>
-			<!-- not mobile -->
-		<?php endif; ?>
-	<!--<![endif]-->
-	<?php echo $rtl_css ?>
-	<link rel="alternate" type="application/rss+xml" title="wikiHow: How-to of the Day" href="http://www.wikihow.com/feed.rss"/>
-	<link rel="apple-touch-icon" href="<?php echo wfGetPad( '/skins/WikiHow/safari-large-icon.png' ) ?>" />
-	<?php
-	if ( class_exists( 'CTALinks' ) && trim( wfMessage( 'cta_feature' )->inContentLanguage()->text() ) == "on" ) {
-		echo CTALinks::getGoogleControlScript();
-	}
-
-	echo $wgOut->getHeadItems();
-
-	$userdir = $wgLang->getDir();
-	$sitedir = $wgContLang->getDir();
-	?>
-	<?php foreach ( $otherLanguageLinks as $lang => $url ): ?>
-			<link rel="alternate" hreflang="<?php echo $lang ?>" href="<?php echo htmlspecialchars( $url ) ?>" />
-		<?php endforeach; ?>
-		</head>
-		<body <?php if ( isset( $this->data['body_ondblclick'] ) && $this->data['body_ondblclick'] ) { ?>ondblclick="<?php $this->text( 'body_ondblclick' ) ?>"<?php } ?>
-			<?php if ( isset( $this->data['body_onload'] ) && $this->data['body_onload'] ) { ?>onload="<?php $this->text( 'body_onload' ) ?>"<?php } ?>
-			class="mediawiki <?php echo $userdir ?> sitedir-<?php echo $sitedir ?>">
-		<?php wfRunHooks( 'PageHeaderDisplay', array( $sk->isUserAgentMobile() ) ); ?>
+		wfRunHooks( 'PageHeaderDisplay', array( $sk->isUserAgentMobile() ) ); ?>
 
 		<div id="header_outer"><div id="header">
 			<ul id="actions">
@@ -1989,17 +1973,10 @@ var WH = WH || {};
 		</div><!--end actionbar-->
 		<script>
 		<!--
-		WH.translationData = {<?php echo join( ',', $translationData ) ?>};
+		//WH.translationData = {<?php echo join( ',', $translationData ) ?>};
 		//-->
 		</script>
-		<?php
-		$sidebar = !$showSideBar ? 'no_sidebar' : '';
-
-		// INTL: load mediawiki messages for sidebar expand and collapse for later use in sidebar boxes
-		$langKeys = array( 'navlist_collapse', 'navlist_expand', 'usernameoremail', 'password' );
-		print Wikihow_i18n::genJSMsgs( $langKeys );
-		?>
-		<div id="container" class="<?php echo $sidebar ?>">
+		<div id="container" class="<?php echo !$showSideBar ? 'no_sidebar' : '' ?>">
 		<div id="article_shell">
 		<div id="article"<?php if ( class_exists( 'Microdata' ) ) { echo Microdata::genSchemaHeader(); } ?>>
 
@@ -2008,7 +1985,14 @@ var WH = WH || {};
 			if ( !$isArticlePage && !$isMainPage && $this->data['bodyheading'] ) {
 				echo '<div class="wh_block">' . $this->data['bodyheading'] . '</div>';
 			}
+
+			echo "<!-- start content -->\n";
 			echo $this->html( 'bodytext' );
+			echo "<!-- end content -->\n";
+
+			if ( $this->data['dataAfterContent'] ) {
+				$this->html( 'dataAfterContent' );
+			}
 
 			$showingArticleInfo = 0;
 			if ( in_array( $title->getNamespace(), array( NS_MAIN, NS_PROJECT ) ) && $action == 'view' && !$isMainPage ) {
@@ -2093,7 +2077,7 @@ var WH = WH || {};
 
 		<?php if ( $showSideBar ):
 			$loggedOutClass = '';
-			if ( $showAds && $title->getText() != 'Userlogin' && $title->getNamespace() == NS_MAIN ) {
+			if ( false && $title->getText() != 'Userlogin' && $title->getNamespace() == NS_MAIN ) {
 				$loggedOutClass = ' logged_out';
 			}
 		?>
@@ -2111,18 +2095,12 @@ var WH = WH || {};
 				<?php if ( !$isDocViewer ) { ?>
 				<div id="top_links" class="sidebox<?php echo $loggedOutClass ?>" <?php echo is_numeric( wfMessage( 'top_links_padding' )->text() ) ? ' style="padding-left:' . wfMessage( 'top_links_padding' )->text() . 'px;padding-right:' . wfMessage( 'top_links_padding' )->text() . 'px;"' : '' ?>>
 					<a href="<?php echo SpecialPage::getTitleFor( 'Randompage' )->getFullURL() ?>" id="gatRandom" accesskey="x" class="button secondary"><?php echo wfMessage( 'randompage' )->text(); ?></a>
-					<a href="/Special:Createpage" id="gatWriteAnArticle" class="button secondary"><?php echo wfMessage( 'writearticle' )->text(); ?></a>
+					<a href="/Special:Createpage" id="gatWriteAnArticle" class="button secondary"><?php echo /* @todo FIXME wfMessage( 'writearticle' )->text(); */ 'Write article'; ?></a>
 				</div><!--end top_links-->
 				<?php } ?>
 				<?php if ( $showStaffStats ): ?>
 					<div class="sidebox" style="padding-top:10px" id="staff_stats_box"></div>
 				<?php endif; ?>
-
-				<?php if ( $showWikiTextWidget ) { ?>
-					<div class="sidebox" id="side_rc_widget">
-						<a id='wikitext_downloader' href='#'>Download WikiText</a>
-					</div><!--end sidebox-->
-				<?php } ?>
 
 				<?php $userLinks = $sk->getUserLinks(); ?>
 				<?php if ( $userLinks ) { ?>
@@ -2192,8 +2170,6 @@ var WH = WH || {};
 					</div><!--end side_featured_contributor-->
 				<?php endif; ?>
 
-				<?php // if (!$isLoggedIn) echo $navMenu; ?>
-
 				<?php if ( $showFollowWidget ): ?>
 					<div class="sidebox">
 						<?php FollowWidget::showWidget(); ?>
@@ -2201,7 +2177,7 @@ var WH = WH || {};
 				<?php endif; ?>
 			</div><!--end sidebar-->
 		<?php endif; // end if $showSideBar ?>
-		<div class="clearall" ></div>
+		<div class="clearall"></div>
 		</div> <!--end container -->
 		</div><!--end main-->
 			<div id="clear_footer"></div>
@@ -2211,27 +2187,43 @@ var WH = WH || {};
 				<div id="footer_side">
 					<?php
 						if ( $isLoggedIn ) {
-							echo wfMessage( 'site_footer_owl' )->parse();
+							$footerMessage = wfMessage( 'bluesky-site-footer' );
 						} else {
-							echo wfMessage( 'site_footer_owl_anon' )->parse();
+							$footerMessage = wfMessage( 'bluesky-site-footer-anon' );
+						}
+						if ( !$footerMessage->isDisabled() ) {
+							echo $footerMessage->parse();
 						}
 					?>
 				</div><!--end footer_side-->
 
 				<div id="footer_main">
-
 					<div id="sub_footer">
 						<?php
-							if ( $isLoggedIn || $isMainPage ) {
-								echo wfMessage( 'sub_footer_new', wfGetPad(), wfGetPad() )->text();
-							} else {
-								echo wfMessage( 'sub_footer_new_anon', wfGetPad(), wfGetPad() )->text();
+						if ( isset( $this->data['copyright'] ) && $this->data['copyright'] ) {
+							echo '<div id="creative_commons">';
+							// This is probably useless, I already left it out
+							// for the "powered by MW" stuff below, but...whatever
+							echo Html::element( 'a', array(
+								'href' => Title::newFromText( wfMessage( 'copyrightpage' )->inContentLanguage()->text() )->getFullURL(),
+								'class' => 'imglink sub_footer_link footer_creative_commons footer_sprite'
+							) );
+							echo $this->data['copyright'];
+							echo '</div>';
+						}
+
+						foreach ( $this->getFooterIcons( 'nocopyright' ) as $blockName => $footerIcons ) {
+							echo '<div id="' . htmlspecialchars( $blockName ) . '">';
+							foreach ( $footerIcons as $icon ) {
+								echo $this->getSkin()->makeFooterIcon( $icon, 'withoutImage' );
 							}
+							echo '</div>';
+						}
 						?>
 					</div>
 				</div><!--end footer_main-->
 			</div>
-				<br class="clearall" />
+			<br class="clearall" />
 		</div><!--end footer-->
 		<div id="dialog-box" title=""></div>
 
@@ -2251,10 +2243,6 @@ var WH = WH || {};
 
 		<div id="fb-root"></div>
 
-		<?php if ( $postLoadJS ): ?>
-			<?php echo $this->html( 'headscripts' ) ?>
-			<script type="text/javascript" src="<?php echo $fullJSuri ?>"></script>
-		<?php endif; ?>
 		<?php
 		if ( $optimizelyJS ) {
 			echo $optimizelyJS;
