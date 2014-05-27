@@ -1813,17 +1813,15 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 		}
 
-		$showSpotlightRotate =
-			$isMainPage &&
-			$wgLanguageCode == 'en';
-
 		$showBreadCrumbs = $sk->showBreadCrumbs();
 		$showSideBar = $sk->showSideBar();
 		$showHeadSection = $sk->showHeadSection();
 		$showArticleTabs = $title->getNamespace() != NS_SPECIAL && !$isMainPage;
-		if ( in_array( $title->getNamespace(), array( NS_FILE ) )
-			&& ( empty( $action ) || $action == 'view' )
-			&& !$isLoggedIn )
+		if (
+			in_array( $title->getNamespace(), array( NS_FILE ) ) &&
+			( empty( $action ) || $action == 'view' ) &&
+			!$isLoggedIn
+		)
 		{
 			$showArticleTabs = false;
 		}
@@ -1862,21 +1860,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			$wgRequest->getVal( 'oldid' ) == '' &&
 			( $wgRequest->getVal( 'action' ) == '' || $wgRequest->getVal( 'action' ) == 'view' );
 
-		$showTopTenTips =
-			$title->exists() &&
-			$title->getNamespace() == NS_MAIN &&
-			!$isPrintable &&
-			!$isMainPage &&
-			$wgRequest->getVal( 'oldid' ) == '' &&
-			( $wgRequest->getVal( 'action' ) == '' || $wgRequest->getVal( 'action' ) == 'view' );
-
-		$showAltMethod = false;
-		if ( class_exists( 'AltMethodAdder' ) ) {
-			$showAltMethod = true;
-		}
-
-		$isLiquid = false;// !$isMainPage && ( $title->getNameSpace() == NS_CATEGORY );
-
 		$showFeaturedArticlesSidebar = $action == 'view'
 			&& !$isMainPage
 			&& !$isDocViewer
@@ -1887,32 +1870,11 @@ class BlueSkyTemplate extends BaseTemplate {
 			|| ( $title->getNamespace() == NS_MAIN && $wgRequest->getVal( 'action' ) == 'protect' )
 			|| ( $title->getNamespace() == NS_MAIN && $wgRequest->getVal( 'action' ) == 'delete' );
 
-		$showTextScroller =
-			class_exists( 'TextScroller' ) &&
-			$title->exists() &&
-			$title->getNamespace() == NS_MAIN &&
-			!$isPrintable &&
-			!$isMainPage &&
-			strpos( $this->data['bodytext'], 'textscroller_outer' ) !== false;
-
-		$showImageFeedback =
-			class_exists( 'ImageFeedback' ) &&
-			ImageFeedback::isValidPage();
-
-		$showWikivideo =
-			class_exists( 'WHVid' ) &&
-			( ( $title->exists() && $title->getNamespace() == NS_MAIN && strpos( $this->data['bodytext'], 'whvid_cont' ) !== false )
-				|| $title->getNamespace() == NS_SPECIAL ) &&
-			!$isPrintable &&
-			!$isMainPage;
-
 		$showStaffStats = !$isMainPage
 			&& $isLoggedIn
 			&& ( in_array( 'staff', $wgUser->getGroups() ) || in_array( 'staff_widget', $wgUser->getGroups() ) )
 			&& $title->getNamespace() == NS_MAIN
 			&& class_exists( 'Pagestats' );
-
-		$showThumbsUp = class_exists( 'ThumbsNotifications' );
 
 		$tabsArray = $sk->getTabsArray( $showArticleTabs );
 
