@@ -1875,8 +1875,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			$showAltMethod = true;
 		}
 
-		$showExitTimer = class_exists( 'BounceTimeLogger' );
-
 		$isLiquid = false;// !$isMainPage && ( $title->getNameSpace() == NS_CATEGORY );
 
 		$showFeaturedArticlesSidebar = $action == 'view'
@@ -2247,19 +2245,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		if ( $optimizelyJS ) {
 			echo $optimizelyJS;
 		}
-		?>
 
-		<?php if ( $showExitTimer ): ?>
-			<script>
-				<!--
-				if (WH.ExitTimer) {
-					WH.ExitTimer.start();
-				}
-				//-->
-			</script>
-		<?php endif; ?>
-
-		<?php
 		if ( $showRCWidget ) {
 			RCWidget::showWidgetJS();
 		}
