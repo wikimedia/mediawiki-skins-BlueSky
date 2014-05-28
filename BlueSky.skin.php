@@ -155,7 +155,7 @@ class SkinBlueSky extends SkinTemplate {
 	 * @private
 	 */
 	function userToolLinks( $userId, $userText ) {
-		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans, $wgTitle, $wgLanguageCode, $wgRequest, $wgServer;
+		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans, $wgTitle, $wgRequest;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = ( $wgSysopUserBans || 0 == $userId );
 
@@ -239,7 +239,7 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	function getRelatedArticlesBox( $e, $isBoxShape = false ) {
-		global $wgTitle, $wgContLang, $wgRequest, $wgMemc;
+		global $wgTitle, $wgRequest, $wgMemc;
 
 		if ( !$wgTitle
 			|| $wgTitle->getNamespace() != NS_MAIN
@@ -349,7 +349,7 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	static function getGalleryImage( $title, $width, $height, $skip_parser = false ) {
-		global $wgMemc, $wgLanguageCode, $wgContLang;
+		global $wgMemc, $wgLanguageCode;
 
 		$cachekey = wfMemcKey( 'gallery1', $title->getArticleID(), $width, $height );
 		$val = $wgMemc->get( $cachekey );
@@ -587,7 +587,7 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	function getFeaturedArticlesBox( $daysLimit = 11, $linksLimit = 4 ) {
-		global $wgServer, $wgTitle, $IP, $wgMemc, $wgProdHost;
+		global $wgServer, $wgTitle, $wgMemc, $wgProdHost;
 
 		$cachekey = wfMemcKey( 'featuredbox', $daysLimit, $linksLimit );
 		$result = $wgMemc->get( $cachekey );
@@ -1483,7 +1483,7 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	static function getHTMLTitle( $defaultHTMLTitle, $title, $isMainPage ) {
-		global $wgTitle, $wgRequest, $wgLanguageCode, $wgLang, $wgSitename;
+		global $wgTitle, $wgRequest, $wgLang, $wgSitename;
 
 		$namespace = $wgTitle->getNamespace();
 		$action = $wgRequest->getVal( 'action', 'view' );
@@ -1523,12 +1523,8 @@ class BlueSkyTemplate extends BaseTemplate {
 	 */
 	public function execute() {
 		global $wgUser, $wgLang, $wgRequest;
-		global $wgOut, $wgScript, $wgStylePath, $wgLanguageCode, $wgForumLink;
-		global $wgContLang, $wgXhtmlDefaultNamespace, $wgContLanguageCode;
-		global $IP, $wgServer, $wgIsDomainTest;
+		global $wgOut, $wgStylePath, $wgLanguageCode, $wgForumLink;
 		global $wgSSLsite;
-
-		$prefix = '';
 
 		if ( class_exists( 'MobileWikihow' ) ) {
 			$mobileWikihow = new MobileWikihow();
@@ -1693,26 +1689,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			$siteNotice = $sk->getSiteNotice();
 		}
 
-		// Right-to-left languages
-		$dir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
-		$head_element = "<html xmlns:fb=\"https://www.facebook.com/2008/fbml\" xmlns=\"{$wgXhtmlDefaultNamespace}\" xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" dir='$dir'>\n";
-
-		$rtl_css = '';
-		if ( $wgContLang->isRTL() ) {
-			$rtl_css = "<style type=\"text/css\" media=\"all\">/*<![CDATA[*/ @import \a" . "/extensions/min/f/skins/WikiHow/rtl.css" . "\"; /*]]>*/</style>";
-			$rtl_css .= "
-	<!--[if IE]>
-	<style type=\"text/css\">
-	BODY { margin: 25px; }
-	</style>
-	<![endif]-->";
-		}
-
-		$printable_media = 'print';
-		if ( $wgRequest->getVal( 'printable' ) == 'yes' ) {
-			$printable_media = 'all';
-		}
-
 		// search
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
 		$top_search = '
@@ -1801,8 +1777,6 @@ class BlueSkyTemplate extends BaseTemplate {
 				$this->data['bodytext'] = Avatar::insertAvatarIntoDiscussion( $this->data['bodytext'] );
 			}
 		}
-
-		// $navMenu = $sk->genNavigationMenu();
 
 		$navTabs = $sk->genNavigationTabs();
 
@@ -1909,7 +1883,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			<a href="<?php echo $mainPageObj->getLocalURL(); ?>" id="logo_link"><img src="<?php echo $logoPath ?>" class="logo" alt="" /></a>
 			<?php echo $top_search ?>
 			<?php wfRunHooks( 'EndOfHeader', array( &$wgOut ) ); ?>
-		</div></div><!--end header-->
+		</div></div><!--end #header-->
 		<?php wfRunHooks( 'AfterHeader', array( &$wgOut ) ); ?>
 		<div id="main_container" class="<?php echo ( $isMainPage ? 'mainpage' : '' ) ?>">
 			<div id="header_space"></div>
@@ -1930,18 +1904,17 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 			?>
 
-		</div><!--end actionbar-->
+		</div><!--end #actionbar-->
 		<script>
 		<!--
 		//WH.translationData = {<?php echo join( ',', $translationData ) ?>};
 		//-->
 		</script>
-		<div id="container" class="<?php echo !$showSideBar ? 'no_sidebar' : '' ?>">
+		<div id="container"<?php echo !$showSideBar ? ' class="no_sidebar"' : '' ?>>
 		<div id="article_shell">
 		<div id="article"<?php if ( class_exists( 'Microdata' ) ) { echo Microdata::genSchemaHeader(); } ?>>
-
-			<?php wfRunHooks( 'BeforeTabsLine', array( &$wgOut ) ); ?>
 			<?php
+			wfRunHooks( 'BeforeTabsLine', array( &$wgOut ) );
 			if ( !$isArticlePage && !$isMainPage && $this->data['bodyheading'] ) {
 				echo '<div class="wh_block">' . $this->data['bodyheading'] . '</div>';
 			}
@@ -2014,10 +1987,10 @@ class BlueSkyTemplate extends BaseTemplate {
 							<?php if ( $title->getNamespace() == NS_MAIN ) { ?>
 								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?php echo $title->getPrefixedURL(); ?>" id="gatThankAuthors"><?php echo wfMessage( 'at_fanmail' )->text()?></a></li>
 							<?php } ?>
-						</ul> <!--end end_options -->
+						</ul> <!--end #end_options -->
 						<div class="clearall"></div>
 					</div><!--end article_info section_text-->
-					<p class='page_stats'><?php echo $sk->pageStats() ?></p>
+					<p class="page_stats"><?php echo $sk->pageStats() ?></p>
 				</div><!--end section-->
 
 			<?php }
@@ -2056,7 +2029,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				<div id="top_links" class="sidebox<?php echo $loggedOutClass ?>" <?php echo is_numeric( wfMessage( 'top_links_padding' )->text() ) ? ' style="padding-left:' . wfMessage( 'top_links_padding' )->text() . 'px;padding-right:' . wfMessage( 'top_links_padding' )->text() . 'px;"' : '' ?>>
 					<a href="<?php echo SpecialPage::getTitleFor( 'Randompage' )->getFullURL() ?>" id="gatRandom" accesskey="x" class="button secondary"><?php echo wfMessage( 'randompage' )->text(); ?></a>
 					<a href="/Special:Createpage" id="gatWriteAnArticle" class="button secondary"><?php echo /* @todo FIXME wfMessage( 'writearticle' )->text(); */ 'Write article'; ?></a>
-				</div><!--end top_links-->
+				</div><!--end #top_links-->
 				<?php } ?>
 				<?php if ( $showStaffStats ): ?>
 					<div class="sidebox" style="padding-top:10px" id="staff_stats_box"></div>
@@ -2116,7 +2089,7 @@ class BlueSkyTemplate extends BaseTemplate {
 							<?php } ?>
 							<a href="" id="play_pause_button" onclick="rcTransport(this); return false;" ></a>
 						</p>
-					</div><!--end side_recent_changes-->
+					</div><!--end #side_rc_widget-->
 				<?php endif; ?>
 
 				<?php if ( class_exists( 'FeaturedContributor' ) && ( $title->getNamespace() == NS_MAIN || $title->getNamespace() == NS_USER ) && !$isMainPage && !$isDocViewer ): ?>
@@ -2127,7 +2100,7 @@ class BlueSkyTemplate extends BaseTemplate {
 								<a href="/Special:Userlogin" class="button secondary" id="gatFCWidgetBottom" onclick='gatTrack("Browsing","Feat_contrib_cta","Feat_contrib_wgt");'><? echo wfMessage( 'fc_action' )->text() ?></a>
 							</p>
 						<?php endif; ?>
-					</div><!--end side_featured_contributor-->
+					</div><!--end #side_featured_contributor-->
 				<?php endif; ?>
 
 				<?php if ( $showFollowWidget ): ?>
@@ -2135,7 +2108,7 @@ class BlueSkyTemplate extends BaseTemplate {
 						<?php FollowWidget::showWidget(); ?>
 					</div>
 				<?php endif; ?>
-			</div><!--end sidebar-->
+			</div><!--end #sidebar-->
 		<?php endif; // end if $showSideBar ?>
 		<div class="clearall"></div>
 		</div> <!--end container -->
@@ -2155,7 +2128,7 @@ class BlueSkyTemplate extends BaseTemplate {
 							echo $footerMessage->parse();
 						}
 					?>
-				</div><!--end footer_side-->
+				</div><!--end #footer_side-->
 
 				<div id="footer_main">
 					<div id="sub_footer">
@@ -2181,10 +2154,10 @@ class BlueSkyTemplate extends BaseTemplate {
 						}
 						?>
 					</div>
-				</div><!--end footer_main-->
+				</div><!--end #footer_main-->
 			</div>
 			<br class="clearall" />
-		</div><!--end footer-->
+		</div><!--end #footer_outer-->
 		<div id="dialog-box" title=""></div>
 
 		<?php
