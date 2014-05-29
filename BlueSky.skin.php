@@ -113,6 +113,14 @@ class SkinBlueSky extends SkinTemplate {
 		return $result;
 	}
 
+	/**
+	 * If page counters are *not* disabled, this function gets and returns the
+	 * internationalized string stating how many times a page has been viewed.
+	 * If page counters are disabled or the current thing isn't a valid article,
+	 * or if we're viewing a diff, this function returns an empty string.
+	 *
+	 * @return string
+	 */
 	function pageStats() {
 		global $wgOut, $wgLang, $wgRequest;
 		global $wgDisableCounters;
@@ -149,6 +157,7 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	/**
+	 * @todo Is this used?
 	 * @param $userId Integer: user id in database.
 	 * @param $userText String: user name in database.
 	 * @return string HTML fragment with talk and/or block links
@@ -168,7 +177,8 @@ class SkinBlueSky extends SkinTemplate {
 		if (
 			$wgTitle->getNamespace() != NS_SPECIAL &&
 			class_exists( 'QuickNoteEdit' ) &&
-			$wgRequest->getVal( 'diff', '' ) )
+			$wgRequest->getVal( 'diff', '' )
+		)
 		{
 			$items[] = QuickNoteEdit::getQuickNoteLink( $wgTitle, $userId, $userText );
 		}
@@ -201,31 +211,47 @@ class SkinBlueSky extends SkinTemplate {
 		global $wgUser, $wgParser, $wgTitle;
 
 		$ret = '';
+		// This feature is available only for registered users.
+		if ( !$wgUser->isLoggedIn() ) {
+			return $ret;
+		}
 
-		if ( $wgUser->getID() > 0 ) {
-			$t = Title::makeTitle( NS_USER, $wgUser->getName() . '/Mylinks' );
-			if ( $t->getArticleID() > 0 ) {
-				$r = Revision::newFromTitle( $t );
-				$text = $r->getText();
-				if ( $text != '' ) {
-					$ret = '<h3>' . wfMessage( 'bluesky-mylinks' )->text() . '</h3>';
-					$ret .= '<div id="my_links_list">';
-					$options = new ParserOptions();
-					$output = $wgParser->parse( $text, $wgTitle, $options );
-					$ret .= $output->getText();
-					$ret .= '</div>';
-				}
+		$t = Title::makeTitle( NS_USER, $wgUser->getName() . '/Mylinks' );
+		if ( $t->getArticleID() > 0 ) {
+			$r = Revision::newFromTitle( $t );
+			$text = $r->getText();
+
+			if ( $text != '' ) {
+				$ret = '<h3>' . wfMessage( 'bluesky-mylinks' )->text() . '</h3>';
+				$ret .= '<div id="my_links_list">';
+				$options = new ParserOptions();
+				$output = $wgParser->parse( $text, $wgTitle, $options );
+				$ret .= $output->getText();
+				$ret .= '</div>';
 			}
 		}
 
 		return $ret;
 	}
 
+	/**
+	 * This function tries to answer the question, "does the given Title need
+	 * further editing?".
+	 *
+	 * @param Title $title
+	 * @return bool
+	 */
 	private function needsFurtherEditing( &$title ) {
 		$cats = $title->getParentCategories();
+		$templateMsg = wfMessage( 'templates_further_editing' );
+
+		if ( $templateMsg->isDisabled() ) {
+			return false;
+		}
+
 		if ( is_array( $cats ) && sizeof( $cats ) > 0 ) {
 			$keys = array_keys( $cats );
-			$templates = wfMessage( 'templates_further_editing' )->inContentLanguage()->text();
+			$templates = $templateMsg->inContentLanguage()->text();
 			$templates = explode( "\n", $templates );
 			$templates = array_flip( $templates ); // switch all key/value pairs
 			for ( $i = 0; $i < sizeof( $keys ); $i++ ) {
@@ -235,16 +261,23 @@ class SkinBlueSky extends SkinTemplate {
 				}
 			}
 		}
+
 		return false;
 	}
 
+	/**
+	 * @param BlueSkyTemplate $e
+	 * @param bool $isBoxShape
+	 */
 	function getRelatedArticlesBox( $e, $isBoxShape = false ) {
 		global $wgTitle, $wgRequest, $wgMemc;
 
-		if ( !$wgTitle
-			|| $wgTitle->getNamespace() != NS_MAIN
-			|| $wgTitle->getFullText() == wfMessage( 'mainpage' )->text()
-			|| $wgRequest->getVal( 'action' ) != '' )
+		if (
+			!$wgTitle ||
+			$wgTitle->getNamespace() != NS_MAIN ||
+			$wgTitle->isMainPage() ||
+			$wgRequest->getVal( 'action' ) != ''
+		)
 		{
 			return '';
 		}
@@ -268,7 +301,7 @@ class SkinBlueSky extends SkinTemplate {
 				if ( isset( $templates[urldecode( $t->getPartialURL() )] ) ) {
 					continue;
 				} else {
-					$cat = $t->getDBKey();
+					$cat = $t->getDBkey();
 					break;
 				}
 			}
@@ -334,7 +367,9 @@ class SkinBlueSky extends SkinTemplate {
 				$count++;
 			}
 
-			if ( $isBoxShape ) $result .= '</div>';
+			if ( $isBoxShape ) {
+				$result .= '</div>';
+			}
 
 			if ( !empty( $result ) ) {
 				if ( $isBoxShape ) {
@@ -344,7 +379,9 @@ class SkinBlueSky extends SkinTemplate {
 				}
 			}
 		}
+
 		$wgMemc->set( $cachekey, $result );
+
 		return $result;
 	}
 
@@ -516,6 +553,10 @@ class SkinBlueSky extends SkinTemplate {
 		return $html;
 	}
 
+	/**
+	 * @param Title|array $data
+	 * @return string HTML
+	 */
 	function relatedArticlesBox( $data ) {
 		if ( !is_array( $data ) ) { // $data is actually a Title obj
 			$data = self::featuredArticlesAttrs( $data, $data->getText() );
@@ -535,57 +576,14 @@ class SkinBlueSky extends SkinTemplate {
 		return $html;
 	}
 
-	function getNewArticlesBox() {
-		global $wgMemc;
-
-		$cachekey = wfMemcKey( 'newarticlesbox' );
-		$cached = $wgMemc->get( $cachekey );
-
-		if ( $cached ) {
-			return $cached;
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$ids = array();
-		$res = $dbr->select(
-			'pagelist',
-			'pl_page',
-			array( 'pl_list' => 'risingstar' ),
-			__METHOD__,
-			array( 'ORDER BY' => 'pl_page DESC', 'LIMIT' => 5 )
-		);
-
-		foreach ( $res as $row ) {
-			$ids[] = $row->pl_page;
-		}
-
-		$html = '<div id="side_new_articles"><h3>' . wfMessage( 'newarticles' )->text() . "</h3>\n<table>";
-
-		if ( $ids ) {
-			$res = $dbr->select(
-				array( 'page' ),
-				array( 'page_namespace', 'page_title' ),
-				array( 'page_id IN (' . implode( ',', $ids ) . ')' ),
-				__METHOD__,
-				array( 'ORDER BY' => 'page_id DESC', 'LIMIT' => 5 )
-			);
-			foreach ( $res as $row ) {
-				$t = Title::makeTitle( NS_MAIN, $row->page_title );
-				if ( !$t ) {
-					continue;
-				}
-				$html .= $this->featuredArticlesRow( $t );
-			}
-		}
-
-		$html .= '</table></div>';
-		$one_hour = 60 * 60;
-
-		$wgMemc->set( $cachekey, $html, $one_hour );
-
-		return $html;
-	}
-
+	/**
+	 * Get the HTML for displaying up to $linksLimit featured articles in a
+	 * box on the sidebar from the past $daysLimit days.
+	 *
+	 * @param int $daysLimit
+	 * @param int $linksLimit
+	 * @return string HTML
+	 */
 	function getFeaturedArticlesBox( $daysLimit = 11, $linksLimit = 4 ) {
 		global $wgServer, $wgTitle, $wgMemc, $wgProdHost;
 
@@ -597,18 +595,28 @@ class SkinBlueSky extends SkinTemplate {
 
 		$feeds = FeaturedArticles::getFeaturedArticles( $daysLimit );
 
-		$html = "<h3><span onclick=\"location='" . wfMessage( 'featuredarticles_url' )->text() . "';\" style=\"cursor:pointer;\">" . wfMessage( 'featuredarticles' )->text() . "</span></h3>\n";
+		$faURL = wfMessage( 'bluesky-featuredarticles-url' );
+		if ( $faURL->isDisabled() ) {
+			// No URL, ergo no span
+			$html = '<h3>' . wfMessage( 'bluesky-featuredarticles' )->plain() . "</span></h3>\n";
+		} else {
+			$html = "<h3><span onclick=\"location='" . $faURL->text() . "';\" style=\"cursor:pointer;\">" .
+				wfMessage( 'bluesky-featuredarticles' )->text() . "</span></h3>\n";
+		}
 
 		$now = time();
-		$popular = Title::makeTitle( NS_SPECIAL, 'Popularpages' );
-		$randomizer = Title::makeTitle( NS_SPECIAL, 'Randomizer' );
+		$popular = SpecialPage::getTitleFor( 'Popularpages' );
+		$random = SpecialPage::getTitleFor( 'Randompage' );
 		$count = 0;
+
 		foreach ( $feeds as $item ) {
 			$url = $item[0];
 			$date = $item[1];
+
 			if ( $date > $now ) {
 				continue;
 			}
+
 			$url = str_replace( "$wgServer/", '', $url );
 			if ( $wgServer != 'http://www.wikihow.com' ) {
 				$url = str_replace( 'http://www.wikihow.com/', '', $url );
@@ -620,7 +628,9 @@ class SkinBlueSky extends SkinTemplate {
 				// $html .= $this->featuredArticlesRow($title);
 				$html .= self::getArticleThumb( $title, 126, 120 );
 			}
+
 			$count++;
+
 			if ( $count >= $linksLimit ) {
 				break;
 			}
@@ -630,7 +640,7 @@ class SkinBlueSky extends SkinTemplate {
 		if ( $daysLimit > 8 ) {
 			$data = self::featuredArticlesAttrs( $popular, wfMessage( 'populararticles' )->text() );
 			$html .= $this->featuredArticlesRow( $data );
-			$data = self::featuredArticlesAttrs( $randomizer, wfMessage( 'or_a_random_article' )->text() );
+			$data = self::featuredArticlesAttrs( $random, wfMessage( 'or_a_random_article' )->text() );
 			$html .= $this->featuredArticlesRow( $data );
 		}
 		$html .= '<div class="clearall"></div>';
@@ -676,8 +686,6 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	const BREADCRUMB_SEPARATOR = '&raquo;';
-	const BREADCRUMB_LIMIT = 2;
-	static $bShortened = false;
 
 	/**
 	 * Copied from /extensions/wikihow/Categoryhelper.body.php, 2014-05-22 release
@@ -701,7 +709,7 @@ class SkinBlueSky extends SkinTemplate {
 
 	function getCategoryLinks(/* $usebrowser */) {
 		global $wgOut, $wgContLang;
-		$usebrowser = false;
+		$usebrowser = false; // @todo FIXME
 		if ( !$usebrowser && empty( $wgOut->mCategoryLinks['normal'] ) ) {
 			return '';
 		}
@@ -722,7 +730,6 @@ class SkinBlueSky extends SkinTemplate {
 		}
 
 		$mainPageObj = Title::newMainPage();
-		$sk = $this->getSkin();
 
 		$sep = self::BREADCRUMB_SEPARATOR;
 
@@ -733,7 +740,10 @@ class SkinBlueSky extends SkinTemplate {
 			array(),
 			$viewMode*/
 		);
-		$s = '<li class="home">' . Linker::link( $mainPageObj, wfMessage( 'home' )->text() ) . "</li> <li>$sep $categories</li>";
+		$s = '<li class="home">' . Linker::link(
+			$mainPageObj,
+			wfMessage( 'bluesky-home' )->text()
+		) . "</li> <li>$sep $categories</li>";
 
 		# optional 'dmoz-like' category browser. Will be shown under the list
 		# of categories an article belong to
@@ -794,13 +804,13 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return bool
 	 */
 	function suppressH1Tag() {
-		global $wgTitle, $wgLang;
+		$title = $this->getTitle();
 
-		if ( $wgTitle->isMainPage() ) {
+		if ( $title->isMainPage() ) {
 			return true;
 		}
 
-		if ( $wgTitle->isSpecial( 'Userlogin' ) ) {
+		if ( $title->isSpecial( 'Userlogin' ) ) {
 			return true;
 		}
 
@@ -825,6 +835,17 @@ class SkinBlueSky extends SkinTemplate {
 		return false;
 	}
 
+	/**
+	 * Fetches the site notice and the surrounding div element, depending on
+	 * various factors, such as:
+	 * -whether the site's database has been locked or not
+	 * -whether the user has cookies enabled or not
+	 * -whether the user is logged in or not, and
+	 * -whether there is a site notice or not
+	 *
+	 * @return string A div with id="site_notice" if there's a site notice,
+	 *                otherwise returns an empty string
+	 */
 	function getSiteNotice() {
 		global $wgUser, $wgRequest, $wgReadOnly;
 
@@ -889,6 +910,8 @@ class SkinBlueSky extends SkinTemplate {
 	 * Calls any hooks in place to see if a module has requested that the
 	 * right rail on the site shouldn't be displayed.
 	 *
+	 * @todo This is *very* dirty since it uses The Global That Shall Not Be Named
+	 *
 	 * @return bool
 	 */
 	static function showSideBar() {
@@ -902,6 +925,8 @@ class SkinBlueSky extends SkinTemplate {
 	 * Calls any hooks in place to see if a module has requested that the
 	 * bread crumb (category) links at the top of the article shouldn't
 	 * be displayed.
+	 *
+	 * @todo This is *very* dirty since it uses The Global That Shall Not Be Named
 	 *
 	 * @return bool
 	 */
@@ -923,6 +948,8 @@ class SkinBlueSky extends SkinTemplate {
 	/**
 	 * Calls any hooks in place to see if a module has requested that the
 	 * right rail on the site shouldn't be displayed.
+	 *
+	 * @todo This is *very* dirty since it uses The Global That Shall Not Be Named
 	 *
 	 * @return bool
 	 */
@@ -948,14 +975,23 @@ class SkinBlueSky extends SkinTemplate {
 		return $result;
 	}
 
+	/**
+	 * Get and return an array of content action tabs (i.e. "page", "edit", etc.).
+	 *
+	 * @param bool $showArticleTabs Should we render the content generated by
+	 *                              this function or just leave it up to the
+	 *                              pageTabs hook?
+	 * @return array
+	 */
 	function getTabsArray( $showArticleTabs ) {
-		global $wgTitle, $wgUser, $wgRequest;
+		global $wgUser, $wgRequest;
 
 		$action = $wgRequest->getVal( 'action', 'view' );
 		if ( $wgRequest->getVal( 'diff' ) ) {
 			$action = 'diff';
 		}
 		$skin = $this->getSkin();
+		$title = $skin->getTitle();
 
 		$tabs = array();
 
@@ -970,24 +1006,24 @@ class SkinBlueSky extends SkinTemplate {
 		}
 
 		// article
-		if ( $wgTitle->getNamespace() != NS_CATEGORY ) {
-			$articleTab->href = $wgTitle->isTalkPage() ? $wgTitle->getSubjectPage()->getFullURL():$wgTitle->getFullURL();
-			$articleTab->text = $wgTitle->getSubjectPage()->getNamespace() == NS_USER ? wfMessage( 'user' )->text() : wfMessage( 'article' )->text();
-			$articleTab->class = ( !MWNamespace::isTalk( $wgTitle->getNamespace() ) && $action != 'edit' && $action != 'history' ) ? 'on' : '';
+		if ( $title->getNamespace() != NS_CATEGORY ) {
+			$articleTab->href = $title->isTalkPage() ? $title->getSubjectPage()->getFullURL() : $title->getFullURL();
+			$articleTab->text = $title->getSubjectPage()->getNamespace() == NS_USER ? wfMessage( 'user' )->text() : wfMessage( 'article' )->text();
+			$articleTab->class = ( !MWNamespace::isTalk( $title->getNamespace() ) && $action != 'edit' && $action != 'history' ) ? 'on' : '';
 			$articleTab->id = 'tab_article';
 			$tabs[] = $articleTab;
 		}
 
 		// edit
 		if (
-			$wgTitle->getNamespace() != NS_CATEGORY &&
+			$title->getNamespace() != NS_CATEGORY &&
 			(
-				!in_array( $wgTitle->getNamespace(), array( NS_USER, NS_USER_TALK, NS_FILE ) ) ||
-				$action == 'edit' || $wgUser->getID() > 0
+				!in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_FILE ) ) ||
+				$action == 'edit' || $wgUser->getId() > 0
 			)
 		)
 		{
-			$editTab->href = $wgTitle->getLocalURL( $skin->editUrlOptions() );
+			$editTab->href = $title->getLocalURL( $skin->editUrlOptions() );
 			$editTab->text = wfMessage( 'edit' )->text();
 			$editTab->class = ( $action == 'edit' ) ? 'on' : '';
 			$editTab->id = 'tab_edit';
@@ -995,27 +1031,27 @@ class SkinBlueSky extends SkinTemplate {
 		}
 
 		// talk
-		if ( $wgTitle->getNamespace() != NS_CATEGORY ) {
-			if ( $action == 'view' && MWNamespace::isTalk( $wgTitle->getNamespace() ) ) {
+		if ( $title->getNamespace() != NS_CATEGORY ) {
+			if ( $action == 'view' && MWNamespace::isTalk( $title->getNamespace() ) ) {
 				$talklink = '#postcomment';
 			} else {
-				$talklink = $wgTitle->getTalkPage()->getLocalURL();
+				$talklink = $title->getTalkPage()->getLocalURL();
 			}
-			if ( in_array( $wgTitle->getNamespace(), array( NS_USER, NS_USER_TALK ) ) ) {
+			if ( in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK ) ) ) {
 				$msg = wfMessage( 'talk' )->text();
 			} else {
 				$msg = wfMessage( 'discuss' )->text();
 			}
 			$talkTab->href = $talklink;
 			$talkTab->text = $msg;
-			$talkTab->class = ( $wgTitle->isTalkPage() && $action != 'edit' && $action != 'history' ) ? 'on' : '';
+			$talkTab->class = ( $title->isTalkPage() && $action != 'edit' && $action != 'history' ) ? 'on' : '';
 			$talkTab->id = 'tab_discuss';
 			$tabs[] = $talkTab;
 		}
 
 		// history
-		if ( !$wgUser->isAnon() && $wgTitle->getNamespace() != NS_CATEGORY ) {
-			$historyTab->href = $wgTitle->getLocalURL( 'action=history' );
+		if ( !$wgUser->isAnon() && $title->getNamespace() != NS_CATEGORY ) {
+			$historyTab->href = $title->getLocalURL( 'action=history' );
 			$historyTab->text = wfMessage( 'history' )->text();
 			$historyTab->class = ( $action == 'history' ) ? 'on' : '';
 			$historyTab->id = 'tab_history';
@@ -1023,8 +1059,8 @@ class SkinBlueSky extends SkinTemplate {
 		}
 
 		// for category page: link for image view
-		if ( !$wgUser->isAnon() && $wgTitle->getNamespace() == NS_CATEGORY ) {
-			$imageViewTab->href = $wgTitle->getLocalURL();
+		if ( !$wgUser->isAnon() && $title->getNamespace() == NS_CATEGORY ) {
+			$imageViewTab->href = $title->getLocalURL();
 			$imageViewTab->text = wfMessage( 'image_view' )->text();
 			$imageViewTab->class = $wgRequest->getVal( 'viewMode', 0 ) ? '' : 'on';
 			$imageViewTab->id = 'tab_image_view';
@@ -1032,8 +1068,8 @@ class SkinBlueSky extends SkinTemplate {
 		}
 
 		// For category page: link for text view
-		if ( !$wgUser->isAnon() && $wgTitle->getNamespace() == NS_CATEGORY ) {
-			$textViewTab->href = $wgTitle->getLocalURL( 'viewMode=text' );
+		if ( !$wgUser->isAnon() && $title->getNamespace() == NS_CATEGORY ) {
+			$textViewTab->href = $title->getLocalURL( 'viewMode=text' );
 			$textViewTab->text = wfMessage( 'text_view' )->text();
 			$textViewTab->class = $wgRequest->getVal( 'viewMode', 0 ) ? 'on' : '';
 			$textViewTab->id = 'tab_text_view';
@@ -1041,28 +1077,28 @@ class SkinBlueSky extends SkinTemplate {
 		}
 
 		// admin
-		if ( $wgUser->isSysop() && $wgTitle->userCan( 'delete' ) ) {
+		if ( $wgUser->isAllowedAny( 'delete', 'protect', 'unprotect', 'move' ) && $title->userCan( 'delete' ) ) {
 			$adminTab->href = '#';
-			$adminTab->text = wfMessage( 'admin_admin' )->text();
+			$adminTab->text = wfMessage( 'bluesky-admin-menu' )->plain();
 			$adminTab->class = '';
 			$adminTab->id = 'tab_admin';
 			$adminTab->hasSubMenu = true;
 			$adminTab->subMenuName = 'AdminOptions';
 
 			$adminTab->subMenu = array();
-			$admin1->href = $wgTitle->getLocalURL( 'action=protect' );
-			$admin1->text = !$wgTitle->isProtected() ? wfMessage( 'protect' )->text() : wfMessage( 'unprotect' )->text();
+			$admin1->href = $title->getLocalURL( 'action=protect' );
+			$admin1->text = !$title->isProtected() ? wfMessage( 'protect' )->plain() : wfMessage( 'unprotect' )->plain();
 			$adminTab->subMenu[] = $admin1;
-			if ( $wgTitle->getNamespace() != NS_FILE ) {
-				$admin2->href = SpecialPage::getTitleFor( 'Movepage', $wgTitle )->getLocalURL();
+			if ( $title->getNamespace() != NS_FILE ) {
+				$admin2->href = SpecialPage::getTitleFor( 'Movepage', $title )->getLocalURL();
 			} else {
 				$admin2->href = SpecialPage::getTitleFor( 'Movepage' )->getLocalURL()
-					. '?target=' . $wgTitle->getPrefixedURL() . '&_=' . time();
+					. '?target=' . $title->getPrefixedURL() . '&_=' . time();
 			}
-			$admin2->text = wfMessage( 'admin_move' )->text();
+			$admin2->text = wfMessage( 'move' )->plain();
 			$adminTab->subMenu[] = $admin2;
-			$admin3->href = $wgTitle->getLocalURL( 'action=delete' );
-			$admin3->text = wfMessage( 'admin_delete' )->text();
+			$admin3->href = $title->getLocalURL( 'action=delete' );
+			$admin3->text = wfMessage( 'delete' )->plain();
 			$adminTab->subMenu[] = $admin3;
 
 			$tabs[] = $adminTab;
@@ -1071,6 +1107,12 @@ class SkinBlueSky extends SkinTemplate {
 		return $tabs;
 	}
 
+	/**
+	 * Turns an array of content action tabs (generated by getTabsArray()) into
+	 * HTML.
+	 *
+	 * @return string HTML
+	 */
 	function getTabsHtml( $tabs ) {
 		$html = '';
 
@@ -1111,6 +1153,8 @@ class SkinBlueSky extends SkinTemplate {
 	 * Calls any hooks in place to see if a module has requested that the
 	 * bread crumb (category) links at the top of the article shouldn't
 	 * be displayed.
+	 *
+	 * @return bool
 	 */
 	static function showHeadSection() {
 		global $wgTitle;
@@ -1118,14 +1162,23 @@ class SkinBlueSky extends SkinTemplate {
 		wfRunHooks( 'ShowHeadSection', array( &$result ) );
 
 		// Don't show head section in wikiHow:Tour pages
-		if ( $wgTitle->getNamespace() == NS_PROJECT
-			&& stripos( $wgTitle->getPrefixedText(), 'wikiHow:Tour' ) !== false )
+		if (
+			$wgTitle->getNamespace() == NS_PROJECT &&
+			stripos( $wgTitle->getPrefixedText(), 'wikiHow:Tour' ) !== false
+		)
 		{
 			$result = false;
 		}
 		return $result;
 	}
 
+	/**
+	 * Generates the four navigation tabs, which are shown on the fixed header.
+	 * Currently the tabs and their contents are basically hard-coded, but maybe
+	 * eventually those are editable without touching this file.
+	 *
+	 * @return array
+	 */
 	function genNavigationTabs() {
 		global $wgUser;
 
@@ -1174,6 +1227,14 @@ class SkinBlueSky extends SkinTemplate {
 		return $navTabs;
 	}
 
+	/**
+	 * Get the header menu items (links), which depend on things like the user's
+	 * login state, language, etc.
+	 *
+	 * @param string $menu What part to get? Valid values are 'edit', 'explore',
+	 *                      'help', 'messages' and 'profile'
+	 * @return string HTML
+	 */
 	function getHeaderMenu( $menu ) {
 		global $wgLanguageCode, $wgUser, $wgForumLink;
 
@@ -1292,7 +1353,7 @@ class SkinBlueSky extends SkinTemplate {
 
 				$html .= Linker::link(
 					SpecialPage::getTitleFor( 'Uncategorizedpages' ),
-					'Categorize articles'#wfMessage( 'categorize_articles' )->text() // @todo FIXME
+					wfMessage( 'bluesky-categorize' )->plain()
 				);
 				$html .= Linker::link(
 					Title::newFromText( wfMessage( 'bluesky-more-ideas-url' )->text() ),
@@ -1938,10 +1999,10 @@ class BlueSkyTemplate extends BaseTemplate {
 
 				<div class="section">
 					<?php if ( $showingArticleInfo ): ?>
-						<h2 class="section_head" id="article_info_header"><span><?php echo wfMessage( 'article_info' )->text() ?></span></h2>
+						<h2 class="section_head" id="article_info_header"><span><?php echo wfMessage( 'bluesky-article-info' )->plain() ?></span></h2>
 						<div id="article_info" class="section_text">
 					<?php else : ?>
-						<h2 class="section_head" id="article_tools_header"><span><?php echo wfMessage( 'article_tools' )->text() ?></span></h2>
+						<h2 class="section_head" id="article_tools_header"><span><?php echo wfMessage( 'bluesky-article-tools' )->plain() ?></span></h2>
 						<div id="article_tools" class="section_text">
 					<?php endif ?>
 						<?php if ( $catLinks ): ?>
@@ -1973,40 +2034,39 @@ class BlueSkyTemplate extends BaseTemplate {
 						}
 						?>
 						<ul id="end_options">
-							<li class="endop_discuss"><span></span><a href="<?php echo $talk_link ?>" id="gatDiscussionFooter"><?php echo wfMessage( 'at_discuss' )->text() ?></a></li>
+							<li class="endop_discuss"><span></span><a href="<?php echo $talk_link ?>" id="gatDiscussionFooter"><?php echo wfMessage( 'bluesky-discuss' )->plain() ?></a></li>
 							<li class="endop_print"><span></span><a href="<?php echo $title->getLocalURL( 'printable=yes' ) ?>" id="gatPrintView"><?php echo wfMessage( 'print' )->text() ?></a></li>
 							<li class="endop_email"><span></span><a href="#" onclick="return emailLink();" id="gatSharingEmail"><?php echo wfMessage( 'at_email' )->text() ?></a></li>
 							<?php if ( $isLoggedIn ): ?>
 								<?php if ( $title->userIsWatching() ) { ?>
-									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=unwatch' ); ?>"><?php echo wfMessage( 'at_remove_watch' )->text()?></a></li>
+									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=unwatch' ); ?>"><?php echo wfMessage( 'bluesky-unwatch' )->plain() ?></a></li>
 								<?php } else { ?>
-									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=watch' ); ?>"><?php echo wfMessage( 'at_watch' )->text()?></a></li>
+									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=watch' ); ?>"><?php echo wfMessage( 'bluesky-watch' )->plain() ?></a></li>
 								<?php } ?>
 							<?php endif; ?>
-							<li class="endop_edit"><span></span><a href="<?php echo $title->getEditUrl(); ?>" id="gatEditFooter"><?php echo wfMessage( 'edit' )->text(); ?></a></li>
+							<li class="endop_edit"><span></span><a href="<?php echo $title->getEditUrl(); ?>" id="gatEditFooter"><?php echo wfMessage( 'edit' )->plain(); ?></a></li>
 							<?php if ( $title->getNamespace() == NS_MAIN ) { ?>
-								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?php echo $title->getPrefixedURL(); ?>" id="gatThankAuthors"><?php echo wfMessage( 'at_fanmail' )->text()?></a></li>
+								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?php echo $title->getPrefixedURL(); ?>" id="gatThankAuthors"><?php echo wfMessage( 'at_fanmail' )->text() ?></a></li>
 							<?php } ?>
 						</ul> <!--end #end_options -->
 						<div class="clearall"></div>
-					</div><!--end article_info section_text-->
+					</div><!--end #article_info .section_text-->
 					<p class="page_stats"><?php echo $sk->pageStats() ?></p>
-				</div><!--end section-->
+				</div><!--end .section-->
 
 			<?php }
 
 			if ( in_array( $title->getNamespace(), array( NS_USER, NS_MAIN, NS_PROJECT ) ) && $action == 'view' && !$isMainPage ) {
 			?>
 
-		</div> <!-- article -->
+		</div> <!-- end #article -->
 		<div id="">
 
 			<?php } ?>
 		</div> <!--end last_question-->
 		<div class="clearall"></div>
 
-		</div> <!--end article_shell-->
-
+		</div> <!--end #article_shell-->
 
 		<?php if ( $showSideBar ):
 			$loggedOutClass = '';
@@ -2027,7 +2087,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 				<?php if ( !$isDocViewer ) { ?>
 				<div id="top_links" class="sidebox<?php echo $loggedOutClass ?>" <?php echo is_numeric( wfMessage( 'top_links_padding' )->text() ) ? ' style="padding-left:' . wfMessage( 'top_links_padding' )->text() . 'px;padding-right:' . wfMessage( 'top_links_padding' )->text() . 'px;"' : '' ?>>
-					<a href="<?php echo SpecialPage::getTitleFor( 'Randompage' )->getFullURL() ?>" id="gatRandom" accesskey="x" class="button secondary"><?php echo wfMessage( 'randompage' )->text(); ?></a>
+					<a href="<?php echo SpecialPage::getTitleFor( 'Randompage' )->getFullURL() ?>" id="gatRandom" accesskey="x" class="button secondary"><?php echo wfMessage( 'randompage' )->plain(); ?></a>
 					<a href="/Special:Createpage" id="gatWriteAnArticle" class="button secondary"><?php echo /* @todo FIXME wfMessage( 'writearticle' )->text(); */ 'Write article'; ?></a>
 				</div><!--end #top_links-->
 				<?php } ?>
@@ -2111,10 +2171,10 @@ class BlueSkyTemplate extends BaseTemplate {
 			</div><!--end #sidebar-->
 		<?php endif; // end if $showSideBar ?>
 		<div class="clearall"></div>
-		</div> <!--end container -->
-		</div><!--end main-->
+		</div><!--end #container -->
+		</div><!--end #main-->
 			<div id="clear_footer"></div>
-		</div><!--end main_container-->
+		</div><!--end #main_container-->
 		<div id="footer_outer">
 			<div id="footer">
 				<div id="footer_side">

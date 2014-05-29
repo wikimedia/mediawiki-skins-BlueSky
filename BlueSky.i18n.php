@@ -9,7 +9,13 @@ $messages = array();
 
 /** English */
 $messages['en'] = array(
+	'bluesky-admin-menu' => 'Admin',
+	'bluesky-article-info' => 'Article info',
+	'bluesky-article-tools' => 'Article tools',
+	'bluesky-categorize' => 'Categorize articles',
+	'bluesky-discuss' => 'Discuss',
 	'bluesky-edit-this-article' => 'Edit this article', // originally called 'edit-this-article'
+	'bluesky-home' => 'Home',
 	'bluesky-more-ideas' => 'More ideas...',
 	'bluesky-more-ideas-url' => 'Project:Contribute to {{SITENAME}}',
 	'bluesky-mylinks' => 'My Links', // originally called 'mylinks'
@@ -28,4 +34,6 @@ $messages['en'] = array(
 <li>[[{{int:privacypage}}|{{int:privacy}}]]</li>
 </ul>', // originally called 'site_footer_owl'
 	'bluesky-unread-notifications' => '{{PLURAL:$1|One unread|$1 unread}}',
+	'bluesky-unwatch' => 'Remove watch',
+	'bluesky-watch' => 'Watch',
 );
