@@ -36,98 +36,6 @@ if (wgContentLanguage == 'zh') {
 	$(document).ready(WH.onLoadChineseSpecific);
 }
 
-var share_requester;
-function handle_shareResponse() {
-}
-
-function clickshare(selection) {
-	share_requester = null;
-	try {
-		share_requester = new XMLHttpRequest();
-	} catch (error) {
-		try {
-			share_requester = new ActiveXObject('Microsoft.XMLHTTP');
-		} catch (error) {
-			 return false;
-		}
-	}
-	share_requester.onreadystatechange = handle_shareResponse;
-	url = window.location.protocol + '//' + window.location.hostname + '/Special:CheckJS?selection=' + selection;
-	share_requester.open('GET', url);
-	share_requester.send(' ');
-}
-
-function shareTwitter(source) {
-	//var title = encodeURIComponent(wgTitle);
-	var title = wgTitle;
-	var url = encodeURIComponent(location.href);
-
-	if (title.search(/How to/) != 0) {
-		title = 'How to '+title;
-	}
-
-	if (source == 'aen') {
-		status = "I just wrote an article on @wikiHow - "+title+".";
-	} else if (source == 'africa') {
-		status = "wikiHow.com is sending a book to Africa when you write a new how-to article. Help out here: http://bit.ly/9qWKe";
-		title = "";
-		url = "";
-	} else {
-		status = "Reading @wikiHow on "+title+".";
-	}
-
-	window.open('https://twitter.com/intent/tweet?text='+ status +' '+url );
-
-	return false;
-}
-
-function button_click(obj) {
-	if ((navigator.appName == "Microsoft Internet Explorer") && (navigator.appVersion < 7)) {
-		return false;
-	}
-	jobj = jQuery(obj);
-
-	background = jobj.css('background-position');
-	if(background == undefined || background == null)
-		background_x_position = jobj.css('background-position-x');
-	else
-		background_x_position = background.split(" ")[0];
-
-	//article tabs
-	if (obj.id.indexOf("tab_") >= 0) {
-		obj.style.color = "#514239";
-		obj.style.backgroundPosition = background_x_position + " -111px";
-	}
-
-	if (obj.id == "play_pause_button") {
-		if (jobj.hasClass("play")) {
-			obj.style.backgroundPosition = "0 -130px";
-		}
-		else {
-			obj.style.backgroundPosition = "0 -52px";
-		}
-	}
-
-
-	if (jobj.hasClass("search_button")) {
-		obj.style.backgroundPosition = "0 -29px";
-	}
-}
-
-//do a scrolling reveal
-function findPos(obj) {
-	var curleft = curtop = 0;
-	if (obj.offsetParent) {
-		curleft = obj.offsetLeft
-		curtop = obj.offsetTop
-		while (obj = obj.offsetParent) {
-			curleft += obj.offsetLeft
-			curtop += obj.offsetTop
-		}
-	}
-	return [curleft,curtop];
-}
-
 // Pass in expiresDays=0 for a session cookie
 function setCookie(name, value, expireDays) {
 	var expireDays = typeof expires == 'undefined' ? 7 : expireDays;
@@ -158,48 +66,6 @@ function scroll_open(id,height,max_height) {
 	height += 1;
 	if (height < max_height) {
 		window.setTimeout("scroll_open('" + id + "'," + height + "," + max_height + ")",15);
-	}
-}
-
-function share_article(who) {
-
-	switch (who) {
-
-		case 'email':
-			clickshare(1);
-			window.location='http://' + window.location.hostname + '/Special:EmailLink/' + window.location.pathname;
-			break;
-		case 'facebook':
-			clickshare(4);
-			var d=document,f='http://www.facebook.com/share',
-				l=d.location,e=encodeURIComponent,p='.php?src=bm&v=4&i=1178291210&u='+e(l.href)+'&t='+e(d.title);1; try{ if(!/^(.*\.)?facebook\.[^.]*$/.test(l.host))throw(0);share_internal_bookmarklet(p)}catch(z){a=function(){if(!window.open(f+'r'+p,'sharer','toolbar=0,status=0,resizable=0,width=626,height=436'))l.href=f+p};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else{a()}}void(0);
-			break;
-		case 'twitter':
-			clickshare(8);
-			shareTwitter();
-			break;
-		case 'delicious':
-			clickshare(2);
-			window.open('http://del.icio.us/post?v=4&partner=whw&noui&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title),'delicious','toolbar=no,width=700,height=400');
-			void(0);
-			break;
-		case 'stumbleupon':
-			clickshare(9);
-			window.open('http://www.stumbleupon.com/submit?url='+encodeURIComponent(location.href)); void(0);
-			break;
-		case 'digg':
-			javascript:clickshare(3);
-			window.open(' http://digg.com/submit?phase=2&url=' + encodeURIComponent(location.href) + '&title=' + encodeURIComponent(document.title) + '&bodytext=&topic=');
-			break;
-		case 'blogger':
-			javascript:clickshare(7);
-			window.open('http://www.blogger.com/blog-this.g?&u=' +encodeURIComponent(location.href)+ '&n=' +encodeURIComponent(document.title), 'blogger', 'toolbar=no,width=700,height=400');
-			void(0);
-			break;
-		case 'google':
-			javascript:clickshare(5);
-			(function(){var a=window,b=document,c=encodeURIComponent,d=a.open("https://plus.google.com/share?url="+c(b.location),"bkmk_popup","left="+((a.screenX||a.screenLeft)+10)+",top="+((a.screenY||a.screenTop)+10)+",height=420px,width=550px,resizable=1,alwaysRaised=1");a.setTimeout(function(){d.focus()},300)})();
-			break;
 	}
 }
 
@@ -290,21 +156,6 @@ function wfGetPad(url) {
 	}
 }
 
-function getRequestObject() {
-	var request;
-	try {
-		request = new XMLHttpRequest();
-	} catch (error) {
-		try {
-			request = new ActiveXObject('Microsoft.XMLHTTP');
-		} catch (error) {
-			return false;
-		}
-	}
-	return request;
-}
-
-
 var sh_links = Array("showads");
 
 function sethideadscookie(val) {
@@ -348,116 +199,9 @@ function showads() {
 	window.location.reload();
 }
 
-var cp_request;
-var cp_request2;
-
-function cp_finish() {
-	gatTrack("Author_engagement","Click_done","Publishing_popup");
-
-	if (document.getElementById('email_friend_cb') && document.getElementById('email_friend_cb').checked == true) {
-		gatTrack("Author_engagement","Author_mail_friends","Publishing_popup");
-
-		try {
-			cp_request = new XMLHttpRequest();
-		} catch (error) {
-			try {
-				cp_request = new ActiveXObject('Microsoft.XMLHTTP');
-			} catch (error) {
-				return false;
-			}
-		}
-		var params = "friends=" + encodeURIComponent(document.getElementById('email_friends').value) + "&target=" + window.location.pathname.substring(1);
-		var url = "http://" + window.location.hostname + "/Special:CreatepageEmailFriend";
-		cp_request.open('POST', url);
-		cp_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		cp_request.send(params);
-	}
-
-	if (document.getElementById('email_notification') && document.getElementById('email_notification').checked == true) {
-
-		gatTrack("Author_engagement","Email_updates","Publishing_popup");
-		try {
-			cp_request2 = new XMLHttpRequest();
-		} catch (error) {
-			try {
-				cp_request2 = new ActiveXObject('Microsoft.XMLHTTP');
-			} catch (error) {
-				return false;
-			}
-		}
-
-		var params = "";
-		if (document.getElementById('email_address_flag').value == '1') {
-			params = "action=addNotification&target=" + window.location.pathname.substring(1);
-		} else {
-			params = "action=addNotification&email=" + encodeURIComponent(document.getElementById('email_me').value) + "&target=" + window.location.pathname.substring(1);
-		}
-
-
-		var url = "http://" + window.location.hostname + "/Special:AuthorEmailNotification";
-		cp_request2.open('POST', url);
-		cp_request2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		cp_request2.send(params);
-	}
-
-	if (document.getElementById('dont_show_again') && document.getElementById('dont_show_again').checked == true) {
-
-		gatTrack("Author_engagement","Reject_pub_pop","Reject_pub_pop");
-		try {
-			cp_request2 = new XMLHttpRequest();
-		} catch (error) {
-			try {
-				cp_request2 = new ActiveXObject('Microsoft.XMLHTTP');
-			} catch (error) {
-				return false;
-			}
-		}
-
-		var params = "action=updatePreferences&dontshow=1";
-
-		var url = "http://" + window.location.hostname + "/Special:AuthorEmailNotification";
-		cp_request2.open('POST', url);
-		cp_request2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		cp_request2.send(params);
-	}
-
-	jQuery("#dialog-box").dialog("close");
-	//closeModal();
-}
-
 var gHideAds = gHideAds || false;
 var gchans = gchans || false;
 var google_analytics_domain_name = ".wikihow.com"
-
-var gRated = false;
-
-function ratingReason(reason, itemId, type) {
-	if (!reason) {
-		return;
-	}
-
-	$.ajax(
-		{ url: '/Special:RatingReason?item_id=' + itemId+ '&reason=' + reason + '&type=' + type
-		}
-	).done(function(data) {
-		$('#' + type + '_rating').html(data);
-	});
-}
-
-function rateItem(r, itemId, type) {
-	if (!gRated) {
-		$.ajax(
-			{ url: '/Special:RateItem?page_id=' + itemId+ '&rating=' + r + '&type=' + type
-			}
-		).done(function(data) {
-			if (type=="sample") {
-				$('#' + type + '_rating').css('height', '100px');
-			}
-			$('#' + type + '_rating').html(data);
-		});
-	}
-	gRated = true;
-}
 
 function updateWidget(id, x) {
 	var url = '/Special:Standings/' + x;
