@@ -17,7 +17,7 @@ WH.onLoadChineseSpecific = function () {
 		var hs = location.href.split("?");
 		var loc = "";
 		if(hs.length > 1) {
-			var params =  hs[1].replace(/^variant=[^&#]+/,"").replace(/&variant=[^&#]+/,"");
+			var params = hs[1].replace(/^variant=[^&#]+/,"").replace(/&variant=[^&#]+/,"");
 			if(params) {
 				loc = hs[0] + "?" + params;
 			}
@@ -51,7 +51,7 @@ function clickshare(selection) {
 			 return false;
 		}
 	}
-	share_requester.onreadystatechange =  handle_shareResponse;
+	share_requester.onreadystatechange = handle_shareResponse;
 	url = window.location.protocol + '//' + window.location.hostname + '/Special:CheckJS?selection=' + selection;
 	share_requester.open('GET', url);
 	share_requester.send(' ');
@@ -237,7 +237,7 @@ function setStyle(obj, style) {
 }
 
 /**
- * Translates a MW message (ie, 'new-link') into the correct language text.  Eg:
+ * Translates a MW message (ie, 'new-link') into the correct language text. Eg:
  * wfMsg('new-link', 'http://mylink.com/');
  *
  * - loads all messages from WH.lang
@@ -265,7 +265,7 @@ function wfMsg(key) {
 }
 
 /**
- * Templates html etc.  Use as follows:
+ * Templates html etc. Use as follows:
  *
  * var html = wfTemplate('<a href="$1">$2</a>', mylink, mytext);
  */
@@ -279,7 +279,7 @@ function wfTemplate(tmpl) {
 }
 
 /**
- * A simple pad function.  Note that it won't match up with the output of
+ * A simple pad function. Note that it won't match up with the output of
  * the php.
  */
 function wfGetPad(url) {
@@ -366,7 +366,7 @@ function cp_finish() {
 				return false;
 			}
 		}
-		var params =  "friends=" + encodeURIComponent(document.getElementById('email_friends').value) + "&target=" + window.location.pathname.substring(1);
+		var params = "friends=" + encodeURIComponent(document.getElementById('email_friends').value) + "&target=" + window.location.pathname.substring(1);
 		var url = "http://" + window.location.hostname + "/Special:CreatepageEmailFriend";
 		cp_request.open('POST', url);
 		cp_request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -388,9 +388,9 @@ function cp_finish() {
 
 		var params = "";
 		if (document.getElementById('email_address_flag').value == '1') {
-			params =  "action=addNotification&target=" + window.location.pathname.substring(1);
+			params = "action=addNotification&target=" + window.location.pathname.substring(1);
 		} else {
-			params =  "action=addNotification&email=" + encodeURIComponent(document.getElementById('email_me').value) + "&target=" + window.location.pathname.substring(1);
+			params = "action=addNotification&email=" + encodeURIComponent(document.getElementById('email_me').value) + "&target=" + window.location.pathname.substring(1);
 		}
 
 
@@ -413,7 +413,7 @@ function cp_finish() {
 			}
 		}
 
-		var params =  "action=updatePreferences&dontshow=1";
+		var params = "action=updatePreferences&dontshow=1";
 
 		var url = "http://" + window.location.hostname + "/Special:AuthorEmailNotification";
 		cp_request2.open('POST', url);
@@ -432,16 +432,16 @@ var google_analytics_domain_name = ".wikihow.com"
 var gRated = false;
 
 function ratingReason(reason, itemId, type) {
-    if (!reason) {
-        return;
-    }
+	if (!reason) {
+		return;
+	}
 
-    $.ajax(
-        { url: '/Special:RatingReason?item_id=' + itemId+ '&reason=' + reason + '&type=' + type
-        }
-    ).done(function(data) {
-        $('#' + type + '_rating').html(data);
-    });
+	$.ajax(
+		{ url: '/Special:RatingReason?item_id=' + itemId+ '&reason=' + reason + '&type=' + type
+		}
+	).done(function(data) {
+		$('#' + type + '_rating').html(data);
+	});
 }
 
 function rateItem(r, itemId, type) {
@@ -450,9 +450,9 @@ function rateItem(r, itemId, type) {
 			{ url: '/Special:RateItem?page_id=' + itemId+ '&rating=' + r + '&type=' + type
 			}
 		).done(function(data) {
-            if (type=="sample") {
-                $('#' + type + '_rating').css('height', '100px');
-            }
+			if (type=="sample") {
+				$('#' + type + '_rating').css('height', '100px');
+			}
 			$('#' + type + '_rating').html(data);
 		});
 	}
@@ -473,10 +473,10 @@ function updateTimer(id) {
 	var e = jQuery("#" + id);
 	var i = parseInt(e.html());
 	if (i > 1) {
-	   e.fadeOut(400, function() {
-		   i--;
-		   e.html(i);
-		   e.fadeIn();
+		e.fadeOut(400, function() {
+			i--;
+			e.html(i);
+			e.fadeIn();
 		});
 	}
 }
@@ -557,7 +557,7 @@ function getToolTip(obj, on) {
 
 //record a push on the +1 button
 function plusone_vote( obj ) {
-    _gaq.push(['_trackEvent','plusone',obj.state]);
+	_gaq.push(['_trackEvent','plusone',obj.state]);
 }
 
 jQuery(".lbg").live('click', function() {
@@ -594,8 +594,8 @@ function extractParamFromUri(uri, paramName) {
 	if (!uri) {
 		return;
 	}
-	var uri = uri.split('#')[0];  // Remove anchor.
-	var parts = uri.split('?');  // Check for query params.
+	var uri = uri.split('#')[0]; // Remove anchor.
+	var parts = uri.split('?'); // Check for query params.
 	if (parts.length == 1) {
 		return;
 	}
@@ -639,7 +639,7 @@ WH.addScrollEffectToHashes = function(anchors) {
 		$(this).click(function () {
 			$.scrollTo(anchor, 1000);
 			if (history.pushState) {
-			    history.pushState(null, null, '#' + hash);
+				history.pushState(null, null, '#' + hash);
 			} else {
 				location.hash = '#' + hash;
 			}
@@ -651,14 +651,14 @@ WH.addScrollEffectToHashes = function(anchors) {
 
 WH.isPageScrolledToArticleBottom = function () {
 	var elem = '.article_bottom';
-    var docViewTop = $(window).scrollTop();
-    var docViewBottom = docViewTop + $(window).height();
+	var docViewTop = $(window).scrollTop();
+	var docViewBottom = docViewTop + $(window).height();
 
-    var elemTop = $(elem).offset().top;
+	var elemTop = $(elem).offset().top;
 	elemTop += 125;
-    var elemBottom = elemTop + $(elem).height();
+	var elemBottom = elemTop + $(elem).height();
 
-    return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom));
+	return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom));
 };
 
 WH.isPageScrolledToWarningsORArticleInfo = function () {
@@ -672,8 +672,8 @@ WH.isPageScrolledToWarningsORArticleInfo = function () {
 		the_elem = elem2;
 	}
 
-    var docViewTop = $(window).scrollTop();
-    var docViewBottom = docViewTop + $(window).height();
+	var docViewTop = $(window).scrollTop();
+	var docViewBottom = docViewTop + $(window).height();
 
 	var offset = $(the_elem).offset();
 	return offset ? offset.top <= docViewBottom : false;
@@ -682,8 +682,8 @@ WH.isPageScrolledToWarningsORArticleInfo = function () {
 WH.isPageScrolledToFollowTable = function () {
 	var the_elem = '#follow_table';
 
-    var docViewTop = $(window).scrollTop();
-    var docViewBottom = docViewTop + $(window).height();
+	var docViewTop = $(window).scrollTop();
+	var docViewBottom = docViewTop + $(window).height();
 
 	var offset = $(the_elem).offset();
 	return offset ? offset.top <= docViewBottom : false;
@@ -714,7 +714,7 @@ $(document).ready(function() {
 		if ($('#slideshowdetect_mainpage').length) {
 			//homepage
 			$(window).bind('scroll', function(){
-				if  (!getCookie('sliderbox')) {
+				if (!getCookie('sliderbox')) {
 					if (WH.isPageScrolledToFollowTable() && $('#sliderbox').css('right') == '-500px' && !$('#sliderbox').is(':animated')) {
 						slider.init();
 					}
@@ -727,7 +727,7 @@ $(document).ready(function() {
 		else {
 			//article page
 			$(window).bind('scroll', function(){
-				if  (!getCookie('sliderbox')) {
+				if (!getCookie('sliderbox')) {
 					if (WH.isPageScrolledToWarningsORArticleInfo() && $('#sliderbox').css('right') == '-500px' && !$('#sliderbox').is(':animated')) {
 						slider.init();
 					}
@@ -796,7 +796,7 @@ WH.setGooglePlusOneLangCode = function() {
 	if (wgUserLanguage == 'pt') {
 		langCode = 'pt-BR';
 	}
-	if (wgUserLanguage == 'es' || wgUserLanguage  == 'de') {
+	if (wgUserLanguage == 'es' || wgUserLanguage == 'de') {
 		langCode = wgUserLanguage;
 	}
 	if (langCode) {
@@ -964,7 +964,7 @@ function initTopMenu() {
 		that.data('timeout', setTimeout( function () {
 			menu_show(that);
 			on_menu = true;
-		  }, wait));
+		}, wait));
 	}, function() {
 		var that = $(this);
 		var wait = 150;
@@ -979,7 +979,7 @@ function initTopMenu() {
 		that.data('timeout2', setTimeout( function () {
 			menu_hide(that);
 			on_menu = false;
-		  }, wait));
+		}, wait));
 	});
 
 	//thumbs up deletion
@@ -1279,9 +1279,9 @@ _taboola.push({article:'auto'});
 _taboolaScriptElem = document.createElement('script');
 _taboolaBeforeElem = document.getElementsByTagName('script')[0];
 $(window).load( function() {
-        !function (e, f, u) {
-           e.async = 1;
-           e.src = u;
-           f.parentNode.insertBefore(e, f);
-		}(_taboolaScriptElem, _taboolaBeforeElem, 'http://cdn.taboola.com/libtrc/wikihow/loader.js');
+	!function (e, f, u) {
+		e.async = 1;
+		e.src = u;
+		f.parentNode.insertBefore(e, f);
+	}(_taboolaScriptElem, _taboolaBeforeElem, 'http://cdn.taboola.com/libtrc/wikihow/loader.js');
 });
