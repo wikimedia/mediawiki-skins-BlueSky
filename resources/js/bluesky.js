@@ -90,16 +90,6 @@ function mainPageFAToggle() {
 	}
 }
 
-function setStyle( obj, style ) {
-	if ( obj ) {
-		if ( navigator.userAgent.indexOf( 'MSIE' ) > 0) {
-			obj.style.setAttribute( 'csstext', style, 0 );
-		} else {
-			obj.setAttribute( 'style', style );
-		}
-	}
-}
-
 /**
  * Translates a MW message (ie, 'new-link') into the correct language text. Eg:
  * wfMsg('new-link', 'http://mylink.com/');
@@ -153,56 +143,6 @@ function wfGetPad( url ) {
 		return wgCDNbase + url;
 	}
 }
-
-var sh_links = Array( 'showads' );
-
-function sethideadscookie( val ) {
-	var date = new Date();
-	if ( val == 1 ) {
-		date.setTime( date.getTime() + ( 1 * 24 * 60 * 60 * 1000 ) );
-	} else {
-		date.setTime( date.getTime() - ( 30 * 24 * 60 * 60 * 1000 ) );
-	}
-	var expires = '; expires=' + date.toGMTString();
-	document.cookie = 'wiki_hideads=' + val + expires + '; path=/';
-}
-
-function showorhideads( hide ) {
-	var style = 'display: inline;';
-	if ( hide ) {
-		style = 'display: none;';
-	}
-	$( '.wh_ad_inner' ).hide();
-	for ( var i = 0; i < sh_links.length; i++ ) {
-		var e = document.getElementById( sh_links[i] );
-		if ( !e ) {
-			continue;
-		}
-		if ( hide ) {
-			style = 'display: inline;';
-		} else {
-			style = 'display: none;';
-		}
-		setStyle( e, style );
-	}
-	$( '.show_ads' ).show();
-}
-
-function hideads() {
-	sethideadscookie( 1 );
-	showorhideads( true );
-	clickshare( 20 );
-}
-
-function showads() {
-	sethideadscookie( 0 );
-	showorhideads( false );
-	window.location.reload();
-}
-
-var gHideAds = gHideAds || false;
-var gchans = gchans || false;
-var google_analytics_domain_name = ".wikihow.com"
 
 function updateWidget( id, x ) {
 	var url = '/Special:Standings/' + x;
