@@ -72,7 +72,7 @@ function mainPageFAToggle() {
 	var firstChild = jQuery('#toggle');
 	if ( mainPageFAToggleFlag == false ) {
 		jQuery( '#hiddenFA' ).slideDown( 'slow' ).show( function () {
-			firstChild.html( wfMsg( 'mainpage_fewer_featured_articles' ) );
+			firstChild.html( mw.msg( 'mainpage_fewer_featured_articles' ) );
 			jQuery( '#moreOrLess' ).attr( 'src', wgCDNbase + '/skins/WikiHow/images/arrowLess.png' );
 			jQuery( '#featuredNav' ).hide(); //need to do this for IE7
 			jQuery( '#featuredNav' ).show();
@@ -81,40 +81,12 @@ function mainPageFAToggle() {
 		mainPageFAToggleFlag = true;
 	} else {
 		jQuery( '#hiddenFA' ).slideUp( 'slow' ).hide( function () {
-			firstChild.html( wfMsg( 'mainpage_more_featured_articles' ) );
+			firstChild.html( mw.msg( 'mainpage_more_featured_articles' ) );
 			jQuery( '#moreOrLess').attr( 'src', wgCDNbase + '/skins/WikiHow/images/arrowMore.png' );
 			jQuery( '#featuredNav' ).hide(); //need to do this for IE7
 			jQuery( '#featuredNav' ).show();
 		} );
 		mainPageFAToggleFlag = false;
-	}
-}
-
-/**
- * Translates a MW message (ie, 'new-link') into the correct language text. Eg:
- * wfMsg('new-link', 'http://mylink.com/');
- *
- * - loads all messages from WH.lang
- * - added by Reuben
- */
-function wfMsg( key ) {
-	if ( typeof WH.lang[key] === 'undefined' ) {
-		return '[' + key + ']';
-	} else {
-		var msg = WH.lang[key];
-		if ( arguments.length > 1 ) {
-			// matches symbols like $1, $2, etc
-			var syntax = /(^|.|\r|\n)(\$([1-9]))/g;
-			var replArgs = arguments;
-			msg = msg.replace( syntax, function ( match, p1, p2, p3 ) {
-				return p1 + replArgs[p3];
-			} );
-			// This was the old prototype.js Template syntax
-			//var template = new Template(msg, syntax);
-			//var args = $A(arguments); // this has { 1: '$1', ... }
-			//msg = template.evaluate(args);
-		}
-		return msg;
 	}
 }
 
@@ -612,12 +584,12 @@ WH.maybeDisplayTopSocialCTA = function () {
 		};
 
 		// check for HTML of a particular social network first
-		var html = wfMsg( 'social-html-' + social );
+		var html = mw.msg( 'social-html-' + social );
 		html = checkMsg( html ) ? html : '';
 
 		// if not, check for the general HTML
 		if ( !html ) {
-			html = wfMsg( 'social-html' );
+			html = mw.msg( 'social-html' );
 			html = checkMsg( html ) ? html : '';
 		}
 
@@ -705,12 +677,12 @@ function initTopMenu() {
 		}
 	} );
 
-	$( '.userlogin #wpName1, #wpName1_head' ).val( wfMsg( 'usernameoremail' ) )
+	$( '.userlogin #wpName1, #wpName1_head' ).val( mw.msg( 'usernameoremail' ) )
 		.css( 'color', '#ABABAB' )
 		.click( function () {
-			if ( $( this ).val() == wfMsg( 'usernameoremail' ) ) {
+			if ( $( this ).val() == mw.msg( 'usernameoremail' ) ) {
 				$( this ).val( '' ); // clear field
-				$( this ).css( 'color', '#333'); // change font color
+				$( this ).css( 'color', '#333' ); // change font color
 			}
 		} );
 
@@ -724,10 +696,10 @@ function initTopMenu() {
 		}
 	}
 
-	$( '.userlogin #wpPassword1, #wpPassword1_head' ).val( wfMsg( 'password' ) )
+	$( '.userlogin #wpPassword1, #wpPassword1_head' ).val( mw.msg( 'password' ) )
 		.css( 'color', '#ABABAB' )
 		.focus( function() {
-			if ( $( this ).val() == wfMsg( 'password' ) ) {
+			if ( $( this ).val() == mw.msg( 'password' ) ) {
 				$( this ).val( '' );
 				$( this ).css( 'color', '#333' ); // change font color
 				$( this ).get( 0 ).type = 'password'; // switch to dots
@@ -735,7 +707,7 @@ function initTopMenu() {
 		} );
 
 	$( '#forgot_pwd' ).click( function () {
-		if ( $( '#wpName1' ).val() == 'Username or Email' ) {
+		if ( $( '#wpName1' ).val() == 'Username or Email' ) { // @todo FIXME: i18n
 			$( '#wpName1' ).val( '' );
 		}
 		getPassword( escape( $( '#wpName1' ).val() ) );
@@ -743,8 +715,8 @@ function initTopMenu() {
 	} );
 
 	$( '#forgot_pwd_head' ).click( function () {
-		if ( $( '#wpName1_head' ).val() == 'Username or Email' ) {
-			$( '#wpName1_head' ).val('');
+		if ( $( '#wpName1_head' ).val() == 'Username or Email' ) { // @todo FIXME: i18n
+			$( '#wpName1_head' ).val( '' );
 		}
 		getPassword( escape( $( '#wpName1_head' ).val() ) );
 		return false;
