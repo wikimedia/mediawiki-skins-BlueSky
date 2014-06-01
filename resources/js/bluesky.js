@@ -30,7 +30,7 @@ WH.onLoadChineseSpecific = function () {
 		location.href = loc;
 	} );
 };
-if ( wgContentLanguage == 'zh' ) {
+if ( mw.config.get( 'wgContentLanguage' ) == 'zh' ) {
 	$( document ).ready( WH.onLoadChineseSpecific );
 }
 
@@ -263,7 +263,7 @@ function setupEmailLinkForm() {
 function emailLink() {
 	var url = '/extensions/wikihow/common/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js';
 	$.getScript( url, function() {
-		var url2 = '/Special:EmailLink?target=' + wgPageName + '&fromajax=true';
+		var url2 = '/Special:EmailLink?target=' + mw.config.get( 'wgPageName' ) + '&fromajax=true';
 		$( '#dialog-box' ).load( url2, function() {
 			$( '#dialog-box' ).dialog( {
 				modal: true,
@@ -517,7 +517,7 @@ $( document ).ready( function () {
 	if ( $( '#showslideshow' ).length ) {
 		//var url = '/Special:GallerySlide?show-slideshow=1&aid='+wgArticleId;
 		//var url = '/Special:GallerySlide?show-slideshow=1&big-show=1&aid='+wgArticleId;
-		var url = '/Special:GallerySlide?show-slideshow=1&big-show=1&article_layout=2&aid=' + wgArticleId;
+		var url = '/Special:GallerySlide?show-slideshow=1&big-show=1&article_layout=2&aid=' + mw.config.get( 'wgArticleId' );
 
 		$.getJSON( url, function ( json ) {
 			if ( json && json.content ) {
@@ -565,11 +565,15 @@ $( document ).ready( function () {
 
 WH.setGooglePlusOneLangCode = function () {
 	var langCode = '';
-	if ( wgUserLanguage == 'pt' ) {
+	if ( mw.config.get( 'wgUserLanguage' ) == 'pt' ) {
 		langCode = 'pt-BR';
 	}
-	if ( wgUserLanguage == 'es' || wgUserLanguage == 'de' ) {
-		langCode = wgUserLanguage;
+	if (
+		mw.config.get( 'wgUserLanguage' ) == 'es' ||
+		mw.config.get( 'wgUserLanguage' ) == 'de'
+	)
+	{
+		langCode = mw.config.get( 'wgUserLanguage' );
 	}
 	if ( langCode ) {
 		window.___gcfg = {lang: langCode};
@@ -578,7 +582,7 @@ WH.setGooglePlusOneLangCode = function () {
 
 jQuery( document ).on( 'click', 'a#wikitext_downloader', function ( e ) {
 	e.preventDefault();
-	var data = { 'pageid': wgArticleId };
+	var data = { 'pageid': mw.config.get( 'wgArticleId' ) };
 	jQuery.download( '/Special:WikitextDownloader', data );
 } );
 
