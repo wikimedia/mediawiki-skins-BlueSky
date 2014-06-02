@@ -15,7 +15,7 @@ WH.onLoadChineseSpecific = function () {
 		setCookie( 'wiki_sharedvariant', variant, 0 );
 
 		var hs = location.href.split( '?' );
-		var loc = "";
+		var loc = '';
 		if ( hs.length > 1 ) {
 			var params = hs[1].replace( /^variant=[^&#]+/, '' ).replace( /&variant=[^&#]+/, '' );
 			if ( params ) {
@@ -56,66 +56,14 @@ function getCookie( c_name ) {
 	}
 }
 
-// Do a scrolling reveal
-function scroll_open( id, height, max_height ) {
-	document.getElementById( id ).style.top = height + 'px';
-	document.getElementById( id ).style.display = 'block';
-	document.getElementById( id ).style.position = 'relative';
-	height += 1;
-	if ( height < max_height ) {
-		window.setTimeout( "scroll_open('" + id + "'," + height + "," + max_height + ")", 15 );
-	}
-}
-
-var mainPageFAToggleFlag = false;
-function mainPageFAToggle() {
-	var firstChild = jQuery('#toggle');
-	if ( mainPageFAToggleFlag == false ) {
-		jQuery( '#hiddenFA' ).slideDown( 'slow' ).show( function () {
-			firstChild.html( mw.msg( 'mainpage_fewer_featured_articles' ) );
-			jQuery( '#moreOrLess' ).attr( 'src', wgCDNbase + '/skins/WikiHow/images/arrowLess.png' );
-			jQuery( '#featuredNav' ).hide(); //need to do this for IE7
-			jQuery( '#featuredNav' ).show();
-		} );
-
-		mainPageFAToggleFlag = true;
-	} else {
-		jQuery( '#hiddenFA' ).slideUp( 'slow' ).hide( function () {
-			firstChild.html( mw.msg( 'mainpage_more_featured_articles' ) );
-			jQuery( '#moreOrLess').attr( 'src', wgCDNbase + '/skins/WikiHow/images/arrowMore.png' );
-			jQuery( '#featuredNav' ).hide(); //need to do this for IE7
-			jQuery( '#featuredNav' ).show();
-		} );
-		mainPageFAToggleFlag = false;
-	}
-}
-
 /**
- * Templates html etc. Use as follows:
+ * This is not directly used by this skin, but there are like over ten different
+ * wikiHow extensions that call this function, so I'll let it stay here
+ * [[for now]] until I figure out what to do with it.
  *
- * var html = wfTemplate('<a href="$1">$2</a>', mylink, mytext);
+ * @param {String} Element ID
+ * @param {String} Subpage name
  */
-function wfTemplate( tmpl ) {
-	var syntax = /(^|.|\r|\n)(\$([1-9]))/g; // matches symbols like $1, $2, etc
-	var replArgs = arguments;
-	var out = tmpl.replace( syntax, function ( match, p1, p2, p3 ) {
-		return p1 + replArgs[p3];
-	} );
-	return out;
-}
-
-/**
- * A simple pad function. Note that it won't match up with the output of
- * the php.
- */
-function wfGetPad( url ) {
-	if ( url.search( /^http:\/\// ) >= 0 ) {
-		return url;
-	} else {
-		return wgCDNbase + url;
-	}
-}
-
 function updateWidget( id, x ) {
 	var url = '/Special:Standings/' + x;
 	$.get( url,
@@ -127,6 +75,14 @@ function updateWidget( id, x ) {
 		'json'
 	);
 }
+
+/**
+ * This is not directly used by this skin, but there are like over ten different
+ * wikiHow extensions that call this function, so I'll let it stay here
+ * [[for now]] until I figure out what to do with it.
+ *
+ * @param {String} Element ID
+ */
 function updateTimer( id ) {
 	var e = jQuery( '#' + id );
 	var i = parseInt( e.html() );
@@ -139,31 +95,12 @@ function updateTimer( id ) {
 	}
 }
 
-function parseIntWH( num ) {
-	if ( !num ) {
-		return 0;
-	}
-	return parseInt( num.replace( /,/, '' ), 10 );
-}
-
-function addCommas( nStr ) {
-	nStr += '';
-	x = nStr.split( '.' );
-	x1 = x[0];
-	x2 = x.length > 1 ? '.' + x[1] : '';
-	var rgx = /(\d+)(\d{3})/;
-	while ( rgx.test( x1 ) ) {
-		x1 = x1.replace( rgx, '$1' + ',' + '$2' );
-	}
-	return x1 + x2;
-}
-
 function setupEmailLinkForm() {
-	$( '#emaillink' ).submit(function() {
+	$( '#emaillink' ).submit( function() {
 		var params = { fromajax: true };
 		$( '#emaillink input' ).each( function () {
 			params[$( this ).attr( 'name' )] = $( this ).val();
-		});
+		} );
 		$.post( '/Special:EmailLink', params, function ( data ) {
 			$( '#dialog-box' ).html( data );
 			setupEmailLinkForm();
@@ -190,34 +127,14 @@ function emailLink() {
 	return false;
 }
 
-// Fancy Tool Tip thingy
-function getToolTip( obj, on ) {
-	if ( on ) {
-		if ( jQuery.browser.msie && jQuery.browser.version == '6.0' ) {
-			return;
-		}
-
-		var txt = jQuery( obj ).parent().find( 'span' ).html();
-		if ( txt ) {
-			var pos = jQuery( obj ).offset();
-			var posTop = pos.top - 55;
-			jQuery( '<div class="tooltip_text"><div>' + txt + '</div></div>' ).appendTo( 'body' );
-			var imgWidth = pos.left + ( jQuery( '.tooltip' ).width() / 2 );
-			var posLeft = imgWidth - 23;
-			jQuery( '.tooltip_text' ).css( 'top', posTop ).css( 'left', posLeft );
-		}
-	} else {
-		if ( jQuery.browser.msie && jQuery.browser.version == '6.0' ) {
-			return;
-		}
-
-		jQuery( '.tooltip_text' ).remove();
-	}
-}
-
-// record a push on the +1 button
+/**
+ * Record a push on the +1 button to Google Analytics
+ * This is called by /extensions/wikihow/WikihowShare.body.php.
+ */
 function plusone_vote( obj ) {
-	_gaq.push(['_trackEvent', 'plusone', obj.state]);
+	if ( typeof _gaq !== undefined ) {
+		_gaq.push(['_trackEvent', 'plusone', obj.state]);
+	}
 }
 
 jQuery( '.lbg' ).live( 'click', function () {
@@ -352,7 +269,6 @@ WH.isPageScrolledToFollowTable = function () {
 	var offset = $( the_elem ).offset();
 	return offset ? offset.top <= docViewBottom : false;
 };
-
 
 // Snippet to prevent site search forms submitting empty queries
 ( function ( $ ) {
@@ -854,7 +770,7 @@ $( document ).ready( function () {
 } );
 
 ( function ( $ ) {
-	$( document ).on('click', 'a[href^=#_note-], a[href^=#_ref-]', function ( e ) {
+	$( document ).on( 'click', 'a[href^=#_note-], a[href^=#_ref-]', function ( e ) {
 		e.preventDefault();
 		$( 'html, body' ).animate( {
 			scrollTop: $( $( this ).attr( 'href' ) ).offset().top - 100
