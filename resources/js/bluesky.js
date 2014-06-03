@@ -164,31 +164,6 @@ jQuery( '#tb_warnings' ).live( 'click', function () {
 	$( 'html, body' ).animate({ scrollTop: $( '#warnings' ).offset().top - 70}, 'slow');
 } );
 
-/*
- * Code taken from:
- * http://code.google.com/apis/analytics/docs/tracking/gaTrackingSocial.html
- */
-function extractParamFromUri( uri, paramName ) {
-	if ( !uri ) {
-		return;
-	}
-	var uri = uri.split( '#' )[0]; // Remove anchor.
-	var parts = uri.split( '?' ); // Check for query params.
-	if ( parts.length == 1 ) {
-		return;
-	}
-	var query = decodeURI( parts[1] );
-
-	// Find URL param.
-	paramName += '=';
-	var params = query.split( '&' );
-	for ( var i = 0, param; param = params[i]; ++i ) {
-		if ( param.indexOf( paramName ) === 0 ) {
-			return unescape( param.split( '=' )[1] );
-		}
-	}
-}
-
 WH.addScrollEffectToTOC = function () {
 	// regular TOC
 	if ( $( '#toc' ).length ) {
@@ -468,7 +443,7 @@ $( document ).ready( WH.displayTranslationCTA );
  */
 WH.maybeDisplayTopSocialCTA = function () {
 	var referrer = document.referrer ? document.referrer : '';
-	var testNetwork = extractParamFromUri( location.href, 'soc' );
+	var testNetwork = mw.util.getParamValue( 'soc', location.href );
 	if ( testNetwork ) {
 		referrer = testNetwork;
 	}
@@ -740,7 +715,7 @@ $( window ).scroll( function () {
 				return;
 			}
 			// Disable stickiness for the RC patrol guided tour
-			if ( extractParamFromUri( document.location.search, 'gt_mode' ) != 1 ) {
+			if ( mw.util.getParamValue( 'gt_mode', document.location.search ) != 1 ) {
 				makeSticky( $( this ), currentHeader );
 			}
 		} );
