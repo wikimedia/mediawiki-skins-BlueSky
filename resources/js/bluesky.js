@@ -1,8 +1,9 @@
+/* global mw */
 var WH = WH || {};
 
 var ua = navigator.userAgent.toLowerCase(); // get client browser info
 
-// temp hack for +1 button not working on iphone/ipad
+// temp hack for +1 button not working on iPhone/iPad
 var isiPad = ua.indexOf( 'ipad' );
 var isiPhone = ua.indexOf( 'iphone' );
 
@@ -36,8 +37,8 @@ if ( mw.config.get( 'wgContentLanguage' ) == 'zh' ) {
 
 // Pass in expiresDays=0 for a session cookie
 function setCookie( name, value, expireDays ) {
-	var expireDays = typeof expires == 'undefined' ? 7 : expireDays;
-	var daysMs = expireDays * 24 * 60 * 60 * 1000
+	expireDays = typeof expires == 'undefined' ? 7 : expireDays;
+	var daysMs = expireDays * 24 * 60 * 60 * 1000;
 	var expireDate = new Date();
 	expireDate.setDate( expireDate.getDate() + daysMs );
 	document.cookie = name + '=' + escape( value ) + ( !expireDays ? '' : ';expires=' + expireDate.toGMTString() ) + ';path=/';
@@ -69,7 +70,7 @@ function updateWidget( id, x ) {
 	$.get( url,
 		function ( data ) {
 			$( id ).fadeOut();
-			$( id ).html( data['html'] );
+			$( id ).html( data.html );
 			$( id ).fadeIn();
 		},
 		'json'
@@ -273,7 +274,7 @@ WH.isPageScrolledToFollowTable = function () {
 // Snippet to prevent site search forms submitting empty queries
 ( function ( $ ) {
 	$( '#search_site_bubble,#search_site_footer' ).live( 'click', function ( e ) {
-		if ( $( this ).siblings( 'input[name="search"]' ).val().length == 0 ) {
+		if ( $( this ).siblings( 'input[name="search"]' ).val().length === 0 ) {
 			e.preventDefault();
 			return false;
 		}
@@ -486,7 +487,7 @@ WH.maybeDisplayTopSocialCTA = function () {
 	if ( social ) {
 		var checkMsg = function ( msg ) {
 			return msg && $.trim( msg ).indexOf( '[' ) !== 0;
-		}
+		};
 		var insertHTMLcallback = function ( html ) {
 			if ( !$.trim( html ) ) {
 				return;
@@ -622,6 +623,7 @@ function initTopMenu() {
 			}
 		} );
 
+	// @todo FIXME: getPassword() is defined in /extensions/wikihow/loginreminder/LoginReminder.js
 	$( '#forgot_pwd' ).click( function () {
 		if ( $( '#wpName1' ).val() == 'Username or Email' ) { // @todo FIXME: i18n
 			$( '#wpName1' ).val( '' );
@@ -722,7 +724,7 @@ $( window ).scroll( function () {
 				// likely means we're in a steps section with h3 headers
 				currentHeader = $( this ).find( 'h3' );
 			}
-			if ( currentHeader.length == 0 ) {
+			if ( currentHeader.length === 0 ) {
 				// if there's nothing to use, just skip this section.
 				// Shouldn't really even end up in this case
 				return;
@@ -732,7 +734,7 @@ $( window ).scroll( function () {
 
 		$( '.tool.sticky' ).each( function () {
 			currentHeader = $( '.tool_header' );
-			if ( currentHeader.length == 0 ) {
+			if ( currentHeader.length === 0 ) {
 				// if there's nothing to use, just skip this section.
 				// Shouldn't really even end up in this case
 				return;
@@ -761,7 +763,7 @@ function makeSticky( container, element ) {
 	}
 }
 
-// New checkmarks aren't compatible with IE 8 and earlier so rever to old style
+// New checkmarks aren't compatible with IE 8 and earlier so revert to old style
 $( document ).ready( function () {
 	if ( $.browser.msie && $.browser.version <= 8 ) {
 		$( '.css-checkbox' ).removeClass( 'css-checkbox' );
@@ -846,7 +848,7 @@ function menu_show( choice ) {
 				} );
 
 				// no unread ones? forget about it...
-				if ( unread.length == 0 ) {
+				if ( unread.length === 0 ) {
 					return;
 				}
 
