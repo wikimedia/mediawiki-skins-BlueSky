@@ -31,8 +31,7 @@ class SkinBlueSky extends SkinTemplate {
 		parent::initPage( $out );
 
 		// Load JavaScript via ResourceLoader
-		// @todo FIXME: not ready yet
-		#$out->addModules( 'skins.owl.js' );
+		$out->addModules( 'skins.owl.js' );
 	}
 
 	/**

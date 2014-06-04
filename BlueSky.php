@@ -72,7 +72,6 @@ $wgResourceModules['skins.bluesky.loggedin'] = array(
 	'position' => 'top'
 );
 
-/*
 $wgResourceModules['skins.bluesky.js.easing'] = array(
 	'scripts' => 'skins/BlueSky/resources/js/jquery.easing.js',
 	'position' => 'top'
@@ -91,7 +90,7 @@ $wgResourceModules['skins.bluesky.js'] = array(
 	),
 	'dependencies' => array( 'skins.bluesky.js.easing' )
 );
-*/
+
 /**
  * Additional junk for the page head element.
  */

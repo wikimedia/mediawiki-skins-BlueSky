@@ -795,7 +795,7 @@ function menu_show( choice ) {
 	)
 	{
 		// first, let's just hide it
-		$( '#notification_count').hide();
+		$( '#notification_count' ).hide();
 
 		if ( mw.echo ) {
 			// now grab the unread messages and mark them as read
