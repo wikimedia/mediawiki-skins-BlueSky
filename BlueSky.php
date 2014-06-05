@@ -86,9 +86,15 @@ $wgResourceModules['skins.bluesky.js'] = array(
 	),
 	'messages' => array(
 		'navlist_collapse', 'navlist_expand',
-		'usernameoremail', 'password'
+		'usernameoremail', 'password',
+		'bluesky-js-no-thanks'
 	),
-	'dependencies' => array( 'skins.bluesky.js.easing' )
+	'dependencies' => array(
+		'skins.bluesky.js.easing',
+		// for the e-mail to a friend stuff (well, at least as long as it's
+		// there...)
+		'jquery.ui.dialog'
+	)
 );
 
 /**

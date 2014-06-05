@@ -66,7 +66,7 @@ function getCookie( c_name ) {
  * @param {String} Subpage name
  */
 function updateWidget( id, x ) {
-	var url = '/Special:Standings/' + x;
+	var url = mw.util.getUrl( 'Special:Standings/' + x );
 	$.get( url,
 		function ( data ) {
 			$( id ).fadeOut();
@@ -102,7 +102,7 @@ function setupEmailLinkForm() {
 		$( '#emaillink input' ).each( function () {
 			params[$( this ).attr( 'name' )] = $( this ).val();
 		} );
-		$.post( '/Special:EmailLink', params, function ( data ) {
+		$.post( mw.util.getUrl( 'Special:EmailLink' ), params, function ( data ) {
 			$( '#dialog-box' ).html( data );
 			setupEmailLinkForm();
 		} );
@@ -111,19 +111,20 @@ function setupEmailLinkForm() {
 }
 
 function emailLink() {
-	var url = '/extensions/wikihow/common/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js';
-	$.getScript( url, function() {
-		var url2 = '/Special:EmailLink?target=' + mw.config.get( 'wgPageName' ) + '&fromajax=true';
-		$( '#dialog-box' ).load( url2, function() {
-			$( '#dialog-box' ).dialog( {
-				modal: true,
-				title: 'E-mail This Page to a Friend',
-				width: 650,
-				height: 400,
-				closeText: 'Close'
-			} );
-			setupEmailLinkForm();
+	var params = {
+		target: mw.config.get( 'wgPageName' ),
+		fromajax: true
+	};
+	var url = mw.util.getUrl( 'Special:EmailLink', params );	
+	$( '#dialog-box' ).load( url2, function() {
+		$( '#dialog-box' ).dialog( {
+			modal: true,
+			title: 'E-mail This Page to a Friend',
+			width: 650,
+			height: 400,
+			closeText: 'Close'
 		} );
+		setupEmailLinkForm();
 	} );
 	return false;
 }
@@ -138,26 +139,26 @@ function plusone_vote( obj ) {
 	}
 }
 
-jQuery( '.lbg' ).live( 'click', function () {
+jQuery( document ).on( 'click', '.lbg', function () {
 	var id = jQuery( this ).attr( 'id' ).split( '_' );
 	jQuery( '#lbgi_' + id[1] ).click();
 } );
 
-jQuery( '#tb_steps' ).live( 'click', function () {
+jQuery( document ).on( 'click', '#tb_steps', function () {
 	$( '#tb_steps' ).addClass( 'on' );
 	$( '#tb_tips' ).removeClass( 'on' );
 	$( '#tb_warnings' ).removeClass( 'on' );
 	$( 'html, body' ).animate({ scrollTop: $( '#steps' ).offset().top - 70}, 'slow');
 } );
 
-jQuery( '#tb_tips' ).live( 'click', function () {
+jQuery( document ).on( 'click', '#tb_tips', function () {
 	$( '#tb_tips' ).addClass( 'on' );
 	$( '#tb_steps' ).removeClass( 'on' );
 	$( '#tb_warnings' ).removeClass( 'on' );
 	$( 'html, body' ).animate({ scrollTop: $( '#tips' ).offset().top - 70}, 'slow');
 } );
 
-jQuery( '#tb_warnings' ).live( 'click', function () {
+jQuery( document ).on( 'click', '#tb_warnings', function () {
 	$( '#tb_warnings' ).addClass( 'on' );
 	$( '#tb_steps' ).removeClass( 'on' );
 	$( '#tb_tips' ).removeClass( 'on' );
@@ -193,7 +194,7 @@ WH.addScrollEffectToHashes = function ( anchors ) {
 		}
 
 		// add a new click handler
-		$( this ).click( function () {
+		$( this ).on( 'click', function () {
 			$.scrollTo( anchor, 1000 );
 			if ( history.pushState ) {
 				history.pushState( null, null, '#' + hash );
@@ -206,6 +207,13 @@ WH.addScrollEffectToHashes = function ( anchors ) {
 	} );
 };
 
+/**
+ * Has the page been scrolled so that .article_bottom is visible?
+ *
+ * @todo FIXME: This method makes no sense because the skin doesn't natively
+ *              provide such an element. Where does it come from?
+ * @return bool
+ */
 WH.isPageScrolledToArticleBottom = function () {
 	var elem = '.article_bottom';
 	var docViewTop = $( window ).scrollTop();
@@ -218,6 +226,12 @@ WH.isPageScrolledToArticleBottom = function () {
 	return ( ( elemBottom >= docViewTop ) && ( elemTop <= docViewBottom ) );
 };
 
+/**
+ * Has the page been scrolled so that either #warnings or #article_info_header
+ * is visible?
+ *
+ * @return bool
+ */
 WH.isPageScrolledToWarningsORArticleInfo = function () {
 	var elem1 = '#warnings';
 	var elem2 = '#article_info_header';
@@ -236,6 +250,11 @@ WH.isPageScrolledToWarningsORArticleInfo = function () {
 	return offset ? offset.top <= docViewBottom : false;
 };
 
+/**
+ * Has the page been scrolled so that #follow_table is visible?
+ *
+ * @return bool
+ */
 WH.isPageScrolledToFollowTable = function () {
 	var the_elem = '#follow_table';
 
@@ -248,7 +267,7 @@ WH.isPageScrolledToFollowTable = function () {
 
 // Snippet to prevent site search forms submitting empty queries
 ( function ( $ ) {
-	$( '#search_site_bubble,#search_site_footer' ).live( 'click', function ( e ) {
+	$( document ).on( 'click', '#search_site_bubble, #search_site_footer', function ( e ) {
 		if ( $( this ).siblings( 'input[name="search"]' ).val().length === 0 ) {
 			e.preventDefault();
 			return false;
@@ -261,7 +280,7 @@ $( document ).ready( function () {
 	// Slider -- not for browsers that don't render +1 buttons
 	var oldMSIE = $.browser.msie && $.browser.version <= 7;
 	if (
-		$('#slideshowdetect').length &&
+		$( '#slideshowdetect' ).length &&
 		slider &&
 		!getCookie( 'sliderbox' ) &&
 		isiPhone < 0 &&
@@ -319,21 +338,24 @@ $( document ).ready( function () {
 
 	// fire off slideshow if we need to
 	if ( $( '#showslideshow' ).length ) {
-		//var url = '/Special:GallerySlide?show-slideshow=1&aid='+wgArticleId;
-		//var url = '/Special:GallerySlide?show-slideshow=1&big-show=1&aid='+wgArticleId;
-		var url = '/Special:GallerySlide?show-slideshow=1&big-show=1&article_layout=2&aid=' + mw.config.get( 'wgArticleId' );
+		var url = mw.util.getUrl( 'Special:GallerySlide', {
+			'show-slideshow': 1,
+			'big-show': 1,
+			'article-layout': 2,
+			aid: mw.config.get( 'wgArticleId' )
+		} );
 
 		$.getJSON( url, function ( json ) {
 			if ( json && json.content ) {
 				document.getElementById( 'showslideshow' ).innerHTML = json.content;
-				fireUpSlideShow( json.num_images);
+				fireUpSlideShow( json.num_images );
 				$( '#showslideshow' ).slideDown();
 			}
 		} );
 	}
 
 	// add checkbox click handlers
-	$( '.step_checkbox' ).click( function () {
+	$( '.step_checkbox' ).on( 'click', function () {
 		if ( $( this ).hasClass( 'step_checked' ) ) {
 			$( this ).removeClass( 'step_checked' );
 		} else {
@@ -347,7 +369,7 @@ $( document ).ready( function () {
 		}
 		return false;
 	} );
-	$( '.css-checkbox' ).click( function() {
+	$( '.css-checkbox' ).on( 'click', function() {
 		$( this ).parent().find( '.checkbox-text' ).toggleClass( 'fading' );
 	} );
 
@@ -355,7 +377,7 @@ $( document ).ready( function () {
 	initAdminMenu();
 
 	// site notice close
-	$( '#site_notice_x' ).click( function () {
+	$( '#site_notice_x' ).on( 'click', function () {
 		// 30 day cookie
 		var exdate = new Date();
 		var expiredays = 30;
@@ -367,6 +389,14 @@ $( document ).ready( function () {
 	} );
 } );
 
+/**
+ * Set the correct language code for Google+.
+ *
+ * Currently there's some special handling for Portuguese (pt) to make Google+
+ * use Brazilian Portuguese instead of European Portuguese, and Google+ language
+ * code is also set for Spanish (es) and German (de). All other languages
+ * appear to be ignored? Strange.
+ */
 WH.setGooglePlusOneLangCode = function () {
 	var langCode = '';
 	if ( mw.config.get( 'wgUserLanguage' ) == 'pt' ) {
@@ -387,14 +417,14 @@ WH.setGooglePlusOneLangCode = function () {
 jQuery( document ).on( 'click', 'a#wikitext_downloader', function ( e ) {
 	e.preventDefault();
 	var data = { 'pageid': mw.config.get( 'wgArticleId' ) };
-	jQuery.download( '/Special:WikitextDownloader', data );
+	jQuery.download( mw.util.getUrl( 'Special:WikitextDownloader' ), data );
 } );
 
-jQuery( '#authors' ).click( function ( e ) {
+jQuery( '#authors' ).on( 'click', function ( e ) {
 	$( '#originator_names' ).toggle();
 	return false;
 } );
-jQuery( '#originator_names_close' ).click( function ( e ) {
+jQuery( '#originator_names_close' ).on( 'click', function ( e ) {
 	$( '#originator_names' ).hide();
 	return false;
 } );
@@ -423,10 +453,10 @@ WH.displayTranslationCTA = function () {
 		if ( msg ) {
 			$( '#main' ).prepend(
 				'<span id="gatNewMessage"><div class="message_box">' + msg +
-				// @todo FIXME: i18n
-				'<div class="transd-no" style="float:right;padding-right:10px;font-size:12px;"><a href="#">No thanks</a></div></div></span>'
+				'<div class="transd-no" style="float:right;padding-right:10px;font-size:12px;"><a href="#">' +
+				mw.msg( 'bluesky-js-no-thanks' ) + '</a></div></div></span>'
 			);
-			$( '.transd-no' ).click( function () {
+			$( '.transd-no' ).on( 'click', function () {
 				$( '.message_box' ).hide();
 				setCookie( 'trans', 1, 30 );
 
@@ -439,7 +469,8 @@ WH.displayTranslationCTA = function () {
 $( document ).ready( WH.displayTranslationCTA );
 
 /**
- *
+ * Consider displaying a Call To Action (CTA) for users who were referred to
+ * the site from a social network (Facebook, Pinterest, Twitter or Google+).
  */
 WH.maybeDisplayTopSocialCTA = function () {
 	var referrer = document.referrer ? document.referrer : '';
@@ -490,7 +521,7 @@ WH.maybeDisplayTopSocialCTA = function () {
 		if ( html ) {
 			insertHTMLcallback( html );
 		} else {
-			$.get( '/Special:WikihowShare?soc=' + social, insertHTMLcallback );
+			$.get( mw.util.getUrl( 'Special:WikihowShare', { soc: social } ), insertHTMLcallback );
 		}
 	}
 };
@@ -545,10 +576,10 @@ function initTopMenu() {
 	} );
 
 	// thumbs up deletion
-	$( '.th_close' ).click( function() {
+	$( '.th_close' ).on( 'click', function() {
 		var revId = $( this ).attr( 'id' );
 		var giverIds = $( '#th_msg_' + revId ).find( '.th_giver_ids' ).html();
-		var url = '/Special:ThumbsNotifications?rev=' + revId + '&givers=' + giverIds;
+		var url = mw.util.getUrl( 'Special:ThumbsNotifications', { rev: revId, givers: giverIds } );
 
 		$.get( url, function ( data ) {} );
 		$( '#th_msg_' + revId ).hide();
@@ -558,12 +589,12 @@ function initTopMenu() {
 	} );
 
 	// logged-in search click
-	$( '#bubble_search .search_box, #cse_q' ).click( function () {
+	$( '#bubble_search .search_box, #cse_q' ).on( 'click', function () {
 		$( this ).addClass( 'search_white' );
 	} );
 
-	//----- login stuff
-	$( '.nav' ).click( function() {
+	// Login stuff
+	$( '.nav' ).on( 'click', function() {
 		if ( $( this ).attr( 'href' ) == '#' ) {
 			return false;
 		}
@@ -571,7 +602,7 @@ function initTopMenu() {
 
 	$( '.userlogin #wpName1, #wpName1_head' ).val( mw.msg( 'usernameoremail' ) )
 		.css( 'color', '#ABABAB' )
-		.click( function () {
+		.on( 'click', function () {
 			if ( $( this ).val() == mw.msg( 'usernameoremail' ) ) {
 				$( this ).val( '' ); // clear field
 				$( this ).css( 'color', '#333' ); // change font color
@@ -590,7 +621,7 @@ function initTopMenu() {
 
 	$( '.userlogin #wpPassword1, #wpPassword1_head' ).val( mw.msg( 'password' ) )
 		.css( 'color', '#ABABAB' )
-		.focus( function() {
+		.focus( function () {
 			if ( $( this ).val() == mw.msg( 'password' ) ) {
 				$( this ).val( '' );
 				$( this ).css( 'color', '#333' ); // change font color
@@ -599,7 +630,7 @@ function initTopMenu() {
 		} );
 
 	// @todo FIXME: getPassword() is defined in /extensions/wikihow/loginreminder/LoginReminder.js
-	$( '#forgot_pwd' ).click( function () {
+	$( '#forgot_pwd' ).on( 'click', function () {
 		if ( $( '#wpName1' ).val() == 'Username or Email' ) { // @todo FIXME: i18n
 			$( '#wpName1' ).val( '' );
 		}
@@ -607,7 +638,7 @@ function initTopMenu() {
 		return false;
 	} );
 
-	$( '#forgot_pwd_head' ).click( function () {
+	$( '#forgot_pwd_head' ).on( 'click', function () {
 		if ( $( '#wpName1_head' ).val() == 'Username or Email' ) { // @todo FIXME: i18n
 			$( '#wpName1_head' ).val( '' );
 		}
@@ -616,14 +647,14 @@ function initTopMenu() {
 	} );
 }
 
-$( '#method_toc_unhide' ).click( function () {
+$( '#method_toc_unhide' ).on( 'click', function () {
 	$( '#method_toc a.excess' ).show();
 	$( '#method_toc_hide' ).show();
 	$( this ).hide();
 	return false;
 } );
 
-$( '#method_toc_hide' ).click( function () {
+$( '#method_toc_hide' ).on( 'click', function () {
 	$( '#method_toc a.excess' ).hide();
 	$( '#method_toc_unhide' ).show();
 	$( this ).hide();
@@ -638,7 +669,10 @@ $( document ).ready( function () {
 	} );
 } );
 
-// shrink/embiggen header
+/**
+ * Shrink/embiggen the main header (div#header_outer) in all sorta-modern
+ * browsers (which means that there's no support for IE7 and older)
+ */
 ( function ( $ ) {
 	var headerToggling = false;
 
@@ -673,7 +707,7 @@ $( document ).ready( function () {
 			bShrunk = true;
 		} else {
 			$( '#header' )
-				.animate({ height: '72px' },150, function () {
+				.animate({ height: '72px' }, 150, function () {
 					$( this ).removeClass( 'shrunk' );
 					$( this ).css( 'overflow', 'visible' ); // jQuery forces overflow: hidden; this counters it
 					$( '#main' ).removeClass( 'shrunk_header' );
@@ -684,7 +718,7 @@ $( document ).ready( function () {
 	}
 } )( jQuery );
 
-// - Make those section headings sticky
+// Make those section headings sticky
 $( window ).scroll( function () {
 	headerHeight = $( '#header' ).height();
 	previousHeader = null;
@@ -755,15 +789,23 @@ $( document ).ready( function () {
 	} );
 } )( jQuery );
 
+/**
+ * This is not directly used by the skin, but instead by various wikiHow extensions.
+ */
 function initToolTitle() {
 	$( '.firstHeading' ).before( '<h5>' + $( '.firstHeading' ).html() + '</h5>' );
 }
 
+/**
+ * The following things appear to call this function:
+ * /extensions/wikihow/nfd/nfdGuardian.js
+ * /extensions/wikihow/video/videoadder.js
+ */
 function addOptions() {
 	$( '.firstHeading' ).before( '<span class="tool_options_link">(<a href="#">Change Options</a>)</span>' ); // @todo FIXME: i18n
 	$( '.firstHeading' ).after( '<div class="tool_options"></div>' );
 
-	$( '.tool_options_link' ).click( function () {
+	$( '.tool_options_link' ).on( 'click', function () {
 		if ( $( '.tool_options' ).css( 'display' ) == 'none' ) {
 			// show it!
 			$( '.tool_options' ).slideDown();

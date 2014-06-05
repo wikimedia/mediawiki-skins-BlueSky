@@ -16,6 +16,7 @@ $messages['en'] = array(
 	'bluesky-discuss' => 'Discuss',
 	'bluesky-edit-this-article' => 'Edit this article', // originally called 'edit-this-article'
 	'bluesky-home' => 'Home',
+	'bluesky-js-no-thanks' => 'No thanks',
 	'bluesky-more-ideas' => 'More ideas...',
 	'bluesky-more-ideas-url' => 'Project:Contribute to {{SITENAME}}',
 	'bluesky-mylinks' => 'My Links', // originally called 'mylinks'
