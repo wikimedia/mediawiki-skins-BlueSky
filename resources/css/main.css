@@ -2027,3 +2027,8 @@ html>body li .article_widget { *margin-left: -60px; } /*dumb IE7*/
 .mw-userpage-userdoesnotexist {
 	display: none;
 }
+
+/** Turn the links in the top bar uppercase via CSS */
+ul#actions li a.nav {
+	text-transform: uppercase;
+}
