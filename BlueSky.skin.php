@@ -31,7 +31,7 @@ class SkinBlueSky extends SkinTemplate {
 		parent::initPage( $out );
 
 		// Load JavaScript via ResourceLoader
-		$out->addModules( 'skins.owl.js' );
+		$out->addModules( 'skins.bluesky.js' );
 	}
 
 	/**
@@ -43,10 +43,10 @@ class SkinBlueSky extends SkinTemplate {
 		parent::setupSkinUserCss( $out );
 
 		// Add CSS via ResourceLoader
-		$out->addModuleStyles( 'skins.owl' );
+		$out->addModuleStyles( 'skins.bluesky' );
 
 		if ( $this->getUser()->isLoggedIn() ) {
-			$out->addModuleStyles( 'skins.owl.loggedin' );
+			$out->addModuleStyles( 'skins.bluesky.loggedin' );
 		}
 	}
 
