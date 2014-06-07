@@ -963,7 +963,7 @@ span.tooltip_span, .th_giver_ids {
 	height: 45px;
 }
 
-#creative_commons, #mediawiki_p, #carbon_neutral {
+div#sub_footer div, #creative_commons, #mediawiki_p, #carbon_neutral {
 	display: inline-block;
 	*display: inline; /*ie7 hack*/
 	top: 40px;
