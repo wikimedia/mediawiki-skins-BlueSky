@@ -706,6 +706,11 @@ input.button.clickfail:hover {
 	color: #FFF;
 }
 
+div.suggestions {
+	/* has to be one higher than that of #header_outer for the suggestions list to display properly */
+	z-index: 100000007;
+}
+
 .search_input {
 	font-size: 1em;
 	padding: 9px;
