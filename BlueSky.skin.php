@@ -1254,13 +1254,6 @@ class SkinBlueSky extends SkinTemplate {
 				if ( !$isLoggedIn ) {
 					break;
 				}
-				/**
-				$html .= Linker::link( SpecialPage::getTitleFor( 'Importvideo', $wgTitle->getText() ), wfMessage( 'importvideo' )->text() );
-				if ( $wgLanguageCode == 'en' ) {
-					$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'RelatedArticle' ), wfMessage( 'manage_related_articles' )->text(), array(), array( "target" => $wgTitle->getPrefixedURL() ) ) .
-							Linker::link( SpecialPage::getTitleFor( 'Articlestats', $wgTitle->getText() ), wfMessage( 'articlestats' )->text() );
-				}
-				**/
 				$html .= Linker::link(
 					SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedURL() ),
 					wfMessage( 'whatlinkshere' )->plain(),
@@ -1271,16 +1264,20 @@ class SkinBlueSky extends SkinTemplate {
 				);
 				break;
 			case 'profile':
+				// @todo Theoretically this should call $this->getPersonalToolsList(),
+				// but since that generates <a>s inside <li>s, it won't work for
+				// our particular use case :-( As a result of not using that
+				// method, the PersonalUrls hook never gets called for this skin
 				if ( $isLoggedIn ) {
-					$html = Linker::link( Title::makeTitle( NS_SPECIAL, 'Mytalk', 'post' ), wfMessage( 'mytalkpage' )->text() ) .
-							Linker::link( Title::makeTitle( NS_SPECIAL, 'Mypage' ), wfMessage( 'myauthorpage' )->text() ) .
+					$html = Linker::link( Title::makeTitle( NS_SPECIAL, 'Mytalk', 'post' ), wfMessage( 'mytalk' )->plain() ) .
+							Linker::link( SpecialPage::getTitleFor( 'Mypage' ), wfMessage( 'bluesky-my-page' )->plain() ) .
 							#Linker::link( Title::makeTitle( NS_SPECIAL, 'Notifications' ), wfMessage( 'mynotifications' )->text() ) .
-							Linker::link( Title::makeTitle( NS_SPECIAL, 'Watchlist' ), wfMessage( 'watchlist' )->text() ) .
+							Linker::link( SpecialPage::getTitleFor( 'Watchlist' ), wfMessage( 'watchlist' )->plain() ) .
 							#Linker::link( Title::makeTitle( NS_SPECIAL, 'Drafts' ), wfMessage( 'mydrafts' )->text() ) .
-							Linker::link( SpecialPage::getTitleFor( 'Mypages', 'Contributions' ), wfMessage( 'mycontris' )->text() ) .
+							Linker::link( SpecialPage::getTitleFor( 'Mypages', 'Contributions' ), wfMessage( 'mycontris' )->plain() ) .
 							#Linker::link( SpecialPage::getTitleFor( 'Mypages', 'Fanmail' ), wfMessage( 'myfanmail' )->text() ) .
-							Linker::link( Title::makeTitle( NS_SPECIAL, 'Preferences' ), wfMessage( 'mypreferences' )->text() ) .
-							Linker::link( Title::makeTitle( NS_SPECIAL, 'Userlogout' ), wfMessage( 'logout' )->text() );
+							Linker::link( SpecialPage::getTitleFor( 'Preferences' ), wfMessage( 'mypreferences' )->plain() ) .
+							Linker::link( SpecialPage::getTitleFor( 'Userlogout' ), wfMessage( 'logout' )->plain() );
 				} else {
 					$html = /*( class_exists( 'UserLoginBox' ) ? UserLoginBox::getLogin( true ) :*/ '@todo FIXME' /*)*/;
 					$menu_css = 'menu_login';
@@ -1318,11 +1315,11 @@ class SkinBlueSky extends SkinTemplate {
 				}
 				break;
 			case 'help':
-				$editHelpTitle = Title::newFromText( wfMessage( 'edithelppage' )->text() );
+				$editHelpMsgContents = wfMessage( 'edithelppage' )->text();
 				// By default it's an (external) URL, hence not a valid Title.
 				// But because MediaWiki is by nature very customizable, someone
 				// might've changed it to point to a local page. Tricky!
-				if ( !$editHelpTitle instanceof Title ) {
+				if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $editHelpMsgContents ) ) {
 					$html = Linker::makeExternalLink(
 						wfMessage( 'edithelppage' )->text(),
 						wfMessage( 'edithelp' )->plain()
@@ -1333,22 +1330,6 @@ class SkinBlueSky extends SkinTemplate {
 						wfMessage( 'edithelp' )->plain()
 					);
 				}
-				/**
-				if ( $wgLanguageCode == 'en' ) {
-					$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'RequestTopic' ), wfMessage( 'requesttopic' )->text() ) .
-							Linker::link( Title::makeTitle( NS_SPECIAL, 'ListRequestedTopics' ), wfMessage( 'listrequtestedtopics' )->text() );
-				}
-
-				if ( $isLoggedIn ) {
-					if ( $wgLanguageCode == 'en' ) {
-						$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'TipsPatrol' ), wfMessage( 'bluesky-navmenu-tipspatrol' )->text() );
-					}
-					$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'RCPatrol' ), wfMessage( 'PatrolRC' )->text() );
-					if ( $wgLanguageCode == 'en' ) {
-						$html .= Linker::link( Title::makeTitle( NS_SPECIAL, 'Categorizer' ), wfMessage( 'categorize_articles' )->text() );
-					}
-				}
-				**/
 
 				$html .= Linker::link(
 					SpecialPage::getTitleFor( 'Uncategorizedpages' ),

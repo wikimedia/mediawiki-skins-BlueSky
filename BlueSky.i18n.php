@@ -20,6 +20,7 @@ $messages['en'] = array(
 	'bluesky-more-ideas' => 'More ideas...',
 	'bluesky-more-ideas-url' => 'Project:Contribute to {{SITENAME}}',
 	'bluesky-mylinks' => 'My Links', // originally called 'mylinks'
+	'bluesky-my-page' => 'My page',
 	'bluesky-navbar-explore' => 'Explore',
 	'bluesky-navbar-help' => 'Help us',
 	'bluesky-navbar-messages' => 'Messages',
