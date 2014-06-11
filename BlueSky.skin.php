@@ -269,25 +269,25 @@ class SkinBlueSky extends SkinTemplate {
 	 * @param bool $isBoxShape
 	 */
 	function getRelatedArticlesBox( $e, $isBoxShape = false ) {
-		global $wgTitle, $wgRequest, $wgMemc;
+		global $wgRequest, $wgMemc;
 
+		$title = $this->getTitle();
 		if (
-			!$wgTitle ||
-			$wgTitle->getNamespace() != NS_MAIN ||
-			$wgTitle->isMainPage() ||
+			$title->getNamespace() != NS_MAIN ||
+			$title->isMainPage() ||
 			$wgRequest->getVal( 'action' ) != ''
 		)
 		{
 			return '';
 		}
 
-		$cachekey = wfMemcKey( 'relarticles_box', intval( $isBoxShape ), $wgTitle->getArticleID() );
+		$cachekey = wfMemcKey( 'relarticles_box', intval( $isBoxShape ), $title->getArticleID() );
 		$val = $wgMemc->get( $cachekey );
 		if ( $val ) {
 			return $val;
 		}
 
-		$cats = Categoryhelper::getCurrentParentCategories();
+		$cats = self::getCurrentParentCategories();
 		$cat = '';
 		if ( is_array( $cats ) && sizeof( $cats ) > 0 ) {
 			$keys = array_keys( $cats );
@@ -312,6 +312,10 @@ class SkinBlueSky extends SkinTemplate {
 		if ( !empty( $cat ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$num = intval( wfMessage( 'num_related_articles_to_display' )->inContentLanguage()->text() );
+			if ( !$num ) {
+				return;
+			}
+			// @todo FIXME: page_is_featured field is a wikiHow-ism
 			$res = $dbr->select(
 				array( 'categorylinks', 'page' ),
 				array( 'cl_from', 'page_is_featured, page_title' ),
@@ -335,7 +339,7 @@ class SkinBlueSky extends SkinTemplate {
 				if ( $count >= $num ) {
 					break;
 				}
-				if ( $row->cl_from == $wgTitle->getArticleID() ) {
+				if ( $row->cl_from == $title->getArticleID() ) {
 					continue;
 				}
 
@@ -592,6 +596,9 @@ class SkinBlueSky extends SkinTemplate {
 			return $result;
 		}
 
+		if ( !class_exists( 'FeaturedArticles' ) ) {
+			return '';
+		}
 		$feeds = FeaturedArticles::getFeaturedArticles( $daysLimit );
 
 		$faURL = wfMessage( 'bluesky-featuredarticles-url' );
@@ -703,6 +710,25 @@ class SkinBlueSky extends SkinTemplate {
 
 		$wgMemc->set( $cachekey, $cats );
 
+		return $cats;
+	}
+
+	/**
+	 * Copied from /extensions/wikihow/Categoryhelper.body.php, 2014-06-05 release
+	 */
+	static function getCurrentParentCategories() {
+		global $wgTitle, $wgMemc;
+
+		$cachekey = wfMemcKey( 'parentcats', $wgTitle->getArticleId() );
+		$cats = $wgMemc->get( $cachekey );
+
+		if ( $cats ) {
+			return $cats;
+		}
+
+		$cats = $wgTitle->getParentCategories();
+
+		$wgMemc->set( $cachekey, $cats );
 		return $cats;
 	}
 
@@ -1004,6 +1030,15 @@ class SkinBlueSky extends SkinTemplate {
 			return;
 		}
 
+		$articleTab = new stdClass;
+		$editTab = new stdClass;
+		$talkTab = new stdClass;
+		$historyTab = new stdClass;
+		$adminTab = new stdClass;
+		$admin1 = new stdClass;
+		$admin2 = new stdClass;
+		$admin3 = new stdClass;
+
 		// article
 		if ( $title->getNamespace() != NS_CATEGORY ) {
 			$articleTab->href = $title->isTalkPage() ? $title->getSubjectPage()->getFullURL() : $title->getFullURL();
@@ -1039,7 +1074,7 @@ class SkinBlueSky extends SkinTemplate {
 			if ( in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK ) ) ) {
 				$msg = wfMessage( 'talk' )->text();
 			} else {
-				$msg = wfMessage( 'discuss' )->text();
+				$msg = wfMessage( 'bluesky-discuss' )->text();
 			}
 			$talkTab->href = $talklink;
 			$talkTab->text = $msg;
@@ -1953,7 +1988,9 @@ class BlueSkyTemplate extends BaseTemplate {
 		</script>
 		<div id="container"<?php echo !$showSideBar ? ' class="no_sidebar"' : '' ?>>
 		<div id="article_shell">
-		<div id="article"<?php if ( class_exists( 'Microdata' ) ) { echo Microdata::genSchemaHeader(); } ?>>
+		<div id="article"<?php if ( class_exists( 'Microdata' ) ) { echo Microdata::genSchemaHeader(); } ?> class="mw-body">
+			<?php if ( $this->data['undelete'] ) { ?><div id="contentSub"><?php $this->html( 'undelete' ) ?></div><?php } ?>
+			<?php if ( $this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html( 'newtalk' ) ?></div><?php } ?>
 			<?php
 			wfRunHooks( 'BeforeTabsLine', array( &$wgOut ) );
 			if ( !$isArticlePage && !$isMainPage && $this->data['bodyheading'] ) {
@@ -1977,7 +2014,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				}
 				?>
 
-				<div class="section">
+				<div class="section noprint">
 					<?php if ( $showingArticleInfo ): ?>
 						<h2 class="section_head" id="article_info_header"><span><?php echo wfMessage( 'bluesky-article-info' )->plain() ?></span></h2>
 						<div id="article_info" class="section_text">
@@ -1995,12 +2032,7 @@ class BlueSkyTemplate extends BaseTemplate {
 								$links = array();
 								$sk = $this->getSkin();
 								foreach ( $this->data['language_urls'] as $langlink ) {
-									$linkText = $langlink['text'];
-									preg_match( '@interwiki-(..)@', $langlink['class'], $langCode );
-									if ( !empty( $langCode[1] ) ) {
-										$linkText = $sk->getInterWikiLinkText( $linkText, $langCode[1] );
-									}
-									$links[] = htmlspecialchars( trim( $langlink['language'] ) ) . '&nbsp;<span><a href="' . htmlspecialchars( $langlink['href'] ) . '">' . $linkText . '</a><span>';
+									$links[] = htmlspecialchars( trim( $langlink['language'] ) ) . '&nbsp;<span><a href="' . htmlspecialchars( $langlink['href'] ) . '">' . $langlink['text'] . '</a><span>';
 								}
 								echo implode( '&#44;&nbsp;', $links );
 								?>
@@ -2025,7 +2057,7 @@ class BlueSkyTemplate extends BaseTemplate {
 								<?php } ?>
 							<?php endif; ?>
 							<li class="endop_edit"><span></span><a href="<?php echo $title->getEditUrl(); ?>" id="gatEditFooter"><?php echo wfMessage( 'edit' )->plain(); ?></a></li>
-							<?php if ( $title->getNamespace() == NS_MAIN ) { ?>
+							<?php if ( $title->getNamespace() == NS_MAIN && class_exists( 'ThankAuthors' ) ) { ?>
 								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?php echo $title->getPrefixedURL(); ?>" id="gatThankAuthors"><?php echo wfMessage( 'at_fanmail' )->text() ?></a></li>
 							<?php } ?>
 						</ul> <!--end #end_options -->
