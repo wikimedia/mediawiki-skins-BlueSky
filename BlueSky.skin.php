@@ -1856,13 +1856,6 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$navTabs = $sk->genNavigationTabs();
 
-		$optimizelyJS = false;
-		if ( class_exists( 'OptimizelyPageSelector' ) ) {
-			if ( OptimizelyPageSelector::isArticleEnabled( $title ) && OptimizelyPageSelector::isUserEnabled( $wgUser ) ) {
-				$optimizelyJS = OptimizelyPageSelector::getOptimizelyTag();
-			}
-		}
-
 		$showBreadCrumbs = $sk->showBreadCrumbs();
 		$showSideBar = $sk->showSideBar();
 		$showHeadSection = $sk->showHeadSection();
@@ -2249,10 +2242,6 @@ class BlueSkyTemplate extends BaseTemplate {
 		<div id="fb-root"></div>
 
 		<?php
-		if ( $optimizelyJS ) {
-			echo $optimizelyJS;
-		}
-
 		if ( $showRCWidget ) {
 			RCWidget::showWidgetJS();
 		}
