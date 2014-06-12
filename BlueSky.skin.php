@@ -156,58 +156,13 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	/**
-	 * @todo Is this used?
-	 * @param $userId Integer: user id in database.
-	 * @param $userText String: user name in database.
-	 * @return string HTML fragment with talk and/or block links
-	 * @private
-	 */
-	function userToolLinks( $userId, $userText ) {
-		global $wgUser, $wgDisableAnonTalk, $wgSysopUserBans, $wgTitle, $wgRequest;
-		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
-		$blockable = ( $wgSysopUserBans || 0 == $userId );
-
-		$items = array();
-		if ( $talkable ) {
-			$items[] = $this->userTalkLink( $userId, $userText );
-		}
-
-		// Added for quick note feature
-		if (
-			$wgTitle->getNamespace() != NS_SPECIAL &&
-			class_exists( 'QuickNoteEdit' ) &&
-			$wgRequest->getVal( 'diff', '' )
-		)
-		{
-			$items[] = QuickNoteEdit::getQuickNoteLink( $wgTitle, $userId, $userText );
-		}
-
-		$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
-		$items[] = Linker::linkKnown( $contribsPage, wfMsgHtml( 'contribslink' ) );
-
-		if ( $wgTitle->isSpecial( 'Recentchanges' ) && $wgUser->isAllowed( 'patrol' ) ) {
-			$contribsPage = SpecialPage::getTitleFor( 'Bunchpatrol', $userText );
-			$items[] = Linker::linkKnown( $contribsPage , 'bunch' );
-		}
-		if ( $blockable && $wgUser->isAllowed( 'block' ) ) {
-			$items[] = $this->blockLink( $userId, $userText );
-		}
-
-		if ( $items ) {
-			return ' (' . implode( ' | ', $items ) . ')';
-		} else {
-			return '';
-		}
-	}
-
-	/**
 	 * User links feature: users can get a list of their own links by specifying
 	 * a list in User:username/Mylinks
 	 *
 	 * @return string
 	 */
 	function getUserLinks() {
-		global $wgUser, $wgParser, $wgTitle;
+		global $wgUser, $wgParser;
 
 		$ret = '';
 		// This feature is available only for registered users.
@@ -224,7 +179,7 @@ class SkinBlueSky extends SkinTemplate {
 				$ret = '<h3>' . wfMessage( 'bluesky-mylinks' )->text() . '</h3>';
 				$ret .= '<div id="my_links_list">';
 				$options = new ParserOptions();
-				$output = $wgParser->parse( $text, $wgTitle, $options );
+				$output = $wgParser->parse( $text, $this->getTitle(), $options );
 				$ret .= $output->getText();
 				$ret .= '</div>';
 			}
@@ -588,7 +543,7 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return string HTML
 	 */
 	function getFeaturedArticlesBox( $daysLimit = 11, $linksLimit = 4 ) {
-		global $wgServer, $wgTitle, $wgMemc, $wgProdHost;
+		global $wgServer, $wgMemc, $wgProdHost;
 
 		$cachekey = wfMemcKey( 'featuredbox', $daysLimit, $linksLimit );
 		$result = $wgMemc->get( $cachekey );
@@ -935,12 +890,9 @@ class SkinBlueSky extends SkinTemplate {
 	 * Calls any hooks in place to see if a module has requested that the
 	 * right rail on the site shouldn't be displayed.
 	 *
-	 * @todo This is *very* dirty since it uses The Global That Shall Not Be Named
-	 *
 	 * @return bool
 	 */
 	static function showSideBar() {
-		global $wgTitle;
 		$result = true;
 		wfRunHooks( 'ShowSideBar', array( &$result ) );
 		return $result;
