@@ -1184,29 +1184,6 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	/**
-	 * Calls any hooks in place to see if a module has requested that the
-	 * bread crumb (category) links at the top of the article shouldn't
-	 * be displayed.
-	 *
-	 * @return bool
-	 */
-	static function showHeadSection() {
-		global $wgTitle;
-		$result = true;
-		wfRunHooks( 'ShowHeadSection', array( &$result ) );
-
-		// Don't show head section in wikiHow:Tour pages
-		if (
-			$wgTitle->getNamespace() == NS_PROJECT &&
-			stripos( $wgTitle->getPrefixedText(), 'wikiHow:Tour' ) !== false
-		)
-		{
-			$result = false;
-		}
-		return $result;
-	}
-
-	/**
 	 * Generates the four navigation tabs, which are shown on the fixed header.
 	 * Currently the tabs and their contents are basically hard-coded, but maybe
 	 * eventually those are editable without touching this file.
@@ -1858,7 +1835,6 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$showBreadCrumbs = $sk->showBreadCrumbs();
 		$showSideBar = $sk->showSideBar();
-		$showHeadSection = $sk->showHeadSection();
 		$showArticleTabs = $title->getNamespace() != NS_SPECIAL && !$isMainPage;
 		if (
 			in_array( $title->getNamespace(), array( NS_FILE ) ) &&
