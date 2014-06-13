@@ -190,7 +190,8 @@ class SkinBlueSky extends SkinTemplate {
 
 	/**
 	 * This function tries to answer the question, "does the given Title need
-	 * further editing?".
+	 * further editing?". This is determined by checking if the article contains
+	 * any of the templates listed on [[MediaWiki:Templates_further_editing]].
 	 *
 	 * @param Title $title
 	 * @return bool
@@ -242,11 +243,16 @@ class SkinBlueSky extends SkinTemplate {
 			return $val;
 		}
 
-		$cats = self::getCurrentParentCategories();
+		$ignored = wfMessage( 'categories_to_ignore' );
+		if ( $ignored->isDisabled() ) {
+			return;
+		}
+
+		$cats = $this->getCurrentParentCategories();
 		$cat = '';
 		if ( is_array( $cats ) && sizeof( $cats ) > 0 ) {
 			$keys = array_keys( $cats );
-			$templates = wfMessage( 'categories_to_ignore' )->inContentLanguage()->text();
+			$templates = $ignored->inContentLanguage()->text();
 			$templates = explode( "\n", $templates );
 			$templates = str_replace( 'http://www.wikihow.com/Category:', '', $templates );
 			$templates = array_flip( $templates ); // make the array associative.
@@ -343,7 +349,7 @@ class SkinBlueSky extends SkinTemplate {
 		return $result;
 	}
 
-	static function getGalleryImage( $title, $width, $height, $skip_parser = false ) {
+	static function getGalleryImage( $title, $width, $height, $skipParser = false ) {
 		global $wgMemc, $wgLanguageCode;
 
 		$cachekey = wfMemcKey( 'gallery1', $title->getArticleID(), $width, $height );
@@ -354,7 +360,7 @@ class SkinBlueSky extends SkinTemplate {
 
 		if ( ( $title->getNamespace() == NS_MAIN ) || ( $title->getNamespace() == NS_CATEGORY ) ) {
 			if ( $title->getNamespace() == NS_MAIN ) {
-				$file = Wikitext::getTitleImage( $title, $skip_parser );
+				$file = Wikitext::getTitleImage( $title, $skipParser );
 
 				if ( $file && isset( $file ) ) {
 					// need to figure out what size it will actually be able to create
@@ -498,6 +504,10 @@ class SkinBlueSky extends SkinTemplate {
 		);
 	}
 
+	/**
+	 * @param Title|array $data
+	 * @return string HTML
+	 */
 	function featuredArticlesRow( $data ) {
 		if ( !is_array( $data ) ) { // $data is actually a Title obj
 			$data = self::featuredArticlesAttrs( $data, $data->getText() );
@@ -612,7 +622,13 @@ class SkinBlueSky extends SkinTemplate {
 		return $html;
 	}
 
-	// overloaded from Skin class
+	/**
+	 * Render the array as a series of links.
+	 * Overloaded from the Skin class.
+	 *
+	 * @param array $tree Categories tree returned by Title::getParentCategoryTree
+	 * @return string Separated by &gt;, terminate with "\n"
+	 */
 	function drawCategoryBrowser( $tree ) {
 		$return = '';
 		//$viewMode = WikihowCategoryViewer::getViewModeArray( $this->getContext() );
@@ -650,18 +666,21 @@ class SkinBlueSky extends SkinTemplate {
 
 	/**
 	 * Copied from /extensions/wikihow/Categoryhelper.body.php, 2014-05-22 release
+	 * and made non-static to remove dependency on a very ugly global
 	 */
-	static function getCurrentParentCategoryTree() {
-		global $wgTitle, $wgMemc;
+	private function getCurrentParentCategoryTree() {
+		global $wgMemc;
 
-		$cachekey = wfMemcKey( 'parentcattree', $wgTitle->getArticleId() );
+		$title = $this->getTitle();
+
+		$cachekey = wfMemcKey( 'parentcattree', $title->getArticleId() );
 		$cats = $wgMemc->get( $cachekey );
 
 		if ( $cats ) {
 			return $cats;
 		}
 
-		$cats = $wgTitle->getParentCategoryTree();
+		$cats = $title->getParentCategoryTree();
 
 		$wgMemc->set( $cachekey, $cats );
 
@@ -670,18 +689,21 @@ class SkinBlueSky extends SkinTemplate {
 
 	/**
 	 * Copied from /extensions/wikihow/Categoryhelper.body.php, 2014-06-05 release
+	 * and made non-static to remove dependency on a very ugly global
 	 */
-	static function getCurrentParentCategories() {
-		global $wgTitle, $wgMemc;
+	private function getCurrentParentCategories() {
+		global $wgMemc;
 
-		$cachekey = wfMemcKey( 'parentcats', $wgTitle->getArticleId() );
+		$title = $this->getTitle();
+
+		$cachekey = wfMemcKey( 'parentcats', $title->getArticleId() );
 		$cats = $wgMemc->get( $cachekey );
 
 		if ( $cats ) {
 			return $cats;
 		}
 
-		$cats = $wgTitle->getParentCategories();
+		$cats = $title->getParentCategories();
 
 		$wgMemc->set( $cachekey, $cats );
 		return $cats;
@@ -731,7 +753,7 @@ class SkinBlueSky extends SkinTemplate {
 			$s .= ' ';
 
 			# get a big array of the parents tree
-			$parentTree = self::getCurrentParentCategoryTree();
+			$parentTree = $this->getCurrentParentCategoryTree();
 			if ( is_array( $parentTree ) ) {
 				$parentTree = array_reverse( $parentTree );
 			} else {
@@ -1487,18 +1509,19 @@ class SkinBlueSky extends SkinTemplate {
 		return '';
 	}
 
-	static function getHTMLTitle( $defaultHTMLTitle, $title, $isMainPage ) {
-		global $wgTitle, $wgRequest, $wgLang, $wgSitename;
+	protected function getHTMLTitle( $defaultHTMLTitle, $title, $isMainPage ) {
+		global $wgRequest, $wgLang, $wgSitename;
 
-		$namespace = $wgTitle->getNamespace();
+		$theRealTitle = $this->getTitle();
+		$namespace = $theRealTitle->getNamespace();
 		$action = $wgRequest->getVal( 'action', 'view' );
 
 		$htmlTitle = $defaultHTMLTitle;
 		if ( $isMainPage ) {
 			$htmlTitle = $wgSitename . ' - ' . wfMessage( 'main_title' )->text();
-		} elseif ( $namespace == NS_MAIN && $wgTitle->exists() && $action == 'view' ) {
+		} elseif ( $namespace == NS_MAIN && $theRealTitle->exists() && $action == 'view' ) {
 			if ( class_exists( 'TitleTests' ) ) {
-				$titleTest = TitleTests::newFromTitle( $wgTitle );
+				$titleTest = TitleTests::newFromTitle( $theRealTitle );
 				if ( $titleTest ) {
 					$htmlTitle = $titleTest->getTitle();
 				}
@@ -1507,10 +1530,10 @@ class SkinBlueSky extends SkinTemplate {
 				$htmlTitle = wfMessage( 'pagetitle', $howto )->text();
 			}
 		} elseif ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
-			$username = $wgTitle->getText();
+			$username = $theRealTitle->getText();
 			$htmlTitle = $wgLang->getNsText( $namespace ) . ": $username - $wgSitename";
 		} elseif ( $namespace == NS_CATEGORY ) {
-			$htmlTitle = wfMessage( 'category_title_tag', $wgTitle->getText() )->text();
+			$htmlTitle = wfMessage( 'category_title_tag', $theRealTitle->getText() )->text();
 		}
 
 		return $htmlTitle;
@@ -1566,7 +1589,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$isIndexed = class_exists( 'RobotPolicy' ) && RobotPolicy::isIndexable( $title );
 
-		$pageTitle = SkinBlueSky::getHTMLTitle( $wgOut->getHTMLTitle(), $this->data['title'], $isMainPage );
+		$pageTitle = $sk->getHTMLTitle( $wgOut->getHTMLTitle(), $this->data['title'], $isMainPage );
 
 		// set the title and what not
 		$avatar = '';
@@ -1773,14 +1796,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			$body = $this->data['bodytext'];
 			$opts = array();
 			// $this->data['bodytext'] = WikihowArticleHTML::postProcess($body, $opts);
-		}
-
-		// insert avatars into discussion, talk, and kudos pages
-		// @todo FIXME: just remove this altogether, extensions should remain self-contained
-		if ( class_exists( 'Avatar' ) ) {
-			if ( MWNamespace::isTalk( $title->getNamespace() ) || $title->getNamespace() == NS_USER_KUDOS ) {
-				$this->data['bodytext'] = Avatar::insertAvatarIntoDiscussion( $this->data['bodytext'] );
-			}
 		}
 
 		$navTabs = $sk->genNavigationTabs();
@@ -2018,10 +2033,36 @@ class BlueSkyTemplate extends BaseTemplate {
 				?>
 				<!-- END Sidebar Top Widgets -->
 
-				<?php if ( !$isDocViewer ) { ?>
+				<?php
+				// "Write an article" button
+				$writeMsgContents = wfMessage( 'bluesky-write-article-url' )->text();
+				if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $writeMsgContents ) ) {
+					$write = Linker::makeExternalLink(
+						$writeMsgContents,
+						wfMessage( 'bluesky-write-article' )->plain(),
+						/* escape */true,
+						/* link type */'',
+						/* array of extra attributes to <a> */array(
+							'id' => 'gatWriteAnArticle',
+							'class' => 'button secondary'
+						)
+					);
+				} else {
+					$write = Linker::link(
+						Title::newFromText( $writeMsgContents ),
+						wfMessage( 'bluesky-write-article' )->plain(),
+						array(
+							'id' => 'gatWriteAnArticle',
+							'class' => 'button secondary'
+						)
+					);
+				}
+
+				if ( !$isDocViewer ) {
+				?>
 				<div id="top_links" class="sidebox<?php echo $loggedOutClass ?>" <?php echo is_numeric( wfMessage( 'top_links_padding' )->text() ) ? ' style="padding-left:' . wfMessage( 'top_links_padding' )->text() . 'px;padding-right:' . wfMessage( 'top_links_padding' )->text() . 'px;"' : '' ?>>
 					<a href="<?php echo SpecialPage::getTitleFor( 'Randompage' )->getFullURL() ?>" id="gatRandom" accesskey="x" class="button secondary"><?php echo wfMessage( 'randompage' )->plain(); ?></a>
-					<a href="/Special:Createpage" id="gatWriteAnArticle" class="button secondary"><?php echo /* @todo FIXME wfMessage( 'writearticle' )->text(); */ 'Write article'; ?></a>
+					<?php echo $write ?>
 				</div><!--end #top_links-->
 				<?php } ?>
 				<?php if ( $showStaffStats ): ?>

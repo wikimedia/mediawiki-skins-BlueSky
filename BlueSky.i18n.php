@@ -38,4 +38,6 @@ $messages['en'] = array(
 	'bluesky-unread-notifications' => '{{PLURAL:$1|One unread|$1 unread}}',
 	'bluesky-unwatch' => 'Remove watch',
 	'bluesky-watch' => 'Watch',
+	'bluesky-write-article' => 'Write article',
+	'bluesky-write-article-url' => '{{ns:help}}:Creating a new page',
 );
