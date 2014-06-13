@@ -1823,10 +1823,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			!$isDocViewer &&
 			$action != 'edit';
 
-		$showFollowWidget =
-			class_exists( 'FollowWidget' ) &&
-			!$isDocViewer &&
-			in_array( $wgLanguageCode, array( 'en', 'de', 'es', 'pt' ) );
+		$showFollowWidget = !wfMessage( 'bluesky-follow-table' )->isDisabled();
 
 		$showSocialSharing =
 			$title->exists() &&
@@ -2116,12 +2113,18 @@ class BlueSkyTemplate extends BaseTemplate {
 					<div class="sidebox" id="side_rc_widget">
 						<?php RCWidget::showWidget(); ?>
 						<p class="bottom_link">
-							<?php if ( $isLoggedIn ) { ?>
-								<?php echo wfMessage( 'welcome', $wgUser->getName(), $wgUser->getUserPage()->getLocalURL() )->text(); ?>
-							<?php } else { ?>
-								<a href="/Special:Userlogin" id="gatWidgetBottom"><?php echo wfMessage( 'rcwidget_join_in' )->text()?></a>
-							<?php } ?>
-							<a href="" id="play_pause_button" onclick="rcTransport(this); return false;" ></a>
+							<?php
+							if ( $isLoggedIn ) {
+								echo wfMessage( 'welcome', $wgUser->getName(), $wgUser->getUserPage()->getLocalURL() )->text();
+							} else {
+								echo Linker::link(
+									SpecialPage::getTitleFor( 'Userlogin' ),
+									wfMessage( 'rcwidget_join_in' )->text(),
+									array( 'id' => 'gatWidgetBottom' )
+								);
+							}
+							?>
+							<a href="" id="play_pause_button" onclick="rcTransport(this); return false;"></a>
 						</p>
 					</div><!--end #side_rc_widget-->
 				<?php endif; ?>
@@ -2131,17 +2134,18 @@ class BlueSkyTemplate extends BaseTemplate {
 						<?php FeaturedContributor::showWidget(); ?>
 						<?php if ( !$isLoggedIn ): ?>
 							<p class="bottom_button">
-								<a href="/Special:Userlogin" class="button secondary" id="gatFCWidgetBottom" onclick='gatTrack("Browsing","Feat_contrib_cta","Feat_contrib_wgt");'><? echo wfMessage( 'fc_action' )->text() ?></a>
+								<a href="/Special:Userlogin" class="button secondary" id="gatFCWidgetBottom" onclick='gatTrack("Browsing","Feat_contrib_cta","Feat_contrib_wgt");'><?php echo wfMessage( 'fc_action' )->text() ?></a>
 							</p>
 						<?php endif; ?>
 					</div><!--end #side_featured_contributor-->
 				<?php endif; ?>
 
-				<?php if ( $showFollowWidget ): ?>
+				<?php if ( $showFollowWidget ) { ?>
 					<div class="sidebox">
-						<?php FollowWidget::showWidget(); ?>
+						<h3><?php echo wfMessage( 'bluesky-follow-header' )->plain() ?></h3>
+						<?php echo wfMessage( 'bluesky-follow-table' )->text() ?>
 					</div>
-				<?php endif; ?>
+				<?php } ?>
 			</div><!--end #sidebar-->
 		<?php endif; // end if $showSideBar ?>
 		<div class="clearall"></div>
