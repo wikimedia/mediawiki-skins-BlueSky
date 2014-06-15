@@ -2230,8 +2230,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			echo Pagestats::getJSsnippet( 'article' );
 		}
 
-		echo $wgOut->getBottomScripts();
-
 		if ( class_exists( 'GoodRevision' ) ) {
 			$grevid = $title ? GoodRevision::getUsedRev( $title->getArticleID() ) : '';
 			$latestRev = $title->getNamespace() == NS_MAIN ? $title->getLatestRevID() : '';
