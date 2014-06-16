@@ -1509,7 +1509,7 @@ class SkinBlueSky extends SkinTemplate {
 		return '';
 	}
 
-	protected function getHTMLTitle( $defaultHTMLTitle, $title, $isMainPage ) {
+	public function getHTMLTitle( $defaultHTMLTitle, $title, $isMainPage ) {
 		global $wgRequest, $wgLang, $wgSitename;
 
 		$theRealTitle = $this->getTitle();
@@ -1843,11 +1843,14 @@ class BlueSkyTemplate extends BaseTemplate {
 			$wgRequest->getVal( 'oldid' ) == '' &&
 			( $wgRequest->getVal( 'action' ) == '' || $wgRequest->getVal( 'action' ) == 'view' );
 
-		$showFeaturedArticlesSidebar = $action == 'view'
+		$showFeaturedArticlesSidebar = false;
+			/*
+			$action == 'view'
 			&& !$isMainPage
 			&& !$isDocViewer
 			&& !$wgSSLsite
 			&& $title->getNamespace() != NS_USER;
+			*/
 
 		$isSpecialPage = $title->getNamespace() == NS_SPECIAL
 			|| ( $title->getNamespace() == NS_MAIN && $wgRequest->getVal( 'action' ) == 'protect' )
@@ -2129,16 +2132,19 @@ class BlueSkyTemplate extends BaseTemplate {
 					</div><!--end #side_rc_widget-->
 				<?php endif; ?>
 
-				<?php if ( class_exists( 'FeaturedContributor' ) && ( $title->getNamespace() == NS_MAIN || $title->getNamespace() == NS_USER ) && !$isMainPage && !$isDocViewer ): ?>
+				<?php if ( ( $title->getNamespace() == NS_MAIN || $title->getNamespace() == NS_USER ) && !$isMainPage && !$isDocViewer ) { ?>
 					<div id="side_featured_contributor" class="sidebox">
-						<?php FeaturedContributor::showWidget(); ?>
-						<?php if ( !$isLoggedIn ): ?>
-							<p class="bottom_button">
-								<a href="/Special:Userlogin" class="button secondary" id="gatFCWidgetBottom" onclick='gatTrack("Browsing","Feat_contrib_cta","Feat_contrib_wgt");'><?php echo wfMessage( 'fc_action' )->text() ?></a>
+						<?php $this->showFeaturedContributorWidget(); ?>
+						<?php if ( !$isLoggedIn ) { ?>
+							<p class="bottom_button"><?php echo Linker::link(
+								SpecialPage::getTitleFor( 'Userlogin' ),
+								wfMessage( 'bluesky-featured-contributor-action' )->plain(),
+								array( 'id' => 'gatFCWidgetBottom' )
+							); ?>
 							</p>
-						<?php endif; ?>
+						<?php } ?>
 					</div><!--end #side_featured_contributor-->
-				<?php endif; ?>
+				<?php } ?>
 
 				<?php if ( $showFollowWidget ) { ?>
 					<div class="sidebox">
@@ -2242,6 +2248,77 @@ class BlueSkyTemplate extends BaseTemplate {
 ?>
 </body>
 </html>
+<?php
+	}
+
+	/**
+	 * Show the "featured contributor" widget if
+	 * [[MediaWiki:Bluesky-featured-contributor-list]] has some content.
+	 *
+	 * @param bool $top Only get the first user listed on the message?
+	 */
+	private function showFeaturedContributorWidget( $top = false ) {
+		global $wgParser;
+
+		$msg = wfMessage( 'bluesky-featured-contributor-list' )->inContentLanguage();
+		if ( $msg->isDisabled() ) {
+			// message is empty, aborting
+			return;
+		}
+
+		$rec = '';
+		$list = preg_split( '/\n==/', $msg->text() );
+
+		if ( $top ) {
+			$rec = $list[0];
+		} else {
+			$r = rand( 0, ( count( $list ) - 1 ) );
+			if ( $r == 0 ) {
+				$rec = $list[0];
+			} else {
+				$rec = '== ' . $list[$r];
+			}
+		}
+
+		preg_match( '/== (.*?) ==/', $rec, $matches );
+		$fc_user = $matches[1];
+		preg_match( '/==\n(.*)/', $rec, $matches );
+		$fc_blurb = $matches[1];
+
+		$u = User::newFromName( $fc_user );
+
+		if ( !$u ) {
+			return;
+		}
+
+		$u->load();
+		if ( class_exists( 'Avatar' ) ) { // wikiHow avatar extension
+			$avatar = Avatar::getPicture( $u->getName(), true, true );
+		} elseif ( class_exists( 'wAvatar' ) ) { // SocialProfile extension
+			$avatarObject = new wAvatar( $u->getId(), 'l' );
+			$avatar = $avatarObject->getAvatarURL();
+		} else { // no avatar extension of any kind (or at least one that we support)
+			$avatar = '';
+		}
+
+		$output = $wgParser->parse( $fc_blurb, $this->getSkin()->getTitle(), new ParserOptions() );
+		$fc_blurb = preg_replace( '/\n/', '', strip_tags( $output->getText(), '<p><b><a><br>' ) );
+
+		$fc_blurb = str_replace( '$1', $u->getName(), $fc_blurb );
+		$regYear = gmdate( 'Y', wfTimestamp( TS_UNIX, $u->getRegistration() ) );
+		$fc_blurb = str_replace( '$2', $regYear, $fc_blurb );
+
+?>
+	<div>
+		<h3><?php echo wfMessage( 'bluesky-featured-contributor-title' )->plain(); ?></h3>
+		<div class="featuredContrib_id">
+			<?php if ( $avatar != '' ) { ?>
+				<span id="fc_id_img" class="fc_id_img"><a href="<?php echo $u->getUserPage()->getFullURL(); ?>"><?php echo $avatar ?></a></span>
+			<?php } ?>
+			<span id="fc_id" class="fc_id"><?php echo $fc_blurb ?></span>
+		</div>
+		<div class="clearall"></div>
+	</div>
 <?php
 	}
 
