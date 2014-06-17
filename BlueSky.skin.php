@@ -1066,24 +1066,6 @@ class SkinBlueSky extends SkinTemplate {
 			$tabs[] = $historyTab;
 		}
 
-		// for category page: link for image view
-		if ( !$wgUser->isAnon() && $title->getNamespace() == NS_CATEGORY ) {
-			$imageViewTab->href = $title->getLocalURL();
-			$imageViewTab->text = wfMessage( 'image_view' )->text();
-			$imageViewTab->class = $wgRequest->getVal( 'viewMode', 0 ) ? '' : 'on';
-			$imageViewTab->id = 'tab_image_view';
-			$tabs[] = $imageViewTab;
-		}
-
-		// For category page: link for text view
-		if ( !$wgUser->isAnon() && $title->getNamespace() == NS_CATEGORY ) {
-			$textViewTab->href = $title->getLocalURL( 'viewMode=text' );
-			$textViewTab->text = wfMessage( 'text_view' )->text();
-			$textViewTab->class = $wgRequest->getVal( 'viewMode', 0 ) ? 'on' : '';
-			$textViewTab->id = 'tab_text_view';
-			$tabs[] = $textViewTab;
-		}
-
 		// admin
 		if ( $wgUser->isAllowedAny( 'delete', 'protect', 'unprotect', 'move' ) && $title->userCan( 'delete' ) ) {
 			$adminTab->href = '#';
