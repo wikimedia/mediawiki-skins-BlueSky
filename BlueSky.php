@@ -46,6 +46,7 @@ $wgValidSkinNames[strtolower( $skinID )] = 'BlueSky';
 
 $wgAutoloadClasses['SkinBlueSky'] = $dir . 'BlueSky.skin.php';
 $wgExtensionMessagesFiles['SkinBlueSky'] = $dir . 'BlueSky.i18n.php';
+$wgMessagesDirs['SkinBlueSky'] = $dir . '/i18n';
 $wgResourceModules['skins.bluesky'] = array(
 	'styles' => array(
 		// MonoBook also loads these
