@@ -1595,28 +1595,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			$this->set( 'title', $h1 );
 		}
 
-		$logoutPage = $wgLang->specialPage( 'Userlogout' );
-		$returnTarget = $title->getPrefixedURL();
-		$returnto = strcasecmp( urlencode( $logoutPage ), $returnTarget ) ? "returnto={$returnTarget}" : '';
-
-		$login = '';
-		if ( !$wgUser->isAnon() ) {
-			$uname = $wgLang->truncate( $wgUser->getName(), 16 );
-			$login = wfMessage( 'welcome_back', $wgUser->getUserPage()->getFullURL(), $uname )->text();
-
-			if ( method_exists( $wgUser, 'isFacebookUser' ) && $wgUser->isFacebookUser() ) {
-				$login = wfMessage( 'welcome_back_fb', $wgUser->getUserPage()->getFullURL(), $wgUser->getName() )->text();
-			} elseif ( method_exists( $wgUser, 'isGPlusUser' ) && $wgUser->isGPlusUser() ) {
-				$gname = $wgUser->getName();
-				if ( substr( $gname, 0, 3 ) == 'GP_' ) {
-					$gname = substr( $gname, 0, 12 ) . '...';
-				}
-				$login = wfMessage( 'welcome_back_gp', $wgUser->getUserPage()->getFullURL(), $gname )->text();
-			}
-		} else {
-			$login = wfMessage( 'signup_or_login', $returnto )->text() . ' ' . wfMessage( 'social_connect_header' )->text();
-		}
-
 		// XX PROFILE EDIT/CREAT/DEL BOX DATE - need to check for pb flag in order to display this.
 		$pbDate = '';
 		if ( $title->getNamespace() == NS_USER ) {
