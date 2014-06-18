@@ -959,13 +959,12 @@ class SkinBlueSky extends SkinTemplate {
 		wfRunHooks( 'ShowGrayContainer', array( &$result ) );
 
 		$action = $wgRequest ? $wgRequest->getVal( 'action' ) : '';
+		$namespace = $wgTitle->getNamespace();
 
-		if ( $wgTitle->exists() || $wgTitle->getNamespace() == NS_USER ) {
+		if ( $wgTitle->exists() || $namespace == NS_USER ) {
 			if (
-				$wgTitle->getNamespace() == NS_USER ||
-				$wgTitle->getNamespace() == NS_FILE ||
-				$wgTitle->getNamespace() == NS_CATEGORY ||
-				( $wgTitle->getNamespace() == NS_MAIN ) && ( $action == 'edit' || $action == 'submit2' )
+				in_array( $namespace, array( NS_USER, NS_FILE, NS_CATEGORY ) ) ||
+				( $namespace == NS_MAIN ) && ( $action == 'edit' || $action == 'submit2' )
 			)
 			{
 				$result = false;
@@ -1016,7 +1015,7 @@ class SkinBlueSky extends SkinTemplate {
 		// article
 		if ( $title->getNamespace() != NS_CATEGORY ) {
 			$articleTab->href = $title->isTalkPage() ? $title->getSubjectPage()->getFullURL() : $title->getFullURL();
-			$articleTab->text = $title->getSubjectPage()->getNamespace() == NS_USER ? wfMessage( 'user' )->text() : wfMessage( 'article' )->text();
+			$articleTab->text = $title->getSubjectPage()->getNamespace() == NS_USER ? wfMessage( 'user' )->plain() : wfMessage( 'article' )->plain();
 			$articleTab->class = ( !MWNamespace::isTalk( $title->getNamespace() ) && $action != 'edit' && $action != 'history' ) ? 'on' : '';
 			$articleTab->id = 'tab_article';
 			$tabs[] = $articleTab;
@@ -1032,7 +1031,7 @@ class SkinBlueSky extends SkinTemplate {
 		)
 		{
 			$editTab->href = $title->getLocalURL( $skin->editUrlOptions() );
-			$editTab->text = wfMessage( 'edit' )->text();
+			$editTab->text = wfMessage( 'edit' )->plain();
 			$editTab->class = ( $action == 'edit' ) ? 'on' : '';
 			$editTab->id = 'tab_edit';
 			$tabs[] = $editTab;
@@ -1046,9 +1045,9 @@ class SkinBlueSky extends SkinTemplate {
 				$talklink = $title->getTalkPage()->getLocalURL();
 			}
 			if ( in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK ) ) ) {
-				$msg = wfMessage( 'talk' )->text();
+				$msg = wfMessage( 'talk' )->plain();
 			} else {
-				$msg = wfMessage( 'bluesky-discuss' )->text();
+				$msg = wfMessage( 'bluesky-discuss' )->plain();
 			}
 			$talkTab->href = $talklink;
 			$talkTab->text = $msg;
@@ -1060,7 +1059,7 @@ class SkinBlueSky extends SkinTemplate {
 		// history
 		if ( !$wgUser->isAnon() && $title->getNamespace() != NS_CATEGORY ) {
 			$historyTab->href = $title->getLocalURL( 'action=history' );
-			$historyTab->text = wfMessage( 'history' )->text();
+			$historyTab->text = wfMessage( 'history' )->plain();
 			$historyTab->class = ( $action == 'history' ) ? 'on' : '';
 			$historyTab->id = 'tab_history';
 			$tabs[] = $historyTab;
@@ -1082,8 +1081,10 @@ class SkinBlueSky extends SkinTemplate {
 			if ( $title->getNamespace() != NS_FILE ) {
 				$admin2->href = SpecialPage::getTitleFor( 'Movepage', $title )->getLocalURL();
 			} else {
-				$admin2->href = SpecialPage::getTitleFor( 'Movepage' )->getLocalURL()
-					. '?target=' . $title->getPrefixedURL() . '&_=' . time();
+				$admin2->href = SpecialPage::getTitleFor( 'Movepage' )->getLocalURL( array(
+					'target' => $title->getPrefixedURL(),
+					'_' => time()
+				) );
 			}
 			$admin2->text = wfMessage( 'move' )->plain();
 			$adminTab->subMenu[] = $admin2;
@@ -1604,7 +1605,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			$login = wfMessage( 'welcome_back', $wgUser->getUserPage()->getFullURL(), $uname )->text();
 
 			if ( method_exists( $wgUser, 'isFacebookUser' ) && $wgUser->isFacebookUser() ) {
-				$login = wfMessage( 'welcome_back_fb', $wgUser->getUserPage()->getFullURL() , $wgUser->getName() )->text();
+				$login = wfMessage( 'welcome_back_fb', $wgUser->getUserPage()->getFullURL(), $wgUser->getName() )->text();
 			} elseif ( method_exists( $wgUser, 'isGPlusUser' ) && $wgUser->isGPlusUser() ) {
 				$gname = $wgUser->getName();
 				if ( substr( $gname, 0, 3 ) == 'GP_' ) {
