@@ -2037,3 +2037,12 @@ html>body li .article_widget { *margin-left: -60px; } /*dumb IE7*/
 ul#actions li a.nav {
 	text-transform: uppercase;
 }
+
+/**
+ * Remove margin-top for the "You have new messages" bar (a.k.a Orange Bar of Death),
+ * because the default margin-top provided by commonInterface.css doesn't look
+ * good
+ */
+div.usermessage {
+	margin-top: 0px;
+}

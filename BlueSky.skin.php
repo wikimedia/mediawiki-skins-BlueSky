@@ -1574,76 +1574,9 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$pageTitle = $sk->getHTMLTitle( $wgOut->getHTMLTitle(), $this->data['title'], $isMainPage );
 
-		// set the title and what not
-		$avatar = '';
-		$namespace = $title->getNamespace();
-		if ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
-			$username = $title->getText();
-			$usernameKey = $title->getDBKey();
-			$avatar = ( class_exists( 'Avatar' ) ) ? Avatar::getPicture( $usernameKey ) : '';
-			$h1 = $username;
-			if ( $title->getNamespace() == NS_USER_TALK ) {
-				$h1 = $wgLang->getNsText( NS_USER_TALK ) . ": $username";
-			} elseif ( $username == $wgUser->getName() ) {
-				// user's own page
-				$profileBoxName = wfMessage( 'profilebox-name' )->text();
-				$h1 .= "<div id='gatEditRemoveButtons'>
-								<a href='/Special:Profilebox' id='gatProfileEditButton'>Edit</a>
-								 | <a href='#' onclick='removeUserPage(\"$profileBoxName\");'>Remove $profileBoxName</a>
-								 </div>";
-			}
-			$this->set( 'title', $h1 );
-		}
-
-		// XX PROFILE EDIT/CREAT/DEL BOX DATE - need to check for pb flag in order to display this.
-		$pbDate = '';
-		if ( $title->getNamespace() == NS_USER ) {
-			$u = User::newFromName( $title->getDBkey() );
-			if ( $u ) {
-				if ( UserPagePolicy::isGoodUserPage( $title->getDBkey() ) ) {
-					$pbDate = ProfileBox::getPageTop( $u );
-				}
-			}
-		}
-
-		if ( !$sk->suppressH1Tag() ) {
-			if ( $title->getNamespace() == NS_MAIN && $title->exists() && $action == 'view' ) {
-				if (
-					class_exists( 'Microdata' ) &&
-					Microdata::showRecipeTags() &&
-					Microdata::showhRecipeTags()
-				)
-				{
-					$itemprop_name1 = ' fn"';
-					$itemprop_name2 = '';
-				} else {
-					$itemprop_name1 = '" itemprop="name"';
-					$itemprop_name2 = ' itemprop="url"';
-				}
-
-				$heading = '<h1 class="firstHeading' . $itemprop_name1 . '><a href="' . $title->getFullURL() . '"' . $itemprop_name2 . '>' . wfMessage( 'howto', $this->data['title'] )->text() . '</a></h1>';
-			} else {
-				if (
-					(
-						(
-							$title->getNamespace() == NS_USER &&
-							class_exists( 'UserPagePolicy' ) &&
-							UserPagePolicy::isGoodUserPage( $title->getDBKey() )
-						) ||
-						$title->getNamespace() == NS_USER_TALK
-					)
-				)
-				{
-					$heading = '<h1 class="firstHeading">' . $this->data['title'] . '</h1> ' . $pbDate;
-					if ( $avatar ) {
-						$heading = $avatar . '<div id="avatarNameWrap">' . $heading . '</div><div style="clear: both;"> </div>';
-					}
-				} else {
-					if ( $this->data['title'] && ( strtolower( substr( $title->getText(), 0, 9 ) ) != 'userlogin' ) ) {
-						$heading = "<h1 class='firstHeading'>" . $this->data['title'] . "</h1>";
-					}
-				}
-			}
+		$heading = '';
+		if ( !$sk->suppressH1Tag() && $this->data['title'] ) {
+			$heading = '<h1 class="firstHeading">' . $this->data['title'] . '</h1>';
 		}
 
 		// get the breadcrumbs / category links at the top of the page
@@ -1687,17 +1620,20 @@ class BlueSkyTemplate extends BaseTemplate {
 			</form>';
 
 		$body = '';
-		$heading = '';
 
-		if ( $title->userCan( 'edit' ) &&
+		if (
+			$title->userCan( 'edit' ) &&
 			$action != 'edit' &&
 			$action != 'diff' &&
 			$action != 'history' &&
 			( ( $isLoggedIn && !in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_FILE, NS_CATEGORY ) ) ) ||
-				!in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_FILE, NS_CATEGORY ) ) ) ) {
-				// INTL: Need bigger buttons for non-english sites
-				$editlink_text = ( $title->getNamespace() == NS_MAIN ) ? wfMessage( 'editarticle' )->text() : wfMessage( 'edit' )->text();
-				$heading = '<a href="' . $title->getLocalURL( $sk->editUrlOptions() ) . '" class="editsection">' . $editlink_text . '</a>' . $heading;
+				!in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_FILE, NS_CATEGORY ) ) )
+		)
+		{
+			// INTL: Need bigger buttons for non-English sites
+			$editlink_text = ( $title->getNamespace() == NS_MAIN ) ? wfMessage( 'editarticle' )->plain() : wfMessage( 'edit' )->plain();
+			$heading = '<a href="' . $title->getLocalURL( $sk->editUrlOptions() ) . '" class="editsection">' .
+				$editlink_text . '</a>' . $heading;
 		}
 
 		if ( $isArticlePage || ( $title->getNamespace() == NS_PROJECT && $action == 'view' ) || ( $title->getNamespace() == NS_CATEGORY && !$title->exists() ) ) {
@@ -1709,7 +1645,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				$sticky = true;
 			}
 			$body .= $heading . ( class_exists( 'ArticleAuthors' ) ? ArticleAuthors::getAuthorHeader() : '' ) . $this->data['bodytext'];
-			$body = '<div id="bodycontents">' . $body . '</div>';
+			$body = '<div id="bodycontents" class="minor_section">' . $body . '</div>';
 			if ( class_exists( 'WikihowArticleHTML' ) ) {
 				$wikitext = ContentHandler::getContentText( $this->getSkin()->getContext()->getWikiPage()->getContent( Revision::RAW ) );
 				$magic = WikihowArticleHTML::grabTheMagic( $wikitext );
@@ -1728,7 +1664,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				$heading .= WikihowArticleEditor::grabArticleEditLinks( $wgRequest->getVal( 'guidededitor' ) );
 			}
 			$this->data['bodyheading'] = $heading;
-			$body = '<div id="bodycontents">' . $this->data['bodytext'] . '</div>';
+			$body = '<div id="bodycontents" class="minor_section">' . $this->data['bodytext'] . '</div>';
 			if ( !$isTool && class_exists( 'WikihowArticleHTML' ) ) {
 				$this->data['bodytext'] = WikihowArticleHTML::processHTML(
 					$body,
@@ -1778,9 +1714,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			$title->getNamespace() != NS_USER &&
 			( !$isLoggedIn || $wgUser->getOption( 'recent_changes_widget_show', true ) == 1 ) &&
 			( $isLoggedIn || $isMainPage ) &&
-			!in_array( $title->getPrefixedText(),
-				array( 'Special:Avatar', 'Special:ProfileBox', 'Special:IntroImageAdder' ) ) &&
-			strpos( $title->getPrefixedText(), 'Special:Userlog' ) === false &&
 			!$isDocViewer &&
 			$action != 'edit';
 

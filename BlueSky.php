@@ -33,26 +33,23 @@ $wgExtensionCredits['skin'][] = array(
 	'url' => 'https://www.mediawiki.org/wiki/Skin:BlueSky',
 );
 
-// Autoload the skin class, make it a valid skin, set up i18n, set up CSS & JS
-// (via ResourceLoader)
-$skinID = basename( dirname( __FILE__ ) );
-$dir = dirname( __FILE__ ) . '/';
-
 // The first instance must be strtolower()ed so that useskin=bluesky works and
 // so that it does *not* force an initial capital (i.e. we do NOT want
 // useskin=Bluesky) and the second instance is used to determine the name of
 // *this* file.
-$wgValidSkinNames[strtolower( $skinID )] = 'BlueSky';
+$wgValidSkinNames['bluesky'] = 'BlueSky';
 
-$wgAutoloadClasses['SkinBlueSky'] = $dir . 'BlueSky.skin.php';
-$wgExtensionMessagesFiles['SkinBlueSky'] = $dir . 'BlueSky.i18n.php';
-$wgMessagesDirs['SkinBlueSky'] = $dir . '/i18n';
+// Autoload the skin class, make it a valid skin, set up i18n, set up CSS & JS
+// (via ResourceLoader)
+$wgAutoloadClasses['SkinBlueSky'] = __DIR__ . '/BlueSky.skin.php';
+$wgExtensionMessagesFiles['SkinBlueSky'] = __DIR__ . '/BlueSky.i18n.php';
+$wgMessagesDirs['SkinBlueSky'] = __DIR__ . '/i18n';
 $wgResourceModules['skins.bluesky'] = array(
 	'styles' => array(
 		// MonoBook also loads these
 		#'skins/common/commonElements.css' => array( 'media' => 'screen' ),
 		#'skins/common/commonContent.css' => array( 'media' => 'screen' ),
-		#'skins/common/commonInterface.css' => array( 'media' => 'screen' ),
+		'skins/common/commonInterface.css' => array( 'media' => 'screen' ),
 		// Styles custom to this skin
 		'skins/BlueSky/resources/css/home.css' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/main.css' => array( 'media' => 'screen' ),
