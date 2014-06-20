@@ -1551,7 +1551,8 @@ class BlueSkyTemplate extends BaseTemplate {
 			$action = 'diff';
 		}
 
-		$title = $this->getSkin()->getTitle();
+		$sk = $this->getSkin();
+		$title = $sk->getTitle();
 		$isMainPage = ( $title->isMainPage() && $action == 'view' );
 
 		$isArticlePage = !$isMainPage &&
@@ -1567,8 +1568,6 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$isTool = false;
 		wfRunHooks( 'getToolStatus', array( &$isTool ) );
-
-		$sk = $this->getSkin();
 
 		$isIndexed = class_exists( 'RobotPolicy' ) && RobotPolicy::isIndexable( $title );
 
@@ -1647,7 +1646,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			$body .= $heading . ( class_exists( 'ArticleAuthors' ) ? ArticleAuthors::getAuthorHeader() : '' ) . $this->data['bodytext'];
 			$body = '<div id="bodycontents" class="minor_section">' . $body . '</div>';
 			if ( class_exists( 'WikihowArticleHTML' ) ) {
-				$wikitext = ContentHandler::getContentText( $this->getSkin()->getContext()->getWikiPage()->getContent( Revision::RAW ) );
+				$wikitext = ContentHandler::getContentText( $sk->getContext()->getWikiPage()->getContent( Revision::RAW ) );
 				$magic = WikihowArticleHTML::grabTheMagic( $wikitext );
 				$this->data['bodytext'] = WikihowArticleHTML::processArticleHTML(
 					$body,
@@ -1860,7 +1859,6 @@ class BlueSkyTemplate extends BaseTemplate {
 							<p class="info"><?php $this->msg( 'otherlanguages' ) ?>:</p>
 							<p class="info"><?php
 								$links = array();
-								$sk = $this->getSkin();
 								foreach ( $this->data['language_urls'] as $langlink ) {
 									$links[] = htmlspecialchars( trim( $langlink['language'] ) ) . '&nbsp;<span><a href="' . htmlspecialchars( $langlink['href'] ) . '">' . $langlink['text'] . '</a><span>';
 								}
@@ -2086,7 +2084,7 @@ class BlueSkyTemplate extends BaseTemplate {
 						foreach ( $this->getFooterIcons( 'nocopyright' ) as $blockName => $footerIcons ) {
 							echo '<div id="' . htmlspecialchars( $blockName ) . '">';
 							foreach ( $footerIcons as $icon ) {
-								echo $this->getSkin()->makeFooterIcon( $icon, 'withoutImage' );
+								echo $sk->makeFooterIcon( $icon, 'withoutImage' );
 							}
 							echo '</div>';
 						}
