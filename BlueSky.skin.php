@@ -1630,7 +1630,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		)
 		{
 			// INTL: Need bigger buttons for non-English sites
-			$editlink_text = ( $title->getNamespace() == NS_MAIN ) ? wfMessage( 'editarticle' )->plain() : wfMessage( 'edit' )->plain();
+			$editlink_text = ( $title->getNamespace() == NS_MAIN ) ? $sk->msg( 'editarticle' )->plain() : $sk->msg( 'edit' )->plain();
 			$heading = '<a href="' . $title->getLocalURL( $sk->editUrlOptions() ) . '" class="editsection">' .
 				$editlink_text . '</a>' . $heading;
 		}
@@ -1716,7 +1716,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			!$isDocViewer &&
 			$action != 'edit';
 
-		$showFollowWidget = !wfMessage( 'bluesky-follow-table' )->isDisabled();
+		$showFollowWidget = !$sk->msg( 'bluesky-follow-table' )->isDisabled();
 
 		$showSocialSharing =
 			$title->exists() &&
@@ -1845,14 +1845,14 @@ class BlueSkyTemplate extends BaseTemplate {
 
 				<div class="section noprint">
 					<?php if ( $showingArticleInfo ): ?>
-						<h2 class="section_head" id="article_info_header"><span><?php echo wfMessage( 'bluesky-article-info' )->plain() ?></span></h2>
+						<h2 class="section_head" id="article_info_header"><span><?php echo $sk->msg( 'bluesky-article-info' )->plain() ?></span></h2>
 						<div id="article_info" class="section_text">
 					<?php else : ?>
-						<h2 class="section_head" id="article_tools_header"><span><?php echo wfMessage( 'bluesky-article-tools' )->plain() ?></span></h2>
+						<h2 class="section_head" id="article_tools_header"><span><?php echo $sk->msg( 'bluesky-article-tools' )->plain() ?></span></h2>
 						<div id="article_tools" class="section_text">
 					<?php endif ?>
 						<?php if ( $catLinks ): ?>
-							<p class="info"> <?php echo wfMessage( 'categories' )->text() ?>: <?php echo $catLinks ?></p>
+							<p class="info"> <?php echo $sk->msg( 'categories' )->text() ?>: <?php echo $catLinks ?></p>
 						<?php endif; ?>
 						<p><?php echo $authors ?></p>
 						<?php if ( is_array( $this->data['language_urls'] ) ) { ?>
@@ -1874,19 +1874,19 @@ class BlueSkyTemplate extends BaseTemplate {
 						}
 						?>
 						<ul id="end_options">
-							<li class="endop_discuss"><span></span><a href="<?php echo $talk_link ?>" id="gatDiscussionFooter"><?php echo wfMessage( 'bluesky-discuss' )->plain() ?></a></li>
-							<li class="endop_print"><span></span><a href="<?php echo $title->getLocalURL( 'printable=yes' ) ?>" id="gatPrintView"><?php echo wfMessage( 'print' )->text() ?></a></li>
-							<li class="endop_email"><span></span><a href="#" onclick="return emailLink();" id="gatSharingEmail"><?php echo wfMessage( 'at_email' )->text() ?></a></li>
+							<li class="endop_discuss"><span></span><a href="<?php echo $talk_link ?>" id="gatDiscussionFooter"><?php echo $sk->msg( 'bluesky-discuss' )->plain() ?></a></li>
+							<li class="endop_print"><span></span><a href="<?php echo $title->getLocalURL( 'printable=yes' ) ?>" id="gatPrintView"><?php echo $sk->msg( 'print' )->text() ?></a></li>
+							<li class="endop_email"><span></span><a href="#" onclick="return emailLink();" id="gatSharingEmail"><?php echo $sk->msg( 'at_email' )->text() ?></a></li>
 							<?php if ( $isLoggedIn ): ?>
 								<?php if ( $title->userIsWatching() ) { ?>
-									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=unwatch' ); ?>"><?php echo wfMessage( 'bluesky-unwatch' )->plain() ?></a></li>
+									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=unwatch' ); ?>"><?php echo $sk->msg( 'bluesky-unwatch' )->plain() ?></a></li>
 								<?php } else { ?>
-									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=watch' ); ?>"><?php echo wfMessage( 'bluesky-watch' )->plain() ?></a></li>
+									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=watch' ); ?>"><?php echo $sk->msg( 'bluesky-watch' )->plain() ?></a></li>
 								<?php } ?>
 							<?php endif; ?>
-							<li class="endop_edit"><span></span><a href="<?php echo $title->getEditUrl(); ?>" id="gatEditFooter"><?php echo wfMessage( 'edit' )->plain(); ?></a></li>
+							<li class="endop_edit"><span></span><a href="<?php echo $title->getEditUrl(); ?>" id="gatEditFooter"><?php echo $sk->msg( 'edit' )->plain(); ?></a></li>
 							<?php if ( $title->getNamespace() == NS_MAIN && class_exists( 'ThankAuthors' ) ) { ?>
-								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?php echo $title->getPrefixedURL(); ?>" id="gatThankAuthors"><?php echo wfMessage( 'at_fanmail' )->text() ?></a></li>
+								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?php echo $title->getPrefixedURL(); ?>" id="gatThankAuthors"><?php echo $sk->msg( 'at_fanmail' )->text() ?></a></li>
 							<?php } ?>
 						</ul> <!--end #end_options -->
 						<div class="clearall"></div>
@@ -1927,11 +1927,11 @@ class BlueSkyTemplate extends BaseTemplate {
 
 				<?php
 				// "Write an article" button
-				$writeMsgContents = wfMessage( 'bluesky-write-article-url' )->text();
+				$writeMsgContents = $sk->msg( 'bluesky-write-article-url' )->text();
 				if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $writeMsgContents ) ) {
 					$write = Linker::makeExternalLink(
 						$writeMsgContents,
-						wfMessage( 'bluesky-write-article' )->plain(),
+						$sk->msg( 'bluesky-write-article' )->plain(),
 						/* escape */true,
 						/* link type */'',
 						/* array of extra attributes to <a> */array(
@@ -1942,7 +1942,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				} else {
 					$write = Linker::link(
 						Title::newFromText( $writeMsgContents ),
-						wfMessage( 'bluesky-write-article' )->plain(),
+						$sk->msg( 'bluesky-write-article' )->plain(),
 						array(
 							'id' => 'gatWriteAnArticle',
 							'class' => 'button secondary'
@@ -1952,8 +1952,8 @@ class BlueSkyTemplate extends BaseTemplate {
 
 				if ( !$isDocViewer ) {
 				?>
-				<div id="top_links" class="sidebox<?php echo $loggedOutClass ?>" <?php echo is_numeric( wfMessage( 'top_links_padding' )->text() ) ? ' style="padding-left:' . wfMessage( 'top_links_padding' )->text() . 'px;padding-right:' . wfMessage( 'top_links_padding' )->text() . 'px;"' : '' ?>>
-					<a href="<?php echo SpecialPage::getTitleFor( 'Randompage' )->getFullURL() ?>" id="gatRandom" accesskey="x" class="button secondary"><?php echo wfMessage( 'randompage' )->plain(); ?></a>
+				<div id="top_links" class="sidebox<?php echo $loggedOutClass ?>" <?php echo is_numeric( $sk->msg( 'top_links_padding' )->text() ) ? ' style="padding-left:' . $sk->msg( 'top_links_padding' )->text() . 'px;padding-right:' . $sk->msg( 'top_links_padding' )->text() . 'px;"' : '' ?>>
+					<a href="<?php echo SpecialPage::getTitleFor( 'Randompage' )->getFullURL() ?>" id="gatRandom" accesskey="x" class="button secondary"><?php echo $sk->msg( 'randompage' )->plain(); ?></a>
 					<?php echo $write ?>
 				</div><!--end #top_links-->
 				<?php } ?>
@@ -1980,7 +1980,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 				<?php if ( $showSocialSharing ): ?>
 					<div class="sidebox<?php echo $loggedOutClass ?>" id="sidebar_share">
-						<h3><?php echo wfMessage( 'social_share' )->text() ?></h3>
+						<h3><?php echo $sk->msg( 'social_share' )->text() ?></h3>
 						<?php
 						if ( $isMainPage ) {
 							echo WikihowShare::getMainPageShareButtons();
@@ -2010,11 +2010,11 @@ class BlueSkyTemplate extends BaseTemplate {
 						<p class="bottom_link">
 							<?php
 							if ( $isLoggedIn ) {
-								echo wfMessage( 'welcome', $wgUser->getName(), $wgUser->getUserPage()->getLocalURL() )->text();
+								echo $sk->msg( 'welcome', $wgUser->getName(), $wgUser->getUserPage()->getLocalURL() )->text();
 							} else {
 								echo Linker::link(
 									SpecialPage::getTitleFor( 'Userlogin' ),
-									wfMessage( 'rcwidget_join_in' )->text(),
+									$sk->msg( 'rcwidget_join_in' )->text(),
 									array( 'id' => 'gatWidgetBottom' )
 								);
 							}
@@ -2030,7 +2030,7 @@ class BlueSkyTemplate extends BaseTemplate {
 						<?php if ( !$isLoggedIn ) { ?>
 							<p class="bottom_button"><?php echo Linker::link(
 								SpecialPage::getTitleFor( 'Userlogin' ),
-								wfMessage( 'bluesky-featured-contributor-action' )->plain(),
+								$sk->msg( 'bluesky-featured-contributor-action' )->plain(),
 								array( 'id' => 'gatFCWidgetBottom' )
 							); ?>
 							</p>
@@ -2040,8 +2040,8 @@ class BlueSkyTemplate extends BaseTemplate {
 
 				<?php if ( $showFollowWidget ) { ?>
 					<div class="sidebox">
-						<h3><?php echo wfMessage( 'bluesky-follow-header' )->plain() ?></h3>
-						<?php echo wfMessage( 'bluesky-follow-table' )->text() ?>
+						<h3><?php echo $sk->msg( 'bluesky-follow-header' )->plain() ?></h3>
+						<?php echo $sk->msg( 'bluesky-follow-table' )->text() ?>
 					</div>
 				<?php } ?>
 			</div><!--end #sidebar-->
@@ -2056,9 +2056,9 @@ class BlueSkyTemplate extends BaseTemplate {
 				<div id="footer_side">
 					<?php
 						if ( $isLoggedIn ) {
-							$footerMessage = wfMessage( 'bluesky-site-footer' );
+							$footerMessage = $sk->msg( 'bluesky-site-footer' );
 						} else {
-							$footerMessage = wfMessage( 'bluesky-site-footer-anon' );
+							$footerMessage = $sk->msg( 'bluesky-site-footer-anon' );
 						}
 						if ( !$footerMessage->isDisabled() ) {
 							echo $footerMessage->parse();
@@ -2074,7 +2074,7 @@ class BlueSkyTemplate extends BaseTemplate {
 							// This is probably useless, I already left it out
 							// for the "powered by MW" stuff below, but...whatever
 							echo Html::element( 'a', array(
-								'href' => Title::newFromText( wfMessage( 'copyrightpage' )->inContentLanguage()->text() )->getFullURL(),
+								'href' => Title::newFromText( $sk->msg( 'copyrightpage' )->inContentLanguage()->text() )->getFullURL(),
 								'class' => 'imglink sub_footer_link footer_creative_commons footer_sprite'
 							) );
 							echo $this->data['copyright'];
@@ -2118,7 +2118,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 
 		// Load event listeners all pages
-		if ( class_exists( 'CTALinks' ) && trim( wfMessage( 'cta_feature' )->inContentLanguage()->text() ) == 'on' ) {
+		if ( class_exists( 'CTALinks' ) && trim( $sk->msg( 'cta_feature' )->inContentLanguage()->text() ) == 'on' ) {
 			echo CTALinks::getBlankCTA();
 		}
 
@@ -2152,7 +2152,8 @@ class BlueSkyTemplate extends BaseTemplate {
 	private function showFeaturedContributorWidget( $top = false ) {
 		global $wgParser;
 
-		$msg = wfMessage( 'bluesky-featured-contributor-list' )->inContentLanguage();
+		$sk = $this->getSkin();
+		$msg = $sk->msg( 'bluesky-featured-contributor-list' )->inContentLanguage();
 		if ( $msg->isDisabled() ) {
 			// message is empty, aborting
 			return;
@@ -2193,7 +2194,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			$avatar = '';
 		}
 
-		$output = $wgParser->parse( $fc_blurb, $this->getSkin()->getTitle(), new ParserOptions() );
+		$output = $wgParser->parse( $fc_blurb, $sk->getTitle(), new ParserOptions() );
 		$fc_blurb = preg_replace( '/\n/', '', strip_tags( $output->getText(), '<p><b><a><br>' ) );
 
 		$fc_blurb = str_replace( '$1', $u->getName(), $fc_blurb );
@@ -2202,7 +2203,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 ?>
 	<div>
-		<h3><?php echo wfMessage( 'bluesky-featured-contributor-title' )->plain(); ?></h3>
+		<h3><?php echo $sk->msg( 'bluesky-featured-contributor-title' )->plain(); ?></h3>
 		<div class="featuredContrib_id">
 			<?php if ( $avatar != '' ) { ?>
 				<span id="fc_id_img" class="fc_id_img"><a href="<?php echo $u->getUserPage()->getFullURL(); ?>"><?php echo $avatar ?></a></span>
