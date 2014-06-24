@@ -404,7 +404,7 @@ input.button.clickfail:hover {
 	z-index: 100000006; /* set z-index one higher than guided tour balloon z-index */
 	top: 0;
 	width: 100%;
-	background-color: #93b874;
+	background-color: #87CEEB; /* SkyBlue */
 }
 
 /* Offsets page for fixed header */
@@ -413,7 +413,7 @@ input.button.clickfail:hover {
 	*display: none;
 }
 #header {
-	background-color: #93b874;
+	background-color: #87CEEB; /* SkyBlue */
 	height: 72px;
 	position: relative;
 }
@@ -450,11 +450,11 @@ input.button.clickfail:hover {
 	float: right;
 	padding: 0px;
 	margin: 0px;
-	border-right: 1px solid #89ac6c;
+	border-right: 1px solid #1E90FF; /* DodgerBlue */
 	width: 380px;
 }
 #header #actions li {
-	border-left: 1px solid #89ac6c;
+	border-left: 1px solid #1E90FF; /* DodgerBlue */
 	padding: 0px;
 	height: 72px;
 	*width: 75px;
@@ -465,7 +465,9 @@ input.button.clickfail:hover {
 	cursor: pointer;
 }
 #header #actions li:hover {
-	background-color: #85A669;
+	border-color: #1E90FF; /* DodgerBlue */
+	background-color: #00BFFF;
+	color: #00BFFF; /* DeepSkyBlue */
 }
 #header.shrunk #actions li {
 	height: 39px;
@@ -474,7 +476,7 @@ input.button.clickfail:hover {
 #header #actions li .nav {
 	font-size: 10px;
 	font-weight: bold;
-	color: #475347;
+	color: #000; /* Black */
 	display: block;
 	padding-top: 47px;
 	position: relative;
@@ -494,7 +496,7 @@ input.button.clickfail:hover {
 .menu, .menu_login, .menu_messages {
 	font-size: 1em;
 	position: absolute;
-	border: 1px solid #91af79;
+	border: 1px solid #1E90FF; /* DodgerBlue */
 	margin: 0;
 	padding: 10px 0;
 	top: 71px;
@@ -514,7 +516,7 @@ input.button.clickfail:hover {
 	display: block;
 	padding: 0 20px 0 15px;
 	line-height: 26px;
-	color: #669933;
+	color: #000; /* Black */
 }
 #AdminOptions.menu a {
 	color: #363;
@@ -522,7 +524,7 @@ input.button.clickfail:hover {
 
 .menu a:hover {
 	color: white;
-	background-color: #91af79;
+	background-color: #4169E1; /* RoyalBlue */
 	text-decoration: none;
 }
 
@@ -681,7 +683,7 @@ input.button.clickfail:hover {
 
 #search_site_bubble, #search_site_footer, .search_button {
 	font-size: 1em;
-	background-color: #6d855e;
+	background-color: #4682B4; /* SteelBlue */
 	border: none;
 	color: #FFF;
 	font-weight: bold;
@@ -702,7 +704,7 @@ input.button.clickfail:hover {
 }
 
 #search_site_bubble:hover, #search_site_footer:hover, .search_button:hover {
-	background-color: #5a6c52;
+	background-color: #00008B; /* DarkBlue */
 	color: #FFF;
 }
 
@@ -721,6 +723,10 @@ div.suggestions {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-khtml-border-radius: 5px;
+}
+
+#searchInput {
+	background-color: #FFF; /* White -- it _should_ have a proper color but I'm not feeling very creative right now */
 }
 
 /** Login dropdown **/
@@ -930,7 +936,7 @@ span.tooltip_span, .th_giver_ids {
 	clear: both;
 }
 #footer_outer {
-	background-color: #93b874;
+	background-color: #87CEEB;
 	width: 100%;
 }
 
