@@ -31,7 +31,7 @@
 	"bluesky-notifications-none": "You have no notifications at this time.\nVisit your [[$1|talk page]] to see past messages.",
 	"bluesky-notifications-no-talk": "Visit your [[$1|talk page]] to see past messages.",
 	"bluesky-site-footer-anon": "",
-	"bluesky-site-footer": "<ul>\n<li class=\"top\">[[{{int:mainpage}}|Home]]</li>\n<li>[[{{int:aboutpage}}|{{int:about}}]]</li>\n<li>[[{{int:disclaimerpage}}|{{int:disclaimers}}]]</li>\n<li>[[{{int:privacypage}}|{{int:privacy}}]]</li>\n</ul>",
+	"bluesky-site-footer": "<ul>\n<li class=\"top\">[[{{MediaWiki:Mainpage}}|{{int:Bluesky-home}}]]</li>\n<li>[[{{MediaWiki:Aboutpage}}|{{int:About}}]]</li>\n<li>[[{{MediaWiki:Disclaimerpage}}|{{int:Disclaimers}}]]</li>\n<li>[[{{MediaWiki:Privacypage}}|{{int:Privacy}}]]</li>\n</ul>",
 	"bluesky-unread-notifications": "{{PLURAL:$1|One unread|$1 unread}}",
 	"bluesky-unwatch": "Remove watch",
 	"bluesky-watch": "Watch",
