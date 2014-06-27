@@ -1238,13 +1238,19 @@ class SkinBlueSky extends SkinTemplate {
 				// our particular use case :-( As a result of not using that
 				// method, the PersonalUrls hook never gets called for this skin
 				if ( $isLoggedIn ) {
+					$myNotifications = '';
+					if ( class_exists( 'EchoEvent' ) ) {
+						$myNotifications = Linker::link(
+							SpecialPage::getTitleFor( 'Notifications' ),
+							$this->msg( 'bluesky-my-notifications' )->plain()
+						);
+					}
 					$html = Linker::link( Title::makeTitle( NS_SPECIAL, 'Mytalk', 'post' ), $this->msg( 'mytalk' )->plain() ) .
 							Linker::link( SpecialPage::getTitleFor( 'Mypage' ), $this->msg( 'bluesky-my-page' )->plain() ) .
-							#Linker::link( Title::makeTitle( NS_SPECIAL, 'Notifications' ), $this->msg( 'mynotifications' )->text() ) .
+							$myNotifications .
 							Linker::link( SpecialPage::getTitleFor( 'Watchlist' ), $this->msg( 'watchlist' )->plain() ) .
 							#Linker::link( Title::makeTitle( NS_SPECIAL, 'Drafts' ), $this->msg( 'mydrafts' )->text() ) .
 							Linker::link( SpecialPage::getTitleFor( 'Mypages', 'Contributions' ), $this->msg( 'mycontris' )->plain() ) .
-							#Linker::link( SpecialPage::getTitleFor( 'Mypages', 'Fanmail' ), $this->msg( 'myfanmail' )->text() ) .
 							Linker::link( SpecialPage::getTitleFor( 'Preferences' ), $this->msg( 'mypreferences' )->plain() ) .
 							Linker::link( SpecialPage::getTitleFor( 'Userlogout' ), $this->msg( 'logout' )->plain() );
 				} else {
@@ -1359,9 +1365,17 @@ class SkinBlueSky extends SkinTemplate {
 
 				} else {
 					// old school
-					$ret = Notifications::loadNotifications();
-					if ( is_array( $ret ) ) {
-						list( $html, $this->notifications_count ) = $ret;
+					if ( class_exists( 'Notifications' ) ) {
+						$ret = Notifications::loadNotifications();
+						if ( is_array( $ret ) ) {
+							list( $html, $this->notifications_count ) = $ret;
+						}
+					} else {
+						// the wikiHow notifications ext. isn't installed either,
+						// so we essentially reimplement its logic here
+						list( $notes, $count, $newTalk ) = $this->getNotifications();
+						$html = $this->formatNotifications( $notes, $newTalk );
+						$this->notifications_count = $count;
 					}
 				}
 
@@ -1371,6 +1385,108 @@ class SkinBlueSky extends SkinTemplate {
 
 		if ( $html ) {
 			$html = '<div class="' . $menu_css . '">' . $html . '</div>';
+		}
+
+		return $html;
+	}
+
+	/**
+	 * Get all notifications for the current user.
+	 *
+	 * @return array array( HTML output, total amount of all notifications, has new User_talk messages? )
+	 */
+	private function getNotifications() {
+		global $wgUser, $wgMemc;
+
+		$memKey = wfMemcKey( 'notification_box_' . $wgUser->getId() );
+		$box = $wgMemc->get( $memKey );
+
+		if ( !is_array( $box ) ) {
+			$notes = array();
+
+			// Talk messages
+			$talkCount = 0;
+			if ( $wgUser->getNewtalk() ) {
+				$talkCount = self::getCount( 'user_newtalk' );
+				$msg = '<div class="note_row"><div class="note_icon_talk"></div>' .
+					Linker::link(
+						$wgUser->getTalkPage(),
+						$this->msg( 'bluesky-notifications-new-talk' )->numParams( $talkCount )->parse()
+					) . '</div>';
+				$notes[] = $msg;
+				$newTalk = true;
+			} else {
+				$newTalk = false;
+			}
+
+			// Kudos (fan mail) and Thumbs Up removed for the time being due to
+			// being rather wikiHow-specific and generally the way how it was
+			// done was ugly. Hooks, people; use hooks instead of hard-coding
+			// things!
+
+			$totalCount = $talkCount;
+
+			$box = array( $notes, $totalCount, $newTalk );
+		}
+
+		return $box;
+	}
+
+	/**
+	 * Fetch the COUNT() of some entries in the given $table.
+	 *
+	 * @param string $table Database table name
+	 * @return int Amount of entries
+	 */
+	private static function getCount( $table ) {
+		global $wgUser;
+
+		if ( $wgUser->getId() > 0 ) {
+			$field = 'user_id';
+			$id = $wgUser->getId();
+		} else {
+			$field = 'user_ip';
+			$id = $wgUser->getName();
+		}
+
+		$db = wfGetDB( DB_MASTER );
+		$count = $db->selectField(
+			$table,
+			'COUNT(' . $field . ')',
+			array( $field => $id ),
+			__METHOD__
+		);
+
+		return $count;
+	}
+
+	/**
+	 * @param array $notes Notification HTML for each notification in an array
+	 * @param bool $newTalk Does the current user have new talk page messages?
+	 * @return string HTML output
+	 */
+	private function formatNotifications( $notes, $newTalk ) {
+		global $wgUser;
+
+		$html = '';
+		$talkPage = $wgUser->getTalkPage()->getPrefixedText();
+
+		foreach ( $notes as $note ) {
+			$html .= $note;
+		}
+
+		if ( $html ) {
+			// no line at the top
+			$html = preg_replace( '/note_row/', 'note_row first_note_row', $html, 1 );
+			if ( !$newTalk ) {
+				$html .= '<div class="note_row note_empty">' .
+					$this->msg( 'bluesky-notifications-no-talk', $talkPage )->text() .
+					'</div>';
+			}
+		} else {
+			$html = '<div class="note_row note_empty">' .
+				$this->msg( 'bluesky-notifications-none', $talkPage )->text() .
+				'</div>';
 		}
 
 		return $html;
