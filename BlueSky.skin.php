@@ -1992,7 +1992,15 @@ class BlueSkyTemplate extends BaseTemplate {
 						<ul id="end_options">
 							<li class="endop_discuss"><span></span><a href="<?php echo $talk_link ?>" id="gatDiscussionFooter"><?php echo $sk->msg( 'bluesky-discuss' )->plain() ?></a></li>
 							<li class="endop_print"><span></span><a href="<?php echo $title->getLocalURL( 'printable=yes' ) ?>" id="gatPrintView"><?php echo $sk->msg( 'print' )->text() ?></a></li>
+							<?php
+							/* Commented out for the time being, because:
+							 * 1) "share via email" is not a core MW functionality,
+							 * and as such, we need to address it here somehow,
+							 * 2) the related JS needs refactoring, and
+							 * 3) the i18n message is currently AWOL
 							<li class="endop_email"><span></span><a href="#" onclick="return emailLink();" id="gatSharingEmail"><?php echo $sk->msg( 'at_email' )->text() ?></a></li>
+							*/
+							?>
 							<?php if ( $isLoggedIn ): ?>
 								<?php if ( $title->userIsWatching() ) { ?>
 									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=unwatch' ); ?>"><?php echo $sk->msg( 'bluesky-unwatch' )->plain() ?></a></li>
