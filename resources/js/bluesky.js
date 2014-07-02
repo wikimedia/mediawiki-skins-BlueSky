@@ -600,10 +600,10 @@ function initTopMenu() {
 		}
 	} );
 
-	$( '.userlogin #wpName1, #wpName1_head' ).val( mw.msg( 'usernameoremail' ) )
+	$( '.userlogin #wpName1, #wpName1_head' ).val( mw.msg( 'userlogin-yourname-ph' ) )
 		.css( 'color', '#ABABAB' )
 		.on( 'click', function () {
-			if ( $( this ).val() == mw.msg( 'usernameoremail' ) ) {
+			if ( $( this ).val() == mw.msg( 'userlogin-yourname-ph' ) ) {
 				$( this ).val( '' ); // clear field
 				$( this ).css( 'color', '#333' ); // change font color
 			}
@@ -619,10 +619,10 @@ function initTopMenu() {
 		}
 	}
 
-	$( '.userlogin #wpPassword1, #wpPassword1_head' ).val( mw.msg( 'password' ) )
+	$( '.userlogin #wpPassword1, #wpPassword1_head' ).val( mw.msg( 'userlogin-yourpassword-ph' ) )
 		.css( 'color', '#ABABAB' )
 		.focus( function () {
-			if ( $( this ).val() == mw.msg( 'password' ) ) {
+			if ( $( this ).val() == mw.msg( 'userlogin-yourpassword-ph' ) ) {
 				$( this ).val( '' );
 				$( this ).css( 'color', '#333' ); // change font color
 				$( this ).get( 0 ).type = 'password'; // switch to dots
@@ -631,7 +631,7 @@ function initTopMenu() {
 
 	// @todo FIXME: getPassword() is defined in /extensions/wikihow/loginreminder/LoginReminder.js
 	$( '#forgot_pwd' ).on( 'click', function () {
-		if ( $( '#wpName1' ).val() == 'Username or Email' ) { // @todo FIXME: i18n
+		if ( $( '#wpName1' ).val() == mw.msg( 'userlogin-yourname-ph' ) ) {
 			$( '#wpName1' ).val( '' );
 		}
 		getPassword( escape( $( '#wpName1' ).val() ) );
@@ -639,7 +639,7 @@ function initTopMenu() {
 	} );
 
 	$( '#forgot_pwd_head' ).on( 'click', function () {
-		if ( $( '#wpName1_head' ).val() == 'Username or Email' ) { // @todo FIXME: i18n
+		if ( $( '#wpName1_head' ).val() == mw.msg( 'userlogin-yourname-ph' ) ) {
 			$( '#wpName1_head' ).val( '' );
 		}
 		getPassword( escape( $( '#wpName1_head' ).val() ) );

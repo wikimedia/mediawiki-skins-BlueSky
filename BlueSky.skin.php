@@ -1187,7 +1187,7 @@ class SkinBlueSky extends SkinTemplate {
 			$editPage = $title->getLocalURL( $sk->editUrlOptions() );
 			$navTabs['nav_edit'] = array(
 				'menu' => $sk->getHeaderMenu( 'edit' ),
-				'link' => $editPage,
+				'link' => htmlspecialchars( $editPage ),
 				'text' => strtoupper( $this->msg( 'edit' )->plain() )
 			);
 		}
@@ -1254,7 +1254,7 @@ class SkinBlueSky extends SkinTemplate {
 							Linker::link( SpecialPage::getTitleFor( 'Preferences' ), $this->msg( 'mypreferences' )->plain() ) .
 							Linker::link( SpecialPage::getTitleFor( 'Userlogout' ), $this->msg( 'logout' )->plain() );
 				} else {
-					$html = /*( class_exists( 'UserLoginBox' ) ? UserLoginBox::getLogin( true ) :*/ '@todo FIXME' /*)*/;
+					$html = $this->getUserLoginBox();
 					$menu_css = 'menu_login';
 				}
 				break;
@@ -1638,6 +1638,77 @@ class SkinBlueSky extends SkinTemplate {
 		return $htmlTitle;
 	}
 
+	/**
+	 * Get the login menu box, which contains the form that allows the user to
+	 * log in.
+	 *
+	 * @param bool $isHead If true, certain HTML elements' IDs are suffixed with "_head"
+	 */
+	private function getUserLoginBox( $isHead = false ) {
+		if ( class_exists( 'UserLoginBox' ) ) {
+			return UserLoginBox::getLogin( $isHead );
+		} else {
+			// Bah, we have to reimplement UserLoginBox's logic here.
+			$actionURL = SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( array(
+				'action' => 'submitlogin',
+				'type' => 'login',
+				'autoredirect' => urlencode( $this->getTitle()->getPrefixedURL() ),
+				'sitelogin' => '1'
+			) );
+
+			// wikiHow's SSL_LOGIN_DOMAIN constant is not supported intentionally
+			// as it was always quite a hack
+			// I don't know what would be the proper way to handle this, actually.
+			// LoginForm::execute() has some HTTPS-related code, but...I dunno.
+			// @todo FIXME in any case
+
+			if ( $isHead ) {
+				$headSuffix = '_head';
+			} else {
+				$headSuffix = '';
+			}
+
+			require_once( 'templates/userloginbox.tmpl.php' );
+			$template = new UserLoginBoxTemplate;
+			$variables = array(
+				// Took out the social login stuff for the time being.
+				// It works for wikiHow because it's a part of their "platform",
+				// but on a (more) vanilla MW installation we can't guarantee
+				// the availability of one or more social login extensions, and
+				// implementing such an extension or extensions here wouldn't
+				// make sense (as opposed to (re)implementing the wH Notifications
+				// or UserLoginBox extensions -- those are rather essential parts
+				// of this skin).
+				'social_buttons' => '',//self::getSocialLogin( $headSuffix ),
+				'suffix' => $headSuffix,
+				'action_url' => htmlspecialchars( $actionURL ),
+			);
+
+			foreach ( $variables as $variable => $value ) {
+				$template->set( $variable, $value );
+			}
+
+			return $template->getHTML();
+		}
+	}
+
+	/**
+	 * Gets the social login buttons (Facebook Connect & Google+).
+	 *
+	 * This merely fetches the HTML, styling and JS "back-end" is up to you to
+	 * implement.
+	 *
+	 * @param string $suffix Optional HTML element ID suffix (_head) or empty
+	 * @return string HTML
+	 */
+	public static function getSocialLogin( $suffix = '' ) {
+		$html = '<div id="fb_connect' . $suffix . '"><a id="fb_login' . $suffix .
+			'" href="#"><span></span></a></div>
+				<div id="gplus_connect' . $suffix . '"><a id="gplus_login' . $suffix .
+				'" href="#"><span></span></a></div>';
+
+		return $html;
+	}
 }
 
 class BlueSkyTemplate extends BaseTemplate {

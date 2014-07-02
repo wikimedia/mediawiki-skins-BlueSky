@@ -84,7 +84,7 @@ $wgResourceModules['skins.bluesky.js'] = array(
 	),
 	'messages' => array(
 		'navlist_collapse', 'navlist_expand',
-		'usernameoremail', 'password',
+		'userlogin-yourname-ph', 'userlogin-yourpassword-ph',
 		'bluesky-js-no-thanks'
 	),
 	'dependencies' => array(
