@@ -50,9 +50,9 @@ class SkinBlueSky extends SkinTemplate {
 		// [[mw:Extension:Theme]] isn't installed; otherwise let the Theme ext.
 		// handle this
 		if ( !function_exists( 'wfDisplayTheme' ) ) {
-			global $wgRequest, $wgDefaultTheme;
+			global $wgDefaultTheme;
 
-			$theme = $wgRequest->getVal( 'usetheme', false );
+			$theme = $out->getRequest()->getVal( 'usetheme', false );
 
 			if ( $theme ) {
 				$out->addModuleStyles( 'skins.bluesky.' . $theme );
