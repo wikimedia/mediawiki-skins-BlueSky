@@ -45,6 +45,22 @@ class SkinBlueSky extends SkinTemplate {
 		// Add CSS via ResourceLoader
 		$out->addModuleStyles( 'skins.bluesky' );
 
+		// Load the CSS for a theme if there is usetheme parameter in the URL
+		// or if $wgDefaultTheme is something else than the global default when
+		// [[mw:Extension:Theme]] isn't installed; otherwise let the Theme ext.
+		// handle this
+		if ( !function_exists( 'wfDisplayTheme' ) ) {
+			global $wgRequest, $wgDefaultTheme;
+
+			$theme = $wgRequest->getVal( 'usetheme', false );
+
+			if ( $theme ) {
+				$out->addModuleStyles( 'skins.bluesky.' . $theme );
+			} elseif ( isset( $wgDefaultTheme ) && $wgDefaultTheme != 'default' ) {
+				$out->addModuleStyles( 'skins.bluesky.' . $wgDefaultTheme );
+			}
+		}
+
 		if ( $this->getUser()->isLoggedIn() ) {
 			$out->addModuleStyles( 'skins.bluesky.loggedin' );
 		}
