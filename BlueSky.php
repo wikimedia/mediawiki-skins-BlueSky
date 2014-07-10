@@ -44,6 +44,7 @@ $wgValidSkinNames['bluesky'] = 'BlueSky';
 $wgAutoloadClasses['SkinBlueSky'] = __DIR__ . '/BlueSky.skin.php';
 $wgExtensionMessagesFiles['SkinBlueSky'] = __DIR__ . '/BlueSky.i18n.php';
 $wgMessagesDirs['SkinBlueSky'] = __DIR__ . '/i18n';
+
 $wgResourceModules['skins.bluesky'] = array(
 	'styles' => array(
 		// MonoBook also loads these
@@ -62,10 +63,11 @@ $wgResourceModules['skins.bluesky'] = array(
 	'position' => 'top'
 );
 
-// CSS for registered users
-$wgResourceModules['skins.bluesky.loggedin'] = array(
+// Themes
+// The 'themeloader.' prefix is a hack around https://bugzilla.wikimedia.org/show_bug.cgi?id=66508
+$wgResourceModules['themeloader.skins.bluesky.dark'] = array(
 	'styles' => array(
-		'skins/BlueSky/resources/css/loggedin.css' => array( 'media' => 'screen' )
+		'skins/BlueSky/resources/css/theme/dark.css' => array( 'media' => 'screen' )
 	),
 	'position' => 'top'
 );

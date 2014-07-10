@@ -30,6 +30,18 @@ class SkinBlueSky extends SkinTemplate {
 	public function initPage( OutputPage $out ) {
 		parent::initPage( $out );
 
+		global $wgHooks;
+		// Add a required class to the <body> element
+		$wgHooks['OutputPageBodyAttributes'][] = function( $out, $sk, &$bodyAttrs ) {
+			global $wgUser;
+			if ( $wgUser->isLoggedIn() ) {
+				$bodyAttrs['class'] .= ' loggedin';
+			} else {
+				$bodyAttrs['class'] .= ' loggedout';
+			}
+			return true;
+		};
+
 		// Load JavaScript via ResourceLoader
 		$out->addModules( 'skins.bluesky.js' );
 	}
@@ -54,15 +66,13 @@ class SkinBlueSky extends SkinTemplate {
 
 			$theme = $out->getRequest()->getVal( 'usetheme', false );
 
+			// The 'themeloader.' prefix is a hack around
+			// https://bugzilla.wikimedia.org/show_bug.cgi?id=66508
 			if ( $theme ) {
-				$out->addModuleStyles( 'skins.bluesky.' . $theme );
+				$out->addModuleStyles( 'themeloader.skins.bluesky.' . $theme );
 			} elseif ( isset( $wgDefaultTheme ) && $wgDefaultTheme != 'default' ) {
-				$out->addModuleStyles( 'skins.bluesky.' . $wgDefaultTheme );
+				$out->addModuleStyles( 'themeloader.skins.bluesky.' . $wgDefaultTheme );
 			}
-		}
-
-		if ( $this->getUser()->isLoggedIn() ) {
-			$out->addModuleStyles( 'skins.bluesky.loggedin' );
 		}
 	}
 
