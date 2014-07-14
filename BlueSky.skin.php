@@ -33,8 +33,7 @@ class SkinBlueSky extends SkinTemplate {
 		global $wgHooks;
 		// Add a required class to the <body> element
 		$wgHooks['OutputPageBodyAttributes'][] = function( $out, $sk, &$bodyAttrs ) {
-			global $wgUser;
-			if ( $wgUser->isLoggedIn() ) {
+			if ( $sk->getUser()->isLoggedIn() ) {
 				$bodyAttrs['class'] .= ' loggedin';
 			} else {
 				$bodyAttrs['class'] .= ' loggedout';
@@ -76,66 +75,21 @@ class SkinBlueSky extends SkinTemplate {
 		}
 	}
 
+	/**
+	 * Add a "widget" to the output, or more accurately, wrap given HTML in
+	 * a div that has class="sidebox" and any and all other specific classes
+	 * and store the result in the class member variable mSidebarWidgets.
+	 *
+	 * @param string $html HTML to output
+	 * @param string $class Additional HTML class(es) as a string, if any
+	 */
 	function addWidget( $html, $class = '' ) {
 		$class = htmlspecialchars( $class ); // Healthy paranoia, just in case.
-		$display = "
-	<div class='sidebox $class'>
-		$html
-	</div>\n";
+		$display = Html::rawElement( 'div',
+			array( 'class' => array( 'sidebox', $class ) ), $html );
 
 		array_push( $this->mSidebarWidgets, $display );
 		return;
-	}
-
-	/**
-	 * A mild hack to allow for the language appropriate 'How to' to be added to
-	 * interwiki link titles. Note: German (de) is a straight pass-through
-	 * since the 'How to' is already stored in the de database
-	 */
-	function getInterWikiLinkText( $linkText, $langCode ) {
-		static $formatting = array(
-			'ar' => '$1 كيفية',
-			'de' => '$1',
-			'es' => 'Cómo $1',
-			'en' => 'How to $1',
-			'fa' => '$1 چگونه',
-			'fr' => 'Comment $1',
-			'he' => '$1 איך',
-			'it' => 'Come $1',
-			'ja' => '$1（する）方法',
-			'nl' => '$1',
-			'pt' => 'Como $1',
-		);
-
-		$result = $linkText;
-		if ( isset( $formatting[$langCode] ) ) {
-			$format = $formatting[$langCode];
-		}
-		if ( !empty( $format ) ) {
-			$result = preg_replace( "@(\\$1)@", $linkText, $format );
-		}
-		return $result;
-	}
-
-	function getInterWikiCTA( $langCode, $linkText, $linkHref ) {
-		static $cta = array(
-			'es' => '<a href="<link>">¿Te gustaría saber <title>? ¡Lee acerca de eso en español!</a>',
-			'de' => '<a href="<link>">Lies auch unseren deutschen Artikel: <title>.</a>',
-			'pt' => '<a href="<link>">Gostaria de aprender <title>? Leia sobre o assunto em português!</a>',
-			'it' => '<a href="<link>">Ti piacerebbe sapere <title>? Leggi come farlo, in italiano!</a>',
-			'fr' => '<a href="<link>">Voudriez-vous apprendre <title>? Découvrez comment le faire en le lisant en français!</a>',
-			'nl' => '<a href="<link>">Wil je graag leren <title>? Lees erover in het Nederlands</a>',
-		);
-		$title = $this->getInterWikiLinkText( $linkText, $langCode );
-		$result = '';
-		$linkHref .= '?utm_source=enwikihow&utm_medium=translatedcta&utm_campaign=translated';
-		if ( $title && isset( $cta[$langCode] ) ) {
-			$title = '<i>' . $title . '</i>';
-			$result = $cta[$langCode];
-			$result = str_replace( '<title>', $title, $result );
-			$result = str_replace( '<link>', $linkHref, $result );
-		}
-		return $result;
 	}
 
 	/**
@@ -147,14 +101,14 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return string
 	 */
 	function pageStats() {
-		global $wgOut, $wgLang, $wgRequest;
 		global $wgDisableCounters;
 
 		$context = $this->getSkin()->getContext();
-		$oldid = $wgRequest->getVal( 'oldid' );
-		$diff = $wgRequest->getVal( 'diff' );
+		$request = $this->getRequest();
+		$oldid = $request->getVal( 'oldid' );
+		$diff = $request->getVal( 'diff' );
 
-		if ( !$wgOut->isArticle() ) {
+		if ( !$this->getOutput()->isArticle() ) {
 			return '';
 		}
 
@@ -168,9 +122,9 @@ class SkinBlueSky extends SkinTemplate {
 
 		$s = '';
 		if ( !$wgDisableCounters ) {
-			$count = $wgLang->formatNum( $context->getWikiPage()->getCount() );
+			$count = $this->getLanguage()->formatNum( $context->getWikiPage()->getCount() );
 			if ( $count ) {
-				if ( $this->getTitle()->getNamespace() == NS_USER ) {
+				if ( $this->getTitle()->inNamespace( NS_USER ) ) {
 					$s = $this->msg( 'viewcountuser', $count )->text();
 				} else {
 					$s = $this->msg( 'viewcount', $count )->text();
@@ -188,21 +142,23 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return string
 	 */
 	function getUserLinks() {
-		global $wgUser, $wgParser;
+		global $wgParser;
 
 		$ret = '';
+		$user = $this->getUser();
+
 		// This feature is available only for registered users.
-		if ( !$wgUser->isLoggedIn() ) {
+		if ( !$user->isLoggedIn() ) {
 			return $ret;
 		}
 
-		$t = Title::makeTitle( NS_USER, $wgUser->getName() . '/Mylinks' );
-		if ( $t->getArticleID() > 0 ) {
+		$t = Title::makeTitle( NS_USER, $user->getName() . '/Mylinks' );
+		if ( $t->exists() ) {
 			$r = Revision::newFromTitle( $t );
 			$text = $r->getText();
 
 			if ( $text != '' ) {
-				$ret = '<h3>' . $this->msg( 'bluesky-mylinks' )->text() . '</h3>';
+				$ret = '<h3>' . $this->msg( 'bluesky-mylinks' )->escaped() . '</h3>';
 				$ret .= '<div id="my_links_list">';
 				$options = new ParserOptions();
 				$output = $wgParser->parse( $text, $this->getTitle(), $options );
@@ -212,167 +168,6 @@ class SkinBlueSky extends SkinTemplate {
 		}
 
 		return $ret;
-	}
-
-	/**
-	 * This function tries to answer the question, "does the given Title need
-	 * further editing?". This is determined by checking if the article contains
-	 * any of the templates listed on [[MediaWiki:Templates_further_editing]].
-	 *
-	 * @param Title $title
-	 * @return bool
-	 */
-	private function needsFurtherEditing( &$title ) {
-		$cats = $title->getParentCategories();
-		$templateMsg = $this->msg( 'templates_further_editing' );
-
-		if ( $templateMsg->isDisabled() ) {
-			return false;
-		}
-
-		if ( is_array( $cats ) && sizeof( $cats ) > 0 ) {
-			$keys = array_keys( $cats );
-			$templates = $templateMsg->inContentLanguage()->text();
-			$templates = explode( "\n", $templates );
-			$templates = array_flip( $templates ); // switch all key/value pairs
-			for ( $i = 0; $i < sizeof( $keys ); $i++ ) {
-				$t = Title::newFromText( $keys[$i] );
-				if ( isset( $templates[$t->getText()] ) ) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * @param BlueSkyTemplate $e
-	 * @param bool $isBoxShape
-	 */
-	function getRelatedArticlesBox( $e, $isBoxShape = false ) {
-		global $wgRequest, $wgMemc;
-
-		$title = $this->getTitle();
-		if (
-			$title->getNamespace() != NS_MAIN ||
-			$title->isMainPage() ||
-			$wgRequest->getVal( 'action' ) != ''
-		)
-		{
-			return '';
-		}
-
-		$cachekey = wfMemcKey( 'relarticles_box', intval( $isBoxShape ), $title->getArticleID() );
-		$val = $wgMemc->get( $cachekey );
-		if ( $val ) {
-			return $val;
-		}
-
-		$ignored = $this->msg( 'categories_to_ignore' );
-		if ( $ignored->isDisabled() ) {
-			return;
-		}
-
-		$cats = $this->getCurrentParentCategories();
-		$cat = '';
-		if ( is_array( $cats ) && sizeof( $cats ) > 0 ) {
-			$keys = array_keys( $cats );
-			$templates = $ignored->inContentLanguage()->text();
-			$templates = explode( "\n", $templates );
-			$templates = str_replace( 'http://www.wikihow.com/Category:', '', $templates );
-			$templates = array_flip( $templates ); // make the array associative.
-			for ( $i = 0; $i < sizeof( $keys ); $i++ ) {
-				$t = Title::newFromText( $keys[$i] );
-				if ( isset( $templates[urldecode( $t->getPartialURL() )] ) ) {
-					continue;
-				} else {
-					$cat = $t->getDBkey();
-					break;
-				}
-			}
-		}
-
-		// Populate related articles box with other articles in the category,
-		// displaying the featured articles first
-		$result = '';
-		if ( !empty( $cat ) ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			$num = intval( $this->msg( 'num_related_articles_to_display' )->inContentLanguage()->text() );
-			if ( !$num ) {
-				return;
-			}
-			// @todo FIXME: page_is_featured field is a wikiHow-ism
-			$res = $dbr->select(
-				array( 'categorylinks', 'page' ),
-				array( 'cl_from', 'page_is_featured, page_title' ),
-				array(
-					'cl_from = page_id',
-					'cl_to' => $cat,
-					'page_namespace' => 0,
-					'page_is_redirect' => 0,
-					'(page_is_featured = 1 OR page_random > ' . wfRandom() . ')'
-				),
-				__METHOD__,
-				array( 'ORDER BY' => 'page_is_featured DESC' )
-			);
-
-			if ( $isBoxShape ) {
-				$result .= '<div class="related_square_row">';
-			}
-
-			$count = 0;
-			foreach ( $res as $row ) {
-				if ( $count >= $num ) {
-					break;
-				}
-				if ( $row->cl_from == $title->getArticleID() ) {
-					continue;
-				}
-
-				$t = Title::newFromDBkey( $row->page_title );
-				if ( !$t || $this->needsFurtherEditing( $t ) ) {
-					continue;
-				}
-
-				if ( $isBoxShape ) {
-					// exit if there's a word that will be too long
-					$word_array = explode( ' ', $t->getText() );
-					foreach ( $word_array as $word ) {
-						if ( strlen( $word ) > 7 ) {
-							continue;
-						}
-					}
-
-					$data = self::featuredArticlesAttrs( $t, $t->getFullText(), 200, 162 );
-					$result .= $this->relatedArticlesBox( $data, $num_cols );
-					if ( $count == 1 ) {
-						$result .= '</div><div class="related_square_row">';
-					}
-				} else {
-					// $data = self::featuredArticlesAttrs($t, $t->getFullText());
-					$result .= self::getArticleThumb( $t, 127, 140 );
-				}
-
-				$count++;
-			}
-
-			if ( $isBoxShape ) {
-				$result .= '</div>';
-			}
-
-			if ( !empty( $result ) ) {
-				if ( $isBoxShape ) {
-					$result = "<div id='related_squares'>$result\n</div>";
-				} else {
-					$result = "<h3>" . $this->msg( 'relatedarticles' )->text() . "</h3>$result<div class='clearall'></div>\n";
-				}
-			}
-		}
-
-		$wgMemc->set( $cachekey, $result );
-
-		return $result;
 	}
 
 	static function getGalleryImage( $title, $width, $height, $skipParser = false ) {
@@ -497,28 +292,6 @@ class SkinBlueSky extends SkinTemplate {
 		return $html;
 	}
 
-	function getArticleThumbWithPath( $t, $width, $height, $file ) {
-		global $wgContLang, $wgLanguageCode;
-
-		$sourceWidth = $file->getWidth();
-		$sourceHeight = $file->getHeight();
-		$xScale = $width / $sourceWidth;
-		if ( $height > $xScale * $sourceHeight ) {
-			$heightPreference = true;
-		} else {
-			$heightPreference = false;
-		}
-		$thumb = WatermarkSupport::getUnwatermarkedThumbnail( $file, $width, $height, true, true, $heightPreference );
-		// removed the fixed width for now
-		$articleName = $t->getText();
-		if ( $wgLanguageCode == 'zh' ) {
-			$articleName = $wgContLang->convert( $articleName );
-		}
-		$html = "<div class='thumbnail'><a href='{$t->getFullUrl()}'><img src='" . $thumb->getUrl() . "' alt='' /><div class='text'><p>" . wfMessage( 'Howto', '' )->text() . "<br /><span>{$articleName}</span></p></div></a></div>";
-
-		return $html;
-	}
-
 	private static function featuredArticlesAttrs( $title, $msg, $dimx = 44, $dimy = 33 ) {
 		$link = Linker::linkKnown( $title, $msg );
 		$img = self::getGalleryImage( $title, $dimx, $dimy );
@@ -548,107 +321,6 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	/**
-	 * @param Title|array $data
-	 * @return string HTML
-	 */
-	function relatedArticlesBox( $data ) {
-		if ( !is_array( $data ) ) { // $data is actually a Title obj
-			$data = self::featuredArticlesAttrs( $data, $data->getText() );
-		}
-
-		if ( strlen( $data['text'] ) > 35 ) {
-			// too damn long
-			$the_title = substr( $data['text'], 0, 32 ) . '...';
-		} else {
-			// we're good
-			$the_title = $data['text'];
-		}
-
-		$html = '<a class="related_square" href="' . $data['url'] . '" style="background-image:url(' . $data['img'] . ')">
-				<p><span>' . $this->msg( 'howto', '' )->text() . '</span>' . $the_title . '</p></a>';
-
-		return $html;
-	}
-
-	/**
-	 * Get the HTML for displaying up to $linksLimit featured articles in a
-	 * box on the sidebar from the past $daysLimit days.
-	 *
-	 * @param int $daysLimit
-	 * @param int $linksLimit
-	 * @return string HTML
-	 */
-	function getFeaturedArticlesBox( $daysLimit = 11, $linksLimit = 4 ) {
-		global $wgServer, $wgMemc, $wgProdHost;
-
-		$cachekey = wfMemcKey( 'featuredbox', $daysLimit, $linksLimit );
-		$result = $wgMemc->get( $cachekey );
-		if ( $result ) {
-			return $result;
-		}
-
-		if ( !class_exists( 'FeaturedArticles' ) ) {
-			return '';
-		}
-		$feeds = FeaturedArticles::getFeaturedArticles( $daysLimit );
-
-		$faURL = $this->msg( 'bluesky-featuredarticles-url' );
-		if ( $faURL->isDisabled() ) {
-			// No URL, ergo no span
-			$html = '<h3>' . $this->msg( 'bluesky-featuredarticles' )->plain() . "</span></h3>\n";
-		} else {
-			$html = "<h3><span onclick=\"location='" . $faURL->text() . "';\" style=\"cursor:pointer;\">" .
-				$this->msg( 'bluesky-featuredarticles' )->text() . "</span></h3>\n";
-		}
-
-		$now = time();
-		$popular = SpecialPage::getTitleFor( 'Popularpages' );
-		$random = SpecialPage::getTitleFor( 'Randompage' );
-		$count = 0;
-
-		foreach ( $feeds as $item ) {
-			$url = $item[0];
-			$date = $item[1];
-
-			if ( $date > $now ) {
-				continue;
-			}
-
-			$url = str_replace( "$wgServer/", '', $url );
-			if ( $wgServer != 'http://www.wikihow.com' ) {
-				$url = str_replace( 'http://www.wikihow.com/', '', $url );
-			}
-			$url = str_replace( "http://$wgProdHost/", '', $url );
-
-			$title = Title::newFromURL( urldecode( $url ) );
-			if ( $title ) {
-				// $html .= $this->featuredArticlesRow($title);
-				$html .= self::getArticleThumb( $title, 126, 120 );
-			}
-
-			$count++;
-
-			if ( $count >= $linksLimit ) {
-				break;
-			}
-		}
-
-		// main page stuff
-		if ( $daysLimit > 8 ) {
-			$data = self::featuredArticlesAttrs( $popular, $this->msg( 'populararticles' )->text() );
-			$html .= $this->featuredArticlesRow( $data );
-			$data = self::featuredArticlesAttrs( $random, $this->msg( 'or_a_random_article' )->text() );
-			$html .= $this->featuredArticlesRow( $data );
-		}
-		$html .= '<div class="clearall"></div>';
-
-		// expires every 5 minutes
-		$wgMemc->set( $cachekey, $html, 5 * 60 );
-
-		return $html;
-	}
-
-	/**
 	 * Render the array as a series of links.
 	 * Overloaded from the Skin class.
 	 *
@@ -659,14 +331,6 @@ class SkinBlueSky extends SkinTemplate {
 		$return = '';
 		//$viewMode = WikihowCategoryViewer::getViewModeArray( $this->getContext() );
 		foreach ( $tree as $element => $parent ) {
-			/*
-			if ($element == "Category:WikiHow" ||
-				$element == "Category:Featured-Articles" ||
-				$element == "Category:Honors") {
-					continue;
-			}
-			*/
-
 			$start = ' ' . self::BREADCRUMB_SEPARATOR;
 
 			$eltitle = Title::newFromText( $element );
@@ -713,32 +377,13 @@ class SkinBlueSky extends SkinTemplate {
 		return $cats;
 	}
 
-	/**
-	 * Copied from /extensions/wikihow/Categoryhelper.body.php, 2014-06-05 release
-	 * and made non-static to remove dependency on a very ugly global
-	 */
-	private function getCurrentParentCategories() {
-		global $wgMemc;
-
-		$title = $this->getTitle();
-
-		$cachekey = wfMemcKey( 'parentcats', $title->getArticleId() );
-		$cats = $wgMemc->get( $cachekey );
-
-		if ( $cats ) {
-			return $cats;
-		}
-
-		$cats = $title->getParentCategories();
-
-		$wgMemc->set( $cachekey, $cats );
-		return $cats;
-	}
-
 	function getCategoryLinks(/* $usebrowser */) {
-		global $wgOut, $wgContLang;
+		global $wgContLang;
+
+		$out = $this->getOutput();
 		$usebrowser = false; // @todo FIXME
-		if ( !$usebrowser && empty( $wgOut->mCategoryLinks['normal'] ) ) {
+
+		if ( !$usebrowser && empty( $out->mCategoryLinks['normal'] ) ) {
 			return '';
 		}
 
@@ -748,10 +393,10 @@ class SkinBlueSky extends SkinTemplate {
 		$embed = "<span dir='$dir'>";
 		$pop = '</span>';
 
-		if ( empty( $wgOut->mCategoryLinks['normal'] ) ) {
+		if ( empty( $out->mCategoryLinks['normal'] ) ) {
 			$t = $embed . '' . $pop;
 		} else {
-			$t = $embed . implode( "{$pop} | {$embed}", $wgOut->mCategoryLinks['normal'] ) . $pop;
+			$t = $embed . implode( "{$pop} | {$embed}", $out->mCategoryLinks['normal'] ) . $pop;
 		}
 		if ( !$usebrowser ) {
 			return $t;
@@ -827,7 +472,8 @@ class SkinBlueSky extends SkinTemplate {
 	 *
 	 * @todo This should support social tools' $wgSupressPageTitle [sic], but
 	 * since core doesn't define that, it's *technically* a register_globals
-	 * vuln...
+	 * vuln...as of 1.24+ we can safely /ignore register_globals, but until
+	 * then, this will have to do.
 	 *
 	 * @return bool
 	 */
@@ -875,14 +521,14 @@ class SkinBlueSky extends SkinTemplate {
 	 *                otherwise returns an empty string
 	 */
 	function getSiteNotice() {
-		global $wgUser, $wgRequest, $wgReadOnly;
+		global $wgReadOnly;
 
-		$hasCookies = $wgUser && $this->userHasCookies();
+		$hasCookies = $this->userHasCookies();
 		if ( $hasCookies && $wgReadOnly ) {
 			$siteNotice = $wgReadOnly;
-		} elseif ( !$hasCookies && $wgRequest->getVal( 'c' ) == 't' ) {
+		} elseif ( !$hasCookies && $this->getRequest()->getVal( 'c' ) == 't' ) {
 			$siteNotice = $this->msg( 'sitenotice_cachedpage' )->parse();
-		} elseif ( !$wgUser->isAnon() ) {
+		} elseif ( !$this->getUser()->isAnon() ) {
 			if ( $this->msg( 'sitenotice_loggedin' )->isDisabled() ) {
 				return '';
 			}
@@ -1008,14 +654,15 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return array
 	 */
 	function getTabsArray( $showArticleTabs ) {
-		global $wgUser, $wgRequest;
-
-		$action = $wgRequest->getVal( 'action', 'view' );
-		if ( $wgRequest->getVal( 'diff' ) ) {
-			$action = 'diff';
-		}
+		$request = $this->getRequest();
 		$skin = $this->getSkin();
 		$title = $skin->getTitle();
+		$user = $this->getUser();
+
+		$action = $request->getVal( 'action', 'view' );
+		if ( $request->getVal( 'diff' ) ) {
+			$action = 'diff';
+		}
 
 		$tabs = array();
 
@@ -1052,7 +699,7 @@ class SkinBlueSky extends SkinTemplate {
 			$title->getNamespace() != NS_CATEGORY &&
 			(
 				!in_array( $title->getNamespace(), array( NS_USER, NS_USER_TALK, NS_FILE ) ) ||
-				$action == 'edit' || $wgUser->getId() > 0
+				$action == 'edit' || $user->getId() > 0
 			)
 		)
 		{
@@ -1083,7 +730,7 @@ class SkinBlueSky extends SkinTemplate {
 		}
 
 		// history
-		if ( !$wgUser->isAnon() && $title->getNamespace() != NS_CATEGORY ) {
+		if ( !$user->isAnon() && $title->getNamespace() != NS_CATEGORY ) {
 			$historyTab->href = $title->getLocalURL( 'action=history' );
 			$historyTab->text = $this->msg( 'history' )->plain();
 			$historyTab->class = ( $action == 'history' ) ? 'on' : '';
@@ -1092,7 +739,7 @@ class SkinBlueSky extends SkinTemplate {
 		}
 
 		// admin
-		if ( $wgUser->isAllowedAny( 'delete', 'protect', 'unprotect', 'move' ) && $title->userCan( 'delete' ) ) {
+		if ( $user->isAllowedAny( 'delete', 'protect', 'unprotect', 'move' ) && $title->userCan( 'delete' ) ) {
 			$adminTab->href = '#';
 			$adminTab->text = $this->msg( 'bluesky-admin-menu' )->plain();
 			$adminTab->class = '';
@@ -1174,12 +821,11 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return array
 	 */
 	function genNavigationTabs() {
-		global $wgUser;
-
 		$sk = $this->getSkin();
 		$title = $sk->getTitle();
+		$user = $this->getUser();
 
-		$isLoggedIn = $wgUser->getID() > 0;
+		$isLoggedIn = $user->getID() > 0;
 
 		$navTabs = array(
 			'nav_messages' => array(
@@ -1189,7 +835,7 @@ class SkinBlueSky extends SkinTemplate {
 			),
 			'nav_profile' => array(
 				'menu' => $sk->getHeaderMenu( 'profile' ),
-				'link' => $isLoggedIn ? $wgUser->getUserPage()->getLocalURL() : '#',
+				'link' => $isLoggedIn ? $user->getUserPage()->getLocalURL() : '#',
 				'text' => $isLoggedIn ? strtoupper( $this->msg( 'bluesky-navbar-profile' )->plain() ) : strtoupper( $this->msg( 'login' )->plain() )
 			),
 			'nav_explore' => array(
@@ -1230,13 +876,14 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return string HTML
 	 */
 	function getHeaderMenu( $menu ) {
-		global $wgLanguageCode, $wgUser, $wgForumLink;
+		global $wgForumLink;
 
 		$html = '';
 		$menu_css = 'menu';
 		$sk = $this->getSkin();
 		$title = $this->getTitle();
-		$isLoggedIn = $wgUser->getID() > 0;
+		$user = $this->getUser();
+		$isLoggedIn = $user->getID() > 0;
 
 		switch ( $menu ) {
 			case 'edit':
@@ -1344,7 +991,7 @@ class SkinBlueSky extends SkinTemplate {
 			case 'messages':
 				if ( class_exists( 'EchoEvent' ) && $this->userHasCookies() ) {
 					$maxNotesShown = 5;
-					$notif = ApiEchoNotifications::getNotifications( $wgUser, 'html', $maxNotesShown );
+					$notif = ApiEchoNotifications::getNotifications( $user, 'html', $maxNotesShown );
 
 					if ( $notif ) {
 						$notificationsPage = SpecialPage::getTitleFor( 'Notifications' );
@@ -1364,7 +1011,7 @@ class SkinBlueSky extends SkinTemplate {
 						}
 
 						// get the unread count
-						$notifUser = MWEchoNotifUser::newFromUser( $wgUser );
+						$notifUser = MWEchoNotifUser::newFromUser( $user );
 						$this->notifications_count = $notifUser->getNotificationCount();
 
 						if ( $this->notifications_count > $maxNotesShown ) {
@@ -1422,9 +1069,10 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return array array( HTML output, total amount of all notifications, has new User_talk messages? )
 	 */
 	private function getNotifications() {
-		global $wgUser, $wgMemc;
+		global $wgMemc;
 
-		$memKey = wfMemcKey( 'notification_box_' . $wgUser->getId() );
+		$user = $this->getUser();
+		$memKey = wfMemcKey( 'notification_box_' . $user->getId() );
 		$box = $wgMemc->get( $memKey );
 
 		if ( !is_array( $box ) ) {
@@ -1432,11 +1080,11 @@ class SkinBlueSky extends SkinTemplate {
 
 			// Talk messages
 			$talkCount = 0;
-			if ( $wgUser->getNewtalk() ) {
+			if ( $user->getNewtalk() ) {
 				$talkCount = self::getCount( 'user_newtalk' );
 				$msg = '<div class="note_row"><div class="note_icon_talk"></div>' .
 					Linker::link(
-						$wgUser->getTalkPage(),
+						$user->getTalkPage(),
 						$this->msg( 'bluesky-notifications-new-talk' )->numParams( $talkCount )->parse()
 					) . '</div>';
 				$notes[] = $msg;
@@ -1465,14 +1113,14 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return int Amount of entries
 	 */
 	private static function getCount( $table ) {
-		global $wgUser;
+		$user = $this->getUser();
 
-		if ( $wgUser->getId() > 0 ) {
+		if ( $user->getId() > 0 ) {
 			$field = 'user_id';
-			$id = $wgUser->getId();
+			$id = $user->getId();
 		} else {
 			$field = 'user_ip';
-			$id = $wgUser->getName();
+			$id = $user->getName();
 		}
 
 		$db = wfGetDB( DB_MASTER );
@@ -1492,10 +1140,8 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return string HTML output
 	 */
 	private function formatNotifications( $notes, $newTalk ) {
-		global $wgUser;
-
 		$html = '';
-		$talkPage = $wgUser->getTalkPage()->getPrefixedText();
+		$talkPage = $this->getUser()->getTalkPage()->getPrefixedText();
 
 		foreach ( $notes as $note ) {
 			$html .= $note;
@@ -1525,7 +1171,7 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return QuickTemplate
 	 */
 	protected function prepareQuickTemplate( OutputPage $out = null ) {
-		global $wgContLang, $wgHideInterlanguageLinks, $wgUser;
+		global $wgContLang, $wgHideInterlanguageLinks;
 		wfProfileIn( __METHOD__ );
 
 		$tpl = parent::prepareQuickTemplate( $out );
@@ -1557,7 +1203,7 @@ class SkinBlueSky extends SkinTemplate {
 		// correct HTTP headers
 		if (
 			$out->getTitle()->getNamespace() == NS_USER &&
-			$wgUser->getId() == 0 &&
+			$this->getUser()->getId() == 0 &&
 			class_exists( 'UserPagePolicy' ) &&
 			!UserPagePolicy::isGoodUserPage( $out->getTitle()->getDBkey() )
 		)
@@ -1635,11 +1281,11 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	public function getHTMLTitle( $defaultHTMLTitle, $title, $isMainPage ) {
-		global $wgRequest, $wgLang, $wgSitename;
+		global $wgSitename;
 
 		$theRealTitle = $this->getTitle();
 		$namespace = $theRealTitle->getNamespace();
-		$action = $wgRequest->getVal( 'action', 'view' );
+		$action = $this->getRequest()->getVal( 'action', 'view' );
 
 		$htmlTitle = $defaultHTMLTitle;
 		if ( $isMainPage ) {
@@ -1656,7 +1302,7 @@ class SkinBlueSky extends SkinTemplate {
 			}
 		} elseif ( $namespace == NS_USER || $namespace == NS_USER_TALK ) {
 			$username = $theRealTitle->getText();
-			$htmlTitle = $wgLang->getNsText( $namespace ) . ": $username - $wgSitename";
+			$htmlTitle = $this->getLanguage()->getNsText( $namespace ) . ": $username - $wgSitename";
 		} elseif ( $namespace == NS_CATEGORY ) {
 			$htmlTitle = $this->msg( 'category_title_tag', $theRealTitle->getText() )->text();
 		}
@@ -1746,9 +1392,7 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * outputs a formatted page.
 	 */
 	public function execute() {
-		global $wgUser, $wgLang, $wgRequest;
-		global $wgOut, $wgStylePath, $wgLanguageCode, $wgForumLink;
-		global $wgSSLsite;
+		global $wgStylePath, $wgLanguageCode, $wgForumLink;
 
 		if ( class_exists( 'MobileWikihow' ) ) {
 			$mobileWikihow = new MobileWikihow();
@@ -1759,13 +1403,17 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 		}
 
-		$action = $wgRequest->getVal( 'action', 'view' );
-		if ( count( $wgRequest->getVal( 'diff' ) ) > 0 ) {
+		$sk = $this->getSkin();
+		$out = $sk->getOutput();
+		$request = $sk->getRequest();
+		$title = $sk->getTitle();
+		$user = $sk->getUser();
+
+		$action = $request->getVal( 'action', 'view' );
+		if ( count( $request->getVal( 'diff' ) ) > 0 ) {
 			$action = 'diff';
 		}
 
-		$sk = $this->getSkin();
-		$title = $sk->getTitle();
 		$isMainPage = ( $title->isMainPage() && $action == 'view' );
 
 		$isArticlePage = !$isMainPage &&
@@ -1774,17 +1422,15 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$isDocViewer = $title->isSpecial( 'DocViewer' );
 
-		$isBehindHttpAuth = !empty( $_SERVER['HTTP_AUTHORIZATION'] );
-
 		// determine whether or not the user is logged in
-		$isLoggedIn = $wgUser->getID() > 0;
+		$isLoggedIn = $user->getID() > 0;
 
 		$isTool = false;
 		wfRunHooks( 'getToolStatus', array( &$isTool ) );
 
 		$isIndexed = class_exists( 'RobotPolicy' ) && RobotPolicy::isIndexable( $title );
 
-		$pageTitle = $sk->getHTMLTitle( $wgOut->getHTMLTitle(), $this->data['title'], $isMainPage );
+		$pageTitle = $sk->getHTMLTitle( $out->getHTMLTitle(), $this->data['title'], $isMainPage );
 
 		$heading = '';
 		if ( !$sk->suppressH1Tag() && $this->data['title'] ) {
@@ -1798,24 +1444,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$isPrintable = false;
 		if ( MWNamespace::isTalk( $title->getNamespace() ) && $action == 'view' ) {
-			$isPrintable = $wgRequest->getVal( 'printable' ) == 'yes';
-		}
-
-		$otherLanguageLinks = array();
-		$translationData = array();
-		if ( $this->data['language_urls'] ) {
-			foreach ( $this->data['language_urls'] as $lang ) {
-				if ( $lang['code'] == $wgLanguageCode ) {
-					continue;
-				}
-				$otherLanguageLinks[ $lang['code'] ] = $lang['href'];
-				$langMsg = $sk->getInterWikiCTA( $lang['code'], $lang['text'], $lang['href'] );
-				if ( !$langMsg ) {
-					continue;
-				}
-				$encLangMsg = json_encode( $langMsg );
-				$translationData[] = "'{$lang['code']}': {'msg':$encLangMsg}";
-			}
+			$isPrintable = $request->getVal( 'printable' ) == 'yes';
 		}
 
 		$siteNotice = '';
@@ -1873,7 +1502,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 		} else {
 			if ( $action == 'edit' && class_exists( 'WikihowArticleEditor' ) ) {
-				$heading .= WikihowArticleEditor::grabArticleEditLinks( $wgRequest->getVal( 'guidededitor' ) );
+				$heading .= WikihowArticleEditor::grabArticleEditLinks( $request->getVal( 'guidededitor' ) );
 			}
 			$this->data['bodyheading'] = $heading;
 			$body = '<div id="bodycontents" class="minor_section">' . $this->data['bodytext'] . '</div>';
@@ -1924,7 +1553,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$showRCWidget =
 			class_exists( 'RCWidget' ) &&
 			$title->getNamespace() != NS_USER &&
-			( !$isLoggedIn || $wgUser->getOption( 'recent_changes_widget_show', true ) == 1 ) &&
+			( !$isLoggedIn || $user->getOption( 'recent_changes_widget_show', true ) == 1 ) &&
 			( $isLoggedIn || $isMainPage ) &&
 			!$isDocViewer &&
 			$action != 'edit';
@@ -1946,25 +1575,16 @@ class BlueSkyTemplate extends BaseTemplate {
 			!$isMainPage &&
 			$isIndexed &&
 			// $showSocialSharing &&
-			$wgRequest->getVal( 'oldid' ) == '' &&
-			( $wgRequest->getVal( 'action' ) == '' || $wgRequest->getVal( 'action' ) == 'view' );
-
-		$showFeaturedArticlesSidebar = false;
-			/*
-			$action == 'view'
-			&& !$isMainPage
-			&& !$isDocViewer
-			&& !$wgSSLsite
-			&& $title->getNamespace() != NS_USER;
-			*/
+			$request->getVal( 'oldid' ) == '' &&
+			( $request->getVal( 'action' ) == '' || $request->getVal( 'action' ) == 'view' );
 
 		$isSpecialPage = $title->getNamespace() == NS_SPECIAL
-			|| ( $title->getNamespace() == NS_MAIN && $wgRequest->getVal( 'action' ) == 'protect' )
-			|| ( $title->getNamespace() == NS_MAIN && $wgRequest->getVal( 'action' ) == 'delete' );
+			|| ( $title->getNamespace() == NS_MAIN && $request->getVal( 'action' ) == 'protect' )
+			|| ( $title->getNamespace() == NS_MAIN && $request->getVal( 'action' ) == 'delete' );
 
 		$showStaffStats = !$isMainPage
 			&& $isLoggedIn
-			&& ( in_array( 'staff', $wgUser->getGroups() ) || in_array( 'staff_widget', $wgUser->getGroups() ) )
+			&& ( in_array( 'staff', $user->getGroups() ) || in_array( 'staff_widget', $user->getGroups() ) )
 			&& $title->getNamespace() == NS_MAIN
 			&& class_exists( 'Pagestats' );
 
@@ -2000,14 +1620,14 @@ class BlueSkyTemplate extends BaseTemplate {
 			?>
 			<a href="<?php echo $mainPageObj->getLocalURL(); ?>" id="logo_link"><img src="<?php echo $logoPath ?>" class="logo" alt="" /></a>
 			<?php echo $top_search ?>
-			<?php wfRunHooks( 'EndOfHeader', array( &$wgOut ) ); ?>
+			<?php wfRunHooks( 'EndOfHeader', array( &$out ) ); ?>
 		</div></div><!--end #header-->
-		<?php wfRunHooks( 'AfterHeader', array( &$wgOut ) ); ?>
+		<?php wfRunHooks( 'AfterHeader', array( &$out ) ); ?>
 		<div id="main_container" class="<?php echo ( $isMainPage ? 'mainpage' : '' ) ?>">
 			<div id="header_space"></div>
 
 		<div id="main">
-		<?php wfRunHooks( 'BeforeActionbar', array( &$wgOut ) ); ?>
+		<?php wfRunHooks( 'BeforeActionbar', array( &$out ) ); ?>
 		<div id="actionbar" class="<?php echo ( $isTool ? 'isTool' : '' ) ?>">
 			<?php if ( $showBreadCrumbs ): ?>
 				<div id="gatBreadCrumb">
@@ -2023,18 +1643,13 @@ class BlueSkyTemplate extends BaseTemplate {
 			?>
 
 		</div><!--end #actionbar-->
-		<script>
-		<!--
-		//WH.translationData = {<?php echo join( ',', $translationData ) ?>};
-		//-->
-		</script>
 		<div id="container"<?php echo !$showSideBar ? ' class="no_sidebar"' : '' ?>>
 		<div id="article_shell">
 		<div id="article"<?php if ( class_exists( 'Microdata' ) ) { echo Microdata::genSchemaHeader(); } ?> class="mw-body">
 			<?php if ( $this->data['undelete'] ) { ?><div id="contentSub"><?php $this->html( 'undelete' ) ?></div><?php } ?>
 			<?php if ( $this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html( 'newtalk' ) ?></div><?php } ?>
 			<?php
-			wfRunHooks( 'BeforeTabsLine', array( &$wgOut ) );
+			wfRunHooks( 'BeforeTabsLine', array( &$out ) );
 			if ( !$isArticlePage && !$isMainPage && $this->data['bodyheading'] ) {
 				echo '<div class="wh_block">' . $this->data['bodyheading'] . '</div>';
 			}
@@ -2189,16 +1804,6 @@ class BlueSkyTemplate extends BaseTemplate {
 				</div>
 				<?php } ?>
 
-				<?php
-				$related_articles = $sk->getRelatedArticlesBox( $this );
-				if ( $action == 'view' && $related_articles != '' ) {
-					$related_articles = '<div id="side_related_articles" class="sidebox">'
-						. $related_articles . '</div><!--end side_related_articles-->';
-
-					echo $related_articles;
-				}
-				?>
-
 				<?php if ( $showSocialSharing ): ?>
 					<div class="sidebox<?php echo $loggedOutClass ?>" id="sidebar_share">
 						<h3><?php echo $sk->msg( 'social_share' )->text() ?></h3>
@@ -2219,19 +1824,13 @@ class BlueSkyTemplate extends BaseTemplate {
 				<?php endforeach; ?>
 				<!-- END Sidebar Widgets -->
 
-				<?php if ( $showFeaturedArticlesSidebar ): ?>
-					<div id="side_featured_articles" class="sidebox">
-						<?php echo $sk->getFeaturedArticlesBox( 4, 4 ) ?>
-					</div>
-				<?php endif; ?>
-
 				<?php if ( $showRCWidget ): ?>
 					<div class="sidebox" id="side_rc_widget">
 						<?php RCWidget::showWidget(); ?>
 						<p class="bottom_link">
 							<?php
 							if ( $isLoggedIn ) {
-								echo $sk->msg( 'welcome', $wgUser->getName(), $wgUser->getUserPage()->getLocalURL() )->text();
+								echo $sk->msg( 'welcome', $user->getName(), $user->getUserPage()->getLocalURL() )->text();
 							} else {
 								echo Linker::link(
 									SpecialPage::getTitleFor( 'Userlogin' ),
