@@ -1153,12 +1153,12 @@ class SkinBlueSky extends SkinTemplate {
 			$html = preg_replace( '/note_row/', 'note_row first_note_row', $html, 1 );
 			if ( !$newTalk ) {
 				$html .= '<div class="note_row note_empty">' .
-					$this->msg( 'bluesky-notifications-no-talk', $talkPage )->text() .
+					$this->msg( 'bluesky-notifications-no-talk', $talkPage )->parse() .
 					'</div>';
 			}
 		} else {
 			$html = '<div class="note_row note_empty">' .
-				$this->msg( 'bluesky-notifications-none', $talkPage )->text() .
+				$this->msg( 'bluesky-notifications-none', $talkPage )->parse() .
 				'</div>';
 		}
 
