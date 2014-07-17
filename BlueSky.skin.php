@@ -1082,7 +1082,7 @@ class SkinBlueSky extends SkinTemplate {
 			// Talk messages
 			$talkCount = 0;
 			if ( $user->getNewtalk() ) {
-				$talkCount = self::getCount( 'user_newtalk' );
+				$talkCount = $this->getCount( 'user_newtalk' );
 				$msg = '<div class="note_row"><div class="note_icon_talk"></div>' .
 					Linker::link(
 						$user->getTalkPage(),
@@ -1113,7 +1113,7 @@ class SkinBlueSky extends SkinTemplate {
 	 * @param string $table Database table name
 	 * @return int Amount of entries
 	 */
-	private static function getCount( $table ) {
+	private function getCount( $table ) {
 		$user = $this->getUser();
 
 		if ( $user->getId() > 0 ) {
