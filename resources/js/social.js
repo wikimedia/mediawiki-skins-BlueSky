@@ -4,7 +4,13 @@
 	} );
 
 	$( window ).load( function() {
-		if ( $( '.twitter-share-button' ).length && ( !$.browser.msie || $.browser.version > 7 ) ) {
+		var clientProfile = $.client.profile();
+		
+		if (
+			$( '.twitter-share-button' ).length &&
+			( !clientProfile['name'] === 'msie' || clientProfile['versionBase'] > 7 )
+		)
+		{
 			$.getScript( 'https://platform.twitter.com/widgets.js', function() {
 				twttr.events.bind( 'tweet', function ( event ) {
 					if ( event ) {

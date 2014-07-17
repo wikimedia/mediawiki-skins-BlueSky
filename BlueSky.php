@@ -90,6 +90,7 @@ $wgResourceModules['skins.bluesky.js'] = array(
 		'bluesky-js-no-thanks'
 	),
 	'dependencies' => array(
+		'jquery.client',
 		'skins.bluesky.js.easing',
 		// for the e-mail to a friend stuff (well, at least as long as it's
 		// there...)

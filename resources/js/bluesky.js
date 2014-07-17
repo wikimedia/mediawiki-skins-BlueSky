@@ -277,8 +277,9 @@ WH.isPageScrolledToFollowTable = function () {
 
 $( document ).ready( function () {
 
+	var clientProfile = $.client.profile();
 	// Slider -- not for browsers that don't render +1 buttons
-	var oldMSIE = $.browser.msie && $.browser.version <= 7;
+	var oldMSIE = ( clientProfile['name'] === 'msie' ) && clientProfile['versionBase'] <= 7;
 	if (
 		$( '#slideshowdetect' ).length &&
 		slider &&
@@ -609,8 +610,9 @@ function initTopMenu() {
 			}
 		} );
 
+	var clientProfile = $.client.profile();
 	// switch to text so we can display "Password"
-	if ( !( $.browser.msie && $.browser.version <= 8.0 ) ) {
+	if ( !( clientProfile['name'] === 'msie' && clientProfile['versionBase'] <= 8 ) ) {
 		if ( $( '.userlogin #wpPassword1' ).get( 0 ) ) {
 			$('.userlogin #wpPassword1' ).get( 0 ).type = 'text';
 		}
@@ -691,8 +693,9 @@ $( document ).ready( function () {
 	} );
 
 	function toggleHeader( bShrink ) {
+		var clientProfile = $.client.profile();
 		// not so fast, IE7...
-		if ( $.browser.msie && parseFloat( $.browser.version ) < 8 ) {
+		if ( clientProfile['name'] === 'msie' && parseFloat( clientProfile['versionBase'] ) < 8 ) {
 			return;
 		}
 
@@ -724,7 +727,9 @@ $( window ).scroll( function () {
 	previousHeader = null;
 	currentHeader = null;
 
-	if ( $.browser.msie && parseFloat( $.browser.version ) < 8 ) {
+	var clientProfile = $.client.profile();
+
+	if ( clientProfile['name'] === 'msie' && parseFloat( clientProfile['versionBase'] ) < 8 ) {
 		// IE7 doesn't like stickiness
 	} else {
 		$( '.section.sticky' ).each( function () {
@@ -774,7 +779,8 @@ function makeSticky( container, element ) {
 
 // New checkmarks aren't compatible with IE 8 and earlier so revert to old style
 $( document ).ready( function () {
-	if ( $.browser.msie && $.browser.version <= 8 ) {
+	var clientProfile = $.client.profile();
+	if ( clientProfile['name'] === 'msie' && clientProfile['versionBase'] <= 8 ) {
 		$( '.css-checkbox' ).removeClass( 'css-checkbox' );
 		$( '.css-checkbox-label' ).removeClass( 'css-checkbox-label' );
 	}
@@ -817,7 +823,8 @@ function addOptions() {
 }
 
 function menu_show( choice ) {
-	if ( $.browser.msie && parseFloat( $.browser.version ) < 9 ) {
+	var clientProfile = $.client.profile();
+	if ( clientProfile['name'] === 'msie' && parseFloat( clientProfile['versionBase'] ) < 9 ) {
 		// IE7 and IE8 fix
 		$( choice ).find( '.menu, .menu_login, .menu_messages' )
 			.stop( true, true )
@@ -884,7 +891,8 @@ function menu_show( choice ) {
 }
 
 function menu_hide( choice ) {
-	if ( $.browser.msie && parseFloat( $.browser.version ) < 9 ) {
+	var clientProfile = $.client.profile();
+	if ( clientProfile['name'] === 'msie' && parseFloat( clientProfile['versionBase'] ) < 9 ) {
 		// IE7 and IE8 fix
 		$( choice ).find( '.menu, .menu_login, .menu_messages' )
 			.stop( true, true )
