@@ -381,9 +381,10 @@ class SkinBlueSky extends SkinTemplate {
 		global $wgContLang;
 
 		$out = $this->getOutput();
+		$categoryLinks = $out->getCategoryLinks();
 		$usebrowser = false; // @todo FIXME
 
-		if ( !$usebrowser && empty( $out->mCategoryLinks['normal'] ) ) {
+		if ( !$usebrowser && empty( $categoryLinks['normal'] ) ) {
 			return '';
 		}
 
@@ -393,10 +394,10 @@ class SkinBlueSky extends SkinTemplate {
 		$embed = "<span dir='$dir'>";
 		$pop = '</span>';
 
-		if ( empty( $out->mCategoryLinks['normal'] ) ) {
+		if ( empty( $categoryLinks['normal'] ) ) {
 			$t = $embed . '' . $pop;
 		} else {
-			$t = $embed . implode( "{$pop} | {$embed}", $out->mCategoryLinks['normal'] ) . $pop;
+			$t = $embed . implode( "{$pop} | {$embed}", $categoryLinks['normal'] ) . $pop;
 		}
 		if ( !$usebrowser ) {
 			return $t;
