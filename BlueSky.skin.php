@@ -924,7 +924,7 @@ class SkinBlueSky extends SkinTemplate {
 							$myNotifications .
 							Linker::link( SpecialPage::getTitleFor( 'Watchlist' ), $this->msg( 'watchlist' )->plain() ) .
 							#Linker::link( Title::makeTitle( NS_SPECIAL, 'Drafts' ), $this->msg( 'mydrafts' )->text() ) .
-							Linker::link( SpecialPage::getTitleFor( 'Mypages', 'Contributions' ), $this->msg( 'mycontris' )->plain() ) .
+							Linker::link( SpecialPage::getTitleFor( 'Mycontributions' ), $this->msg( 'mycontris' )->plain() ) .
 							Linker::link( SpecialPage::getTitleFor( 'Preferences' ), $this->msg( 'mypreferences' )->plain() ) .
 							Linker::link( SpecialPage::getTitleFor( 'Userlogout' ), $this->msg( 'logout' )->plain() );
 				} else {
