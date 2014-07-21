@@ -1647,6 +1647,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		<div id="container"<?php echo !$showSideBar ? ' class="no_sidebar"' : '' ?>>
 		<div id="article_shell">
 		<div id="article"<?php if ( class_exists( 'Microdata' ) ) { echo Microdata::genSchemaHeader(); } ?> class="mw-body">
+			<div id="contentSub2"><?php $this->html( 'subtitle' ) ?></div>
 			<?php if ( $this->data['undelete'] ) { ?><div id="contentSub"><?php $this->html( 'undelete' ) ?></div><?php } ?>
 			<?php if ( $this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html( 'newtalk' ) ?></div><?php } ?>
 			<?php
