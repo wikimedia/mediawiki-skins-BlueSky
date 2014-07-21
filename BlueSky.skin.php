@@ -56,6 +56,59 @@ class SkinBlueSky extends SkinTemplate {
 		// Add CSS via ResourceLoader
 		$out->addModuleStyles( 'skins.bluesky' );
 
+		// Ugly LESS hacks
+		$modules = array();
+		$title = $this->getTitle();
+		$request = $this->getRequest();
+		$action = $request->getVal( 'action', 'view' );
+
+		// Page action specific hacks
+		switch ( $action ) {
+			case 'delete':
+				$modules[] = 'skins.bluesky.hacks.action.delete';
+				break;
+			case 'edit':
+			case 'submit': // action=edit after previewing etc.
+				$modules[] = 'skins.bluesky.hacks.action.edit';
+				break;
+			case 'history':
+				$modules[] = 'skins.bluesky.hacks.action.history';
+				break;
+			case 'protect':
+				$modules[] = 'skins.bluesky.hacks.action.protect';
+				break;
+			default:
+				break;
+		}
+
+		// Namespace (and/or page) specific hacks
+		if ( $title->inNamespace( NS_FILE ) ) {
+			$modules[] = 'skins.bluesky.hacks.filepage';
+		} elseif ( $title->inNamespace( NS_SPECIAL ) ) {
+			switch ( strtolower( $title->getDBkey() ) ) {
+				case 'log':
+					$modules[] = 'skins.bluesky.hacks.special.log';
+					break;
+				case 'movepage':
+					$modules[] = 'skins.bluesky.hacks.special.movepage';
+					break;
+				case 'recentchanges':
+					$modules[] = 'skins.bluesky.hacks.special.recentchanges';
+					break;
+				case 'undelete':
+					$modules[] = 'skins.bluesky.hacks.special.undelete';
+					break;
+				case 'watchlist':
+					$modules[] = 'skins.bluesky.hacks.special.watchlist';
+					break;
+				default:
+					break;
+			}
+		}
+
+		// Finally output all the modules!
+		$out->addModuleStyles( $modules );
+
 		// Load the CSS for a theme if there is usetheme parameter in the URL
 		// or if $wgDefaultTheme is something else than the global default when
 		// [[mw:Extension:Theme]] isn't installed; otherwise let the Theme ext.

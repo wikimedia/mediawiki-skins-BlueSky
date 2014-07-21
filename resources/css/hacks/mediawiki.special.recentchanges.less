@@ -1,0 +1,44 @@
+@import "hacks-mixins.less";
+
+/* includes/changes/ChangesList.php */
+/**
+ * @see also BlueSky's nonarticle.css
+ */
+body.mw-special-Recentchanges {
+	input[type="submit"] {
+		.button;
+		.button-primary;
+	}
+
+	/* recentchangestext would need to be wrapped in a div with class="minor_text" */
+
+	div.mw-changeslist {
+		ul.special {
+			/* wh_block styles */
+			/* the latter definition wins over this, so I'll comment this out to
+			 * prevent any confusion (as this is a part of the wh_block class definition)
+			padding: 27px;
+			*/
+			margin-bottom: 25px;
+			word-wrap: break-word;
+			background-color: #ffffff;
+			.border-radius;
+			border: 1px solid #e5e5e5;
+
+			/* recentchanges_list styles */
+			margin: 1em 0 2em 0 !important;
+			padding: 1em;
+			list-style: none;
+			font-size: .8em;
+
+			li {
+				margin: 0 !important;
+				padding: .5em;
+			}
+
+			li.mw-line-odd {
+				background-color: #f6f5f4;
+			}
+		}
+	}
+}

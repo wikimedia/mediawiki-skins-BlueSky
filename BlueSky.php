@@ -45,6 +45,7 @@ $wgAutoloadClasses['SkinBlueSky'] = __DIR__ . '/BlueSky.skin.php';
 $wgExtensionMessagesFiles['SkinBlueSky'] = __DIR__ . '/BlueSky.i18n.php';
 $wgMessagesDirs['SkinBlueSky'] = __DIR__ . '/i18n';
 
+// Main CSS ResourceLoader module
 $wgResourceModules['skins.bluesky'] = array(
 	'styles' => array(
 		// MonoBook also loads these
@@ -60,6 +61,65 @@ $wgResourceModules['skins.bluesky'] = array(
 		'skins/BlueSky/resources/css/printable.css' => array( 'media' => 'print' ),
 		#'skins/BlueSky/resources/css/iphone.css' => array( 'media' => 'only screen and (max-device-width: 480px)' ),
 	),
+	'position' => 'top'
+);
+
+// LESS versions of things that used to be PHP-side core hacks
+$wgResourceModules['skins.bluesky.hacks.general'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/general.less',
+	'position' => 'top'
+);
+
+// Action-specific LESS hacks
+$wgResourceModules['skins.bluesky.hacks.action.delete'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/mediawiki.action.delete.less',
+	'position' => 'top'
+);
+
+$wgResourceModules['skins.bluesky.hacks.action.edit'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/mediawiki.action.edit.less',
+	'position' => 'top'
+);
+
+$wgResourceModules['skins.bluesky.hacks.action.history'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/mediawiki.action.history.less',
+	'position' => 'top'
+);
+
+$wgResourceModules['skins.bluesky.hacks.action.protect'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/mediawiki.action.protect.less',
+	'position' => 'top'
+);
+
+// Namespace-specific LESS hacks
+$wgResourceModules['skins.bluesky.hacks.filepage'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/mediawiki.filepage.less',
+	'position' => 'top'
+);
+
+// (Special) page-specific LESS hacks
+$wgResourceModules['skins.bluesky.hacks.special.log'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/mediawiki.special.log.less',
+	'position' => 'top'
+);
+
+$wgResourceModules['skins.bluesky.hacks.special.movepage'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/mediawiki.special.movepage.less',
+	'position' => 'top'
+);
+
+$wgResourceModules['skins.bluesky.hacks.special.recentchanges'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/mediawiki.special.recentchanges.less',
+	'position' => 'top'
+);
+
+$wgResourceModules['skins.bluesky.hacks.special.undelete'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/mediawiki.special.undelete.less',
+	'position' => 'top'
+);
+
+$wgResourceModules['skins.bluesky.hacks.special.watchlist'] = array(
+	'styles' => 'skins/BlueSky/resources/css/hacks/mediawiki.special.watchlist.less',
 	'position' => 'top'
 );
 

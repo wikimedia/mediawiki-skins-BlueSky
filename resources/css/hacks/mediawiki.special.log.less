@@ -1,0 +1,22 @@
+@import "hacks-mixins.less";
+
+/* includes/logging/LogEventsList.php */
+body.mw-special-Log {
+	/* TODO: two hacks not incorporated here:
+	 * 1) in an if ( $filter ) {} loop, the p element was given margin-left: 10px
+	 * 2) getUserInput() was changed to return a div instead of a span
+	 */
+	input[type="submit"] {
+		.button;
+		.button-primary;
+		float: right;
+	}
+
+	select[name="type"] {
+		margin: 0 0 15px 10px;
+	}
+
+	#mw-log-user, #mw-log-page {
+		.input_med;
+	}
+}

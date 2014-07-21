@@ -1,0 +1,68 @@
+.border-radius(@whatever: 4px) {
+	-moz-border-radius: @whatever;
+	-webkit-border-radius: @whatever;
+	-khtml-border-radius: @whatever;
+	border-radius: @whatever;
+}
+
+/** COPIED FROM main.css **/
+.button {
+	.border-radius;
+	border: 0px;
+	color: #686868;
+	padding: 12px 16px;
+	font-size: 12px;
+	margin-right: 10px;
+	cursor: pointer;
+	font-weight: bold;
+	border: 1px solid #e5e5e5;
+	background-color: #FFF;
+	&:hover {
+		text-decoration: none;
+		/* Does not use MediaWiki's built-in transition mixin because it defines
+		 * only two of the five properties, but we want to support older browsers
+		 */
+		-webkit-transition: 0.2s ease;
+		-moz-transition: 0.2s ease;
+		-ms-transition: 0.2s ease;
+		-o-transition: 0.2s ease;
+		transition: 0.2s ease;
+	}
+}
+
+/* keep in sync with main.css' .button.small styles */
+.button-small {
+	padding: 2px 6px;
+	font-size: 10px;
+	height: 20px;
+}
+
+/* keep in sync with main.css' .button.primary styles */
+.button-primary {
+	background-color: #97ba78;
+	border: 1px solid #97ba78;
+	color: #ffffff;
+	&:hover {
+		background-color: #83a168;
+		border: 1px solid #83a168;
+	}
+}
+
+/* keep in sync with main.css' .button.secondary styles */
+.button-secondary {
+	color: #686868;
+	background-color: #fff;
+	&:hover {
+		color: #2483ef;
+		border: 1px solid #2483ef;
+	}
+}
+
+/* keep in sync with main.css .input_med, #wpCaptchaWord styles */
+.input_med {
+	font-size: 1.3em;
+	padding: 11px;
+	border: 1px solid #f2f0eb;
+	margin-bottom: 5px;
+	.border-radius(5px);
+}
