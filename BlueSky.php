@@ -64,6 +64,20 @@ $wgResourceModules['skins.bluesky'] = array(
 	'position' => 'top'
 );
 
+$wgResourceModules['skins.bluesky.externallinks.123'] = array(
+	'styles' => array(
+		'skins/BlueSky/resources/css/externallinks-123.css' => array( 'media' => 'screen' ),
+	),
+	'position' => 'top'
+);
+
+$wgResourceModules['skins.bluesky.externallinks.124'] = array(
+	'styles' => array(
+		'skins/BlueSky/resources/css/externallinks-124.css' => array( 'media' => 'screen' ),
+	),
+	'position' => 'top'
+);
+
 // LESS versions of things that used to be PHP-side core hacks
 $wgResourceModules['skins.bluesky.hacks.general'] = array(
 	'styles' => 'skins/BlueSky/resources/css/hacks/general.less',

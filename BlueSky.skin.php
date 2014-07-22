@@ -51,10 +51,30 @@ class SkinBlueSky extends SkinTemplate {
 	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
+		global $wgVersion, $wgResourceModules;
+
 		parent::setupSkinUserCss( $out );
 
-		// Add CSS via ResourceLoader
-		$out->addModuleStyles( 'skins.bluesky' );
+		$baseCSSmodules = array( 'skins.bluesky' );
+		// Pick the correct external links module...the difference between
+		// 1.23 and 1.24 versions is in the capitalization of the "MonoBook" name
+		// (lowercase for 1.23 and older, CamelCase for 1.24 and newer)
+		if ( version_compare( $wgVersion, '1.23c', '<' ) ) {
+			$baseCSSmodules[] = 'skins.bluesky.externallinks.123';
+		} elseif (
+			isset( $wgResourceModules['mediawiki.skinning.content.externallinks'] ) &&
+			$wgResourceModules['mediawiki.skinning.content.externallinks']
+		)
+		{
+			// Let's hope that https://gerrit.wikimedia.org/r/#/c/143173/ makes
+			// it to the 1.24 release, but in case if not, there's a final fallback
+			// in this if-else loop for such a case (1.24 w/o this skinning module)
+			$baseCSSmodules[] = 'mediawiki.skinning.content.externallinks';
+		} else {
+			$baseCSSmodules[] = 'skins.bluesky.externallinks.124';
+		}
+		// Add base CSS (i.e. no themes or ugly hacks) via ResourceLoader
+		$out->addModuleStyles( $baseCSSmodules );
 
 		// Ugly LESS hacks
 		$modules = array();
