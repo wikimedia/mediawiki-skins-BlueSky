@@ -1788,14 +1788,18 @@ class BlueSkyTemplate extends BaseTemplate {
 							<li class="endop_email"><span></span><a href="#" onclick="return emailLink();" id="gatSharingEmail"><?php echo $sk->msg( 'at_email' )->text() ?></a></li>
 							*/
 							?>
-							<?php if ( $isLoggedIn ): ?>
-								<?php if ( $title->userIsWatching() ) { ?>
-									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=unwatch' ); ?>"><?php echo $sk->msg( 'bluesky-unwatch' )->plain() ?></a></li>
-								<?php } else { ?>
-									<li class="endop_watch"><span></span><a href="<?php echo $title->getLocalURL( 'action=watch' ); ?>"><?php echo $sk->msg( 'bluesky-watch' )->plain() ?></a></li>
-								<?php } ?>
-							<?php endif; ?>
-							<li class="endop_edit"><span></span><a href="<?php echo $title->getEditUrl(); ?>" id="gatEditFooter"><?php echo $sk->msg( 'edit' )->plain(); ?></a></li>
+							<?php if ( $isLoggedIn ) {
+								if ( $title->userIsWatching() ) {
+									$watchAction = 'unwatch';
+								} else {
+									$watchAction = 'watch';
+								}
+								// i18n messages used here: bluesky-watch,
+								// bluesky-unwatch
+								?>
+									<li class="endop_watch"><span></span><a class="mw-watchlink" href="<?php echo $title->getLocalURL( 'action=' . $watchAction ); ?>"><?php echo $sk->msg( 'bluesky-' . $watchAction )->plain() ?></a></li>
+							<?php } ?>
+							<li class="endop_edit"><span></span><a href="<?php echo $title->getEditURL(); ?>" id="gatEditFooter"><?php echo $sk->msg( 'edit' )->plain(); ?></a></li>
 							<?php if ( $title->getNamespace() == NS_MAIN && class_exists( 'ThankAuthors' ) ) { ?>
 								<li class="endop_fanmail"><span></span><a href="/Special:ThankAuthors?target=<?php echo $title->getPrefixedURL(); ?>" id="gatThankAuthors"><?php echo $sk->msg( 'at_fanmail' )->text() ?></a></li>
 							<?php } ?>
