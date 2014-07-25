@@ -31,13 +31,8 @@ body {
 }
 
 a {
-	color: #363;
+	color: #069;
 	text-decoration: none;
-}
-
-/* Different link color for logged-in users */
-body.loggedin a {
-	color: #383;
 }
 
 a:hover {
@@ -403,6 +398,48 @@ input.button.clickfail:hover {
 	cursor: pointer;
 }
 
+#mw-content-text h1,
+#mw-content-text h2,
+#mw-content-text h3,
+#mw-content-text h4,
+#mw-content-text h5,
+#mw-content-text h6,
+#mw-content-text dt {
+	background: transparent;
+	color: #048;
+	font-weight: normal;
+	line-height: 1.1em;
+	margin-bottom: .25em;
+	margin: 1.5em 0 .5em;
+}
+#mw-content-text h1 .mw-editsection,
+#mw-content-text h2 .mw-editsection,
+#mw-content-text h3,
+#mw-content-text h4,
+#mw-content-text h5,
+#mw-content-text h6,
+#mw-content-text dt {
+	font-variant: normal;
+}
+#mw-content-text h1 {
+	font-size: 190%;
+}
+#mw-content-text h2 {
+	font-size: 160%;
+}
+#mw-content-text h3 {
+	font-size: 125%;
+}
+#mw-content-text h4 {
+	font-size: 120%;
+}
+#mw-content-text h5 {
+	font-size: 108%;
+}
+#mw-content-text h6, #mw-content-text dt {
+	font-size: 100%;
+}
+
 /****** Header styles ******/
 #header_outer {
 	position: fixed;
@@ -410,7 +447,8 @@ input.button.clickfail:hover {
 	z-index: 100000006; /* set z-index one higher than guided tour balloon z-index */
 	top: 0;
 	width: 100%;
-	background-color: #87CEEB; /* SkyBlue */
+	background-color: #8cf;
+	border-bottom: solid 1px #7ae;
 }
 
 /* Offsets page for fixed header */
@@ -419,7 +457,7 @@ input.button.clickfail:hover {
 	*display: none;
 }
 #header {
-	background-color: #87CEEB; /* SkyBlue */
+	background-color: #8cf;
 	height: 72px;
 	position: relative;
 }
@@ -456,11 +494,13 @@ input.button.clickfail:hover {
 	float: right;
 	padding: 0px;
 	margin: 0px;
-	border-right: 1px solid #1E90FF; /* DodgerBlue */
+	border-right: 1px solid #9df;
+	border-left: 1px solid #7ae;
 	width: 380px;
 }
 #header #actions li {
-	border-left: 1px solid #1E90FF; /* DodgerBlue */
+	border-left: 1px solid #9df;
+	border-right: 1px solid #7ae;
 	padding: 0px;
 	height: 72px;
 	*width: 75px;
