@@ -3,6 +3,11 @@
 	background-color: #000;
 }
 
+/* Logo text (=the site's name) -- displayed when there's no custom logo image */
+#header a#logo_link h2.logo-text {
+	color: #FFF;
+}
+
 /* Search button -- this should be a shade or two darker than the header */
 #search_site_bubble {
 	background-color: #696969;
