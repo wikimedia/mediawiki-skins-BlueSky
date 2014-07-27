@@ -77,7 +77,7 @@ legend {
 }
 
 .section h2 {
-	position: absolute;
+	/*position: absolute;*/
 	top: 0;
 	width: 100%;
 	left: 0;
@@ -88,11 +88,12 @@ legend {
 	-webkit-border-radius: 4px;
 	z-index: 3;
 }
-
+/*
 .section h2 span {
 	margin-left: 27px;
 }
-.section h2 .editsection {
+*/
+.section h2 .mw-editsection {
 	margin-right: 27px;
 }
 
@@ -123,7 +124,7 @@ div.section h3 span, .section h4 span {
 	padding: 16px 0px 15px 50px;
 }
 
-.section h3 .editsection {
+.section h3 .mw-editsection {
 	margin: 12px 27px 0 10px;
 }
 
@@ -1689,7 +1690,7 @@ ul#breadcrumb li.bread_ellipsis span {
 	font-weight: bold;
 }
 
-.editsection {
+.mw-editsection {
 	float: right;
 	height: 25px;
 	font-size: 12px;
