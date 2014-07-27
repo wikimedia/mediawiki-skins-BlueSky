@@ -481,6 +481,9 @@ input.button.clickfail:hover {
 #header.shrunk .logo {
 	margin: 0 20px 0 0;
 }
+#header a#logo_link h2.logo-text {
+	margin-top: 15px;
+}
 
 #cse-search-box, #header #bubble_search {
 	padding: 15px 15px 15px 0;

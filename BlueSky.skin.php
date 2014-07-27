@@ -1466,7 +1466,7 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * outputs a formatted page.
 	 */
 	public function execute() {
-		global $wgStylePath, $wgLanguageCode, $wgForumLink;
+		global $wgStylePath, $wgSitename, $wgForumLink;
 
 		if ( class_exists( 'MobileWikihow' ) ) {
 			$mobileWikihow = new MobileWikihow();
@@ -1687,12 +1687,30 @@ class BlueSkyTemplate extends BaseTemplate {
 			<?php endif; ?>
 			<?php
 				$holidayLogo = SkinBlueSky::getHolidayLogo();
-				$logoPath = $holidayLogo ? $holidayLogo : $wgStylePath . '/BlueSky/resources/images/wikihow_logo.png';
-				if ( $wgLanguageCode != 'en' ) {
-					$logoPath = $wgStylePath . '/BlueSky/resources/images/wikihow_logo_intl.png';
+				$customLogo = wfFindFile( 'BlueSky-logo.png' );
+				/**
+				 * Pick a logo if we can find one. Otherwise just show the
+				 * sitename in its place in the fixed header.
+				 */
+				if ( is_object( $customLogo ) ) {
+					$logoElement = Html::element( 'img', array(
+						'src' => $customLogo->getUrl(),
+						'class' => 'logo',
+						'alt' => ''
+					) );
+				} elseif ( $holidayLogo ) {
+					$logoElement = Html::element( 'img', array(
+						'src' => $holidayLogo,
+						'class' => 'logo',
+						'alt' => ''
+					) );
+				} else {
+					$logoElement = Html::element( 'h2', array(
+						'class' => 'logo-text'
+					), $wgSitename );
 				}
 			?>
-			<a href="<?php echo $mainPageObj->getLocalURL(); ?>" id="logo_link"><img src="<?php echo $logoPath ?>" class="logo" alt="" /></a>
+			<a href="<?php echo $mainPageObj->getLocalURL(); ?>" id="logo_link"><?php echo $logoElement ?></a>
 			<?php echo $top_search ?>
 			<?php wfRunHooks( 'EndOfHeader', array( &$out ) ); ?>
 		</div></div><!--end #header-->
