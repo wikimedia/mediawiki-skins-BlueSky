@@ -1287,6 +1287,31 @@ class SkinBlueSky extends SkinTemplate {
 			header( 'HTTP/1.1 404 Not Found' );
 		}
 
+		// <copypasta type="awful" absolutely="true">
+		// The following is copypasted from core /includes/SkinTemplate.php
+		// in order to add the section class to #mw-content-text, because that's
+		// what it's "supposed" to look like
+		$title = $this->getTitle();
+		# An ID that includes the actual body text; without categories, contentSub, ...
+		$realBodyAttribs = array( 'id' => 'mw-content-text' );
+
+		# Add a mw-content-ltr/rtl class to be able to style based on text direction
+		# when the content is different from the UI language, i.e.:
+		# not for special pages or file pages AND only when viewing AND if the page exists
+		# (or is in MW namespace, because that has default content)
+		if ( !in_array( $title->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
+			Action::getActionName( $this ) === 'view' &&
+			( $title->exists() || $title->getNamespace() == NS_MEDIAWIKI ) ) {
+			$pageLang = $title->getPageViewLanguage();
+			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
+			$realBodyAttribs['dir'] = $pageLang->getDir();
+			$realBodyAttribs['class'] = 'section mw-content-' . $pageLang->getDir();
+		}
+
+		$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
+		$tpl->setRef( 'bodytext', $out->mBodytext );
+		// </copypasta>
+
 		// Interlanguage links
 		$language_urls = array();
 		if ( !$wgHideInterlanguageLinks ) {
