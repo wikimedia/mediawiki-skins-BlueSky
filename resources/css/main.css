@@ -1704,21 +1704,6 @@ ul#breadcrumb li.bread_ellipsis span {
 	clear: both;
 }
 
-#last_question {
-	font-size: 20px;
-	background-color: #eee;
-	padding: 56px;
-	text-align: center;
-}
-#last_question .big {
-	font-size: 200%;
-}
-#last_question .small {
-	font-size: 75%;
-	padding-top: 10px;
-	display: block;
-}
-
 #article ul#end_options {
 	padding: 0;
 }
