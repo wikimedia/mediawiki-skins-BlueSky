@@ -1424,7 +1424,8 @@ class SkinBlueSky extends SkinTemplate {
 				'action' => 'submitlogin',
 				'type' => 'login',
 				'autoredirect' => urlencode( $this->getTitle()->getPrefixedURL() ),
-				'sitelogin' => '1'
+				'sitelogin' => '1',
+				'wpLoginToken' => ( !LoginForm::getLoginToken() ) ? LoginForm::setLoginToken() : LoginForm::getLoginToken()
 			) );
 
 			// wikiHow's SSL_LOGIN_DOMAIN constant is not supported intentionally
