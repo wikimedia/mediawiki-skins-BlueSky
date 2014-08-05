@@ -107,7 +107,6 @@ h3, h4 {
 }
 
 .section h3 {
-	position: absolute;
 	z-index: 3;
 	left: 0;
 	top: 0px;
