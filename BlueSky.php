@@ -141,7 +141,7 @@ $wgResourceModules['skins.bluesky.hacks.special.watchlist'] = array(
 // The 'themeloader.' prefix is a hack around https://bugzilla.wikimedia.org/show_bug.cgi?id=66508
 $wgResourceModules['themeloader.skins.bluesky.dark'] = array(
 	'styles' => array(
-		'skins/BlueSky/resources/css/theme/dark.css' => array( 'media' => 'screen' )
+		'skins/BlueSky/resources/css/theme/dark.less' => array( 'media' => 'screen' )
 	),
 	'position' => 'top'
 );

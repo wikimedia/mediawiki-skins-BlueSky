@@ -1,0 +1,46 @@
+@import "colors/dark.less";
+@import "theme-template.less";
+
+/* Custom rules not present in the base theme template but needed by this theme */
+
+/* Logo text (=the site's name) -- displayed when there's no custom logo image */
+#header a#logo_link h2.logo-text {
+	color: #FFF;
+}
+
+/* Search area in the fixed header */
+#searchInput {
+	color: #FFF;
+}
+
+/* "You have X new talk page message(s)" menu */
+#actions .menu_messages a {
+	color: #FFF;
+}
+
+/* Black images on black background is bad, mmmkay?
+ * Yes, I know this essentially kills the "hover" effect that non-dark themes
+ * have, but this is still the least of all evils for the time being.
+ */
+#nav_help_li .nav_icon {
+	background-position: -45px -62px;
+}
+#nav_explore_li .nav_icon {
+	background-position: -45px -99px;
+}
+#nav_profile_li .nav_icon {
+	background-position: -45px -131px;
+}
+#nav_messages_li .nav_icon {
+	background-position: 0px -19px;
+}
+
+/* Keep the background color in sync with #header */
+div#footer_outer, #footer {
+	background-color: @footer-color;
+	color: #FFF;
+}
+
+#footer a {
+	color: #FFE4E1;
+}
