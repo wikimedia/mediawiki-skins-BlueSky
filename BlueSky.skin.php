@@ -924,12 +924,7 @@ class SkinBlueSky extends SkinTemplate {
 			)
 		);
 
-		if (
-			$title->getNamespace() == NS_MAIN &&
-			!$title->isMainPage() &&
-			$title->userCan( 'edit' )
-		)
-		{
+		if ( $title->userCan( 'edit' ) ) {
 			$editPage = $title->getLocalURL( $sk->editUrlOptions() );
 			$navTabs['nav_edit'] = array(
 				'menu' => $sk->getHeaderMenu( 'edit' ),
@@ -1562,6 +1557,10 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$body = '';
 
+		// @todo FIXME: when, oh when, pray tell, is this useful?
+		// It currently clashes pretty badly with social tools and looks more
+		// out-of-place than anything else. Besides, we already have an "edit"
+		// link in like basically all circumstances anyway...
 		if (
 			$title->userCan( 'edit' ) &&
 			$action != 'edit' &&
@@ -1769,7 +1768,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			<?php if ( $this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html( 'newtalk' ) ?></div><?php } ?>
 			<?php
 			wfRunHooks( 'BeforeTabsLine', array( &$out ) );
-			if ( !$isArticlePage && !$isMainPage && $this->data['bodyheading'] ) {
+			if ( !$isArticlePage && $this->data['bodyheading'] ) {
 				echo '<div class="wh_block">' . $this->data['bodyheading'] . '</div>';
 			}
 
@@ -1782,7 +1781,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 
 			$showingArticleInfo = 0;
-			if ( in_array( $title->getNamespace(), array( NS_MAIN, NS_PROJECT ) ) && $action == 'view' && !$isMainPage ) {
+			if ( in_array( $title->getNamespace(), array( NS_MAIN, NS_PROJECT ) ) && $action == 'view' ) {
 				$catLinks = $sk->getCategoryLinks( false );
 				$authors = class_exists( 'ArticleAuthors' ) ? ArticleAuthors::getAuthorFooter() : false;
 				if ( $authors || is_array( $this->data['language_urls'] ) || $catLinks ) {
@@ -1855,7 +1854,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 			<?php }
 
-			if ( in_array( $title->getNamespace(), array( NS_USER, NS_MAIN, NS_PROJECT ) ) && $action == 'view' && !$isMainPage ) {
+			if ( in_array( $title->getNamespace(), array( NS_USER, NS_MAIN, NS_PROJECT ) ) && $action == 'view' ) {
 			?>
 
 		</div> <!-- end #article -->
@@ -1967,7 +1966,7 @@ class BlueSkyTemplate extends BaseTemplate {
 					</div><!--end #side_rc_widget-->
 				<?php endif; ?>
 
-				<?php if ( ( $title->getNamespace() == NS_MAIN || $title->getNamespace() == NS_USER ) && !$isMainPage && !$isDocViewer ) { ?>
+				<?php if ( ( $title->getNamespace() == NS_MAIN || $title->getNamespace() == NS_USER ) && !$isDocViewer ) { ?>
 					<div id="side_featured_contributor" class="sidebox">
 						<?php $this->showFeaturedContributorWidget(); ?>
 						<?php if ( !$isLoggedIn ) { ?>
