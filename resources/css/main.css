@@ -488,6 +488,7 @@ input.button.clickfail:hover {
 	margin-top: 6px;
 }
 #header a#logo_link h2.logo-text {
+	color: #48b;
 	text-transform: uppercase;
 }
 
@@ -519,7 +520,7 @@ input.button.clickfail:hover {
 	cursor: pointer;
 }
 #header #actions li:hover {
-	border-color: #1E90FF; /* DodgerBlue */
+	border-color: #7df;
 	background-color: #00BFFF;
 	color: #00BFFF; /* DeepSkyBlue */
 }
@@ -530,7 +531,7 @@ input.button.clickfail:hover {
 #header #actions li .nav {
 	font-size: 10px;
 	font-weight: bold;
-	color: #000; /* Black */
+	color: #48b;
 	display: block;
 	padding-top: 47px;
 	position: relative;
@@ -550,7 +551,7 @@ input.button.clickfail:hover {
 .menu, .menu_login, .menu_messages {
 	font-size: 1em;
 	position: absolute;
-	border: 1px solid #1E90FF; /* DodgerBlue */
+	border: 1px solid #7df;
 	margin: 0;
 	padding: 10px 0;
 	top: 71px;
@@ -737,7 +738,7 @@ input.button.clickfail:hover {
 
 #search_site_bubble, #search_site_footer, .search_button {
 	font-size: 1em;
-	background-color: #4682B4; /* SteelBlue */
+	background-color: #48b;
 	border: none;
 	color: #FFF;
 	font-weight: bold;
@@ -990,7 +991,7 @@ span.tooltip_span, .th_giver_ids {
 	clear: both;
 }
 #footer_outer {
-	background-color: #87CEEB;
+	background-color: #8cf;
 	width: 100%;
 }
 
@@ -1074,7 +1075,7 @@ ul#tabs li a {
 	position: absolute;
 	top: 40px;
 	font-size: 1em;
-	border: 1px solid #1E90FF;
+	border: 1px solid #7df;
 	color: #363;
 	margin: 0;
 	background-color: #f9f9f9;
