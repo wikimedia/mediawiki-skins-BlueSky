@@ -48,7 +48,7 @@ Seriously, please clean this up somehow. If you can.
 @button-disabled-general-color: @generic-grey-6;
 
 /* Search button -- this should be a shade or two darker than the header */
-@search-button-background-color: @nav-text;
+@search-button-background-color: @nav-accent;
 @search-button-color: @button-bg-color;
 
 /* Search button hover effect -- should be _even_ darker than the one above */
@@ -574,6 +574,13 @@ input.button.clickfail:hover {
 	height: 72px;
 	position: relative;
 }
+#header a h2 {
+	color: @nav-text-highlight;
+	text-shadow: 0 1px 0 @nav-accent;
+}
+#header a:hover {
+	text-decoration: none;
+}
 
 #header #logo_link {
 	height: 42px;
@@ -643,7 +650,7 @@ input.button.clickfail:hover {
 #header #actions li .nav {
 	font-size: 10px;
 	font-weight: bold;
-	color: @generic-grey-1;
+	color: @nav-text;
 	display: block;
 	padding-top: 47px;
 	position: relative;
@@ -893,7 +900,7 @@ div.suggestions {
 }
 
 #searchInput {
-	background-color: @search-input-background-color; 
+	background-color: @search-input-background-color;
 }
 
 /** Login dropdown **/
