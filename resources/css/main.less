@@ -1,3 +1,118 @@
+/* Default */
+@import "theme/colors/blue.less";
+
+/*
+LU LU LU
+
+Mess of colour stuff moved into and then out of blue.less and maimed horribly courtesy of your friendly neighbourhood cranky designer
+
+Seriously, please clean this up somehow. If you can.
+*/
+
+/* Fixed header */
+@header-color: @nav-bg;
+
+@header-border-bottom-color: @nav-accent;
+
+
+/* generic */
+
+@body-bg-color: @generic-grey-65;
+
+
+@a-color: @a;
+@a-new-color: @a-new;
+
+/* <h2> and the like */
+@text-header-bg-color: @generic-grey-7;
+@text-header-color: @generic-grey-2;
+
+/* Custom .button class */
+@button-bg-color: @generic-grey-8;
+@button-border-color: @generic-grey-6;
+@button-color: @generic-grey-4;
+
+@button-primary-bg-color: @nav-text;
+@button-primary-border-color: @nav-text;
+@button-primary-color: @button-bg-color;
+
+@button-primary-hover-bg-color: @nav-bg;
+@button-primary-hover-border-color: @nav-bg;
+
+@button-secondary-color: @button-color;
+@button-secondary-bg-color: @button-bg-color;
+
+@button-secondary-hover-border-color: @nav-accent;
+@button-secondary-hover-color: @nav-text;
+
+@button-disabled-general-color: @generic-grey-6;
+
+/* Search button -- this should be a shade or two darker than the header */
+@search-button-background-color: @nav-text;
+@search-button-color: @button-bg-color;
+
+/* Search button hover effect -- should be _even_ darker than the one above */
+@search-button-hover-background-color: @nav-text-accent;
+@search-button-hover-color: @button-bg-color;
+
+/* The actual area where the user types the keyword(s) they want to search for; should be lighter than #header */
+@search-input-border-color: @nav-accent;
+@search-input-background-color: @generic-grey-7;
+
+/* The border of the four menus in the #header when one of the menus is open */
+@menu-bg-color: @generic-grey-7;
+@menu-open-border-color: @nav-accent;
+
+/* ...and when they're not open */
+@menu-border-left-color: @nav-accent;
+@menu-border-color: @nav-highlight;
+
+/* Admin options menu */
+@admin-options-menu-color: @a;
+@admin-options-menu-hover-color: @generic-grey-8;
+
+/* Link background color in the four menus */
+@menu-link-bg-color: @nav-accent;
+@menu-hover-color: @generic-grey-8;
+
+/* Four menus' default text color */
+@menu-default-text-color: @generic-grey-1;
+
+/* What is this I don't even... */
+@header-menu-hover-nav-color: @generic-grey-8;
+
+/* Color when active/open */
+@header-menu-bg-color: @nav-accent;
+@header-menu-color: @nav-accent;
+
+/* Keep the color in sync with #header's color */
+@footer-color: @nav-bg;
+@footer-border-top-color: @nav-accent;
+
+
+/* DA CRAP IS THIS */
+@generic-red-1: #c00;
+@generic-red-2: #e00;
+
+@generic-reddish: #fdfcde;
+@generic-reddish-1: #cba;
+@generic-reddish-2: #dfdacd;
+@generic-reddish-3: #f2f0eb;
+@generic-reddish-4: #ddc;
+
+@generic-blue-1: #79b;
+@generic-blue-2: #28e;
+@generic-blue-3: #bcd;
+
+@button-red-hover-border-color: #f11c1c;
+@button-red-hover-color: #f11c1c;
+
+@searchbox-bg-color: #bcd;
+@searchbox-color: #445;
+
+
+/* LU LU Actual skin stuff LU */
+
 html, body { height: 100%; }
 
 body, h1, h2, h3, h4, p, input[type=text], li , textarea {
@@ -23,15 +138,15 @@ img {
 }
 
 body {
-	background-color: #ecebe8;
-	color: #545454;
+	background-color: @body-bg-color;
+	color: @generic-grey-3;
 	margin: 0px;
 	padding: 0px;
 	font-size: 1em;
 }
 
 a {
-	color: #069;
+	color: @a-color;
 	text-decoration: none;
 }
 
@@ -50,14 +165,14 @@ ol {
 
 h1 {
 	font-size: 35px;
-	color: #222222;
+	color: @text-header-color;
 	line-height: normal;
 	margin: 0;
 	text-align: left;
 }
 
 h1 a {
-	color: #222222;
+	color: @text-header-color;
 }
 
 h1 a:hover {
@@ -69,11 +184,11 @@ h2, legend {
 	font-weight: bold;
 	margin: 0px 0px 10px 0px;
 	padding: 0;
-	color: #222222;
+	color: @text-header-color;
 	line-height: 18px;
 }
 legend {
-	color: #545454;
+	color: @generic-grey-4;
 }
 
 .section h2 {
@@ -82,7 +197,7 @@ legend {
 	width: 100%;
 	left: 0;
 	line-height: 62px;
-	background-color: #f6f5f4;
+	background-color: @text-header-bg-color;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -100,10 +215,10 @@ legend {
 h3, h4 {
 	font-size: 20px;
 	font-weight: bold;
-	color: #222222;
+	color: @text-header-color;
 	line-height: 18px;
 	width: 100%;
-	background-color: #f6f5f4;
+	background-color: @text-header-bg-color;
 }
 
 .section h3 {
@@ -114,7 +229,7 @@ h3, h4 {
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	background: #f6f5f4;
+	background: @text-header-bg-color;
 }
 
 div.section h3 span, .section h4 span {
@@ -154,7 +269,7 @@ div.thumbnail div.text {
 .altblock {
 	height: 18px;
 	width: 18px;
-	background-color: #93b874;
+	background-color: @generic-blue-1;
 	float: left;
 	margin-right: 8px;
 }
@@ -181,7 +296,7 @@ h4 {
 
 h5 {
 	font-size: .9em;
-	color: #222;
+	color: @text-header-color;
 }
 
 sup {
@@ -214,10 +329,10 @@ p {
 }
 
 textarea, select {
-	border: 2px solid #999999;
+	border: 2px solid @generic-grey-5;
 	padding: 5px;
 	font-size: 14px;
-	color: #000000;
+	color: @generic-grey-1;
 }
 
 input[type="checkbox"] {
@@ -230,7 +345,7 @@ input[type="checkbox"] {
 	-khtml-border-radius: 4px;
 	border-radius: 4px;
 	border: 0px;
-	color: #686868;
+	color: @button-color;
 	padding: 12px 16px;
 	font-size: 12px;
 	margin-right: 10px;
@@ -238,8 +353,8 @@ input[type="checkbox"] {
 	font-weight: bold;
 	/*line-height: 33px;
 		^ let's do this on an as-needed basis */
-	border: 1px solid #e5e5e5;
-	background-color:#FFF;
+	border: 1px solid @button-border-color;
+	background-color:@button-bg-color;
 }
 .button.small {
 	padding: 2px 6px;
@@ -258,7 +373,7 @@ input[type="checkbox"] {
 
 /** for links that are in a row with buttons **/
 
-a.new { color: #B30000; } /** Broken links **/
+a.new { color: @a-new-color; } /** Broken links **/
 
 .button.large {
 	font-size: 16px;
@@ -267,44 +382,44 @@ a.new { color: #B30000; } /** Broken links **/
 
 a.button.disabled, input.button.disabled, a.button.clickfail,
 input.button.clickfail {
-	background: #e4e4e4;
+	background: @button-disabled-general-color;
 	cursor: default;
 }
 
 a.button.disabled {
-	border-color: #e4e4e4;
+	border-color: @button-disabled-general-color;
 }
 
 a.button.disabled:hover, input.button.disabled:hover, a.button.clickfail:hover,
 input.button.clickfail:hover {
-	background: #e4e4e4;
-	/*color: #686868;*/
+	background: @button-disabled-general-color;
+	/*color: @button-color;*/
 }
 
 .button.primary {
-	background-color: #97ba78;
-	border: 1px solid #97ba78;
-	color: #ffffff;
+	background-color: @button-primary-bg-color;
+	border: 1px solid @button-primary-border-color;
+	color: @button-primary-color;
 }
 
 .button.primary:hover {
-	background-color: #83a168;
-	border: 1px solid #83a168;
+	background-color: @button-primary-hover-bg-color;
+	border: 1px solid @button-primary-hover-border-color;
 }
 
 .button.secondary {
-	color: #686868;
-	background-color: #fff;
+	color: @button-secondary-color;
+	background-color: @button-secondary-bg-color;
 }
 
 .button.secondary:hover {
-	color: #2483ef;
-	border: 1px solid #2483ef
+	color: @button-secondary-hover-color;
+	border: 1px solid @button-secondary-hover-border-color;
 }
 
 .button.red:hover {
-	color: #f11c1c;
-	border: 1px solid #f11c1c;
+	color: @button-red-hover-color;
+	border: 1px solid @button-red-hover-border-color;
 }
 
 .buttonright { float: right; }
@@ -313,7 +428,7 @@ input.button.clickfail:hover {
 .input_med, #wpCaptchaWord {
 	font-size: 1.3em;
 	padding: 11px;
-	border: 1px solid #f2f0eb;
+	border: 1px solid @generic-reddish-3;
 	margin-bottom: 5px;
 	border-radius: 5px; /* CSS3 */
 	-moz-border-radius: 5px; /* Firefox */
@@ -406,8 +521,6 @@ input.button.clickfail:hover {
 #mw-content-text h6,
 #mw-content-text dt {
 	background: transparent;
-	color: #048;
-	font-weight: normal;
 	line-height: 1.1em;
 	margin-bottom: .25em;
 	margin: 1.5em 0 .5em;
@@ -447,8 +560,8 @@ input.button.clickfail:hover {
 	z-index: 100000006; /* set z-index one higher than guided tour balloon z-index */
 	top: 0;
 	width: 100%;
-	background-color: #8cf;
-	border-bottom: solid 1px #7ae;
+	background-color: @header-color;
+	border-bottom: solid 1px @header-border-bottom-color;
 }
 
 /* Offsets page for fixed header */
@@ -457,7 +570,7 @@ input.button.clickfail:hover {
 	*display: none;
 }
 #header {
-	background-color: #8cf;
+	background-color: @header-color;
 	height: 72px;
 	position: relative;
 }
@@ -503,15 +616,15 @@ input.button.clickfail:hover {
 	float: right;
 	padding: 0px;
 	margin: 0px;
-	border-right: 1px solid #9df;
-	border-left: 1px solid #7ae;
+	border-right: 1px solid @menu-border-color;
+	border-left: 1px solid @menu-border-left-color;
 }
 #header #actions li {
-	border-left: 1px solid #9df;
-	border-right: 1px solid #7ae;
+	border-left: 1px solid @menu-border-color;
+	border-right: 1px solid @menu-border-left-color;
 	padding: 0px;
 	height: 72px;
-	*width: 75px;
+	*width: 74px;
 	float: right;
 	list-style: none !important;
 	margin: 0px;
@@ -519,9 +632,9 @@ input.button.clickfail:hover {
 	cursor: pointer;
 }
 #header #actions li:hover {
-	border-color: #1E90FF; /* DodgerBlue */
-	background-color: #00BFFF;
-	color: #00BFFF; /* DeepSkyBlue */
+	border-color: @menu-open-border-color;
+	background-color: @header-menu-bg-color;
+	color: @header-menu-color;
 }
 #header.shrunk #actions li {
 	height: 39px;
@@ -530,16 +643,16 @@ input.button.clickfail:hover {
 #header #actions li .nav {
 	font-size: 10px;
 	font-weight: bold;
-	color: #000; /* Black */
+	color: @generic-grey-1;
 	display: block;
 	padding-top: 47px;
 	position: relative;
 	text-align: center;
-	width: 74px;
+	width: 73px;
 	z-index: 1;
 }
 #header #actions li:hover .nav {
-	color: #FFF;
+	color: @header-menu-hover-nav-color;
 	text-decoration: none;
 }
 #header.shrunk #actions li .nav {
@@ -550,16 +663,16 @@ input.button.clickfail:hover {
 .menu, .menu_login, .menu_messages {
 	font-size: 1em;
 	position: absolute;
-	border: 1px solid #1E90FF; /* DodgerBlue */
+	border: 1px solid @menu-open-border-color;
 	margin: 0;
 	padding: 10px 0;
-	top: 71px;
+	top: 72px;
 	z-index: 1000;
-	background-color: #f9f9f9;
+	background-color: @menu-bg-color;
 	display: none;
 }
 #header.shrunk .menu, #header.shrunk .menu_login, #header.shrunk .menu_messages {
-	top: 38px;
+	top: 39px;
 }
 
 .menu_login {
@@ -570,20 +683,20 @@ input.button.clickfail:hover {
 	display: block;
 	padding: 0 20px 0 15px;
 	line-height: 26px;
-	color: #000; /* Black */
+	color: @menu-default-text-color; /* Black */
 }
 #AdminOptions.menu a {
-	color: #363;
+	color: @admin-options-menu-color;
 }
 
 .menu a:hover {
-	color: white;
-	background-color: #4169E1; /* RoyalBlue */
+	color: @menu-hover-color;
+	background-color: @menu-link-bg-color;
 	text-decoration: none;
 }
 
 #AdminOptions.menu a:hover {
-	color: white;
+	color: @admin-options-menu-hover-color;
 }
 
 .admin_arrow {
@@ -654,21 +767,21 @@ input.button.clickfail:hover {
 }
 
 #nav_edit_li .menu {
-	right: 300px;
+	right: 301px;
 }
 #nav_help_li .menu {
-	right: 225px;
+	right: 226px;
 }
 #nav_explore_li .menu  {
-	right: 150px;
+	right: 151px;
 }
 #nav_profile_li .menu, #nav_profile_li .menu_login {
-	right: 75px;
+	right: 76px;
 }
 
 .notice {
-	color: #FFF;
-	background-color: #C00;
+	color: @generic-grey-8;
+	background-color: @generic-red-1;
 	font-size: 10px;
 	font-weight: bold;
 	line-height: 16px;
@@ -692,11 +805,11 @@ input.button.clickfail:hover {
 
 .count {
 	float: right;
-	background-color: #C00;
+	background-color: @generic-red-1;
 	font-size:10px;
 	line-height: 14px;
 	min-width: 14px;
-	color: white;
+	color: @generic-grey-8;
 	margin: 6px -10px 0px 10px;
 	text-align: center;
 	-moz-border-radius: 7px; /* Firefox */
@@ -718,9 +831,9 @@ input.button.clickfail:hover {
 .search_box {
 	font-size: 1em;
 	border: none;
-	background-color: #c9dcb9;
+	background-color: @searchbox-bg-color;
 	font-weight: bold;
-	color: #475347;
+	color: @searchbox-color;
 	width: 30%;
 	min-width: 276px;
 	margin: 0 -5px 0 0;
@@ -732,14 +845,14 @@ input.button.clickfail:hover {
 	font: inherit; /*Mac-only font fix*/
 }
 .search_box.search_white {
-	background-color: #FFF;
+	background-color: @generic-grey-8;
 }
 
 #search_site_bubble, #search_site_footer, .search_button {
 	font-size: 1em;
-	background-color: #4682B4; /* SteelBlue */
+	background-color: @search-button-background-color;
 	border: none;
-	color: #FFF;
+	color: @search-button-color;
 	font-weight: bold;
 	padding: 10px 11px;
 	-moz-border-radius: 0 5px 5px 0;
@@ -758,8 +871,8 @@ input.button.clickfail:hover {
 }
 
 #search_site_bubble:hover, #search_site_footer:hover, .search_button:hover {
-	background-color: #00008B; /* DarkBlue */
-	color: #FFF;
+	background-color: @search-button-hover-background-color; /* DarkBlue */
+	color: @search-button-hover-color;
 }
 
 div.suggestions {
@@ -772,7 +885,7 @@ div.suggestions {
 	padding: 9px;
 	height: 17px;
 	margin-right: .5em;
-	border: 1px solid #f2f0eb;
+	border: 1px solid @search-input-border-color;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -780,7 +893,7 @@ div.suggestions {
 }
 
 #searchInput {
-	background-color: #FFF; /* White -- it _should_ have a proper color but I'm not feeling very creative right now */
+	background-color: @search-input-background-color; 
 }
 
 /** Login dropdown **/
@@ -789,12 +902,12 @@ div.suggestions {
 }
 
 #wpName1_head, #wpPassword1_head {
-	color: #ABABAB;
+	color: @generic-grey-5;
 }
 .userlogin .input_med, #userloginForm .input_med, #mw-resetpass-table .mw-input input {
 	margin: 5px 0;
 	width: 65%;
-	border: 1px solid #f6f5f4;
+	border: 1px solid @text-header-bg-color;
 }
 .userlogin .input_med {
 	width: 90%;
@@ -808,7 +921,7 @@ div.suggestions {
 }
 #mw-resetpass-table .mw-input input[type=submit] {
 	padding: 12px 16px;
-	border: 1px solid #E5E5E5;
+	border: 1px solid @button-border-color;
 	width: auto;
 	margin: 3px;
 }
@@ -819,14 +932,14 @@ div.suggestions {
 	margin-top: 20px;
 }
 .bc_submitlogin fieldset legend {
-	color: #545454;
+	color: @generic-grey-4;
 	font-size: 1.1em;
 	font-weight: normal;
 	margin: 0;
 	padding: 0px 3px 0px 3px;
 }
 #userloginForm h4, .modal_form h4  {
-	color: #93B874;
+	color: @generic-blue-1;
 	font-size: 1.1em;
 	font-weight: normal;
 	background: none;
@@ -836,7 +949,7 @@ div.suggestions {
 
 #userloginForm .mw-error h4, #userloginForm .mw-info h4,
 .modal_form .mw-error h4, .modal_form .mw-info h4 {
-	color: #F00;
+	color: @generic-red-2;
 	font-size: 1.4em;
 	line-height: normal;
 	font-weight: bold;
@@ -845,7 +958,7 @@ div.suggestions {
 	margin: 0;
 }
 #userloginForm .mw-info h4 {
-	color: #363;
+	color: @admin-options-menu-color;
 }
 
 .menu_login {
@@ -899,12 +1012,12 @@ div.suggestions {
 	border-radius: 4px;
 }
 #fb_login_head:hover span, #gplus_login_head:hover span, #fb_login:hover span, #gplus_login:hover span {
-	background-color: #000;
+	background-color: @generic-grey-1;
 }
 
 /** Messages menu **/
 .menu_messages {
-	right: 0;
+	right: 1px;
 	font-size: .8em;
 	width: 300px;
 	padding: 0 0 3px 0;
@@ -912,13 +1025,13 @@ div.suggestions {
 
 .menu_messages .mw-echo-state {
 	padding: 5px 0;
-	background-color: #EEE;
+	background-color: @generic-grey-6;
 }
 .menu_messages .mw-echo-state:hover {
-	background-color: #F9F9F9;
+	background-color: @menu-bg-color;
 }
 .menu_messages .mw-echo-unread {
-	background-color: #F9F9F9;
+	background-color: @menu-bg-color;
 }
 .menu_messages .mw-echo-content {
 	padding-right: .5em;
@@ -929,7 +1042,7 @@ div.suggestions {
 }
 
 .note_row {
-	border-top: 1px solid #c9dcb9;
+	border-top: 1px solid @generic-blue-3;
 	padding: 15px 10px;
 }
 .first_note_row {
@@ -938,7 +1051,7 @@ div.suggestions {
 .note_empty {
 	border: none;
 	text-align: center;
-	color: #ABABAB;
+	color: @generic-grey-5;
 }
 
 .note_icon_talk, .note_icon_kudo, .note_icon_thumb {
@@ -974,7 +1087,7 @@ div.suggestions {
 }
 .th_close:hover {
 	background-position: -46px 0;
-	background-color: #f9f9f9;
+	background-color: @menu-bg-color;
 }
 
 .th_content {
@@ -990,7 +1103,8 @@ span.tooltip_span, .th_giver_ids {
 	clear: both;
 }
 #footer_outer {
-	background-color: #87CEEB;
+	background-color: @footer-color;
+	border-top: solid 1px @footer-border-top-color;
 	width: 100%;
 }
 
@@ -1013,7 +1127,7 @@ span.tooltip_span, .th_giver_ids {
 }
 
 #footer ul li a {
-	color: white;
+	color: @generic-grey-8;
 }
 #footer ul li.top {
 	background-image: none;
@@ -1066,7 +1180,7 @@ ul#tabs li a {
 }
 
 #tabs a.on {
-	color: #454545;
+	color: @generic-grey-3;
 	font-weight: bold;
 }
 
@@ -1074,10 +1188,10 @@ ul#tabs li a {
 	position: absolute;
 	top: 40px;
 	font-size: 1em;
-	border: 1px solid #1E90FF;
-	color: #363;
+	border: 1px solid @menu-open-border-color;
+	color: @admin-options-menu-color;
 	margin: 0;
-	background-color: #f9f9f9;
+	background-color: @menu-bg-color;
 }
 
 ul#AdminOptions li {
@@ -1103,15 +1217,15 @@ ul#breadcrumb li {
 	margin: 0px;
 	margin-left: 3px;
 	font-size: 10px;
-	color: #999;
+	color: @generic-grey-5;
 }
 ul#breadcrumb li a, ul#breadcrumb li.bread_ellipsis {
 	font-size: 12px;
-	color: #767676 !important;
+	color: @generic-grey-4 !important;
 }
 ul#breadcrumb li.bread_ellipsis span {
 	font-size: 10px;
-	color: #999;
+	color: @generic-grey-5;
 }
 
 /***** Sidebar *****/
@@ -1124,7 +1238,7 @@ ul#breadcrumb li.bread_ellipsis span {
 }
 
 .sidebox {
-	background-color: #f6f5f4;
+	background-color: @text-header-bg-color;
 	padding: 16px;
 	margin: 0 0 15px 0;
 	position: relative;
@@ -1132,9 +1246,9 @@ ul#breadcrumb li.bread_ellipsis span {
 	-webkit-border-radius: 4px;
 	-khtml-border-radius: 4px;
 	border-radius: 4px;
-	color: #686868;
+	color: @button-color;
 	font-size: 13px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid @button-border-color;
 }
 .sidebox.hydra_ad {
 	padding: 0;
@@ -1142,13 +1256,13 @@ ul#breadcrumb li.bread_ellipsis span {
 }
 
 .notice_bgcolor {
-	background-color: #F6F5F4;
+	background-color: @text-header-bg-color;
 }
 .notice_bgcolor_important {
-	background-color: #FDFCDE;
+	background-color: @generic-reddish;
 }
 .notice_bgcolor_lo {
-	background-color: #FFF;
+	background-color: @generic-grey-8;
 }
 
 #site_notice_x {
@@ -1163,7 +1277,7 @@ ul#breadcrumb li.bread_ellipsis span {
 .userlogin h3, .sidebox h3 {
 	font-size: 13px;
 	font-weight: bold;
-	color: #686868;
+	color: @button-color;
 	margin-bottom: 10px;
 	padding: 0px;
 	background: none;
@@ -1190,7 +1304,7 @@ ul#breadcrumb li.bread_ellipsis span {
 .sidebox ul li {
 	font-size: 14px;
 	line-height: 18px;
-	color: #333;
+	color: @generic-grey-3;
 	margin: 0;
 	padding: 0 0 0 20px;
 	list-style: none;
@@ -1265,7 +1379,7 @@ ul#breadcrumb li.bread_ellipsis span {
 	opacity: 0.15;
 	background: none;
 }
-#follow_table td a div:hover { background-color: #000; }
+#follow_table td a div:hover { background-color: @generic-grey-1; }
 
 #gatFollowFacebook { background-position: -105px -35px; }
 #gatFollowTwitter { background-position: 0 0; }
@@ -1281,8 +1395,8 @@ ul#breadcrumb li.bread_ellipsis span {
 
 /**** Recent Changes widget ****/
 #rcElement_list {
-	border-top: 2px solid #d2d8cd;
-	border-bottom: 2px solid #d2d8cd;
+	border-top: 2px solid @generic-reddish-4;
+	border-bottom: 2px solid @generic-reddish-4;
 	padding: 0;
 	overflow: hidden;
 	margin: 10px 0 15px 0;
@@ -1294,19 +1408,19 @@ ul#breadcrumb li.bread_ellipsis span {
 	-khtml-border-radius: 4px;
 	border-radius: 4px;
 	border: 0px;
-	background-color: #eee;
+	background-color: @generic-grey-6;
 	padding: 10px;
-	color: #555;
+	color: @generic-grey-4;
 	font-size: 14px;
 	margin-top: 7px;
 }
 #rcElement_list .even {
-	background-color: #e7ebe4;
+	background-color: @generic-grey-6;
 }
 
 .rc_widget_time {
 	font-size: 12px;
-	color: #999;
+	color: @generic-grey-5;
 }
 .weather {
 	float: right;
@@ -1408,7 +1522,7 @@ ul#breadcrumb li.bread_ellipsis span {
 }
 
 .section {
-	background-color: #f6f5f4;
+	background-color: @text-header-bg-color;
 	padding: 62px 27px 27px 27px;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -1416,11 +1530,11 @@ ul#breadcrumb li.bread_ellipsis span {
 	margin-bottom: 25px;
 	position: relative;
 	line-height: 25px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid @button-border-color;
 }
 
 #bodycontents.section, .minor_section {
-	background-color: #f6f5f4;
+	background-color: @text-header-bg-color;
 	padding: 22px 27px;
 	margin-bottom: 25px;
 	position: relative;
@@ -1428,7 +1542,7 @@ ul#breadcrumb li.bread_ellipsis span {
 
 .section_text {
 	padding: 15px;
-	background-color: #ffffff;
+	background-color: @generic-grey-8;
 }
 
 .section_text a {
@@ -1460,14 +1574,14 @@ ul#breadcrumb li.bread_ellipsis span {
 	padding: 27px;
 	margin-bottom: 25px;
 	word-wrap: break-word;
-	background-color: #ffffff;
+	background-color: @generic-grey-8;
 }
 
 .section_text, .wh_block, #intro, .minor_section {
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid @button-border-color;
 }
 
 #ingredients ul, #thingsyoullneed ul {
@@ -1511,14 +1625,14 @@ ul#breadcrumb li.bread_ellipsis span {
 	margin-bottom: 30px;
 	font-size: 16px;
 	line-height: 25px;
-	color: #545454;
+	color: @generic-grey-4;
 	list-style: none;
-	background-color: #ffffff;
+	background-color: @generic-grey-8;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	padding: 20px;
-	border: 1px solid #e5e5e5;
+	border: 1px solid @button-border-color;
 	clear: both;
 
 }
@@ -1552,7 +1666,7 @@ ul#breadcrumb li.bread_ellipsis span {
 #originators {
 	font-size: 11px;
 	line-height: normal;
-	color: #212121;
+	color: @generic-grey-2;
 	margin-bottom: 25px;
 }
 
@@ -1593,7 +1707,7 @@ ul#breadcrumb li.bread_ellipsis span {
 	position: relative;
 	margin-right: 4px;
 	margin-bottom: 4px;
-	border: 1px solid #f2f0eb;
+	border: 1px solid @generic-reddish-3;
 }
 
 .thumbnail a {
@@ -1618,12 +1732,12 @@ ul#breadcrumb li.bread_ellipsis span {
 	background: -o-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%), repeat; /* Opera 11.10+ */
 	background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%), repeat; /* IE10+ */
 	background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%), repeat; /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000', endColorstr='#66000000',GradientType=0 ); /* IE6-9 */
 }
 
 .thumbnail p {
-	/*color: #686868;*/
-	color: #ffffff;
+	/*color: @button-color;*/
+	color: @generic-grey-8;
 	margin: 7px;
 	text-decoration: none;
 	font-size: 11px;
@@ -1632,11 +1746,11 @@ ul#breadcrumb li.bread_ellipsis span {
 }
 
 .thumbnail a:hover div.text {
-	background: #ffffff;
+	background: @generic-grey-8;
 }
 
 .thumbnail a:hover p {
-	color: #2483ef;
+	color: @generic-blue-2;
 }
 
 .thumbnail p span {
@@ -1655,13 +1769,13 @@ ul#breadcrumb li.bread_ellipsis span {
 	width: 96%;
 	bottom: 0;
 	left: 0;
-	background-color: #444;
+	background-color: @generic-grey-3;
 	opacity: 0.7;
 	text-align: left;
 	font-size: 12px;
 	line-height: normal;
 	padding: 5px 2%;
-	color: #fff;
+	color: @generic-grey-8;
 }
 
 .steps_list_2 li li {
@@ -1688,7 +1802,7 @@ ul#breadcrumb li.bread_ellipsis span {
 
 .step_num {
 	font-size: 43px;
-	color: #545454;
+	color: @generic-grey-4;
 	padding: 8px 15px 3px 0;
 	float: left;
 	font-weight: bold;
@@ -1749,14 +1863,14 @@ ul#end_options li.endop_embed span { background: none; }
 }
 
 .info {
-	color: #222222;
+	color: @text-header-color;
 	margin-bottom: 10px;
 }
 
 .page_stats {
 	text-align: center;
 	font-size: 18px;
-	color: #000000;
+	color: @generic-grey-1;
 	font-weight: bold;
 	margin-top: 30px;
 }
@@ -1781,7 +1895,7 @@ ul#end_options li.endop_embed span { background: none; }
 	font-size: 12px;
 	font-weight: bold;
 	text-align: center;
-	color: #c2baaa;
+	color: @generic-reddish-1;
 	float: right;
 	margin: -27px 0 5px 5px;
 	line-height: normal;
@@ -1815,11 +1929,11 @@ ul#end_options li.endop_embed span { background: none; }
 }
 
 .ad_label {
-	background-color: #363;
+	background-color: @admin-options-menu-color;
 	width: 18px;
 	padding: 2px;
 	line-height: normal;
-	color: #fff;
+	color: @generic-grey-8;
 	font-size: 13px;
 	border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -1829,13 +1943,13 @@ ul#end_options li.endop_embed span { background: none; }
 }
 
 .ad_label_long {
-	background-color: #363;
+	background-color: @admin-options-menu-color;
 	padding: 2px;
 	border-radius: 2px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	font-size: 13px;
-	color: #fff;
+	color: @generic-grey-8;
 	clear: left;
 	display: inline-block;
 	line-height: normal;
@@ -1903,10 +2017,10 @@ ul#end_options li.endop_embed span { background: none; }
 #userlogin_alt_logins {
 	font-size: .8em;
 	float: right;
-	background-color: #F9F9F9;
+	background-color: @menu-bg-color;
 	padding: 15px;
 	margin-top: 30px;
-	border: 1px solid #DFDACD;
+	border: 1px solid @generic-reddish-2;
 	width: 265px;
 	height: 65px;
 	border-radius: 6px;
@@ -1931,7 +2045,7 @@ ul#end_options li.endop_embed span { background: none; }
 
 .ui-dialog-content::-webkit-scrollbar-thumb {
 	border-radius: 8px;
-	border: 2px solid white; /* should match background, can't be transparent */
+	border: 2px solid @generic-grey-8; /* should match background, can't be transparent */
 	background-color: rgba(0, 0, 0, .5);
 }
 
@@ -1940,7 +2054,7 @@ ul#end_options li.endop_embed span { background: none; }
 	width: auto;
 	height: auto;
 	background: none !important;
-	color: #363;
+	color: @admin-options-menu-color;
 	font-weight: normal;
 	font-size: .8em;
 }
@@ -1960,7 +2074,7 @@ fieldset h4 {
 
 #noarticletext div {
 	padding: 20px !important;
-	border: 1px solid #f2f0eb !important;
+	border: 1px solid @generic-reddish-3 !important;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -2037,13 +2151,13 @@ input[type=checkbox].css-checkbox:checked + label.css-checkbox-label {
 
 /* Samples */
 #sd_container {
-	background-color: #FFF;
+	background-color: @generic-grey-8;
 	padding-top:10px;
 }
 .sd_thumb { text-align: center; }
 
 .sd_thumb img {
-	border: 1px solid #BBB;
+	border: 1px solid @generic-grey-5;
 	padding: 5px;
 	margin: 8px 0 10px 0;
 }

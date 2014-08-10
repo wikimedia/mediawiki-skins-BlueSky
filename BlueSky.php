@@ -54,7 +54,7 @@ $wgResourceModules['skins.bluesky'] = array(
 		'skins/common/commonInterface.css' => array( 'media' => 'screen' ),
 		// Styles custom to this skin
 		'skins/BlueSky/resources/css/home.css' => array( 'media' => 'screen' ),
-		'skins/BlueSky/resources/css/main.css' => array( 'media' => 'screen' ),
+		'skins/BlueSky/resources/css/main.less' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/nonarticle.css' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/searchresults.css' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/special.css' => array( 'media' => 'screen' ),
