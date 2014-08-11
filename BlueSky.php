@@ -146,6 +146,20 @@ $wgResourceModules['themeloader.skins.bluesky.dark'] = array(
 	'position' => 'top'
 );
 
+$wgResourceModules['themeloader.skins.bluesky.green'] = array(
+	'styles' => array(
+		'skins/BlueSky/resources/css/theme/green.less' => array( 'media' => 'screen' )
+	),
+	'position' => 'top'
+);
+
+$wgResourceModules['themeloader.skins.bluesky.red'] = array(
+	'styles' => array(
+		'skins/BlueSky/resources/css/theme/red.less' => array( 'media' => 'screen' )
+	),
+	'position' => 'top'
+);
+
 $wgResourceModules['skins.bluesky.js.easing'] = array(
 	'scripts' => 'skins/BlueSky/resources/js/jquery.easing.js',
 	'position' => 'top'
