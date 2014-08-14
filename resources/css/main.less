@@ -175,10 +175,6 @@ h1 {
 	text-align: left;
 }
 
-h1 a {
-	color: @text-header-color;
-}
-
 h1 a:hover {
 	text-decoration: none;
 }
@@ -207,14 +203,6 @@ legend {
 	-webkit-border-radius: 4px;
 	z-index: 3;
 }
-/*
-.section h2 span {
-	margin-left: 27px;
-}
-*/
-.section h2 .mw-editsection {
-	margin-right: 27px;
-}
 
 h3, h4 {
 	font-size: 20px;
@@ -234,16 +222,6 @@ h3, h4 {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	background: @text-header-bg-color;
-}
-
-div.section h3 span, .section h4 span {
-	display: block;
-	margin-left: 0px;
-	padding: 16px 0px 15px 50px;
-}
-
-.section h3 .mw-editsection {
-	margin: 12px 27px 0 10px;
 }
 
 /* for those sticky headers */
@@ -1825,12 +1803,10 @@ ul#breadcrumb li.bread_ellipsis span {
 }
 
 .mw-editsection {
-	float: right;
 	height: 25px;
 	font-size: 12px;
 	font-weight: normal;
-	margin-right: 0;
-	margin-top: -5px;
+	color: transparent;
 }
 
 #tips ul li, #thingsyoullneed ul li, #warnings ul li {
