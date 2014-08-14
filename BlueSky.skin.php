@@ -138,13 +138,25 @@ class SkinBlueSky extends SkinTemplate {
 
 			$theme = $out->getRequest()->getVal( 'usetheme', false );
 
+			$themeModule = 'themeloader.skins.bluesky.blue';
 			// The 'themeloader.' prefix is a hack around
 			// https://bugzilla.wikimedia.org/show_bug.cgi?id=66508
 			if ( $theme ) {
-				$out->addModuleStyles( 'themeloader.skins.bluesky.' . $theme );
+				$themeModule = 'themeloader.skins.bluesky.' . $theme;
 			} elseif ( isset( $wgDefaultTheme ) && $wgDefaultTheme != 'default' ) {
-				$out->addModuleStyles( 'themeloader.skins.bluesky.' . $wgDefaultTheme );
+				$themeModule = 'themeloader.skins.bluesky.' . $wgDefaultTheme;
+			} elseif (
+				isset( $wgDefaultTheme ) && in_array( $wgDefaultTheme, array( 'blue', 'default' ) ) ||
+				!isset( $wgDefaultTheme )
+			)
+			{
+				$themeModule = 'themeloader.skins.bluesky.blue';
 			}
+			$out->addModuleStyles( $themeModule );
+		} else {
+			// Ensure that something is output even when the Theme extension is
+			// installed. It overrides this later on anyway.
+			$out->addModuleStyles( 'themeloader.skins.bluesky.blue' );
 		}
 	}
 

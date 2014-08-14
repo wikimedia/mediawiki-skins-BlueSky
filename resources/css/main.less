@@ -1,12 +1,15 @@
-/* Default */
-@import "theme/colors/blue.less";
-
 /*
 LU LU LU
 
 Mess of colour stuff moved into and then out of blue.less and maimed horribly courtesy of your friendly neighbourhood cranky designer
 
 Seriously, please clean this up somehow. If you can.
+
+NOTE: image URLs use a _seemingly_ incorrect relative path (like "../images/what.ever"),
+but it's actually correct because of the way how *this* file is imported by
+the files in the /resources/css/theme/ directory, so paths in this file need to
+be relative to that directory instead of the directory in which this file
+resides!
 */
 
 /* Fixed header */
@@ -484,7 +487,7 @@ input.button.clickfail:hover {
 
 .mw-info, .mw-error {
 	/* @embed */
-	background: url(../images/bkg_error_bottom.png) bottom left no-repeat;
+	background: url(../../images/bkg_error_bottom.png) bottom left no-repeat;
 	overflow: hidden;
 	width: 243px;
 	margin: -45px 0 0 265px;
@@ -497,7 +500,7 @@ input.button.clickfail:hover {
 
 .mw-error-top {
 	/* @embed */
-	background: url(../images/bkg_error_top.png) top left no-repeat;
+	background: url(../../images/bkg_error_top.png) top left no-repeat;
 	width: 183px;
 	margin-bottom: 10px;
 	padding: 10px 20px 0 40px;
@@ -709,7 +712,7 @@ input.button.clickfail:hover {
 
 .admin_arrow {
 	/* @embed */
-	background: url(../images/article_sprite.png) no-repeat -92px -43px;
+	background: url(../../images/article_sprite.png) no-repeat -92px -43px;
 	height: 6px;
 	width: 6px;
 	display: inline-block;
@@ -718,7 +721,7 @@ input.button.clickfail:hover {
 
 .nav_icon {
 	/* @embed */
-	background: url(../images/header_sprite.png) no-repeat 0 0;
+	background: url(../../images/header_sprite.png) no-repeat 0 0;
 	position: relative;
 	margin: 13px auto -33px;
 }
@@ -997,7 +1000,7 @@ div.suggestions {
 
 #fb_login_head, #gplus_login_head, #fb_login, #gplus_login  {
 	/* @embed */
-	background: url(../images/header_sprite.png) no-repeat 0 -197px;
+	background: url(../../images/header_sprite.png) no-repeat 0 -197px;
 	height: 34px;
 	width: 127px;
 	margin: 5px 0 15px 0;
@@ -1067,7 +1070,7 @@ div.suggestions {
 	height: 20px;
 	width: 20px;
 	/* @embed */
-	background: url(../images/header_sprite.png) no-repeat 0 -286px;
+	background: url(../../images/header_sprite.png) no-repeat 0 -286px;
 	float: left;
 	margin-right: 6px;
 }
@@ -1087,7 +1090,7 @@ div.suggestions {
 .th_close {
 	display: block;
 	/* @embed */
-	background: url(../images/header_sprite.png) no-repeat 0 0;
+	background: url(../../images/header_sprite.png) no-repeat 0 0;
 	width: 13px;
 	height: 15px;
 	float: right;
@@ -1284,7 +1287,7 @@ ul#breadcrumb li.bread_ellipsis span {
 	width: 14px;
 	height: 14px;
 	/* @embed */
-	background: url(../images/article_sprite.png) no-repeat -114px 0;
+	background: url(../../images/article_sprite.png) no-repeat -114px 0;
 }
 
 .userlogin h3, .sidebox h3 {
@@ -1322,7 +1325,7 @@ ul#breadcrumb li.bread_ellipsis span {
 	padding: 0 0 0 20px;
 	list-style: none;
 	/* @embed */
-	background: url(../images/article_sprite.png) no-repeat -114px -16px;
+	background: url(../../images/article_sprite.png) no-repeat -114px -16px;
 }
 
 .sidebox ul {
@@ -1381,7 +1384,7 @@ ul#breadcrumb li.bread_ellipsis span {
 	height: 32px;
 	width: 32px;
 	/* @embed */
-	background-image: url(../images/follow_sprite.png?7);
+	background-image: url(../../images/follow_sprite.png);
 }
 
 #follow_table td a div {
@@ -1441,7 +1444,7 @@ ul#breadcrumb li.bread_ellipsis span {
 	height: 20px;
 	padding-left: 20px;
 	/* @embed */
-	background: url(../images/widget_sprite.png) no-repeat;
+	background: url(../../images/widget_sprite.png) no-repeat;
 }
 .weather.sunny {
 	background-position: -25px -55px;
@@ -1459,7 +1462,7 @@ ul#breadcrumb li.bread_ellipsis span {
 
 #play_pause_button {
 	/* @embed */
-	background: url(../images/widget_sprite.png) no-repeat 0px 0px;
+	background: url(../../images/widget_sprite.png) no-repeat 0px 0px;
 	width: 21px;
 	height: 21px;
 	float: right;
@@ -1493,7 +1496,7 @@ ul#breadcrumb li.bread_ellipsis span {
 /* also in home.css */
 .catbox, .cat_icon {
 	/* @embed */
-	background: url(../images/cat_icon_sprite.png) no-repeat 0 0;
+	background: url(../../images/cat_icon_sprite.png) no-repeat 0 0;
 }
 .cat_artsandentertainment { background-position: 9px 5px; }
 .cat_carsandothervehicles { background-position: 9px -27px; }
@@ -1846,7 +1849,7 @@ ul#breadcrumb li.bread_ellipsis span {
 
 ul#end_options li span{
 	/* @embed */
-	background: url(../images/article_sprite.png) no-repeat;
+	background: url(../../images/article_sprite.png) no-repeat;
 	width: 10px;
 	height: 12px;
 	float: left;
@@ -1903,7 +1906,7 @@ ul#end_options li.endop_embed span { background: none; }
 	height: 12px;
 	padding-top: 65px;
 	/* @embed */
-	background: url(../images/article_sprite.png) no-repeat 0 0;
+	background: url(../../images/article_sprite.png) no-repeat 0 0;
 	vertical-align: bottom;
 	font-size: 12px;
 	font-weight: bold;
@@ -2147,7 +2150,7 @@ input[type=checkbox].css-checkbox:checked + label.css-checkbox-label {
 
 .css-checkbox-label {
 	/* @embed */
-	background-image: url(../images/article_sprite.png);
+	background-image: url(../../images/article_sprite.png);
 }
 
 .fading {
