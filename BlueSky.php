@@ -145,16 +145,16 @@ $wgResourceModules['themeloader.skins.bluesky.blue'] = array(
 	'position' => 'top'
 );
 
-$wgResourceModules['themeloader.skins.bluesky.dark'] = array(
+$wgResourceModules['themeloader.skins.bluesky.green'] = array(
 	'styles' => array(
-		'skins/BlueSky/resources/css/theme/dark.less' => array( 'media' => 'screen' )
+		'skins/BlueSky/resources/css/theme/green.less' => array( 'media' => 'screen' )
 	),
 	'position' => 'top'
 );
 
-$wgResourceModules['themeloader.skins.bluesky.green'] = array(
+$wgResourceModules['themeloader.skins.bluesky.grey'] = array(
 	'styles' => array(
-		'skins/BlueSky/resources/css/theme/green.less' => array( 'media' => 'screen' )
+		'skins/BlueSky/resources/css/theme/grey.less' => array( 'media' => 'screen' )
 	),
 	'position' => 'top'
 );
