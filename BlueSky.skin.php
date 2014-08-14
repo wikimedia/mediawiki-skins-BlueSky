@@ -134,14 +134,14 @@ class SkinBlueSky extends SkinTemplate {
 		// [[mw:Extension:Theme]] isn't installed; otherwise let the Theme ext.
 		// handle this
 		if ( !function_exists( 'wfDisplayTheme' ) ) {
-			global $wgDefaultTheme;
+			global $wgDefaultTheme, $wgResourceModules;
 
 			$theme = $out->getRequest()->getVal( 'usetheme', false );
 
 			$themeModule = 'themeloader.skins.bluesky.blue';
 			// The 'themeloader.' prefix is a hack around
 			// https://bugzilla.wikimedia.org/show_bug.cgi?id=66508
-			if ( $theme ) {
+			if ( $theme && isset( $wgResourceModules['themeloader.skins.bluesky.' . $theme] ) ) {
 				$themeModule = 'themeloader.skins.bluesky.' . $theme;
 			} elseif ( isset( $wgDefaultTheme ) && $wgDefaultTheme != 'default' ) {
 				$themeModule = 'themeloader.skins.bluesky.' . $wgDefaultTheme;
