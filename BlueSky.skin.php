@@ -1510,6 +1510,8 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 		}
 
+		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode();
+
 		$sk = $this->getSkin();
 		$out = $sk->getOutput();
 		$request = $sk->getRequest();
@@ -1783,7 +1785,13 @@ class BlueSkyTemplate extends BaseTemplate {
 			if ( !$isArticlePage && $this->data['bodyheading'] ) {
 				echo '<div class="wh_block">' . $this->data['bodyheading'] . '</div>';
 			}
+			?>
+			<div class="section sticky" id="intro">
+				<h1 id="firstHeading" class="firstHeading" lang="<?php $this->text( 'pageLanguage' ) ?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
+				<div class="clearall"></div>
+			</div>
 
+			<?php
 			echo "<!-- start content -->\n";
 			echo $this->html( 'bodytext' );
 			echo "<!-- end content -->\n";
