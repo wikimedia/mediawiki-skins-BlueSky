@@ -54,7 +54,6 @@ $wgResourceModules['skins.bluesky'] = array(
 		'skins/common/commonInterface.css' => array( 'media' => 'screen' ),
 		// Styles custom to this skin
 		'skins/BlueSky/resources/css/home.css' => array( 'media' => 'screen' ),
-		'skins/BlueSky/resources/css/main.less' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/nonarticle.css' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/searchresults.css' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/special.css' => array( 'media' => 'screen' ),
@@ -139,6 +138,13 @@ $wgResourceModules['skins.bluesky.hacks.special.watchlist'] = array(
 
 // Themes
 // The 'themeloader.' prefix is a hack around https://bugzilla.wikimedia.org/show_bug.cgi?id=66508
+$wgResourceModules['themeloader.skins.bluesky.blue'] = array(
+	'styles' => array(
+		'skins/BlueSky/resources/css/theme/blue.less' => array( 'media' => 'screen' )
+	),
+	'position' => 'top'
+);
+
 $wgResourceModules['themeloader.skins.bluesky.dark'] = array(
 	'styles' => array(
 		'skins/BlueSky/resources/css/theme/dark.less' => array( 'media' => 'screen' )
