@@ -1643,7 +1643,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				$editLinkText,
 				array( 'class' => 'editsection' ),
 				$sk->editUrlOptions()
-			) . $heading;
+			);
 			$heading = $editLink . $heading;
 		}
 
