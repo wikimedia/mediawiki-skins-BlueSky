@@ -1488,6 +1488,56 @@ class SkinBlueSky extends SkinTemplate {
 
 		return $html;
 	}
+
+	/**
+	 * Output the "Page last edited X days Y hours ago" string for pages in
+	 * content namespaces.
+	 *
+	 * @param Title $title
+	 * @return string "edited X ago" string on success, empty string on failure
+	 */
+	public function getPageLastEdit( Title $title ) {
+		global $wgContentNamespaces;
+
+		$msg = '';
+
+		if ( $title->exists() && in_array( $title->getNamespace(), $wgContentNamespaces ) ) {
+			// First construct a Revision object from the current Title...
+			$revision = Revision::newFromTitle( $title );
+			if ( $revision instanceof Revision ) {
+				// ...then get its timestamp...
+				$timestamp = $revision->getTimestamp();
+				// ...turn it into a UNIX timestamp...
+				$unixTS = wfTimestamp( TS_UNIX, $timestamp );
+				// ..and pass everything to MediaWiki's crazy formatter
+				// function.
+				$formattedTS = $this->getLanguage()->formatTimePeriod(
+					time() - $unixTS,
+					array(
+						'noabbrevs' => true,
+						// There doesn't appear to be an 'avoidhours'; if there
+						// were, we'd use it so that this'd match the mockup.
+						'avoid' => 'avoidminutes'
+					)
+				);
+
+				// Get the last editor's username (if any), too
+				$author = $revision->getUserText();
+
+				// Pick the correct internationalization message, depending on if
+				// the current user is allowed to access the revision's last author's
+				// name or not (hey, it could be RevisionDeleted, as Revision::getUserText()'s
+				// documentation states)
+				if ( $author ) {
+					$msg = $this->msg( 'bluesky-page-edited-user', $formattedTS, $author )->parse();
+				} else {
+					$msg = $this->msg( 'bluesky-page-edited', $formattedTS )->parse();
+				}
+			}
+		}
+
+		return $msg;
+	}
 }
 
 class BlueSkyTemplate extends BaseTemplate {
@@ -1543,7 +1593,8 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$heading = '';
 		if ( !$sk->suppressH1Tag() && $this->data['title'] ) {
-			$heading = '<h1 class="firstHeading">' . $this->data['title'] . '</h1>';
+			$heading = '<h1 id="firstHeading" class="firstHeading" lang="' . $this->data['pageLanguage'] .
+				'"><span dir="auto">' . $this->data['title'] . '</span></h1>';
 		}
 
 		// get the breadcrumbs / category links at the top of the page
@@ -1575,6 +1626,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		// It currently clashes pretty badly with social tools and looks more
 		// out-of-place than anything else. Besides, we already have an "edit"
 		// link in like basically all circumstances anyway...
+		$editLink = '';
 		if (
 			$title->userCan( 'edit' ) &&
 			$action != 'edit' &&
@@ -1585,9 +1637,14 @@ class BlueSkyTemplate extends BaseTemplate {
 		)
 		{
 			// INTL: Need bigger buttons for non-English sites
-			$editlink_text = ( $title->getNamespace() == NS_MAIN ) ? $sk->msg( 'editarticle' )->plain() : $sk->msg( 'edit' )->plain();
-			$heading = '<a href="' . $title->getLocalURL( $sk->editUrlOptions() ) . '" class="editsection">' .
-				$editlink_text . '</a>' . $heading;
+			$editLinkText = ( $title->getNamespace() == NS_MAIN ) ? $sk->msg( 'bluesky-edit-page' )->plain() : $sk->msg( 'edit' )->plain();
+			$editLink = Linker::link(
+				$title,
+				$editLinkText,
+				array( 'class' => 'editsection' ),
+				$sk->editUrlOptions()
+			) . $heading;
+			$heading = $editLink . $heading;
 		}
 
 		if ( $isArticlePage || ( $title->getNamespace() == NS_PROJECT && $action == 'view' ) || ( $title->getNamespace() == NS_CATEGORY && !$title->exists() ) ) {
@@ -1787,7 +1844,19 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 			?>
 			<div class="section sticky" id="intro">
-				<h1 id="firstHeading" class="firstHeading" lang="<?php $this->text( 'pageLanguage' ) ?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
+				<?php echo $editLink ?>
+				<?php if ( !$sk->suppressH1Tag() && $this->data['title'] && !isset( $this->data['bodyheading'] ) ) { ?><h1 id="firstHeading" class="firstHeading" lang="<?php $this->text( 'pageLanguage' ) ?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1><?php }?>
+				<div id="info"><?php
+					if ( isset( $this->data['viewcount'] ) && $this->data['viewcount'] ) {
+						$this->html( 'viewcount' );
+					}
+					echo $sk->msg( 'word-separator' )->escaped();
+					$lastEdit = $sk->getPageLastEdit( $title );
+					if ( !empty( $lastEdit ) ) {
+						echo '<p id="originators">' . $lastEdit . '</p>';
+					}
+				?>
+				</div>
 				<div class="clearall"></div>
 			</div>
 
