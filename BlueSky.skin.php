@@ -874,7 +874,7 @@ class SkinBlueSky extends SkinTemplate {
 				$attributes = '';
 
 				foreach ( $tab as $attribute => $value ) {
-					if ( $attribute != 'text' ) {
+					if ( $attribute != 'text' && !is_array( $value ) ) {
 						$attributes .= " {$attribute}='{$value}'";
 					}
 				}
