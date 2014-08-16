@@ -39,5 +39,6 @@
 	"bluesky-unwatch": "Remove watch",
 	"bluesky-watch": "Watch",
 	"bluesky-write-article": "Write article",
-	"bluesky-write-article-url": "{{ns:help}}:Creating a new page"
+	"bluesky-write-article-url": "{{ns:help}}:Creating a new page",
+	"bluesky-toc-sections": "Sections:"
 }

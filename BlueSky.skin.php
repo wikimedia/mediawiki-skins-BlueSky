@@ -482,7 +482,7 @@ class SkinBlueSky extends SkinTemplate {
 		if ( empty( $categoryLinks['normal'] ) ) {
 			$t = $embed . '' . $pop;
 		} else {
-			$t = $embed . implode( "{$pop} | {$embed}", $categoryLinks['normal'] ) . $pop;
+			$t = $embed . implode( "{$pop}, {$embed}", $categoryLinks['normal'] ) . $pop;
 		}
 		if ( !$usebrowser ) {
 			return $t;
@@ -1549,7 +1549,24 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * outputs a formatted page.
 	 */
 	public function execute() {
-		global $wgStylePath, $wgSitename, $wgForumLink;
+		global $wgStylePath, $wgSitename, $wgForumLink, $blueSkyTOC;
+
+		$tocHTML = '';
+		if ( $blueSkyTOC != '' ) {
+			if ( sizeof( $blueSkyTOC ) > 6 ) {
+				$tocHTML .= "<div class='toc_long'>";
+			} else {
+				$tocHTML .= "<div class='toc_short'>";
+			}
+			$i = 0;
+			foreach ( $blueSkyTOC as $tocpart ) {
+				$class = "toclevel-{$tocpart['toclevel']}";
+				$href = "#{$tocpart['anchor']}";
+				$tocHTML .= "<a href='$href' data-to='$href' data-numid='$i' class='$class'><span class='toc_square'></span>{$tocpart['line']}</a>";
+				$i++;
+			}
+			$tocHTML .= '</div>';
+		}
 
 		if ( class_exists( 'MobileWikihow' ) ) {
 			$mobileWikihow = new MobileWikihow();
@@ -1834,8 +1851,6 @@ class BlueSkyTemplate extends BaseTemplate {
 		<div id="container"<?php echo !$showSideBar ? ' class="no_sidebar"' : '' ?>>
 		<div id="article_shell">
 		<div id="article"<?php if ( class_exists( 'Microdata' ) ) { echo Microdata::genSchemaHeader(); } ?> class="mw-body">
-			<div id="contentSub2"><?php $this->html( 'subtitle' ) ?></div>
-			<?php if ( $this->data['undelete'] ) { ?><div id="contentSub"><?php $this->html( 'undelete' ) ?></div><?php } ?>
 			<?php if ( $this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html( 'newtalk' ) ?></div><?php } ?>
 			<?php
 			wfRunHooks( 'BeforeTabsLine', array( &$out ) );
@@ -1848,16 +1863,25 @@ class BlueSkyTemplate extends BaseTemplate {
 				<?php if ( !$sk->suppressH1Tag() && $this->data['title'] && !isset( $this->data['bodyheading'] ) ) { ?><h1 id="firstHeading" class="firstHeading" lang="<?php $this->text( 'pageLanguage' ) ?>"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1><?php }?>
 				<div id="info"><?php
 					if ( isset( $this->data['viewcount'] ) && $this->data['viewcount'] ) {
+						echo '<span id="view_count">';
 						$this->html( 'viewcount' );
+						echo '</span>';
 					}
 					echo $sk->msg( 'word-separator' )->escaped();
 					$lastEdit = $sk->getPageLastEdit( $title );
 					if ( !empty( $lastEdit ) ) {
-						echo '<p id="originators">' . $lastEdit . '</p>';
+						echo '<span id="originators">' . $lastEdit . '</span>';
 					}
 				?>
 				</div>
+				<?php if ( $this->data['undelete'] ) { ?><div id="contentSub"><?php $this->html( 'undelete' ) ?></div><?php } ?>
+				<div id="contentSub2"><?php $this->html( 'subtitle' ) ?></div>
 				<div class="clearall"></div>
+				<?php if ( $tocHTML != '' ) { ?>
+				<div id="header_toc">
+					<span id="header-toc-header"><?php echo $sk->msg( 'bluesky-toc-sections' ) ?></span><?php echo $tocHTML; ?>
+				</div>
+				<?php } ?>
 			</div>
 
 			<?php
@@ -1938,7 +1962,11 @@ class BlueSkyTemplate extends BaseTemplate {
 						</ul> <!--end #end_options -->
 						<div class="clearall"></div>
 					</div><!--end #article_info .section_text-->
-					<p class="page_stats"><?php echo $sk->pageStats() ?></p>
+					<?php if ( $sk->pageStats() != '' ) { ?>
+						<p class="page_stats">
+						<?php echo $sk->pageStats() ?>
+						</p>
+					<?php } ?>
 				</div><!--end .section-->
 
 			<?php }

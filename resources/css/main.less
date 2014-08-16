@@ -897,7 +897,7 @@ div.suggestions {
 .userlogin .input_med, #userloginForm .input_med, #mw-resetpass-table .mw-input input {
 	margin: 5px 0;
 	width: 65%;
-	border: 1px solid @text-header-bg-color;
+	border: 1px solid @generic-grey-65;
 }
 .userlogin .input_med {
 	width: 90%;
@@ -970,6 +970,7 @@ div.suggestions {
 }
 #forgot_pwd_head, #forgot_pwd {
 	float: right;
+	margin-left: 1.5em;
 }
 
 #fb_connect_head, #gplus_connect_head, #fb_connect, #gplus_connect {
@@ -1657,13 +1658,6 @@ ul#breadcrumb li.bread_ellipsis span {
 	/*padding: 0 1em 1em 0;*/ /*took out for article page. may need it again */
 }
 
-#originators {
-	font-size: 11px;
-	line-height: normal;
-	color: @generic-grey-2;
-	margin-bottom: 25px;
-}
-
 #method_toc {
 	line-height:15px;
 	margin-bottom:5px;
@@ -2196,4 +2190,150 @@ ul#actions li a.nav {
  */
 div.usermessage {
 	margin-top: 0px;
+}
+
+
+
+/* Miscellaneous disorderly stuff - please integrate this properly */
+.mw-editsection-bracket {
+	display: none;
+}
+#breadcrumb {
+	font-size: 13px;
+	font-weight: 500;
+	color: @generic-grey-5;
+}
+#breadcrumb a {
+	color: @generic-grey-4;
+}
+.section {
+	padding: 27px 27px;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+}
+h2.section_head {
+	line-height: 24px;
+}
+#intro .editsection {
+	float: right;
+	font-size: 13px;
+	margin-top: -6px;
+}
+#top_links {
+	text-align: center;
+}
+.firstHeading, #firstHeading {
+	margin-bottom: 0;
+}
+
+#contentSub, #contentSub2, #info {
+	color: @generic-grey-4;
+	font-size: 11px;
+	line-height: 20px;
+	margin: 0;
+	width: auto;
+}
+#contentSub a, #contentSub2 a, #info a {
+	color: @generic-grey-3;
+}
+#contentSub2, #info {
+	display: inline;
+}
+#contentSub2 {
+	margin-left: 1em;
+}
+#originators {
+	/* @embed */
+	background: url(../../images/edited.png) center left no-repeat;
+	padding-left: 1.8em;
+	display: inline-block;
+}
+#view_count {
+	/* @embed */
+	background: url(../../images/viewed.png) center left no-repeat;
+	padding-left: 1.8em;
+	margin-left: 1em;
+	display: inline-block;
+}
+
+#header_toc {
+	border: 1px @generic-grey-6;
+	border-style: solid none;
+	font-weight: bold;
+	font-size: 12px;
+	margin: 10px 0 0;
+	padding: 2px 0 0;
+}
+#header_toc a {
+	margin-left: 18px;
+	display: inline-block;
+}
+#header_toc a.toclevel-1 {
+	display: block;
+	margin-left: 0;
+}
+#header_toc a.toclevel-2,
+#header_toc a.toclevel-3,
+#header_toc a.toclevel-4,
+#header_toc a.toclevel-5,
+#header_toc a.toclevel-6{
+	font-weight: normal;
+}
+#header_toc a.toclevel-3,
+#header_toc a.toclevel-4,
+#header_toc a.toclevel-5,
+#header_toc a.toclevel-6 {
+	font-size: 10px;
+}
+#header_toc a.toclevel-3:before,
+#header_toc a.toclevel-4:before,
+#header_toc a.toclevel-5:before,
+#header_toc a.toclevel-6:before {
+	content: '(';
+}
+#header_toc a.toclevel-3:after,
+#header_toc a.toclevel-4:after,
+#header_toc a.toclevel-5:after,
+#header_toc a.toclevel-6:after {
+	content: ')';
+}
+
+#toc {
+	display: none;
+	position: absolute;
+	top: -1000px;
+}
+
+#header_toc a.toclevel-1 .toc_square {
+	display: inline-block;
+	height: 9px;
+	border-left: 9px solid @nav-bg;
+	padding-left: 5px;
+}
+h1 .mw-headline,
+h2 .mw-headline {
+	border-left: solid 10px @nav-bg;
+	padding-left: 6px;
+}
+
+#header_toc .toc_short a.toclevel-1 {
+	display: inline;
+	margin-left: 1em;
+}
+.toc_short {
+	display: inline;
+}
+
+p {
+	margin: 1em 0;
+}
+hr {
+	border: none;
+	background: @generic-grey-6;
+	height: 1px;
+}
+/* Screenplay extension */
+.screenplay {
+	font-size: 13px;
+	margin: 0;
 }

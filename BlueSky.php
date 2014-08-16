@@ -195,6 +195,8 @@ $wgResourceModules['skins.bluesky.js'] = array(
 /**
  * Additional junk for the page head element.
  */
+$wgHooks['OutputPageParserOutput'][] = 'wfTOCCrap';
+
 $wgHooks['BeforePageDisplay'][] = function( &$out, &$skin ) {
 	//global $wgRequest, $wgUser;
 
@@ -254,3 +256,17 @@ $wgHooks['BeforePageDisplay'][] = function( &$out, &$skin ) {
 
 	return true;
 };
+
+/**
+ * TOC processing
+ * Shamelessly stolen from brickimedia's refreshed skin 
+ * Currently: https://github.com/Brickimedia/Refreshed/blob/master/Refreshed.skin.php#L72
+ */
+$blueSkyTOC = '';
+ 
+function wfTOCCrap( OutputPage &$out, ParserOutput $parseroutput ) {
+	global $blueSkyTOC;
+	$blueSkyTOC = $parseroutput->mSections;
+
+	return true;
+}
