@@ -259,11 +259,11 @@ $wgHooks['BeforePageDisplay'][] = function( &$out, &$skin ) {
 
 /**
  * TOC processing
- * Shamelessly stolen from brickimedia's refreshed skin 
+ * Shamelessly stolen from brickimedia's refreshed skin
  * Currently: https://github.com/Brickimedia/Refreshed/blob/master/Refreshed.skin.php#L72
  */
 $blueSkyTOC = '';
- 
+
 function wfTOCCrap( OutputPage &$out, ParserOutput $parseroutput ) {
 	global $blueSkyTOC;
 	$blueSkyTOC = $parseroutput->mSections;
