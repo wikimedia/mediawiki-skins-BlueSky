@@ -53,12 +53,20 @@ $wgResourceModules['skins.bluesky'] = array(
 		#'skins/common/commonContent.css' => array( 'media' => 'screen' ),
 		'skins/common/commonInterface.css' => array( 'media' => 'screen' ),
 		// Styles custom to this skin
-		'skins/BlueSky/resources/css/home.css' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/nonarticle.css' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/searchresults.css' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/special.css' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/printable.css' => array( 'media' => 'print' ),
 		#'skins/BlueSky/resources/css/iphone.css' => array( 'media' => 'only screen and (max-device-width: 480px)' ),
+	),
+	'position' => 'top'
+);
+
+// zzz prefix is a hack to ensure that this module is loaded after the main
+// skins.bluesky module
+$wgResourceModules['zzzskins.bluesky.mainpage'] = array(
+	'styles' => array(
+		'skins/BlueSky/resources/css/home.css' => array( 'media' => 'screen' ),
 	),
 	'position' => 'top'
 );

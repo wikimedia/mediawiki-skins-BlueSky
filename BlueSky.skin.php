@@ -73,14 +73,18 @@ class SkinBlueSky extends SkinTemplate {
 		} else {
 			$baseCSSmodules[] = 'skins.bluesky.externallinks.124';
 		}
-		// Add base CSS (i.e. no themes or ugly hacks) via ResourceLoader
-		$out->addModuleStyles( $baseCSSmodules );
 
-		// Ugly LESS hacks
 		$modules = array();
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$action = $request->getVal( 'action', 'view' );
+
+		if ( $title->isMainPage() ) {
+			$baseCSSmodules[] = 'zzzskins.bluesky.mainpage';
+		}
+
+		// Add base CSS (i.e. no themes or ugly hacks) via ResourceLoader
+		$out->addModuleStyles( $baseCSSmodules );
 
 		// Page action specific hacks
 		switch ( $action ) {
