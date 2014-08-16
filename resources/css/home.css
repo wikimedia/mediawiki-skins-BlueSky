@@ -1,11 +1,11 @@
-.page-Main_Page #intro,
-.page-Main_Page .wh_block {
+#intro,
+.wh_block {
 	display: none;
 }
-.page-Main_Page #actionbar {
+#actionbar {
 	height: 18px;
 }
-.page-Main_Page .minor_section {
+.minor_section {
 	border: none;
 	padding: 0;
 }
