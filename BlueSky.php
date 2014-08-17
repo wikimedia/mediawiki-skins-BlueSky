@@ -174,6 +174,13 @@ $wgResourceModules['themeloader.skins.bluesky.red'] = array(
 	'position' => 'top'
 );
 
+$wgResourceModules['themeloader.skins.bluesky.white'] = array(
+	'styles' => array(
+		'skins/BlueSky/resources/css/theme/white.less' => array( 'media' => 'screen' )
+	),
+	'position' => 'top'
+);
+
 $wgResourceModules['skins.bluesky.js.easing'] = array(
 	'scripts' => 'skins/BlueSky/resources/js/jquery.easing.js',
 	'position' => 'top'
