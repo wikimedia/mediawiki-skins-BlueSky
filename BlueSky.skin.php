@@ -16,7 +16,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 class SkinBlueSky extends SkinTemplate {
 
-	var $skinname = 'bluesky', $stylename = 'bluesky',
+	public $skinname = 'bluesky', $stylename = 'bluesky',
 		$template = 'BlueSkyTemplate', $useHeadElement = true;
 
 	public $mSidebarWidgets = array();
