@@ -212,7 +212,7 @@ $wgResourceModules['skins.bluesky.js'] = array(
  */
 $wgHooks['OutputPageParserOutput'][] = 'wfTOCCrap';
 
-$wgHooks['BeforePageDisplay'][] = function( &$out, &$skin ) {
+$wgHooks['BeforePageDisplay'][] = function( OutputPage &$out, &$skin ) {
 	//global $wgRequest, $wgUser;
 
 	// Hooks are global, but we want these things *only* for this skin.
