@@ -1260,6 +1260,9 @@ class SkinBlueSky extends SkinTemplate {
 		wfProfileIn( __METHOD__ );
 
 		$tpl = parent::prepareQuickTemplate( $out );
+		if ( !$out instanceof OutputPage ) {
+			$out = $this->getOutput();
+		}
 
 		// Add various meta properties if the ArticleMetaInfo extension is
 		// available
@@ -1287,10 +1290,10 @@ class SkinBlueSky extends SkinTemplate {
 		// article text to be a generic "Sorry, no such page" and force the
 		// correct HTTP headers
 		if (
-			$out->getTitle()->getNamespace() == NS_USER &&
+			$this->getTitle()->getNamespace() == NS_USER &&
 			$this->getUser()->getId() == 0 &&
 			class_exists( 'UserPagePolicy' ) &&
-			!UserPagePolicy::isGoodUserPage( $out->getTitle()->getDBkey() )
+			!UserPagePolicy::isGoodUserPage( $this->getTitle()->getDBkey() )
 		)
 		{
 			$txt = wfMessage( 'noarticletext_user' )->parse();
