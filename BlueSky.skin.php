@@ -2090,7 +2090,7 @@ class BlueSkyTemplate extends BaseTemplate {
 					</div><!--end #side_rc_widget-->
 				<?php endif; ?>
 
-				<?php if ( ( $title->getNamespace() == NS_MAIN || $title->getNamespace() == NS_USER ) && !$isDocViewer ) { ?>
+				<?php if ( $title->inNamespaces( NS_MAIN, NS_USER ) && !$isDocViewer ) { ?>
 					<div id="side_featured_contributor" class="sidebox">
 						<?php $this->showFeaturedContributorWidget(); ?>
 						<?php if ( !$isLoggedIn ) { ?>
