@@ -1618,7 +1618,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$heading = '';
 		if ( !$sk->suppressH1Tag() && $this->data['title'] ) {
 			$heading = '<h1 id="firstHeading" class="firstHeading" lang="' . $this->data['pageLanguage'] .
-				'"><span dir="auto">' . $this->data['title'] . '</span></h1>';
+				'">' . $this->data['title'] . '</h1>';
 		}
 
 		// get the breadcrumbs / category links at the top of the page
