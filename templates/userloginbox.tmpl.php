@@ -43,6 +43,8 @@ class UserLoginBoxTemplate extends QuickTemplate {
 		<a href="<?php echo SpecialPage::getTitleFor( $passwordReminderSpecialPageName )->getFullURL() ?>" id="forgot_pwd<?php echo $this->data['suffix'] ?>"><?php echo wfMessage( 'userlogin-resetpassword-link' )->plain() ?></a>
 		<a href="<?php echo SpecialPage::getTitleFor( 'Userlogin', 'signup' )->getFullURL() ?>"><?php echo wfMessage( 'nologinlink' )->plain() ?></a>
 	</div>
+
+	<?php if ( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
 </form>
 <?php
 	}

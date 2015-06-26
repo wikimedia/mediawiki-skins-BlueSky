@@ -33,6 +33,7 @@
 	"bluesky-notifications-no-talk": "Käy [[$1|keskustelusivullasi]] nähdäksesi aiemmat viestit.",
 	"bluesky-page-edited": "Sivua muokattu viimeksi {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Sivua muokannut viimeksi [[User:$2|$2]] {{int:ago|$1}}",
+	"bluesky-toc-sections": "Osiot:",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Yksi lukematon|$1 lukematonta}}",
 	"bluesky-unwatch": "Lopeta tarkkailu",
 	"bluesky-watch": "Tarkkaile",

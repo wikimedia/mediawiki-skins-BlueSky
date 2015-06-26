@@ -1,13 +1,15 @@
 <?php
 /**
- * BlueSky skin
+ * BlueSky skin -- a skin based on wikiHow's third redesign, introduced in
+ * autumn 2013.
  *
  * @file
+ * @ingroup Skins
+ * @version 2014-05-15
+ * @author Various wikiHow developers
+ * @author Jack Phoenix <jack@countervandalism.net>
+ * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
-
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die();
-}
 
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
@@ -23,7 +25,8 @@ class SkinBlueSky extends SkinTemplate {
 	public $mSidebarTopWidgets = array();
 
 	/**
-	 * Basically just loads the skin's JavaScript via ResourceLoader.
+	 * Loads the skin's JavaScript via ResourceLoader and sets up some <meta>
+	 * tags and whatnot for the page head element.
 	 *
 	 * @param OutputPage $out
 	 */
@@ -41,6 +44,56 @@ class SkinBlueSky extends SkinTemplate {
 			return true;
 		};
 
+		/*
+		global $wgRequest;
+		$action = $wgRequest->getVal( 'action', 'view' );
+		$isMainPage = $out->getTitle()->isMainPage();
+		$isArticlePage = $out->getTitle() &&
+				!$isMainPage &&
+				$out->getTitle()->getNamespace() == NS_MAIN &&
+				$action == 'view';
+		*/
+
+		$out->addMeta( 'http:content-type', 'text/html; charset=UTF-8' );
+
+		/*
+		if ( $isArticlePage || $isMainPage ) {
+			global $wgLanguageCode;
+
+			if ( $wgLanguageCode != 'en' ) {
+				$mobileLang = $wgLanguageCode . '.';
+			} else {
+				$mobileLang = '';
+			}
+
+			$out->addLink( array(
+				'rel' => 'alternate',
+				'media' => 'only screen and (max-width: 640px)',
+				'href' => 'http://' . $mobileLang . 'm.wikihow.com/' . $out->getTitle()->getPartialURL()
+			) );
+		}
+
+		$out->setCanonicalUrl( $out->getTitle()->getFullURL() );
+		$out->addLink( array(
+			'href' => 'https://plus.google.com/102818024478962731382',
+			'rel' => 'publisher'
+		) );
+
+		$out->addLink( array(
+			'rel' => 'alternate',
+			'type' => 'application/rss+xml',
+			'title' => 'wikiHow: How-to of the Day',
+			'href' => 'http://www.wikihow.com/feed.rss'
+		) );
+
+		$out->addLink( array(
+			'rel' => 'apple-touch-icon',
+			'href' => $wgStylePath . '/BlueSky/images/safari-large-icon.png'
+		) );
+
+		echo $out->getHeadItems();
+		*/
+
 		// Load JavaScript via ResourceLoader
 		$out->addModules( 'skins.bluesky.js' );
 	}
@@ -51,28 +104,12 @@ class SkinBlueSky extends SkinTemplate {
 	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
-		global $wgVersion, $wgResourceModules;
-
 		parent::setupSkinUserCss( $out );
 
-		$baseCSSmodules = array( 'skins.bluesky' );
-		// Pick the correct external links module...the difference between
-		// 1.23 and 1.24 versions is in the capitalization of the "MonoBook" name
-		// (lowercase for 1.23 and older, CamelCase for 1.24 and newer)
-		if ( version_compare( $wgVersion, '1.23c', '<' ) ) {
-			$baseCSSmodules[] = 'skins.bluesky.externallinks.123';
-		} elseif (
-			isset( $wgResourceModules['mediawiki.skinning.content.externallinks'] ) &&
-			$wgResourceModules['mediawiki.skinning.content.externallinks']
-		)
-		{
-			// Let's hope that https://gerrit.wikimedia.org/r/#/c/143173/ makes
-			// it to the 1.24 release, but in case if not, there's a final fallback
-			// in this if-else loop for such a case (1.24 w/o this skinning module)
-			$baseCSSmodules[] = 'mediawiki.skinning.content.externallinks';
-		} else {
-			$baseCSSmodules[] = 'skins.bluesky.externallinks.124';
-		}
+		$baseCSSmodules = array(
+			'skins.bluesky',
+			'mediawiki.skinning.content.externallinks'
+		);
 
 		$modules = array();
 		$title = $this->getTitle();
@@ -678,7 +715,7 @@ class SkinBlueSky extends SkinTemplate {
 	 */
 	static function showSideBar() {
 		$result = true;
-		wfRunHooks( 'ShowSideBar', array( &$result ) );
+		Hooks::run( 'ShowSideBar', array( &$result ) );
 		return $result;
 	}
 
@@ -694,7 +731,7 @@ class SkinBlueSky extends SkinTemplate {
 	static function showBreadCrumbs() {
 		global $wgTitle, $wgRequest;
 		$result = true;
-		wfRunHooks( 'ShowBreadCrumbs', array( &$result ) );
+		Hooks::run( 'ShowBreadCrumbs', array( &$result ) );
 		if ( $result ) {
 			$namespace = $wgTitle ? $wgTitle->getNamespace() : NS_MAIN;
 			$action = $wgRequest ? $wgRequest->getVal( 'action' ) : '';
@@ -718,7 +755,7 @@ class SkinBlueSky extends SkinTemplate {
 		global $wgTitle, $wgRequest;
 
 		$result = true;
-		wfRunHooks( 'ShowGrayContainer', array( &$result ) );
+		Hooks::run( 'ShowGrayContainer', array( &$result ) );
 
 		$action = $wgRequest ? $wgRequest->getVal( 'action' ) : '';
 		$namespace = $wgTitle->getNamespace();
@@ -756,7 +793,7 @@ class SkinBlueSky extends SkinTemplate {
 
 		$tabs = array();
 
-		wfRunHooks( 'pageTabs', array( &$tabs ) );
+		Hooks::run( 'pageTabs', array( &$tabs ) );
 
 		if ( count( $tabs ) > 0 ) {
 			return $tabs;
@@ -1257,48 +1294,10 @@ class SkinBlueSky extends SkinTemplate {
 	 */
 	protected function prepareQuickTemplate( OutputPage $out = null ) {
 		global $wgContLang, $wgHideInterlanguageLinks;
-		wfProfileIn( __METHOD__ );
 
 		$tpl = parent::prepareQuickTemplate( $out );
 		if ( !$out instanceof OutputPage ) {
 			$out = $this->getOutput();
-		}
-
-		// Add various meta properties if the ArticleMetaInfo extension is
-		// available
-		if ( class_exists( 'ArticleMetaInfo' ) ) {
-			$description = ArticleMetaInfo::getCurrentTitleMetaDescription();
-			if ( $description ) {
-				$out->addMeta( 'description', $description );
-			}
-			$keywords = ArticleMetaInfo::getCurrentTitleMetaKeywords();
-			if ( $keywords ) {
-				$out->mKeywords = array();
-				$out->addMeta( 'keywords', $keywords );
-			}
-
-			ArticleMetaInfo::addFacebookMetaProperties( $tpl->data['title'] );
-			ArticleMetaInfo::addTwitterMetaProperties();
-
-			ArticleMetaInfo::addFacebookMetaProperties( $tpl->data['title'] );
-			ArticleMetaInfo::addTwitterMetaProperties();
-		}
-
-		// If the UserPagePolicy extension is installed and we're trying to
-		// view a User: page that doesn't match the criteria of a "good user page"
-		// (in other words, it's likely spam) and we're not logged in, force the
-		// article text to be a generic "Sorry, no such page" and force the
-		// correct HTTP headers
-		if (
-			$this->getTitle()->getNamespace() == NS_USER &&
-			$this->getUser()->getId() == 0 &&
-			class_exists( 'UserPagePolicy' ) &&
-			!UserPagePolicy::isGoodUserPage( $this->getTitle()->getDBkey() )
-		)
-		{
-			$txt = wfMessage( 'noarticletext_user' )->parse();
-			$tpl->setRef( 'bodytext', $txt );
-			header( 'HTTP/1.1 404 Not Found' );
 		}
 
 		// <copypasta type="awful" absolutely="true">
@@ -1356,8 +1355,6 @@ class SkinBlueSky extends SkinTemplate {
 		} else {
 			$tpl->set( 'language_urls', false );
 		}
-
-		wfProfileOut( __METHOD__ );
 
 		return $tpl;
 	}
@@ -1433,13 +1430,24 @@ class SkinBlueSky extends SkinTemplate {
 		if ( class_exists( 'UserLoginBox' ) ) {
 			return UserLoginBox::getLogin( $isHead );
 		} else {
+			if ( session_id() == '' ) {
+				wfSetupSession();
+			}
+
+			if ( !LoginForm::getLoginToken() ) {
+				LoginForm::setLoginToken();
+				$token = LoginForm::getLoginToken();
+			} else {
+				$token = LoginForm::getLoginToken();
+			}
+
 			// Bah, we have to reimplement UserLoginBox's logic here.
 			$actionURL = SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( array(
 				'action' => 'submitlogin',
 				'type' => 'login',
 				'autoredirect' => urlencode( $this->getTitle()->getPrefixedURL() ),
 				'sitelogin' => '1',
-				'wpLoginToken' => ( !LoginForm::getLoginToken() ) ? LoginForm::setLoginToken() : LoginForm::getLoginToken()
+				'wpLoginToken' => $token
 			) );
 
 			// wikiHow's SSL_LOGIN_DOMAIN constant is not supported intentionally
@@ -1468,6 +1476,7 @@ class SkinBlueSky extends SkinTemplate {
 				'social_buttons' => '',//self::getSocialLogin( $headSuffix ),
 				'suffix' => $headSuffix,
 				'action_url' => htmlspecialchars( $actionURL ),
+				'token' => $token
 			);
 
 			foreach ( $variables as $variable => $value ) {
@@ -1556,32 +1565,23 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * outputs a formatted page.
 	 */
 	public function execute() {
-		global $wgStylePath, $wgSitename, $wgForumLink, $blueSkyTOC;
+		global $wgStylePath, $wgSitename, $wgForumLink, $wgBlueSkyTOC;
 
 		$tocHTML = '';
-		if ( $blueSkyTOC != '' ) {
-			if ( sizeof( $blueSkyTOC ) > 6 ) {
-				$tocHTML .= "<div class='toc_long'>";
+		if ( isset( $wgBlueSkyTOC ) && count( $wgBlueSkyTOC ) > 0 ) {
+			if ( sizeof( $wgBlueSkyTOC ) > 6 ) {
+				$tocHTML .= '<div class="toc_long">';
 			} else {
-				$tocHTML .= "<div class='toc_short'>";
+				$tocHTML .= '<div class="toc_short">';
 			}
 			$i = 0;
-			foreach ( $blueSkyTOC as $tocpart ) {
+			foreach ( $wgBlueSkyTOC as $tocpart ) {
 				$class = "toclevel-{$tocpart['toclevel']}";
 				$href = "#{$tocpart['anchor']}";
 				$tocHTML .= "<a href='$href' data-to='$href' data-numid='$i' class='$class'><span class='toc_square'></span>{$tocpart['line']}</a>";
 				$i++;
 			}
 			$tocHTML .= '</div>';
-		}
-
-		if ( class_exists( 'MobileWikihow' ) ) {
-			$mobileWikihow = new MobileWikihow();
-			$result = $mobileWikihow->controller();
-			// false means we stop processing template
-			if ( !$result ) {
-				return;
-			}
 		}
 
 		$this->data['pageLanguage'] = $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode();
@@ -1609,7 +1609,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$isLoggedIn = $user->getID() > 0;
 
 		$isTool = false;
-		wfRunHooks( 'getToolStatus', array( &$isTool ) );
+		Hooks::run( 'getToolStatus', array( &$isTool ) );
 
 		$isIndexed = class_exists( 'RobotPolicy' ) && RobotPolicy::isIndexable( $title );
 
@@ -1623,7 +1623,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		// get the breadcrumbs / category links at the top of the page
 		$catLinksTop = $sk->getCategoryLinks( true );
-		wfRunHooks( 'getBreadCrumbs', array( &$catLinksTop ) );
+		Hooks::run( 'getBreadCrumbs', array( &$catLinksTop ) );
 		$mainPageObj = Title::newMainPage();
 
 		$isPrintable = false;
@@ -1760,18 +1760,6 @@ class BlueSkyTemplate extends BaseTemplate {
 			$action == 'view' &&
 			class_exists( 'WikihowShare' );
 
-		$showSliderWidget =
-			class_exists( 'Slider' ) &&
-			$title->exists() &&
-			$title->getNamespace() == NS_MAIN &&
-			!$title->isProtected() &&
-			!$isPrintable &&
-			!$isMainPage &&
-			$isIndexed &&
-			// $showSocialSharing &&
-			$request->getVal( 'oldid' ) == '' &&
-			( $request->getVal( 'action' ) == '' || $request->getVal( 'action' ) == 'view' );
-
 		$isSpecialPage = $title->getNamespace() == NS_SPECIAL
 			|| ( $title->getNamespace() == NS_MAIN && $request->getVal( 'action' ) == 'protect' )
 			|| ( $title->getNamespace() == NS_MAIN && $request->getVal( 'action' ) == 'delete' );
@@ -1784,13 +1772,13 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$tabsArray = $sk->getTabsArray( $showArticleTabs );
 
-		wfRunHooks( 'JustBeforeOutputHTML', array( &$this ) );
+		Hooks::run( 'JustBeforeOutputHTML', array( &$this ) );
 
 		// Output the doctype element and everything that goes before the HTML
 		// <body> tag
 		$this->html( 'headelement' );
 
-		wfRunHooks( 'PageHeaderDisplay', array( $sk->isUserAgentMobile() ) ); ?>
+		Hooks::run( 'PageHeaderDisplay', array( $sk->isUserAgentMobile() ) ); ?>
 
 		<div id="header_outer"><div id="header">
 			<ul id="actions">
@@ -1832,14 +1820,14 @@ class BlueSkyTemplate extends BaseTemplate {
 			?>
 			<a href="<?php echo $mainPageObj->getLocalURL(); ?>" id="logo_link"><?php echo $logoElement ?></a>
 			<?php echo $top_search ?>
-			<?php wfRunHooks( 'EndOfHeader', array( &$out ) ); ?>
+			<?php Hooks::run( 'EndOfHeader', array( &$out ) ); ?>
 		</div></div><!--end #header-->
-		<?php wfRunHooks( 'AfterHeader', array( &$out ) ); ?>
+		<?php Hooks::run( 'AfterHeader', array( &$out ) ); ?>
 		<div id="main_container" class="<?php echo ( $isMainPage ? 'mainpage' : '' ) ?>">
 			<div id="header_space"></div>
 
 		<div id="main">
-		<?php wfRunHooks( 'BeforeActionbar', array( &$out ) ); ?>
+		<?php Hooks::run( 'BeforeActionbar', array( &$out ) ); ?>
 		<div id="actionbar" class="<?php echo ( $isTool ? 'isTool' : '' ) ?>">
 			<?php if ( $showBreadCrumbs ): ?>
 				<div id="gatBreadCrumb">
@@ -1860,7 +1848,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		<div id="article"<?php if ( class_exists( 'Microdata' ) ) { echo Microdata::genSchemaHeader(); } ?> class="mw-body">
 			<?php if ( $this->data['newtalk'] ) { ?><div class="usermessage"><?php $this->html( 'newtalk' ) ?></div><?php } ?>
 			<?php
-			wfRunHooks( 'BeforeTabsLine', array( &$out ) );
+			Hooks::run( 'BeforeTabsLine', array( &$out ) );
 			if ( !$isArticlePage && $this->data['bodyheading'] ) {
 				echo '<div class="wh_block">' . $this->data['bodyheading'] . '</div>';
 			}
@@ -2161,49 +2149,11 @@ class BlueSkyTemplate extends BaseTemplate {
 			<br class="clearall" />
 		</div><!--end #footer_outer-->
 		<div id="dialog-box" title=""></div>
-
 		<?php
-		// Quick note/edit popup
-		if ( $action == 'diff' && class_exists( 'QuickNoteEdit' ) ) {
-			echo QuickNoteEdit::displayQuicknote();
-			echo QuickNoteEdit::displayQuickedit();
-		}
-
-		// Slider box -- for non-logged in users on articles only
-		if ( $showSliderWidget ) {
-			echo Slider::getBox();
-			echo '<div id="slideshowdetect"></div>';
-		}
-		?>
-
-		<div id="fb-root"></div>
-
-		<?php
-		if ( $showRCWidget ) {
-			RCWidget::showWidgetJS();
-		}
-
-		// Load event listeners all pages
-		if ( class_exists( 'CTALinks' ) && trim( $sk->msg( 'cta_feature' )->inContentLanguage()->text() ) == 'on' ) {
-			echo CTALinks::getBlankCTA();
-		}
-
-		wfRunHooks( 'ArticleJustBeforeBodyClose' );
-
-		if ( $showStaffStats ) {
-			echo Pagestats::getJSsnippet( 'article' );
-		}
-
-		if ( class_exists( 'GoodRevision' ) ) {
-			$grevid = $title ? GoodRevision::getUsedRev( $title->getArticleID() ) : '';
-			$latestRev = $title->getNamespace() == NS_MAIN ? $title->getLatestRevID() : '';
-			echo '<!-- shown patrolled revid=' . $grevid . ', latest=' . $latestRev . ' -->';
-		}
-
 		echo wfReportTime();
 
 		$this->printTrail();
-?>
+		?>
 </body>
 </html>
 <?php

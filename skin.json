@@ -1,0 +1,218 @@
+{
+	"name": "BlueSky",
+	"version": "1.1",
+	"author": [
+		"wikiHow",
+		"Jack Phoenix"
+	],
+	"url": "https://www.mediawiki.org/wiki/Skin:BlueSky",
+	"license-name": "GPL-2.0+",
+	"description": "Skin based on the current version (late 2013-) of wikiHow's skin",
+	"type": "skin",
+	"ValidSkinNames": {
+		"bluesky": "BlueSky"
+	},
+	"MessagesDirs": {
+		"SkinBlueSky": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"SkinBlueSky": "BlueSky.skin.php",
+		"BlueSkyTemplate": "BlueSky.skin.php",
+		"SkinBlueSkyHooks": "BlueSky.hooks.php"
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteSkinPath": "BlueSky"
+	},
+	"ResourceModules": {
+		"skins.bluesky": {
+			"styles": {
+				"resources/src/mediawiki.skinning/interface.css": {
+					"media": "screen"
+				},
+				"resources/css/nonarticle.css": {
+					"media": "screen"
+				},
+				"resources/css/searchresults.css": {
+					"media": "screen"
+				},
+				"resources/css/special.css": {
+					"media": "screen"
+				},
+				"resources/css/printable.css": {
+					"media": "print"
+				}
+			},
+			"position": "top"
+		},
+		"zzzskins.bluesky.mainpage": {
+			"styles": {
+				"resources/css/home.css": {
+					"media": "print"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.general": {
+			"styles": {
+				"resources/css/hacks/general.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.action.delete": {
+			"styles": {
+				"resources/css/hacks/mediawiki.action.delete.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.action.edit": {
+			"styles": {
+				"resources/css/hacks/mediawiki.action.edit.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.action.history": {
+			"styles": {
+				"resources/css/hacks/mediawiki.action.history.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.action.protect": {
+			"styles": {
+				"resources/css/hacks/mediawiki.action.protect.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.filepage": {
+			"styles": {
+				"resources/css/hacks/mediawiki.filepage.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.special.log": {
+			"styles": {
+				"resources/css/hacks/mediawiki.special.log.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.special.movepage": {
+			"styles": {
+				"resources/css/hacks/mediawiki.special.movepage.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.special.recentchanges": {
+			"styles": {
+				"resources/css/hacks/mediawiki.special.recentchanges.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.special.undelete": {
+			"styles": {
+				"resources/css/hacks/mediawiki.special.undelete.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.hacks.special.watchlist": {
+			"styles": {
+				"resources/css/hacks/mediawiki.special.watchlist.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"themeloader.skins.bluesky.blue": {
+			"styles": {
+				"resources/css/theme/blue.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"themeloader.skins.bluesky.green": {
+			"styles": {
+				"resources/css/theme/green.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"themeloader.skins.bluesky.grey": {
+			"styles": {
+				"resources/css/theme/grey.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"themeloader.skins.bluesky.red": {
+			"styles": {
+				"resources/css/theme/red.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"themeloader.skins.bluesky.white": {
+			"styles": {
+				"resources/css/theme/white.less": {
+					"media": "screen"
+				}
+			},
+			"position": "top"
+		},
+		"skins.bluesky.js.easing": {
+			"position": "bottom",
+			"scripts": [
+				"resources/js/jquery.easing.js"
+			]
+		},
+		"skins.bluesky.js": {
+			"position": "bottom",
+			"dependencies": [
+				"jquery.client",
+				"jquery.ui.dialog",
+				"skins.bluesky.js.easing"
+			],
+			"messages": [
+				"navlist_collapse", "navlist_expand",
+				"userlogin-yourname-ph", "userlogin-yourpassword-ph",
+				"bluesky-js-no-thanks"
+			],
+			"scripts": [
+				"resources/js/bluesky.js"
+			]
+		}
+	},
+	"config": {
+		"BlueSkyTOC": ""
+	},
+	"Hooks": {
+		"OutputPageParserOutput": [
+			"SkinBlueSkyHooks::wfTOCCrap"
+		]
+	},
+	"manifest_version": 1
+}

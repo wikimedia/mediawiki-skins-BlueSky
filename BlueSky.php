@@ -8,7 +8,7 @@
  * @version 2014-05-15
  * @author Various wikiHow developers
  * @author Jack Phoenix <jack@countervandalism.net>
- * @date 27 May 2014
+ * @date 26 June 2015
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  *
  * To install place the BlueSky folder (the folder containing this file!) into
@@ -16,15 +16,11 @@
  * require_once("$IP/skins/BlueSky/BlueSky.php");
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 'This is not a valid entry point to MediaWiki.' );
-}
-
 // Skin credits that will show up on Special:Version
 $wgExtensionCredits['skin'][] = array(
 	'path' => __FILE__,
 	'name' => 'BlueSky',
-	'version' => '1.0',
+	'version' => '1.1',
 	'author' => array( 'wikiHow', 'Jack Phoenix' ),
 	// @todo To be moved into the i18n file eventually once i18n is stable enough.
 	// No need to cause translators unnecessary extra work before I finalize
@@ -39,20 +35,18 @@ $wgExtensionCredits['skin'][] = array(
 // *this* file.
 $wgValidSkinNames['bluesky'] = 'BlueSky';
 
-// Autoload the skin class, make it a valid skin, set up i18n, set up CSS & JS
-// (via ResourceLoader)
+// Autoload the skin class, set up i18n, set up CSS & JS (via ResourceLoader)
 $wgAutoloadClasses['SkinBlueSky'] = __DIR__ . '/BlueSky.skin.php';
+$wgAutoloadClasses['BlueSkyTemplate'] = __DIR__ . '/BlueSky.skin.php';
 $wgAutoloadClasses['SkinBlueSkyHooks'] = __DIR__ . '/BlueSky.hooks.php';
-$wgExtensionMessagesFiles['SkinBlueSky'] = __DIR__ . '/BlueSky.i18n.php';
+
 $wgMessagesDirs['SkinBlueSky'] = __DIR__ . '/i18n';
 
 // Main CSS ResourceLoader module
 $wgResourceModules['skins.bluesky'] = array(
 	'styles' => array(
 		// MonoBook also loads these
-		#'skins/common/commonElements.css' => array( 'media' => 'screen' ),
-		#'skins/common/commonContent.css' => array( 'media' => 'screen' ),
-		'skins/common/commonInterface.css' => array( 'media' => 'screen' ),
+		'resources/src/mediawiki.skinning/interface.css' => array( 'media' => 'screen' ),
 		// Styles custom to this skin
 		'skins/BlueSky/resources/css/nonarticle.css' => array( 'media' => 'screen' ),
 		'skins/BlueSky/resources/css/searchresults.css' => array( 'media' => 'screen' ),
@@ -68,20 +62,6 @@ $wgResourceModules['skins.bluesky'] = array(
 $wgResourceModules['zzzskins.bluesky.mainpage'] = array(
 	'styles' => array(
 		'skins/BlueSky/resources/css/home.css' => array( 'media' => 'screen' ),
-	),
-	'position' => 'top'
-);
-
-$wgResourceModules['skins.bluesky.externallinks.123'] = array(
-	'styles' => array(
-		'skins/BlueSky/resources/css/externallinks-123.css' => array( 'media' => 'screen' ),
-	),
-	'position' => 'top'
-);
-
-$wgResourceModules['skins.bluesky.externallinks.124'] = array(
-	'styles' => array(
-		'skins/BlueSky/resources/css/externallinks-124.css' => array( 'media' => 'screen' ),
 	),
 	'position' => 'top'
 );
@@ -208,7 +188,6 @@ $wgResourceModules['skins.bluesky.js'] = array(
 	)
 );
 
-$blueSkyTOC = '';
+$wgBlueSkyTOC = '';
 
 $wgHooks['OutputPageParserOutput'][] = 'SkinBlueSkyHooks::wfTOCCrap';
-$wgHooks['BeforePageDisplay'][] = 'SkinBlueSkyHooks::onBeforePageDisplayCrap';
