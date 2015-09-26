@@ -7,7 +7,7 @@
 	],
 	"url": "https://www.mediawiki.org/wiki/Skin:BlueSky",
 	"license-name": "GPL-2.0+",
-	"description": "Skin based on the current version (late 2013-) of wikiHow's skin",
+	"descriptionmsg": "bluesky-desc",
 	"type": "skin",
 	"ValidSkinNames": {
 		"bluesky": "BlueSky"
