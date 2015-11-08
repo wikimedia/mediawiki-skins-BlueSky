@@ -279,7 +279,7 @@ $( document ).ready( function () {
 
 	var clientProfile = $.client.profile();
 	// Slider -- not for browsers that don't render +1 buttons
-	var oldMSIE = ( clientProfile['name'] === 'msie' ) && clientProfile['versionBase'] <= 7;
+	var oldMSIE = ( clientProfile.name === 'msie' ) && clientProfile.versionBase <= 7;
 	if (
 		$( '#slideshowdetect' ).length &&
 		slider &&
@@ -450,7 +450,7 @@ WH.displayTranslationCTA = function () {
 		typeof WH.translationData[userLang] != 'undefined'
 	)
 	{
-		var msg = WH.translationData[userLang]['msg'];
+		var msg = WH.translationData[userLang].msg;
 		if ( msg ) {
 			$( '#main' ).prepend(
 				'<span id="gatNewMessage"><div class="message_box">' + msg +
@@ -612,7 +612,7 @@ function initTopMenu() {
 
 	var clientProfile = $.client.profile();
 	// switch to text so we can display "Password"
-	if ( !( clientProfile['name'] === 'msie' && clientProfile['versionBase'] <= 8 ) ) {
+	if ( !( clientProfile.name === 'msie' && clientProfile.versionBase <= 8 ) ) {
 		if ( $( '.userlogin #wpPassword1' ).get( 0 ) ) {
 			$('.userlogin #wpPassword1' ).get( 0 ).type = 'text';
 		}
@@ -695,7 +695,7 @@ $( document ).ready( function () {
 	function toggleHeader( bShrink ) {
 		var clientProfile = $.client.profile();
 		// not so fast, IE7...
-		if ( clientProfile['name'] === 'msie' && parseFloat( clientProfile['versionBase'] ) < 8 ) {
+		if ( clientProfile.name === 'msie' && parseFloat( clientProfile.versionBase ) < 8 ) {
 			return;
 		}
 
@@ -729,7 +729,7 @@ $( window ).scroll( function () {
 
 	var clientProfile = $.client.profile();
 
-	if ( clientProfile['name'] === 'msie' && parseFloat( clientProfile['versionBase'] ) < 8 ) {
+	if ( clientProfile.name === 'msie' && parseFloat( clientProfile.versionBase ) < 8 ) {
 		// IE7 doesn't like stickiness
 	} else {
 		$( '.section.sticky' ).each( function () {
@@ -780,7 +780,7 @@ function makeSticky( container, element ) {
 // New checkmarks aren't compatible with IE 8 and earlier so revert to old style
 $( document ).ready( function () {
 	var clientProfile = $.client.profile();
-	if ( clientProfile['name'] === 'msie' && clientProfile['versionBase'] <= 8 ) {
+	if ( clientProfile.name === 'msie' && clientProfile.versionBase <= 8 ) {
 		$( '.css-checkbox' ).removeClass( 'css-checkbox' );
 		$( '.css-checkbox-label' ).removeClass( 'css-checkbox-label' );
 	}
@@ -824,7 +824,7 @@ function addOptions() {
 
 function menu_show( choice ) {
 	var clientProfile = $.client.profile();
-	if ( clientProfile['name'] === 'msie' && parseFloat( clientProfile['versionBase'] ) < 9 ) {
+	if ( clientProfile.name === 'msie' && parseFloat( clientProfile.versionBase ) < 9 ) {
 		// IE7 and IE8 fix
 		$( choice ).find( '.menu, .menu_login, .menu_messages' )
 			.stop( true, true )
@@ -892,7 +892,7 @@ function menu_show( choice ) {
 
 function menu_hide( choice ) {
 	var clientProfile = $.client.profile();
-	if ( clientProfile['name'] === 'msie' && parseFloat( clientProfile['versionBase'] ) < 9 ) {
+	if ( clientProfile.name === 'msie' && parseFloat( clientProfile.versionBase ) < 9 ) {
 		// IE7 and IE8 fix
 		$( choice ).find( '.menu, .menu_login, .menu_messages' )
 			.stop( true, true )

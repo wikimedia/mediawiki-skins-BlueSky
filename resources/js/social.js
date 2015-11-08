@@ -8,7 +8,7 @@
 		
 		if (
 			$( '.twitter-share-button' ).length &&
-			( !clientProfile['name'] === 'msie' || clientProfile['versionBase'] > 7 )
+			( clientProfile.name === 'msie' || clientProfile.versionBase > 7 )
 		)
 		{
 			$.getScript( 'https://platform.twitter.com/widgets.js', function() {
