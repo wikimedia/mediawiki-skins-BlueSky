@@ -1568,7 +1568,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		global $wgStylePath, $wgSitename, $wgForumLink, $wgBlueSkyTOC;
 
 		$tocHTML = '';
-		if ( isset( $wgBlueSkyTOC ) && count( $wgBlueSkyTOC ) > 0 ) {
+		if ( is_array( $wgBlueSkyTOC ) && count( $wgBlueSkyTOC ) > 0 ) {
 			if ( sizeof( $wgBlueSkyTOC ) > 6 ) {
 				$tocHTML .= '<div class="toc_long">';
 			} else {
