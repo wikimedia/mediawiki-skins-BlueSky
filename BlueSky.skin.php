@@ -1940,7 +1940,7 @@ class BlueSkyTemplate extends BaseTemplate {
 							*/
 							?>
 							<?php if ( $isLoggedIn ) {
-								if ( $title->userIsWatching() ) {
+								if ( $user->isWatched( $title ) ) {
 									$watchAction = 'unwatch';
 								} else {
 									$watchAction = 'watch';
