@@ -1335,8 +1335,10 @@ class SkinBlueSky extends SkinTemplate {
 				$lTitle = $tmp[1];
 				unset( $tmp );
 				$nt = Title::newFromText( $l );
-				if ( $wgContLang->getLanguageName( $nt->getInterwiki() ) != '' ) {
-					$language = $wgContLang->getLanguageName( $nt->getInterwiki() );
+				$inLanguage = $wgContLang->getCode();
+				$interwiki = $nt->getInterwiki();
+				if ( Language::fetchLanguageName( $interwiki, $inLanguage ) != '' ) {
+					$language = Language::fetchLanguageName( $interwiki, $inLanguage );
 				} else {
 					$language = $l;
 				}
