@@ -1,11 +1,8 @@
 <?php
 
-/**
- * Additional junk for the page head element.
- */
-class SkinBlueSkyHooks {
+class BlueSkyHooks {
+
 	/**
-	 * TOC processing
 	 * Shamelessly stolen from brickimedia's refreshed skin
 	 * Currently: https://github.com/Brickimedia/Refreshed/blob/master/Refreshed.skin.php#L72
 	 */

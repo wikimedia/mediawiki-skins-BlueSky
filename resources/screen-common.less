@@ -1,0 +1,227 @@
+/* Common styling for the BlueSky skin */
+
+@import "variables.less";
+
+// Page layout
+
+body {
+	background: @nav-bg;
+	color: @body-text;
+	font-size: 1em;
+	line-height: 1.3em;
+}
+
+#mw-wrapper {
+	position: relative;
+	font-family: "Helvetica", "arial", sans-serif;
+	background: @grey6;
+}
+
+#p-banner {
+
+	// Make logo image visible
+	// The class sets the background image from $wgLogo, but we still need to give it a size in order to show up
+	.mw-wiki-logo {
+		display: block;
+		content: '';
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+	}
+}
+
+.wrapper-inner {
+	max-width: 1050px;
+	margin: 0 auto;
+	padding: 1em;
+}
+
+.searchButton {
+	margin: -2em -7em 0 1em;
+	width: 6em;
+	float: right;
+}
+#searchInput {
+	width: 100%;
+}
+#p-search {
+	width: 23em;
+ // Random fallback number for total width of chunk; other width bits are all to make it fill this, whatever this is
+
+	#search-inner {
+		padding-right: 8em;
+	}
+}
+
+.mw-body {
+	position: relative;
+	word-wrap: break-word;
+}
+
+// Some content stuff
+.firstHeading {
+	font-size: 1.8em;
+	margin-top: 0;
+}
+
+.mw-indicators {
+	float: right;
+	margin: 1.5em 0 0 1em;
+}
+
+pre {
+	overflow: auto;
+	white-space: pre-wrap;
+}
+
+a {
+	color: @a;
+	text-decoration: none;
+
+	&:visited {
+		color: darken( desaturate( @a, 20% ), 3% );
+	}
+}
+a.new, .new a {
+	color: @a-new;
+
+	&:visited {
+		color: darken( desaturate( @a-new, 20% ), 3% );
+	}
+}
+#main-outer a:hover {
+	text-decoration: underline;
+}
+
+.center,
+.center * {
+	margin: auto;
+	text-align: center;
+}
+
+#content-block h2 .mw-headline {
+	border-left: 10px solid @nav-bg;
+	padding-left: 6px;
+}
+
+.mw-editsection-bracket {
+	display: none;
+}
+
+#content-block {
+	h1, h2, h3, h4, h5, h6, dt {
+		line-height: 1.25;
+		margin: 1.5em 0 .5em;
+		font-weight: bold;
+	}
+
+	h1 {
+		font-size: 1.5em;
+
+		.mw-headline {
+			font-size: 1.15em;
+		}
+	}
+	h2 {
+		font-size: 1.5em;
+	}
+	h3 {
+		font-size: 1.45em;
+	}
+	h4 {
+		font-size: 1.25em;
+	}
+	h5 {
+		font-size: 1.15em;
+	}
+	h6 {
+		font-size: 1em;
+	}
+	dt {
+		margin-top: 1em;
+	}
+	dd {
+		margin-bottom: 1em;
+	}
+	.mw-changeslist-legend dd {
+		margin-bottom: 0;
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 100%;
+}
+
+hr {
+	border: solid 1px;
+	border-style: solid none;
+	border-color: @nav-dark #fff @nav-bright;
+}
+.mw-changeslist-legend,
+.mw-body-content .mw-search-profile-tabs,
+.mw-body-content fieldset#mw-searchoptions,
+table.wikitable {
+	border: none;
+	color: #000;
+	background: #f6f6f6;
+	border: solid @nav-dark;
+	border-width: 1px 1px 1px;
+	padding: 1.25em 1.75em;
+	overflow: auto;
+}
+
+#preftoc,
+table.wikitable > tr > th,
+table.wikitable > tr > td,
+table.wikitable > * > tr > th,
+table.wikitable > * > tr > td {
+	border: 1px solid @nav-bright;
+	padding: .45em .5em .35em;
+}
+
+#preftoc,
+.mw-body-content .mw-search-profile-tabs {
+	padding: .25em .5em;
+}
+
+#preftoc,
+.mw-body-content .mw-search-profile-tabs,
+table.wikitable > tr > th,
+table.wikitable > * > tr > th {
+	border: solid 1px @nav-dark;
+	background: @nav-bg;
+}
+#preftoc li,
+.mw-body-content .mw-search-profile-tabs {
+	a {
+		color: @a;
+	}
+	&.selected a,
+	.current a {
+		color: #000;
+	}
+}
+
+#preftoc {
+	list-style: none;
+	margin: 0 0 1em;
+
+	li {
+		display: inline-block;
+		padding: .45em .5em .35em;
+	}
+}
+
+// Footer
+#mw-footer {
+	clear: both;
+	background: @nav-bg;
+	border-top: solid 1px @nav-dark;
+	color: @nav-text-bright;
+}
+
+// hidden stuff
+#p-page-footer-tools h3,
+#p-page-main h3,
+#p-search h3 {
+	.hidden;
+}

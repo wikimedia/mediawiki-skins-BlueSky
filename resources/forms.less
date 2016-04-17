@@ -1,0 +1,291 @@
+/* Form element styling for the BlueSky skin */
+
+@import "variables.less";
+
+.htmlform-tip {
+	font-size: @small;
+	padding: 1em 0;
+	color: @grey4;
+}
+
+/*
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:focus
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:focus
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover
+	.oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
+	.oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus,
+*/
+
+#content-block {
+	#searchInput,
+	input[type="reset"],
+	input[type="submit"]
+	input[name="target"],
+	input[name="user"],
+	input[name="mime"],
+	input[size$="0"],
+	input[type="text"],
+	input[type="checkbox"],
+	input[type="radio"],
+	input#wpTemplateSandboxPage,
+	input.mw-summary,
+	input.mw-input,
+	.mw-input input,
+	button,
+	textarea,
+	optgroup,
+	.mw-ui-input-inline,
+	.mw-ui-input,
+	.mw-ui-button,
+	.oo-ui-textInputWidget.oo-ui-iconElement input,
+	.oo-ui-textInputWidget.oo-ui-iconElement textarea,
+	.oo-ui-textInputWidget.oo-ui-widget-enabled input,
+	.oo-ui-textInputWidget.oo-ui-widget-enabled textarea,
+	.oo-ui-textInputWidget input,
+	.oo-ui-textInputWidget textarea,
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button,
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button,
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button,
+	.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button,
+	.oo-ui-buttonInputWidget > button,
+	.oo-ui-buttonInputWidget > input {
+		margin: .2em .2em .2em 0;
+		padding: .45em .55em .5em;
+		box-shadow: 0 3px 1px #f6f6f6 inset;
+		border: solid 1px #ccc;
+		border-radius: 2px;
+		box-sizing: border-box;
+	}
+	select {
+		padding: .45em;
+		margin: .2em .2em .2em 0;
+		box-sizing: border-box;
+	}
+	.oo-ui-dropdownWidget-handle {
+		.vertical-gradient( #fff, #f6f6f6, 0, 20% );
+		border-color: #ddd;
+		border-width: 2px;
+		border-radius: 6px;
+		padding-right: 1em;
+		text-shadow: 0 1px 0 #fff;
+	}
+	.oo-ui-dropdownInputWidget {
+		display: inline-block;
+		width: auto;
+		min-width: 15em;
+	}
+	input[type="checkbox"],
+	input[type="radio"] {
+		min-height: 0;
+		padding: 0;
+	}
+	input[type="radio"] {
+		border-radius: 8px;
+	}
+	.oo-ui-actionFieldLayout-input {
+		padding-right: .25em;
+	}
+	#searchInput,
+	input[name="user"],
+	input[name="mime"],
+	input[size$="0"],
+	input[type="text"],
+	input#wpTemplateSandboxPage,
+	input.mw-summary,
+	textarea,
+	.mw-input input,
+	.mw-ui-input {
+		width: 80%
+	}
+	textarea,
+	.oo-ui-textInputWidget.oo-ui-iconElement textarea,
+	.oo-ui-textInputWidget.oo-ui-widget-enabled textarea,
+	.oo-ui-textInputWidget textarea {
+		width: 100%
+	}
+	.oo-ui-textInputWidget,
+	.oo-ui-dropdownInputWidget,
+	.oo-ui-dropdownWidget {
+		max-width: 100%;
+	}
+
+	.mw-htmlform-ooui-wrapper {
+		margin: 0;
+	}
+	.oo-ui-panelLayout-framed {
+		border: none;
+		border-radius: 2px;
+		box-shadow: none;
+	}
+	.oo-ui-panelLayout-padded {
+		padding: 0;
+	}
+	.oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline {
+		margin-bottom: 0;
+	}
+	.oo-ui-fieldLayout {
+		display: block;
+		margin-bottom: 0;
+	}
+	fieldset {
+		border: none;
+		margin: 0;
+		padding: .5em 0 2em;
+	}
+	.oo-ui-fieldsetLayout > .oo-ui-labelElement-label,
+	legend {
+		width: 50%;
+		font-weight: bold;
+		padding: 1em 0 .1em;
+		border-bottom: solid 2px @nav-bg;
+	}
+	.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label,
+	label {
+		margin: .25em .5em .25em 0;
+		display: inline-block;
+	}
+	label.oo-ui-fieldLayout-body {
+		display: block;
+	}
+
+	label {
+		padding: .75em 0 0;
+	}
+	.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+		padding: 0;
+	}
+
+	.mw-ui-button,
+	.mw-ui-button.mw-ui-progressive,
+	.mw-ui-button.mw-ui-primary,
+	.mw-ui-button.mw-ui-constructive,
+	input[type="submit"],
+	input[type="button"],
+	button,
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button,
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button,
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button,
+	.oo-ui-buttonElement-framed > .oo-ui-buttonElement-button,
+	.oo-ui-buttonInputWidget > button,
+	.oo-ui-buttonInputWidget > input {
+		padding: .4em 1.1em .35em 1.1em;
+		border-radius: 5px;
+		border: solid 3px darken( @nav-dark, 10% );
+		.vertical-gradient( @nav-bg, @nav-dark, 0, 20% );
+		color: #fff;
+		text-shadow: 0 -1px 0 darken( @nav-dark, 15% );
+		box-sizing: border-box;
+		font-weight: bold;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+		&:active {
+	//		background: @grey-bright;
+		}
+		&:hover {
+	//		background: @grey-bright;
+		}
+		&:focus {
+			border-color: @nav-dark;
+		}
+		&:disabled {
+			background: @grey5;
+			color: @grey4;
+			border-color: @grey4;
+		}
+
+
+	}
+	.mw-ui-button.mw-ui-progressive,
+	.mw-ui-button.mw-ui-primary,
+	input[type="submit"][value="Save"],
+	#wpSave,
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button,
+	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
+		border: solid 3px @a;
+		.vertical-gradient( lighten( @a, 10% ), lighten( @a, 7% ), 0, 20% );
+		text-shadow: 0 -1px 0 darken( @a, 10% );
+	}
+
+	.oo-ui-textInputWidget.oo-ui-iconElement input, .oo-ui-textInputWidget.oo-ui-iconElement textarea {
+		padding-left: 2.88em;
+	}
+	.oo-ui-buttonElement-framed.oo-ui-iconElement.oo-ui-labelElement > .oo-ui-buttonElement-button,
+	.oo-ui-buttonElement-framed.oo-ui-iconElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button {
+		padding-left: 2.4em;
+	}
+
+	// Special:MovePage
+	.movepage-wrapper {
+		width: 100%;
+
+	}
+	// To put the namespace and the input box on the same line
+	#wpNewTitle {
+		width: 80%;
+		box-sizing: border-box;
+		padding-right: .45em;
+	}
+	#wpNewTitleNs {
+		width: 15em;
+		position: relative;
+		z-index: 5;
+	}
+	#wpNewTitleMain,
+	#wpNewTitleMain input {
+		display: inline-block;
+	}
+	#wpNewTitleMain {
+		padding: 0 0 0 15.5em;
+		margin: -3.65em 0 0;
+
+		input {
+			width: 100%;
+			display: block;
+		}
+		&.oo-ui-textInputWidget {
+			width: 100%;
+		}
+	}
+
+	// Special:Login & CreateAccount
+	form[name="userlogin"] .mw-ui-input,
+	#userlogin2 .mw-ui-input {
+		width: 100%;
+	}
+	.mw-ui-vform,
+	#mw-createaccount-cta {
+		width: 20em;
+	}
+
+	// ?action=delete
+	#wpDeleteReasonRow input {
+		display: block;
+	}
+	input[type="submit"],
+	#wpConfirmB {
+		margin-top: 1em;
+	}
+	#wpDeleteReasonRow {
+		margin-bottom: 1em;
+	}
+	.mw-delete-editreasons {
+		float: right;
+		margin-top: -4em;
+	}
+
+	// Special:RecentChanges
+	.mw-recentchanges-table {
+		clear: both;
+	}
+
+	// ?action=edit
+	.editOptions {
+		background: #f6f6f6;
+		margin: -.2em 0 2em 0;
+		padding: 0 1em 2em;
+		border-radius: 0 0 .5em .5em;
+		border: solid 1px #eee;
+		border-top: none;
+	}
+}

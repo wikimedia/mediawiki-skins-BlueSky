@@ -1,0 +1,76 @@
+@import "mediawiki.mixins";
+
+// ACK
+
+@grey1: #000;
+@grey2: #222;
+@grey3: #333;
+@grey4: #777;
+@grey5: #ddd;
+@grey6: #eee;
+@grey7: #f6f6f6;
+@grey8: #fff;
+
+// Content
+
+@body-text: #011;
+@header-text: @grey3;
+
+@a: #059;
+@a-new: #b22;
+
+@content-box: @grey7;
+@content-box-outline: @grey5;
+
+// Navigation
+
+@nav-bg: #8cf;
+@nav-bright: #9df;
+@nav-dark: #6be;
+
+@nav-text: @a;
+@nav-text-bright: @grey8;
+
+// ???
+
+@small: 80%;
+@insanity: 100000005;
+
+// Junk
+
+.menu-dropdown() {
+	display: none;
+	position: absolute;
+
+	background: @content-box;
+	border: 1px @nav-dark solid;
+	padding: 1em 1.25em;
+	max-width: 17em;
+	min-width: 81px;
+	box-sizing: border-box;
+	line-height: 1.3;
+	white-space: nowrap;
+	z-index: @insanity + 5;
+
+	li {
+		margin: 0 -1.25em;
+
+		a {
+			padding: .3em 1.25em;
+			display: block;
+		}
+		&:hover {
+			background: @nav-dark;
+
+			a {
+				color: @nav-text-bright;
+			}
+		}
+	}
+}
+
+// To hide objects, but keep them accessible for screen-readers
+.hidden() {
+	position: absolute;
+	top: -9999px;
+}

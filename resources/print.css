@@ -1,0 +1,8 @@
+/* Styles for print view and printing */
+
+.mw-indicators,
+#p-logo,
+#catlinks,
+#mw-footer {
+	display: none;
+}
