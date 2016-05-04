@@ -468,7 +468,7 @@ class SkinBlueSky extends SkinTemplate {
 				$return .= $this->drawCategoryBrowser( $parent );
 			}
 			# add our current element to the list
-			$return .= "<li>$start " . Skin::link(
+			$return .= "<li>$start " . Linker::link(
 				$eltitle,
 				$eltitle->getText()/*,
 				array(),
