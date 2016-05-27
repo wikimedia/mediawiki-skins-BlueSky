@@ -1515,11 +1515,9 @@ class SkinBlueSky extends SkinTemplate {
 	 * @return string "edited X ago" string on success, empty string on failure
 	 */
 	public function getPageLastEdit( Title $title ) {
-		global $wgContentNamespaces;
-
 		$msg = '';
 
-		if ( $title->exists() && in_array( $title->getNamespace(), $wgContentNamespaces ) ) {
+		if ( $title->exists() &&  $title->isContentPage() ) {
 			// First construct a Revision object from the current Title...
 			$revision = Revision::newFromTitle( $title );
 			if ( $revision instanceof Revision ) {
