@@ -396,7 +396,7 @@ class BlueSkyTemplate extends BaseTemplate {
 					]
 				);
 				foreach ( $footerIcons as $icon ) {
-					echo $skin->makeFooterIcon( $icon, 'withoutImage' );
+					echo $skin->makeFooterIcon( $icon );
 				}
 				echo Html::closeElement( 'li' );
 			}
