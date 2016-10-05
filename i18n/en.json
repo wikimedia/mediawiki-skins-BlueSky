@@ -20,7 +20,7 @@
 	"bluesky-page": "Page tools",
 	"bluesky-admin": "Admin",
 	"bluesky-page-edited": "Page last edited {{int:ago|$1}}",
-	"bluesky-page-edited-user": "Page last edited {{int:ago|$1}} by [[User:$2|$2]]",
+	"bluesky-page-edited-user": "Page last edited {{int:ago|$1}} by $2",
 	"duration-months": "$1 {{PLURAL:$1|month|months}}",
 	"bluesky-toc-sections": "Sections",
 	"bluesky-breadcrumb-pointer": "»",

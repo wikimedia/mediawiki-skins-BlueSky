@@ -1133,7 +1133,8 @@ class BlueSkyTemplate extends BaseTemplate {
 
 				// Pick the correct message depending on if the current user can access the revision's last author's name or not (hey, it could be RevisionDeleted, as Revision::getUserText()'s documentation states)
 				if ( $author ) {
-					$html = $this->getMsg( 'bluesky-page-edited-user' )->params( [ $formattedTS, $author ] );
+					$userLink = Linker::userLink( $revision->getUser(), $revision->getUserText() );
+					$html = $this->getMsg( 'bluesky-page-edited-user' )->params( $formattedTS )->rawParams( $userLink );
 				} else {
 					$html = $this->getMsg( 'bluesky-page-edited' )->params( [ $formattedTS ] );
 				}
