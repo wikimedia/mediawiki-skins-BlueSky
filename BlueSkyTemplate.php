@@ -1276,6 +1276,7 @@ class BlueSkyTemplate extends BaseTemplate {
 					] ]
 				]
 			);
+			$normalCats = [];
 			foreach ( $res as $row ) {
 				if ( strlen( $row->cat_title ) < 25 ) {
 					$normalCats[] = $row->cat_title;
@@ -1283,9 +1284,9 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 
 			$catList = '';
-			if ( count( $normalCats > 0 ) ) {
+			if ( count( $normalCats ) > 0 ) {
 				$catList = '<ul id="catlist-top">';
-				foreach ( $normalCats as $category) {
+				foreach ( $normalCats as $category ) {
 					$titleSafe = Title::makeTitleSafe( NS_CATEGORY, $category );
 					if ( !$titleSafe ) {
 						continue;
