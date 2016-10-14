@@ -888,8 +888,11 @@ class BlueSkyTemplate extends BaseTemplate {
 		$html = '';
 		$user = $this->getSkin()->getUser();
 
-		if ( class_exists( 'EchoEvent' ) && $this->userHasCookies() ) {
+		if ( is_callable( [ ApiEchoNotifications::class, 'getNotifications' ] )
+			&& $user->isLoggedIn()
+		) {
 			$maxNotesShown = 5;
+			// FIXME update this to the newer Echo API
 			$notif = ApiEchoNotifications::getNotifications( $user, 'html', $maxNotesShown );
 
 			if ( $notif ) {
