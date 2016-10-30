@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"bluesky-editthis": "이 문서 편집하기",
+	"bluesky-viewsource": "이 문서의 원본 보기",
+	"bluesky-navbar-edit": "편집",
+	"bluesky-personaltools": "프로필",
+	"bluesky-messages": "메시지",
+	"bluesky-notifications-new-talk": "$1개의 새로운 토론 {{PLURAL:$1|메시지}}가 있습니다.",
+	"bluesky-notifications-none": "현재 알림이 없습니다.\n과거 메시지를 보려면 [[$1|토론 문서]]를 방문하십시오.",
+	"bluesky-notifications-no-talk": "과거의 메시지를 보려면 [[$1|토론 문서]]를 방문하십시오.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|한 개 읽지 않음|$1개 읽지 않음}}",
+	"bluesky-pagelog": "이 문서의 기록",
+	"bluesky-page": "문서 도구",
+	"bluesky-admin": "관리",
+	"bluesky-home": "홈",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|특수 문서]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} 프로젝트 문서]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} 프로젝트 토론 문서]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|파일]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} 틀]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|분류]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} 문서]",
+	"bluesky-article-info": "글에 대한 정보",
+	"bluesky-page-info": "문서 정보",
+	"bluesky-footer-tools": "추가 문서 도구"
+}

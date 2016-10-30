@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"bluesky-editthis": "Dës Säit änneren",
+	"bluesky-viewsource": "Quelltext vun dëse Säit weisen",
+	"bluesky-navbar-edit": "Änneren",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Messagen",
+	"bluesky-notifications-new-talk": "Dir hutt {{PLURAL:$1|een neien Diskussiouns-Message|$1 nei Diskussiouns-Messagen}}.",
+	"bluesky-notifications-none": "Dir hutt elo keng Notifikatiounen.\nBesicht Är [[$1|Diskussiounssäit]] fir vireg Messagen ze gesinn.",
+	"bluesky-notifications-no-talk": "Besicht Är [[$1|Diskussiounssäit]]fir déi al Messagen ze gesinn.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|eng net geliest|$1 net geliest}}",
+	"bluesky-pagelog": "Logbicher fir dës Säit",
+	"bluesky-admin": "Admin",
+	"bluesky-page-edited": "Säit fir d'lescht geännert {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Säit fir d'lescht geännert {{int:ago|$1}} vum $2",
+	"duration-months": "{{PLURAL:$1|ee Mount|$1 Méint}}",
+	"bluesky-toc-sections": "Abschnitter",
+	"bluesky-home": "Haaptsäit",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Spezialsäiten]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projetssäiten]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Fichieren]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Schablounen]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorien]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} Säiten]",
+	"bluesky-article-info": "Artikel-Informatiounen",
+	"bluesky-page-info": "Säiten-Informatioun"
+}

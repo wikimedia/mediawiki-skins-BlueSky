@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Liuxinyu970226"
+		]
+	},
+	"bluesky-desc": "基于wikiHow皮肤的当前版本（2013年下旬）的皮肤",
+	"bluesky-editthis": "编辑本页",
+	"bluesky-viewsource": "查看该页面的源代码",
+	"bluesky-navbar-edit": "编辑",
+	"bluesky-personaltools": "个人资料",
+	"bluesky-messages": "消息",
+	"bluesky-notifications-new-talk": "您有$1条新讨论页{{PLURAL:$1|消息}}。",
+	"bluesky-notifications-none": "目前您没有通知。请访问您的[[$1|讨论页]]以查看过去消息。",
+	"bluesky-notifications-no-talk": "访问您的[[$1|讨论页]]以查看过去消息。",
+	"bluesky-unread-notifications": "{{PLURAL:$1|$1条未读消息}}",
+	"bluesky-pagelog": "此页面的日志",
+	"bluesky-page": "页面工具",
+	"bluesky-admin": "管理员",
+	"bluesky-page-edited": "页面上次编辑于{{int:ago|$1}}",
+	"bluesky-page-edited-user": "页面上次由$2编辑于{{int:ago|$1}}",
+	"duration-months": "$1个{{PLURAL:$1|月}}",
+	"bluesky-toc-sections": "章节",
+	"bluesky-home": "首页",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|特殊页面]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} 项目页面]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} 项目讨论页]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|文件]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} 模板]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|分类]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}}页面]",
+	"bluesky-article-info": "条目信息",
+	"bluesky-page-info": "页面信息",
+	"bluesky-footer-tools": "额外页面工具"
+}

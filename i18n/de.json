@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Metalhead64"
+		]
+	},
+	"bluesky-desc": "Benutzeroberfläche, basierend auf der aktuellen Version (spätes 2013) der Benutzeroberfläche „wikiHow“.",
+	"bluesky-editthis": "Diese Seite bearbeiten",
+	"bluesky-viewsource": "Quelltext für diese Seite betrachten",
+	"bluesky-navbar-edit": "Bearbeiten",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Nachrichten",
+	"bluesky-notifications-new-talk": "Du hast {{PLURAL:$1|eine neue Nachricht|$1 neue Nachrichten}} auf deiner Diskussionsseite.",
+	"bluesky-notifications-none": "Du hast derzeit keine Benachrichtigungen.\nBesuche deine [[$1|Diskussionsseite]], um die letzten Nachrichten anzusehen.",
+	"bluesky-notifications-no-talk": "Besuche deine [[$1|Diskussionsseite]], um die letzten Nachrichten anzusehen.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Eine|$1}} ungelesene",
+	"bluesky-pagelog": "Logbücher für diese Seite",
+	"bluesky-page": "Seitenwerkzeuge",
+	"bluesky-admin": "Verwaltung",
+	"bluesky-page-edited": "Seite zuletzt bearbeitet {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Seite zuletzt bearbeitet {{int:ago|$1}} von $2",
+	"duration-months": "{{PLURAL:$1|Ein Monat|$1 Monate}}",
+	"bluesky-toc-sections": "Abschnitte",
+	"bluesky-home": "Start",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Spezialseiten]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektseiten]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Projektdiskussionsseiten]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Dateien]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Vorlagen]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorien]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Seiten im Namensraum „{{NAMESPACE}}“]",
+	"bluesky-article-info": "Artikelinformationen",
+	"bluesky-page-info": "Seiteninformationen",
+	"bluesky-footer-tools": "Zusätzliche Seitenwerkzeuge"
+}
