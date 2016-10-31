@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gomoko"
+		]
+	},
+	"bluesky-desc": "Habillage basé sur la version courante (de 2013) de l’habillage wikiHow",
+	"bluesky-editthis": "Modifier cette page",
+	"bluesky-viewsource": "Afficher la source de cette page",
+	"bluesky-navbar-edit": "Modifier",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Messages",
+	"bluesky-notifications-new-talk": "Vous avez $1 {{PLURAL:$1|nouveau message|nouveaux messages}} de discussion.",
+	"bluesky-notifications-none": "Vous n’avez aucune notification pour le moment.\nVisitez votre [[$1|page de discussion]] pour voir les anciens messages.",
+	"bluesky-notifications-no-talk": "Visiter votre [[$1|page de discussion]] pour voir les anciens messages.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Un non lu|$1 non lus}}",
+	"bluesky-pagelog": "Traces pour cette page",
+	"bluesky-page": "Outils de page",
+	"bluesky-admin": "Admin",
+	"bluesky-page-edited": "Page modifiée pour la dernière fois le {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Page modifiée pour la dernière fois le {{int:ago|$1}} par $2",
+	"duration-months": "$1 {{PLURAL:$1|mois}}",
+	"bluesky-toc-sections": "Sections",
+	"bluesky-home": "Accueil",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pages spéciales]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pages du projet]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Pages de discussion du projet]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Fichiers]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Modèles]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Catégories]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Pages de {{NAMESPACE}}]",
+	"bluesky-article-info": "Information sur l’article",
+	"bluesky-page-info": "Information sur la page",
+	"bluesky-footer-tools": "Outils de page supplémentaires"
+}

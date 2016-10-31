@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrumps"
+		]
+	},
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Wiadomości",
+	"bluesky-admin": "Administrator",
+	"duration-months": "$1 {{PLURAL:$1|miesiąc|miesiące|miesięcy}}",
+	"bluesky-toc-sections": "Sekcje",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Strony specjalne]]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Pliki]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Szablony]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorie]]"
+}

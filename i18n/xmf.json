@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Silovan"
+		]
+	},
+	"bluesky-editthis": "თე ხასჷლაშ რედაქტირაფა",
+	"bluesky-viewsource": "ხასჷლაშ წყუშ ძირაფა",
+	"bluesky-navbar-edit": "რედაქტირაფა",
+	"bluesky-personaltools": "პროფილი",
+	"bluesky-messages": "მოშინაფეფი",
+	"bluesky-notifications-new-talk": "თქვა $1 ახალი მოშინაფა გიღუნა - {{PLURAL:$1|მუნაჭარა|მუნაჭარა}}.",
+	"bluesky-notifications-none": "ათე ბორჯიშო თქვა მოშინაფეფი ვაიღუნა.\nგემშართით თქვან [[$1|სხუნუაშ ხასჷლაშა]], ბოლო მუნაჭარეფიშ ოძირაფალო.",
+	"bluesky-notifications-no-talk": "გემშართით თქვან [[$1|სხუნუაშ ხასჷლაშა]], ბოლო მუნაჭარეფიშ ოძირაფალო.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|ართი უკითხირუ|$1 უკითხირუ}}",
+	"bluesky-pagelog": "თე ხასჷლაშ ჟურნალეფი",
+	"bluesky-page": "ხეჭკუდეფი ხასჷლეფშო",
+	"bluesky-admin": "ადმინი",
+	"bluesky-page-edited": "ხასჷლაშ ეკონია რედაქტირაფაშ ბორჯიː {{int:ago|$1}}",
+	"bluesky-page-edited-user": "ხასჷლაშ ეკონია რედაქტირაფაშ ბორჯიː {{int:ago|$1}} დო $2",
+	"duration-months": "$1 {{PLURAL:$1|თუთაშ}} კინოხი",
+	"bluesky-toc-sections": "გიმნართეფი",
+	"bluesky-home": "დუდხასჷლაშა",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|გიშაკერზაფილი ხასჷლეფი]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} ხასჷლაშ პროექტეფი]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} პროექტიშ ხასჷლაშ სხუნუა]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ფაილეფი]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|ჯოხოეფიშ ოფირჩა=10}} თანგეფი]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|კატეგორიეფი]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} ხასჷლეფი]",
+	"bluesky-article-info": "ინფორმაცია სტატიაშ გეშა",
+	"bluesky-footer-tools": "ხასჷლაშ გეძინაფონი ხეჭკუდეფი"
+}

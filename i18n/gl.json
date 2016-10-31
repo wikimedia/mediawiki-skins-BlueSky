@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"Banjo",
+			"Elisardojm"
+		]
+	},
+	"bluesky-editthis": "Editar esta páxina",
+	"bluesky-viewsource": "Ver a fonte para esta páxina",
+	"bluesky-navbar-edit": "Editar",
+	"bluesky-personaltools": "Perfil",
+	"bluesky-messages": "Mensaxes",
+	"bluesky-notifications-new-talk": "Tes $1 {{PLURAL:$1|mensaxe nova|mensaxes novas}}.",
+	"bluesky-notifications-none": "Non tes notificacións novas nestes intres.\nVisita a túa [[$1|páxina de conversa]] para ver mensaxes anteriores.",
+	"bluesky-notifications-no-talk": "Visita a túa [[$1|páxina de conversa]] para ver mensaxes anteriores.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Unha sen ler|$1 sen ler}}",
+	"bluesky-pagelog": "Rexistros desta páxina",
+	"bluesky-page": "Ferramentas de páxina",
+	"bluesky-admin": "Administrador",
+	"bluesky-page-edited": "A páxina editouse por última vez fai {{int:ago|$1}}",
+	"duration-months": "$1 {{PLURAL: $1|mes|meses}}",
+	"bluesky-toc-sections": "Seccións",
+	"bluesky-home": "Inicio",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Páxinas especiais]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Páxinas de proxectos]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Páxinas de conversa de proxectos]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Ficheiros]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Modelos]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categorías]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Páxinas de {{NAMESPACE}}]",
+	"bluesky-article-info": "Información do artigo",
+	"bluesky-page-info": "Información da páxina",
+	"bluesky-footer-tools": "Ferramentas de páxina adicionais"
+}

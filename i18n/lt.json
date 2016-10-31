@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eitvys200"
+		]
+	},
+	"bluesky-editthis": "Redaguoti šį puslapį",
+	"bluesky-navbar-edit": "Redaguoti",
+	"bluesky-personaltools": "Profilis",
+	"bluesky-messages": "Pranešimai",
+	"bluesky-notifications-new-talk": "Turite $1 {{PLURAL:$1|naują aptarimo pranešimą|naujus aptarimo pranešimus}}.",
+	"bluesky-notifications-none": "Šiuo metu neturite jokių pranešimų.\nApsilankykite savo [[$1|aptarimo puslapyje]], kad peržiūrėtumėte ankstesnius pranešimus.",
+	"bluesky-notifications-no-talk": "Aplankykite savo [[$1|aptarimo puslapį]], kad peržiūrėtumėte ankstesnius pranešimus.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Vienas neskaitytas|$1 neskaityti}}",
+	"bluesky-pagelog": "Šio puslapio žurnalai",
+	"bluesky-page": "Puslapio įrankiai",
+	"bluesky-admin": "Administratorius",
+	"bluesky-page-edited": "Puslapis paskutinį kartą redaguotas {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Puslapis paskutinį kartą redaguotas {{int:ago|$1}}, $2",
+	"duration-months": "$1 {{PLURAL:$1|mėnesį|mėnesius}}",
+	"bluesky-toc-sections": "Skyriai",
+	"bluesky-home": "Pradžia",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Specialūs puslapiai]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projekto puslapiai]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Projekto aptarimų puslapiai]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Failai]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Šablonai]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorijos]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} puslapiai]",
+	"bluesky-article-info": "Straipsnio informacija",
+	"bluesky-page-info": "Puslapio informacija",
+	"bluesky-footer-tools": "Papildomi puslapio įrankiai"
+}

@@ -4,6 +4,7 @@
 			"Robby"
 		]
 	},
+	"bluesky-desc": "Interface den op der aktueller Versioun (spéit am Joer 2013) vum wikiHow Interface baséiert.",
 	"bluesky-editthis": "Dës Säit änneren",
 	"bluesky-viewsource": "Quelltext vun dëse Säit weisen",
 	"bluesky-navbar-edit": "Änneren",
@@ -14,6 +15,7 @@
 	"bluesky-notifications-no-talk": "Besicht Är [[$1|Diskussiounssäit]]fir déi al Messagen ze gesinn.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|eng net geliest|$1 net geliest}}",
 	"bluesky-pagelog": "Logbicher fir dës Säit",
+	"bluesky-page": "Handwierksgeschir fir Säiten",
 	"bluesky-admin": "Admin",
 	"bluesky-page-edited": "Säit fir d'lescht geännert {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Säit fir d'lescht geännert {{int:ago|$1}} vum $2",
@@ -22,10 +24,12 @@
 	"bluesky-home": "Haaptsäit",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Spezialsäiten]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projetssäiten]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projetsdiskussiounssäiten]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Fichieren]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Schablounen]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorien]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} Säiten]",
 	"bluesky-article-info": "Artikel-Informatiounen",
-	"bluesky-page-info": "Säiten-Informatioun"
+	"bluesky-page-info": "Säiten-Informatioun",
+	"bluesky-footer-tools": "Zousätzlech Handwierksgeschir fir Säiten"
 }

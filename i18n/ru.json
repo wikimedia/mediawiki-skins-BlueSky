@@ -4,8 +4,28 @@
 			"Irus"
 		]
 	},
+	"bluesky-desc": "На основе кожа на текущей версии (конец 2013 года) из кожи компании по",
 	"bluesky-editthis": "Редактировать данную страницу",
 	"bluesky-viewsource": "Просмотр исходного текста для этой страницы",
+	"bluesky-navbar-edit": "Править",
+	"bluesky-personaltools": "Профиль",
+	"bluesky-messages": "Сообщений",
+	"bluesky-notifications-new-talk": "У вас есть $1 новое ток - {{PLURAL:$1|сообщение|сообщения}}.",
+	"bluesky-notifications-none": "У вас нет уведомления в это время.\nПосетить ваш [[$1|странице обсуждения]], чтобы увидеть последние сообщения.",
 	"bluesky-notifications-no-talk": "Посетить ваш [[$1|странице обсуждения]], чтобы увидеть последние сообщения.",
-	"bluesky-home": "Главная"
+	"bluesky-unread-notifications": "{{PLURAL:$1|одного непрочитанного|$1 непрочитанные}}",
+	"bluesky-pagelog": "Журналы для этой страницы",
+	"bluesky-page": "Инструменты для страниц",
+	"bluesky-admin": "Админ",
+	"bluesky-page-edited": "Страница последний раз редактировалось {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Страница последний раз редактировалось {{int:ago|$1}} и $2",
+	"duration-months": "$1 {{PLURAL:$1|месяц|месяца|месяцев}} назад",
+	"bluesky-toc-sections": "Разделы",
+	"bluesky-home": "Главная",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|особые страницы]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} проекта страницы]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|пространство имен=10}} шаблоны]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категории]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страницы]",
+	"bluesky-footer-tools": "Дополнительные инструменты страницы"
 }

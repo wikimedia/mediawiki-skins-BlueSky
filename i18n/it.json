@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beta16"
+		]
+	},
+	"bluesky-editthis": "Modifica questa pagina",
+	"bluesky-viewsource": "Visualizza sorgente di questa pagina",
+	"bluesky-navbar-edit": "Modifica",
+	"bluesky-personaltools": "Profilo",
+	"bluesky-messages": "Messaggi",
+	"bluesky-pagelog": "Registri per questa pagina",
+	"duration-months": "$1 {{PLURAL:$1|mese|mesi}}",
+	"bluesky-toc-sections": "Sezioni",
+	"bluesky-home": "Pagina principale",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pagine speciali]]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|File]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Template]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categorie]]",
+	"bluesky-article-info": "Informazioni sulla voce",
+	"bluesky-page-info": "Informazioni sulla pagina"
+}

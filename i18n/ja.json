@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Otokoume"
+		]
+	},
+	"bluesky-editthis": "このページを編集",
+	"bluesky-viewsource": "このページのソースを閲覧",
+	"bluesky-navbar-edit": "編集",
+	"bluesky-personaltools": "プロフィール",
+	"bluesky-messages": "メッセージ",
+	"bluesky-notifications-new-talk": "$1件の新しい{{PLURAL:$1|メッセージ}}があなたのトークページにあります。",
+	"bluesky-notifications-none": "通知はありません。\n過去のメッセージは自身の[[$1|トークページ]]から確認できます。",
+	"bluesky-notifications-no-talk": "過去のメッセージは自身の[[$1|トークページ]]から確認できます。",
+	"bluesky-unread-notifications": "{{PLURAL:$1|1件の未読|$1件の未読}}",
+	"bluesky-pagelog": "このページに関する記録",
+	"bluesky-page": "ページツール",
+	"bluesky-page-edited": "最終更新: {{int:ago|$1}}",
+	"bluesky-page-edited-user": "$2 による最終更新: {{int:ago|$1}}",
+	"duration-months": "$1{{PLURAL:$1|ヶ月}}",
+	"bluesky-toc-sections": "節",
+	"bluesky-home": "ホーム",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|特別ページ]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} プロジェクトページ]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} プロジェクト・トークページ]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ファイル]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} テンプレート]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|カテゴリ]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}}ページ]",
+	"bluesky-article-info": "記事情報",
+	"bluesky-page-info": "ページ情報"
+}

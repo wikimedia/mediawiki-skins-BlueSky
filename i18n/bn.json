@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aftabuzzaman"
+		]
+	},
+	"bluesky-editthis": "এই পাতাটি সম্পাদনা করুন",
+	"bluesky-viewsource": "এই পাতার উৎস দেখুন",
+	"bluesky-navbar-edit": "সম্পাদনা",
+	"bluesky-personaltools": "প্রোফাইল",
+	"bluesky-unread-notifications": "{{PLURAL:$1|একটি অপঠিত|$1টি অপঠিত}}",
+	"bluesky-page": "পাতার সরঞ্জাম",
+	"duration-months": "$1 {{PLURAL:$1|মাস}}",
+	"bluesky-toc-sections": "অনুচ্ছেদসমূহ",
+	"bluesky-home": "প্রধান পাতা",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|বিশেষ পাতাসমূহ]]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} প্রকল্পের আলাপ পাতা]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ফাইল]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}}টি {{NAMESPACE}} পাতা]",
+	"bluesky-article-info": "নিবন্ধের তথ্য",
+	"bluesky-page-info": "পাতার তথ্য"
+}

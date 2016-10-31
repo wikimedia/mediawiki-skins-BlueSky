@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"WikiPhoenix"
+		]
+	},
+	"bluesky-desc": "Utseende baserat på den aktuella versionen (slutet på 2013) av wikiHows utseende",
+	"bluesky-editthis": "Redigera denna sida",
+	"bluesky-viewsource": "Visa wikitexten för denna sida",
+	"bluesky-navbar-edit": "Redigera",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Meddelanden",
+	"bluesky-notifications-new-talk": "Du har $1 {{PLURAL:$1|nytt diskussionsmeddelande|nya diskussionsmeddelanden}}.",
+	"bluesky-notifications-none": "Du har för tillfället inga aviseringar.\nBesök din [[$1|diskussionssida]] för att se tidigare meddelanden.",
+	"bluesky-notifications-no-talk": "Besök din [[$1|diskussionssida]] för att se dina tidigare meddelanden.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Ett oläst|$1 olästa}}",
+	"bluesky-pagelog": "Loggar för denna sida",
+	"bluesky-page": "Sidverktyg",
+	"bluesky-admin": "Administratör",
+	"bluesky-page-edited": "Sidan redigerades senast {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Sidan redigerades senast {{int:ago|$1}} av $2",
+	"duration-months": "$1 {{PLURAL:$1|månad|månader}}",
+	"bluesky-toc-sections": "Avsnitt",
+	"bluesky-home": "Hem",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Specialsidor]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektsidor]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Projektdiskussionssidor]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Filer]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Mallar]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorier]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} sidor]",
+	"bluesky-article-info": "Artikelinformation",
+	"bluesky-page-info": "Sidinformation",
+	"bluesky-footer-tools": "Extra sidverktyg"
+}

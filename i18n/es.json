@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Macofe"
+		]
+	},
+	"bluesky-desc": "Apariencia basada en la versión actual (finales de 2013) de la apariencia wikiHow",
+	"bluesky-editthis": "Editar esta página",
+	"bluesky-viewsource": "Ver el código de esta página",
+	"bluesky-navbar-edit": "Editar",
+	"bluesky-personaltools": "Perfil",
+	"bluesky-messages": "Mensajes",
+	"bluesky-notifications-new-talk": "Tienes $1 {{PLURAL:$1|mensaje de discusión nuevo|mensajes de discusión nuevos}}.",
+	"bluesky-notifications-none": "No tienes ninguna notificación en este momento.\nVisita tu [[$1|página de discusión]] para ver mensajes anteriores.",
+	"bluesky-notifications-no-talk": "Visita tu [[$1|página de discusión]] para ver mensajes anteriores.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Una sin leer|$1 sin leer}}",
+	"bluesky-pagelog": "Registros de esta página",
+	"bluesky-page": "Herramientas de página",
+	"bluesky-admin": "Administrador",
+	"bluesky-page-edited": "Última edición de la página {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Última edición de la página {{int:ago|$1}} por $2",
+	"duration-months": "$1 {{PLURAL:$1|mes|meses}}",
+	"bluesky-toc-sections": "Secciones",
+	"bluesky-home": "Inicio",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Páginas especiales]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Páginas de proyectos]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Páginas de discusión de proyectos]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Archivos]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Plantillas]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categorías]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Páginas de {{NAMESPACE}}]",
+	"bluesky-article-info": "Información del artículo",
+	"bluesky-page-info": "Información de la página",
+	"bluesky-footer-tools": "Herramientas de página adicionales"
+}
