@@ -4,13 +4,20 @@
 			"Chrumps"
 		]
 	},
+	"bluesky-editthis": "Edytuj tę stronę",
 	"bluesky-personaltools": "Profil",
 	"bluesky-messages": "Wiadomości",
+	"bluesky-notifications-new-talk": "Masz $1 {{PLURAL:$1|nową wiadomość|nowe wiadomości|nowych wiadomości}} na stronie dyskusji.",
+	"bluesky-notifications-none": "Nie masz w tej chwili nowych powiadomień.\nOdwiedź swoją [[$1|stronę dyskusji]], aby zobaczyć wcześniejsze wiadomości.",
 	"bluesky-admin": "Administrator",
 	"duration-months": "$1 {{PLURAL:$1|miesiąc|miesiące|miesięcy}}",
 	"bluesky-toc-sections": "Sekcje",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Strony specjalne]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Strony projektu]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Pliki]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Szablony]",
-	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorie]]"
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorie]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} stron w przestrzeni nazw {{NAMESPACE}}]",
+	"bluesky-article-info": "Informacje o artykule",
+	"bluesky-page-info": "Informacje o stronie"
 }

@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cwlin0416"
+		]
+	},
+	"bluesky-editthis": "編輯此頁面",
+	"bluesky-viewsource": "檢視此頁面的原始碼",
+	"bluesky-navbar-edit": "編輯",
+	"bluesky-personaltools": "基本資料",
+	"bluesky-messages": "訊息",
+	"bluesky-notifications-new-talk": "您有 $1 則新對話{{PLURAL:$1|訊息|訊息}}。",
+	"bluesky-unread-notifications": "{{PLURAL:$1|1 則未讀|$1 則未讀}}",
+	"bluesky-pagelog": "此頁面的日誌",
+	"bluesky-page": "頁面工具",
+	"bluesky-admin": "管理者",
+	"bluesky-page-edited-user": "頁面最後由 $2 編輯於 {{int:ago|$1}}",
+	"duration-months": "$1 {{PLURAL:$1|月|月}}",
+	"bluesky-toc-sections": "章節",
+	"bluesky-home": "首頁",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|特殊頁面]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} 專案頁面]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} 專案對話頁面]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|檔案]]",
+	"bluesky-article-info": "文章資訊",
+	"bluesky-page-info": "頁面資訊",
+	"bluesky-footer-tools": "其他頁面工具"
+}
