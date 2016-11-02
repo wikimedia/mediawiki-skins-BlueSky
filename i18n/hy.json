@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kareyac"
+		]
+	},
+	"bluesky-editthis": "Խմբագրել այս էջը",
+	"bluesky-navbar-edit": "Խմբագրել",
+	"bluesky-messages": "Հաղորդագրություններ",
+	"bluesky-page": "Էջի գործիքներ",
+	"duration-months": "$1 {{PLURAL:$1|ամիս|ամիսներ}}",
+	"bluesky-toc-sections": "Բաժիններ",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Կատեգորիաներ]]",
+	"bluesky-page-info": "Էջի տվյալներ"
+}
