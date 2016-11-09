@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"bluesky-desc": "Aspeutu basáu na versión actual (finales de 2013) del aspeutu wikiHow",
+	"bluesky-editthis": "Editar esta páxina",
+	"bluesky-viewsource": "Ver el códigu d'esta páxina",
+	"bluesky-navbar-edit": "Editar",
+	"bluesky-personaltools": "Perfil",
+	"bluesky-messages": "Mensaxes",
+	"bluesky-notifications-new-talk": "Tienes $1 {{PLURAL:$1|mensaxe nuevu|mensaxes nuevos}} nel alderique.",
+	"bluesky-notifications-none": "Nesti momentu nun tienes nengun avisu.\nVisita la to [[$1|páxina d'alderique]] pa ver mensaxes anteriores.",
+	"bluesky-notifications-no-talk": "Visita la to [[$1|páxina d'alderique]] pa ver mensaxes anteriores.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Unu ensin lleer|$1 ensin lleer}}",
+	"bluesky-pagelog": "Rexistros d'esta páxina",
+	"bluesky-page": "Ferramientes de páxina",
+	"bluesky-admin": "Almin",
+	"bluesky-page-edited": "Última edición de la páxina {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Última edición de la páxina {{int:ago|$1}} por $2",
+	"duration-months": "hai $1 {{PLURAL:$1|mes|meses}}",
+	"bluesky-toc-sections": "Seiciones",
+	"bluesky-home": "Entamu",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Páxines especiales]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Páxines de proyectos]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Páxines d'alderique de proyectos]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Ficheros]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Plantíes]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categoríes]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Páxines de {{NAMESPACE}}]",
+	"bluesky-article-info": "Información del artículu",
+	"bluesky-page-info": "Información de la páxina",
+	"bluesky-footer-tools": "Ferramientes estra de páxina"
+}

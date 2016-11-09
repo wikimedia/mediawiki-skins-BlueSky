@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Irus"
+			"Irus",
+			"Okras"
 		]
 	},
 	"bluesky-desc": "На основе кожа на текущей версии (конец 2013 года) из кожи компании по",
@@ -24,8 +25,12 @@
 	"bluesky-home": "Главная",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|особые страницы]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} проекта страницы]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Страницы обсуждения проекта]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлы]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|пространство имен=10}} шаблоны]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категории]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страницы]",
+	"bluesky-article-info": "Информация о статье",
+	"bluesky-page-info": "Информация о странице",
 	"bluesky-footer-tools": "Дополнительные инструменты страницы"
 }
