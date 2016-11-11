@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Irus",
-			"Okras"
+			"Okras",
+			"Kareyac"
 		]
 	},
 	"bluesky-desc": "На основе кожа на текущей версии (конец 2013 года) из кожи компании по",
@@ -14,7 +15,7 @@
 	"bluesky-notifications-new-talk": "У вас есть $1 новое ток - {{PLURAL:$1|сообщение|сообщения}}.",
 	"bluesky-notifications-none": "У вас нет уведомления в это время.\nПосетить ваш [[$1|странице обсуждения]], чтобы увидеть последние сообщения.",
 	"bluesky-notifications-no-talk": "Посетить ваш [[$1|странице обсуждения]], чтобы увидеть последние сообщения.",
-	"bluesky-unread-notifications": "{{PLURAL:$1|одного непрочитанного|$1 непрочитанные}}",
+	"bluesky-unread-notifications": "{{PLURAL:$1|один непрочитанный|$1 непрочитанные}}",
 	"bluesky-pagelog": "Журналы для этой страницы",
 	"bluesky-page": "Инструменты для страниц",
 	"bluesky-admin": "Админ",
