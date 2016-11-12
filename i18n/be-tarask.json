@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Red Winged Duck"
+			"Red Winged Duck",
+			"Kareyac"
 		]
 	},
 	"bluesky-desc": "Тэма афармленьня, якая грунтуецца на цяперашняй вэрсіі (канец 2013 году) тэмы афармленьня wikiHow",
 	"bluesky-editthis": "Рэдагаваць гэтую старонку",
-	"bluesky-viewsource": "Паказаць вікітэкст гэтай старонкі"
+	"bluesky-viewsource": "Паказаць вікітэкст гэтай старонкі",
+	"bluesky-navbar-edit": "Рэдагаваць"
 }
