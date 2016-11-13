@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Piramidion"
+		]
+	},
+	"bluesky-desc": "Тема оформлення заснована на поточній версії (кінець 2013) теми wikiHow",
+	"bluesky-editthis": "Редагувати цю сторінку",
+	"bluesky-viewsource": "Переглянути код цієї сторінки",
+	"bluesky-navbar-edit": "Редагувати",
+	"bluesky-personaltools": "Профіль",
+	"bluesky-messages": "Повідомлення",
+	"bluesky-notifications-new-talk": "У Вас є {{PLURAL:$1|$1 нове повідомлення|$1 нові повідомлення|$1 нових повідомлень}}.",
+	"bluesky-notifications-none": "Наразі у Вас немає сповіщень.\nВідвідайте свою [[$1|сторінку обговорення]], щоб переглянути минулі повідомлення.",
+	"bluesky-notifications-no-talk": "Відвідайте свою [[$1|сторінку обговорення]], щоб переглянути минулі повідомлення.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|$1 непрочитане|$1 непрочитані|$1 непрочитаних}}",
+	"bluesky-pagelog": "Журнали для цієї сторінки",
+	"bluesky-page": "Інструменти сторінки",
+	"bluesky-admin": "Адмін",
+	"bluesky-page-edited": "Сторінку востаннє відредаговано {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Сторінку востаннє відредаговано {{int:ago|$1}} $2",
+	"duration-months": "$1 {{PLURAL:$1|місяць|місяці|місяців}}",
+	"bluesky-toc-sections": "Розділи",
+	"bluesky-home": "Головна",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Спеціальні сторінки]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Сторінки проекту]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Сторінки обговорення проекту]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файли]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблони]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категорії]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Сторінки простору назв {{NAMESPACE}}]",
+	"bluesky-article-info": "Інформація про статтю",
+	"bluesky-page-info": "Інформація про сторінку",
+	"bluesky-footer-tools": "Додаткові інструменти сторінки"
+}

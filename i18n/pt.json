@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"bluesky-desc": "Tema baseado na versão atual (fins de 2013) do tema wikiHow",
+	"bluesky-editthis": "Editar esta página",
+	"bluesky-viewsource": "Ver o código-fonte desta página",
+	"bluesky-navbar-edit": "Editar",
+	"bluesky-personaltools": "Perfil",
+	"bluesky-messages": "Mensagens",
+	"bluesky-notifications-new-talk": "Tem {{PLURAL:$1|uma mensagem nova|$1 mensagens novas}} na página de discussão.",
+	"bluesky-notifications-none": "Neste momento não tem notificações.\nVisite a sua [[$1|página de discussão]] para ver mensagens anteriores.",
+	"bluesky-notifications-no-talk": "Visite a sua [[$1|página de discussão]] para ver mensagens anteriores.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Uma ainda não lida|$1 ainda não lidas}}",
+	"bluesky-pagelog": "Registos desta página",
+	"bluesky-page": "Ferramentas de página",
+	"bluesky-admin": "Administrador",
+	"bluesky-page-edited": "Última edição da página há $1",
+	"bluesky-page-edited-user": "Última edição da página há $1 por $2",
+	"duration-months": "$1 {{PLURAL:$1|mês|meses}}",
+	"bluesky-toc-sections": "Secções",
+	"bluesky-home": "Início",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Páginas especiais]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Páginas do projeto]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Páginas de discussão do projeto]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Ficheiros]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Predefinições]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categorias]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Páginas no espaço nominal {{NAMESPACE}}]",
+	"bluesky-article-info": "Informação do artigo",
+	"bluesky-page-info": "Informação da página",
+	"bluesky-footer-tools": "Ferramentas de página adicionais"
+}
