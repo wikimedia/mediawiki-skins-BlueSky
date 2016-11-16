@@ -9,5 +9,7 @@
 	"bluesky-viewsource": "Паказаць зыходны тэкст гэтай старонкі",
 	"bluesky-navbar-edit": "Правіць",
 	"bluesky-personaltools": "Профіль",
-	"bluesky-messages": "Паведамленні"
+	"bluesky-messages": "Паведамленні",
+	"bluesky-notifications-new-talk": "Вы маеце $1 {{PLURAL:$1|новае паведамленне|новыя паведамленні|новых паведамленняў}}.",
+	"bluesky-notifications-none": "У Вас няма паведамленняў у гэты час.\nНаведайце Вашу [[$1|старонку абмеркаванняў]], каб убачыць апошнія паведамленні."
 }
