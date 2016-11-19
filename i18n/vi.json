@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Minh Nguyen"
+		]
+	},
+	"bluesky-desc": "Giao diện phỏng theo giao diện hiện tại của wikiHow (cuối 2013)",
+	"bluesky-editthis": "Sửa đổi trang này",
+	"bluesky-viewsource": "Xem mã nguồn của trang này",
+	"bluesky-navbar-edit": "Sửa đổi",
+	"bluesky-personaltools": "Hồ sơ",
+	"bluesky-messages": "Thông báo",
+	"bluesky-notifications-new-talk": "Bạn có $1 tin nhắn mới tại trang thảo luận.",
+	"bluesky-notifications-none": "Hiện nay không có thông báo để hiển thị.\nXem các thông báo về trên tại [[$1|trang thảo luận của bạn]].",
+	"bluesky-notifications-no-talk": "Xem các thông báo trước tại [[$1|trang thảo luận]] của bạn.",
+	"bluesky-unread-notifications": "$1 bài chưa đọc",
+	"bluesky-pagelog": "Nhật trình về trang này",
+	"bluesky-page": "Công cụ cho trang",
+	"bluesky-admin": "Bảo quản viên",
+	"bluesky-page-edited": "Trang được sửa đổi lần cuối cách đây {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Trang được $2 sửa đổi lần cuối cách đây {{int:ago|$1}}",
+	"duration-months": "$1 tháng",
+	"bluesky-toc-sections": "Giai đoạn",
+	"bluesky-home": "Trang đầu",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Trang đặc biệt]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} trang Dự án]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} trang Thảo luận Dự án]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Tập tin]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Bản mẫu]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Thể loại]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} trang {{NAMESPACE}}]",
+	"bluesky-article-info": "Thông tin bài viết",
+	"bluesky-page-info": "Thông tin trang",
+	"bluesky-footer-tools": "Thêm công cụ trang"
+}
