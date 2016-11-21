@@ -11,6 +11,7 @@
 	"bluesky-notifications-none": "Nie masz w tej chwili nowych powiadomień.\nOdwiedź swoją [[$1|stronę dyskusji]], aby zobaczyć wcześniejsze wiadomości.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Jedno nieprzeczytane|$1 nieprzeczytane|$1 nieprzeczytanych}}",
 	"bluesky-admin": "Administrator",
+	"bluesky-page-edited": "Strona ostatnio edytowana {{int:ago|$1}}",
 	"duration-months": "$1 {{PLURAL:$1|miesiąc|miesiące|miesięcy}}",
 	"bluesky-toc-sections": "Sekcje",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Strony specjalne]]",
