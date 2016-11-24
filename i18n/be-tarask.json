@@ -17,5 +17,6 @@
 	"bluesky-unread-notifications": "$1 {{PLURAL:$1|непрачытанае|непрачытаныя|непрачытаных}}",
 	"bluesky-pagelog": "Журналы для гэтай старонкі",
 	"bluesky-page": "Інструмэнты старонкі",
-	"bluesky-admin": "Адміністратар"
+	"bluesky-admin": "Адміністратар",
+	"bluesky-page-edited": "Старонку апошні раз рэдагавалі {{int:ago|$1}}"
 }
