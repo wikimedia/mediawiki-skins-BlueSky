@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"bluesky-desc": "Apparentia basate sur le version actual (fin de 2013) del apparentia de wikiHow",
+	"bluesky-editthis": "Modificar iste pagina",
+	"bluesky-viewsource": "Vider codice-fonte de iste pagina",
+	"bluesky-navbar-edit": "Modificar",
+	"bluesky-personaltools": "Profilo",
+	"bluesky-messages": "Messages",
+	"bluesky-notifications-new-talk": "Tu ha $1 nove {{PLURAL:$1|message|messages}} de discussion.",
+	"bluesky-notifications-none": "Tu non ha notificationes in iste momento.\nVisita tu [[$1|pagina de discussion]] pro vider messages ancian.",
+	"bluesky-notifications-no-talk": "Visita tu [[$1|pagina de discussion]] pro vider messages ancian.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Un|$1}} non legite",
+	"bluesky-pagelog": "Registros de iste pagina",
+	"bluesky-page": "Instrumentos de pagina",
+	"bluesky-admin": "Admin",
+	"bluesky-page-edited": "Ultime modification {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Ultime modification {{int:ago|$1}} per $2",
+	"duration-months": "$1 {{PLURAL:$1|mense|menses}}",
+	"bluesky-toc-sections": "Sectiones",
+	"bluesky-home": "Initio",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Paginas special]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Paginas de projecto]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Paginas de discussion de projecto]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Files]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Patronos]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categorias]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Paginas de {{NAMESPACE}}]",
+	"bluesky-article-info": "Information sur le articulo",
+	"bluesky-page-info": "Information sur le pagina",
+	"bluesky-footer-tools": "Additional instrumentos de pagina"
+}

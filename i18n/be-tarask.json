@@ -18,5 +18,6 @@
 	"bluesky-pagelog": "Журналы для гэтай старонкі",
 	"bluesky-page": "Інструмэнты старонкі",
 	"bluesky-admin": "Адміністратар",
-	"bluesky-page-edited": "Старонку апошні раз рэдагавалі {{int:ago|$1}}"
+	"bluesky-page-edited": "Старонку апошні раз рэдагавалі {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Старонка апошні раз рэдагавалася {{int:ago|$1}} $2"
 }
