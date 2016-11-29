@@ -1,15 +1,31 @@
 {
 	"@metadata": {
 		"authors": [
-			"1917 Ekim Devrimi"
+			"1917 Ekim Devrimi",
+			"Gırd"
 		]
 	},
+	"bluesky-editthis": "İn peller bıvurnê",
+	"bluesky-viewsource": "çımey in peller bıvênê",
+	"bluesky-navbar-edit": "Bıvurne",
+	"bluesky-personaltools": "Profile",
+	"bluesky-messages": "Mesaci",
+	"bluesky-pagelog": "Qeydê in peller",
+	"bluesky-page": "Hacetê pella",
 	"bluesky-admin": "İdare",
+	"bluesky-page-edited": "Peyni vuryayışa peller {{int:ago| $1}}",
+	"bluesky-page-edited-user": "Tewr vurnayışo peyên {{int:ago| $1}} $2 ra biyo",
 	"duration-months": "{{PLURAL:$1|aşm|aşmi}}",
+	"bluesky-toc-sections": "Letey",
+	"bluesky-home": "Keye",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Spesiyal pelli]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pella proceyan]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Behsa pella proceyan]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Dosyay]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Şabloni]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategoriy]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} perri]",
 	"bluesky-article-info": "Malumata wesiqa",
-	"bluesky-page-info": "Malumata perrer"
+	"bluesky-page-info": "Malumata perrer",
+	"bluesky-footer-tools": "Tayna hacetê pelle"
 }
