@@ -22,5 +22,6 @@
 	"bluesky-page-edited-user": "Старонка апошні раз рэдагавалася {{int:ago|$1}} $2",
 	"duration-months": "$1 {{PLURAL:$1|месяц|месяцы|месяцаў}}",
 	"bluesky-toc-sections": "Разьдзелы",
-	"bluesky-home": "Галоўная"
+	"bluesky-home": "Галоўная",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Спэцыяльныя старонкі]]"
 }
