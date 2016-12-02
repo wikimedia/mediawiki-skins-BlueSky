@@ -23,5 +23,7 @@
 	"duration-months": "$1 {{PLURAL:$1|месяц|месяцы|месяцаў}}",
 	"bluesky-toc-sections": "Разьдзелы",
 	"bluesky-home": "Галоўная",
-	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Спэцыяльныя старонкі]]"
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Спэцыяльныя старонкі]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Старонкі праекту]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Старонкі абмеркаваньня праекту]"
 }

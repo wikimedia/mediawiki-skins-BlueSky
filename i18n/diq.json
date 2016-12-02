@@ -5,11 +5,16 @@
 			"Gırd"
 		]
 	},
+	"bluesky-desc": "mewcud versiyonê pak çermeyê Wikihow'i (2003 de)",
 	"bluesky-editthis": "İn peller bıvurnê",
 	"bluesky-viewsource": "çımey in peller bıvênê",
 	"bluesky-navbar-edit": "Bıvurne",
 	"bluesky-personaltools": "Profile",
 	"bluesky-messages": "Mesaci",
+	"bluesky-notifications-new-talk": "Torê  $1  {{PLURAL:$1|mesaj est o|mesaji est ê}}",
+	"bluesky-notifications-none": "Torê enewke pêhesnayışi çıni yê. \n[[$1|Pera mesaji]] ziyaret kı mesacanê verênan bıvin.",
+	"bluesky-notifications-no-talk": "[[$1|Pera mesaci]] mesaca pakın bıvin.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|jew nêwaneya |$1 nêwaneyay}}",
 	"bluesky-pagelog": "Qeydê in peller",
 	"bluesky-page": "Hacetê pella",
 	"bluesky-admin": "İdare",
