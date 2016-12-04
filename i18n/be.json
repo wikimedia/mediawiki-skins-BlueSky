@@ -19,5 +19,11 @@
 	"bluesky-admin": "Адміністратар",
 	"bluesky-page-edited": "Старонка апошні раз рэдагавалася {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Старонка апошні раз рэдагавалася {{int:ago|$1}} $2",
-	"duration-months": "$1 {{PLURAL:$1|месяц|месяцы|месяцаў}}"
+	"duration-months": "$1 {{PLURAL:$1|месяц|месяцы|месяцаў}}",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Адмысловыя старонкі]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Старонкі праекта]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Старонкі абмеркавання праекта]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлы]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблоны]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Катэгорыі]]"
 }
