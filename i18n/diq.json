@@ -11,7 +11,7 @@
 	"bluesky-navbar-edit": "Bıvurne",
 	"bluesky-personaltools": "Profile",
 	"bluesky-messages": "Mesaci",
-	"bluesky-notifications-new-talk": "Torê  $1  {{PLURAL:$1|mesaj est o|mesaji est ê}}",
+	"bluesky-notifications-new-talk": "To rê  $1  {{PLURAL:$1|mesac esto|mesaci estê}}",
 	"bluesky-notifications-none": "Torê enewke pêhesnayışi çıni yê. \n[[$1|Pera mesaji]] ziyaret kı mesacanê verênan bıvin.",
 	"bluesky-notifications-no-talk": "[[$1|Pera mesaci]] mesaca pakın bıvin.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|jew nêwaneya |$1 nêwaneyay}}",
