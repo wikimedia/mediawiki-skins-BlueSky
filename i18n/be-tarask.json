@@ -29,5 +29,6 @@
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлы]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблёны]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Катэгорыі]]",
-	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Старонкі прасторы назваў {{NAMESPACE}}]"
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Старонкі прасторы назваў {{NAMESPACE}}]",
+	"bluesky-article-info": "Зьвесткі пра артыкул"
 }
