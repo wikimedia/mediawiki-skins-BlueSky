@@ -18,7 +18,7 @@
 	"bluesky-pagelog": "Qeydkerdışê ena pele",
 	"bluesky-page": "Aletê pele",
 	"bluesky-admin": "Admin",
-	"bluesky-page-edited": "Tewr vurnayışo peyên {{int:ago| $1}} $2 ra biyo",
+	"bluesky-page-edited": "Tewr vurnayışo peyên {{int:ago| $1}}",
 	"bluesky-page-edited-user": "Tewr vurnayışo peyên {{int:ago| $1}} $2 ra biyo",
 	"duration-months": "{{PLURAL:$1|aşm|aşmi}}",
 	"bluesky-toc-sections": "Letey",

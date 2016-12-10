@@ -25,5 +25,8 @@
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Старонкі абмеркавання праекта]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлы]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблоны]",
-	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Катэгорыі]]"
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Катэгорыі]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Старонкі прасторы назваў {{NAMESPACE}}]",
+	"bluesky-article-info": "Інфармацыя пра артыкул",
+	"bluesky-page-info": "Інфармацыя пра старонку"
 }
