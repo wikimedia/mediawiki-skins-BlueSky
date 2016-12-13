@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ильнар"
+		]
+	},
+	"bluesky-editthis": "Бу битне үзгәртү",
+	"bluesky-viewsource": "Бу битнең чыганак текстын карау",
+	"bluesky-navbar-edit": "Үзгәртү",
+	"bluesky-personaltools": "Профиль",
+	"bluesky-messages": "Хат",
+	"bluesky-unread-notifications": "{{PLURAL:$1|бер укылмаган|$1 укылмаган}}",
+	"bluesky-page": "Бит өчен кораллар",
+	"bluesky-admin": "Идарәче",
+	"duration-months": "$1 {{PLURAL:$1|ай}} элек",
+	"bluesky-toc-sections": "Бүлекләр",
+	"bluesky-home": "Баш",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Махсус битләр]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Проект битләре]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Проект бәхәсе битләре]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файллар]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|исемнәр мәйданы=10}} Калыплар]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Төркемнәр]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} битләр]",
+	"bluesky-article-info": "Мәкалә турында",
+	"bluesky-page-info": "Бит турында",
+	"bluesky-footer-tools": "Битнең өстәмә кораллары"
+}
