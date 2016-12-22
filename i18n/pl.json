@@ -16,6 +16,7 @@
 	"bluesky-toc-sections": "Sekcje",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Strony specjalne]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Strony projektu]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Strony dyskusji projektu]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Pliki]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Szablony]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorie]]",
