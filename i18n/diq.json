@@ -23,7 +23,7 @@
 	"duration-months": "{{PLURAL:$1|aşm|aşmi}}",
 	"bluesky-toc-sections": "Letey",
 	"bluesky-home": "Keye",
-	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pelê hısusiy]]",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Perê hısusiy]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pella proceyan]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Pela vatışê procey]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Dosyay]]",
