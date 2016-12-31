@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"bluesky-desc": "Drakt basert på den nåværende versjonen (sent 2013) av wikiHows drakt",
+	"bluesky-editthis": "Rediger denne siden",
+	"bluesky-viewsource": "Vis kilden for denne siden",
+	"bluesky-navbar-edit": "Rediger",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Meldinger",
+	"bluesky-notifications-new-talk": "Du har $1 {{PLURAL:$1|ny melding|nye meldinger}}.",
+	"bluesky-notifications-none": "Du har ingen varsler for øyeblikket.\nBesøk [[$1|diskusjonssiden din]] for å se tidligere meldinger.",
+	"bluesky-notifications-no-talk": "Besøk [[$1|diskusjonssiden din]] for å se tidligere meldinger.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Én ulest|$1 uleste}}",
+	"bluesky-pagelog": "Logger for denne siden",
+	"bluesky-page": "Sideverktøy",
+	"bluesky-admin": "Admin",
+	"bluesky-page-edited": "Siden sist redigert {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Siden sist redigert {{int:ago|$1}} av $2",
+	"duration-months": "$1 {{PLURAL:$1|måned|måneder}}",
+	"bluesky-toc-sections": "Seksjoner",
+	"bluesky-home": "Hjem",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Spesialsider]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Prosjektsider]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Prosjek&shy;tdiskusjons&shy;sider]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Filer]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Maler]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorier]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}}-sider]",
+	"bluesky-article-info": "Artikkelinfo",
+	"bluesky-page-info": "Sideinfo",
+	"bluesky-footer-tools": "Ekstra sideverktøy"
+}
