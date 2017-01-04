@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fulup"
+		]
+	},
+	"bluesky-editthis": "Kemmañ ar bajenn-mañ",
+	"bluesky-viewsource": "Gwelet tarzh ar bajenn-mañ",
+	"bluesky-navbar-edit": "Kemmañ",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Kemennadennoù",
+	"bluesky-notifications-new-talk": "$1 {{PLURAL:$1|gaozeadenn nevez|kaozeadenn nevez}} hoc'h eus.",
+	"bluesky-admin": "Merourien",
+	"bluesky-home": "Degemer"
+}
