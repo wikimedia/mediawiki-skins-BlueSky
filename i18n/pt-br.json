@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardo Addad de Oliveira"
+		]
+	},
+	"bluesky-desc": "Pele com base na versão atual (final de 2013) da pele do wikiHow",
+	"bluesky-editthis": "Editar esta página",
+	"bluesky-viewsource": "Ver fonte desta página",
+	"bluesky-navbar-edit": "Editar",
+	"bluesky-personaltools": "Perfil",
+	"bluesky-messages": "Mensagens",
+	"bluesky-pagelog": "Registos desta página",
+	"bluesky-page": "Ferramentas de páginas",
+	"bluesky-admin": "Administrador",
+	"bluesky-page-edited": "Última edição há  {{int:ago|$1}}",
+	"bluesky-toc-sections": "Seções",
+	"bluesky-home": "Início",
+	"bluesky-article-info": "Informação do artigo",
+	"bluesky-page-info": "Informação da página",
+	"bluesky-footer-tools": "Ferramentas de página adicionais"
+}
