@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cwlin0416"
+			"Cwlin0416",
+			"Liuxinyu970226"
 		]
 	},
 	"bluesky-desc": "此外觀使用了目前版本 (2013 年後) 的 wikiHow 外觀為基礎。",
@@ -12,7 +13,7 @@
 	"bluesky-messages": "訊息",
 	"bluesky-notifications-new-talk": "您有 $1 則新對話{{PLURAL:$1|訊息|訊息}}。",
 	"bluesky-notifications-none": "您目前沒有任何通知。\n要查看先前的訊息請至您的 [[$1|對話頁面]]。",
-	"bluesky-notifications-no-talk": "要查看先前的訊息請至您的 [[$1|對話頁面]]。",
+	"bluesky-notifications-no-talk": "要查看先前的訊息請至您的[[$1|對話頁面]]。",
 	"bluesky-unread-notifications": "{{PLURAL:$1|1 則未讀|$1 則未讀}}",
 	"bluesky-pagelog": "此頁面的日誌",
 	"bluesky-page": "頁面工具",
