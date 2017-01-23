@@ -10,8 +10,11 @@
 	"bluesky-notifications-new-talk": "Masz $1 {{PLURAL:$1|nową wiadomość|nowe wiadomości|nowych wiadomości}} na stronie dyskusji.",
 	"bluesky-notifications-none": "Nie masz w tej chwili nowych powiadomień.\nOdwiedź swoją [[$1|stronę dyskusji]], aby zobaczyć wcześniejsze wiadomości.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Jedno nieprzeczytane|$1 nieprzeczytane|$1 nieprzeczytanych}}",
+	"bluesky-pagelog": "Rejestry dla tej strony",
+	"bluesky-page": "Narzędzia strony",
 	"bluesky-admin": "Administrator",
 	"bluesky-page-edited": "Strona ostatnio edytowana {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Strona ostatnio edytowana {{int:ago|$1}} przez $2",
 	"duration-months": "$1 {{PLURAL:$1|miesiąc|miesiące|miesięcy}}",
 	"bluesky-toc-sections": "Sekcje",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Strony specjalne]]",
@@ -22,5 +25,6 @@
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorie]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} stron w przestrzeni nazw {{NAMESPACE}}]",
 	"bluesky-article-info": "Informacje o artykule",
-	"bluesky-page-info": "Informacje o stronie"
+	"bluesky-page-info": "Informacje o stronie",
+	"bluesky-footer-tools": "Dodatkowe narzędzia strony"
 }
