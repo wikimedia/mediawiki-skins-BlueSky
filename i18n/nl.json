@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hex"
+			"Hex",
+			"Rcdeboer"
 		]
 	},
+	"bluesky-desc": "Uiterlijk gebaseerd op de huidige versie (eind 2013) van wikiHow's uiterlijk",
 	"bluesky-editthis": "Bewerk deze pagina",
 	"bluesky-viewsource": "Bekijk de bron van deze pagina",
 	"bluesky-navbar-edit": "Bewerken",

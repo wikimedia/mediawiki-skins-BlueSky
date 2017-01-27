@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ykhwong"
+			"Ykhwong",
+			"Jerrykim306"
 		]
 	},
 	"bluesky-editthis": "이 문서 편집하기",
@@ -17,6 +18,7 @@
 	"bluesky-page": "문서 도구",
 	"bluesky-admin": "관리",
 	"duration-months": "$1{{PLURAL:$1|개월}} 전",
+	"bluesky-toc-sections": "부분",
 	"bluesky-home": "홈",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|특수 문서]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} 프로젝트 문서]",
