@@ -1,10 +1,31 @@
 {
 	"@metadata": {
 		"authors": [
-			"Valtlait"
+			"Valtlait",
+			"Pyscowicz"
 		]
 	},
 	"bluesky-editthis": "Muokkaa tätä sivua",
+	"bluesky-viewsource": "Näytä tämän sivun lähdekoodi",
+	"bluesky-navbar-edit": "Muokkaa",
 	"bluesky-personaltools": "Profiili",
-	"bluesky-messages": "Viestit"
+	"bluesky-messages": "Viestit",
+	"bluesky-notifications-new-talk": "Sinulla on $1 uutta keskustelu{{PLURAL:$1|viesti|viestiä}}.",
+	"bluesky-notifications-none": "Sinulla ei ole ilmoituksia tällä hetkellä.\nKäy [[$1|keskustelusivulla]]si nähdäksesi edellisiä viestejä.",
+	"bluesky-notifications-no-talk": "Käy [[$1|keskustelusivulla]]si nähdäksesi edellisiä viestejä.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Yksi lukematon|$1 lukematon}}",
+	"bluesky-pagelog": "Tämän sivun lokit",
+	"bluesky-page": "Sivutyökalut",
+	"bluesky-admin": "Ylläpitäjä",
+	"bluesky-page-edited": "Sivua viimeksi muokattu {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Sivua viimeksi muokattu {{int:ago|$1}} käyttäjä $2",
+	"duration-months": "$1 {{PLURAL:$1|kuukausi|kuukautta}}",
+	"bluesky-toc-sections": "Osuudet",
+	"bluesky-home": "Koti",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Toimintosivut]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektisivut]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Tiedostot]]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Luokat]]",
+	"bluesky-article-info": "Artikkelin tiedot",
+	"bluesky-page-info": "Sivun tiedot"
 }
