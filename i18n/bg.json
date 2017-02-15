@@ -6,5 +6,27 @@
 		]
 	},
 	"bluesky-desc": "Облик на базата на текущата версия (към края на 2013) на облика на „wikiHow“",
-	"bluesky-navbar-edit": "Редактиране"
+	"bluesky-editthis": "Редактиране на страницата",
+	"bluesky-viewsource": "Изходен код на страницата",
+	"bluesky-navbar-edit": "Редактиране",
+	"bluesky-personaltools": "Профил",
+	"bluesky-messages": "Съобщения",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Едно непрочетено|$1 непрочетени}}",
+	"bluesky-pagelog": "Дневници за страницата",
+	"bluesky-page": "Инструменти за страниците",
+	"bluesky-admin": "Админ",
+	"bluesky-page-edited": "Последната промяна на страницата е направена {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Последната промяна на страницата е направена {{int:ago|$1}} от $2",
+	"duration-months": "$1 {{PLURAL:$1|месец|месеца}}",
+	"bluesky-toc-sections": "Раздели",
+	"bluesky-home": "Начало",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Специални страници]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Проектни страници]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлове]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблони]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категории]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страници]",
+	"bluesky-article-info": "Информация за статията",
+	"bluesky-page-info": "Информация за страницата",
+	"bluesky-footer-tools": "Допълнителни инструменти за страници"
 }
