@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jagwar"
+		]
+	},
+	"bluesky-editthis": "Hanova ity pejy ity",
+	"bluesky-viewsource": "Hiery ny fangon'ity pejy ity",
+	"bluesky-navbar-edit": "Hanova",
+	"bluesky-personaltools": "Praofilina",
+	"bluesky-messages": "Hafatra",
+	"bluesky-notifications-new-talk": "Manana hafatra $1{{PLURAL:$1|}}avy amin'ny resaka ianao.",
+	"bluesky-notifications-none": "Tsy misy filazana ho anao amin'izao fotoana izao.\nVangio ny [[$1|pejin-dresakao]] raha tia hahita ny hafatrao taloha.",
+	"bluesky-pagelog": "Laogy ho an'ity pejy ity",
+	"bluesky-page": "Fitaovam-pejy",
+	"bluesky-admin": "Mpandrindra",
+	"bluesky-page-edited": "Novaina farany tamin'i {{int:ago|$1}}",
+	"bluesky-page-edited-user": "$2 no nanova farany tamin'ny {{int:ago|$1}}",
+	"duration-months": "$1{{PLURAL:$1|}} volana",
+	"bluesky-toc-sections": "Fizarana",
+	"bluesky-home": "Fandraisana",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pejy manokana]]",
+	"bluesky-article-info": "Torohay momba ny lahatsoratra",
+	"bluesky-page-info": "Torohay momba ny pejy",
+	"bluesky-footer-tools": "Fitaovam-pejy fanampiny"
+}

@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cedric31"
+		]
+	},
+	"bluesky-notifications-new-talk": "Avètz $1 {{PLURAL:$1|novèl messatge|novèls messatges}} de discussion.",
+	"bluesky-notifications-none": "Avètz pas cap de notificacion pel moment.\nVisitatz vòstra [[$1|pagina de discussion]] per veire los ancians messatges.",
+	"bluesky-notifications-no-talk": "Visitar vòstra [[$1|pagina de discussion]] per veire los ancians messatges."
+}
