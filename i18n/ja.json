@@ -4,6 +4,7 @@
 			"Otokoume"
 		]
 	},
+	"bluesky-desc": "現在の wikiHow のスキンに基づいたスキン",
 	"bluesky-editthis": "このページを編集",
 	"bluesky-viewsource": "このページのソースを閲覧",
 	"bluesky-navbar-edit": "編集",
@@ -15,6 +16,7 @@
 	"bluesky-unread-notifications": "{{PLURAL:$1|1件の未読|$1件の未読}}",
 	"bluesky-pagelog": "このページに関する記録",
 	"bluesky-page": "ページツール",
+	"bluesky-admin": "管理ツール",
 	"bluesky-page-edited": "最終更新: {{int:ago|$1}}",
 	"bluesky-page-edited-user": "$2 による最終更新: {{int:ago|$1}}",
 	"duration-months": "$1{{PLURAL:$1|ヶ月}}",
