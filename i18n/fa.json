@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Reza1615"
+		]
+	},
+	"bluesky-desc": "پوسته‌ای بر پایهٔ پوستهٔ ۲۰۱۳ ویکی‌هاو",
+	"bluesky-editthis": "ویرایش این صفحه",
+	"bluesky-viewsource": "نمایش مبدأ این صفحه",
+	"bluesky-navbar-edit": "ویرایش",
+	"bluesky-personaltools": "پروفایل",
+	"bluesky-messages": "پیام‌ها",
+	"bluesky-notifications-new-talk": "شما $1 {{PLURAL:$1|پیام|پیام}} در بحثتان دارید.",
+	"bluesky-notifications-none": "شما یک آگاه‌سازی دارید.\n[[$1|بحثتان]] را مشاهده کنید.",
+	"bluesky-notifications-no-talk": "[[$1|بحثتان]] را مشاهده کنید.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|یک خوانده نشده|$1 خوانده نشده}}",
+	"bluesky-pagelog": "سیاهه برای این صفحه",
+	"bluesky-page": "ابزارهای صفحه",
+	"bluesky-admin": "ادمین",
+	"bluesky-page-edited": "آخرین ویرایش صفحه {{int:پیش|$1}}",
+	"bluesky-page-edited-user": "آخرین ویرایش صفحه {{int:پیش|$1}} توسط $2",
+	"duration-months": "$1 {{PLURAL:$1|ماه|ماه}}",
+	"bluesky-toc-sections": "بخش‌ها",
+	"bluesky-home": "خانه",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|صفحه‌های ویژه]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} صفحات پروژه]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=4}} صفحات بحث پروژه]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|فایل‌ها]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} الگوها]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|رده‌‌ها]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} صفحات {{NAMESPACE}}]",
+	"bluesky-article-info": "اطلاعات مقاله",
+	"bluesky-page-info": "اطلاعات صفحه",
+	"bluesky-footer-tools": "ابزاهای بیشتر صفحه"
+}
