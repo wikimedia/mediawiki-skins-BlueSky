@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"bluesky-desc": "עיצוב שמבוסס על הגרסה הנוכחית (שלהי 2013) של העיצוב של wikiHow",
+	"bluesky-editthis": "עריכת הדף הזה",
+	"bluesky-viewsource": "הצגת מקור הדף הזה",
+	"bluesky-navbar-edit": "עריכה",
+	"bluesky-personaltools": "פרופיל",
+	"bluesky-messages": "הודעות",
+	"bluesky-notifications-new-talk": "יש לך {{PLURAL:$1|הודעה חדשה אחת|$1 הודעות חדשות}} בדך השיחה.",
+	"bluesky-notifications-none": "אין לך הודעות כעת.\nאפשר לראות את ההודעות הקודמות ב[[$1|דף השיחה]].",
+	"bluesky-notifications-no-talk": "אפשר לראות את ההודעות הקודמות ב[[$1|דף השיחה]].",
+	"bluesky-unread-notifications": "{{PLURAL:$1|אחת לא נקראה|$1 לא נקראו}}",
+	"bluesky-pagelog": "יומנים עבור הדף הזה",
+	"bluesky-page": "כלי דף",
+	"bluesky-admin": "ניהול",
+	"bluesky-page-edited": "הדף נערך {{int:ago|$1}}",
+	"bluesky-page-edited-user": "הדף נערך {{int:ago|$1}} על־ידי $2",
+	"duration-months": "{{PLURAL:$1|חודש|חודשיים|$1 חודשים}}",
+	"bluesky-toc-sections": "פסקאות",
+	"bluesky-home": "דף הבית",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|דפים מיוחדים]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} דפי מיזם]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} דפי שיחת מיזם]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|קבצים]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} תבניות]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|קטגוריות]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} דפי {{NAMESPACE}}]",
+	"bluesky-article-info": "מידע על הערך",
+	"bluesky-page-info": "מידע על הדף",
+	"bluesky-footer-tools": "כלי דף נוספים"
+}
