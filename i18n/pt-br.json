@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eduardo Addad de Oliveira"
+			"Eduardo Addad de Oliveira",
+			"Felipe L. Ewald"
 		]
 	},
 	"bluesky-desc": "Pele com base na versão atual (final de 2013) da pele do wikiHow",
@@ -10,12 +11,25 @@
 	"bluesky-navbar-edit": "Editar",
 	"bluesky-personaltools": "Perfil",
 	"bluesky-messages": "Mensagens",
+	"bluesky-notifications-new-talk": "Você tem $1 {{PLURAL:$1|mensagem|mensagens}} na página de discusão.",
+	"bluesky-notifications-none": "Você não tem notificações neste momento.\nVisite sua [[$1|página de discussão]] para ver as mensagens anteriores.",
+	"bluesky-notifications-no-talk": "Visite sua [[$1|página de discussão]] para ver as mensagens anteriores.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Uma não lida|$1 não lidas}}",
 	"bluesky-pagelog": "Registos desta página",
 	"bluesky-page": "Ferramentas de páginas",
 	"bluesky-admin": "Administrador",
 	"bluesky-page-edited": "Última edição há  {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Última edição da página em {{int:ago|$1}} por $2",
+	"duration-months": "$1 {{PLURAL:$1|mês|meses}}",
 	"bluesky-toc-sections": "Seções",
 	"bluesky-home": "Início",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Páginas especiais]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Páginas do projeto]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Páginas de discussão do projeto]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Arquivos]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Predefinições]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categorias]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Páginas no espaço nominal {{NAMESPACE}}]",
 	"bluesky-article-info": "Informação do artigo",
 	"bluesky-page-info": "Informação da página",
 	"bluesky-footer-tools": "Ferramentas de página adicionais"
