@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Srdjan m"
+		]
+	},
+	"bluesky-editthis": "Uredi ovu stranicu",
+	"bluesky-viewsource": "Pogledaj izvor ove stranice",
+	"bluesky-navbar-edit": "Uredi",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Poruke",
+	"bluesky-notifications-new-talk": "Imate $1 {{PLURAL:$1|novu poruku|nove poruke|novih poruka}}.",
+	"bluesky-notifications-none": "Trenutno nemate obavještenja.\nPosjetite svoju [[$1|stranicu za razgovor]] da biste vidjeli ranije poruke.",
+	"bluesky-notifications-no-talk": "Posjetite svoju [[$1|stranicu za razgovor]] da biste vidjeli ranije poruke.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Jedno nepročitano|$1 nepročitana|$1 nepročitanih}}",
+	"bluesky-pagelog": "Zapisnici za ovu stranicu",
+	"bluesky-admin": "Admin",
+	"duration-months": "$1 {{PLURAL:$1|mjesec|mjeseca|mjeseci}}",
+	"bluesky-toc-sections": "Odlomci",
+	"bluesky-home": "Početna",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Posebne stranice]]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Datoteke]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Šabloni]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorije]]",
+	"bluesky-article-info": "Info o članku",
+	"bluesky-page-info": "Info o stranici"
+}
