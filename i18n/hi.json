@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sfic"
+		]
+	},
+	"bluesky-editthis": "यह पृष्ठ संपादित करें",
+	"bluesky-viewsource": "इस पृष्ठ का स्रोत देखें",
+	"bluesky-navbar-edit": "संपादित करें",
+	"bluesky-personaltools": "प्रोफ़ाइल",
+	"bluesky-messages": "संदेश",
+	"bluesky-notifications-new-talk": "आपके पास $1 {{PLURAL:$1|नया|नए}} वार्ता संदेश {{PLURAL:$1|है|हैं}}।",
+	"bluesky-notifications-none": "इस समय कोई सूचना नहीं है।\nपुराने संदेशों को देखने के लिए अपने [[$1|वार्ता पृष्ठ]] पर जाएँ।",
+	"bluesky-notifications-no-talk": "पुराने संदेशों को देखने के लिए अपने [[$1|वार्ता पृष्ठ]] पर जाएँ।",
+	"bluesky-pagelog": "इस पृष्ठ के लॉग",
+	"bluesky-page": "पृष्ठ औज़ार",
+	"bluesky-admin": "प्रबन्धक",
+	"duration-months": "$1 {{PLURAL:$1|महीना|महीने}}",
+	"bluesky-toc-sections": "अनुभाग",
+	"bluesky-home": "घर",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|विशेष पृष्ठ]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} परियोजना पृष्ठ]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} परियोजना वार्ता पृष्ठ]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|फ़ाइलें]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} साँचे]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|श्रेणीयाँ]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} पृष्ठ]",
+	"bluesky-article-info": "लेख की जानकारी",
+	"bluesky-page-info": "पृष्ठ की जानकारी"
+}
