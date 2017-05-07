@@ -4,6 +4,8 @@
 			"Sfic"
 		]
 	},
+	"skinname-bluesky": "ब्लू स्काई",
+	"bluesky-desc": "यह त्वचा विकिहाउ के 2013 के समय के त्वचा पर आधारित है।",
 	"bluesky-editthis": "यह पृष्ठ संपादित करें",
 	"bluesky-viewsource": "इस पृष्ठ का स्रोत देखें",
 	"bluesky-navbar-edit": "संपादित करें",
@@ -12,11 +14,15 @@
 	"bluesky-notifications-new-talk": "आपके पास $1 {{PLURAL:$1|नया|नए}} वार्ता संदेश {{PLURAL:$1|है|हैं}}।",
 	"bluesky-notifications-none": "इस समय कोई सूचना नहीं है।\nपुराने संदेशों को देखने के लिए अपने [[$1|वार्ता पृष्ठ]] पर जाएँ।",
 	"bluesky-notifications-no-talk": "पुराने संदेशों को देखने के लिए अपने [[$1|वार्ता पृष्ठ]] पर जाएँ।",
+	"bluesky-unread-notifications": "{{PLURAL:$1|एक न पढ़ा|$1 न पढ़े}}",
 	"bluesky-pagelog": "इस पृष्ठ के लॉग",
 	"bluesky-page": "पृष्ठ औज़ार",
 	"bluesky-admin": "प्रबन्धक",
+	"bluesky-page-edited": "पृष्ठ का अंतिम सम्पादन {{int:ago|$1}} को हुआ है।",
+	"bluesky-page-edited-user": "पृष्ठ का अंतिम सम्पादन {{int:ago|$1}} को $2 ने किया है।",
 	"duration-months": "$1 {{PLURAL:$1|महीना|महीने}}",
 	"bluesky-toc-sections": "अनुभाग",
+	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "घर",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|विशेष पृष्ठ]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} परियोजना पृष्ठ]",
@@ -26,5 +32,6 @@
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|श्रेणीयाँ]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} पृष्ठ]",
 	"bluesky-article-info": "लेख की जानकारी",
-	"bluesky-page-info": "पृष्ठ की जानकारी"
+	"bluesky-page-info": "पृष्ठ की जानकारी",
+	"bluesky-footer-tools": "अतिरिक्त पृष्ठ औजार"
 }
