@@ -11,6 +11,7 @@
 	"bluesky-messages": "Хат",
 	"bluesky-notifications-new-talk": "Сезнең $1 яңа {{PLURAL:$1|хатыгыз}} бар.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|бер укылмаган|$1 укылмаган}}",
+	"bluesky-pagelog": "Әлеге бит көндәлеге",
 	"bluesky-page": "Бит өчен кораллар",
 	"bluesky-admin": "Идарәче",
 	"duration-months": "$1 {{PLURAL:$1|ай}} элек",
