@@ -14,14 +14,19 @@
 	"bluesky-notifications-no-talk": "Posjetite svoju [[$1|stranicu za razgovor]] da biste vidjeli ranije poruke.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Jedno nepročitano|$1 nepročitana|$1 nepročitanih}}",
 	"bluesky-pagelog": "Zapisnici za ovu stranicu",
+	"bluesky-page": "Alati za stranice",
 	"bluesky-admin": "Admin",
+	"bluesky-page-edited": "Posljednja izmjena na stranici izvršena je {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Posljednju izmjenu na stranici izvršio je $2 {{int:ago|$1}}",
 	"duration-months": "$1 {{PLURAL:$1|mjesec|mjeseca|mjeseci}}",
 	"bluesky-toc-sections": "Odlomci",
 	"bluesky-home": "Početna",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Posebne stranice]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektne stranice]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Datoteke]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Šabloni]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorije]]",
 	"bluesky-article-info": "Info o članku",
-	"bluesky-page-info": "Info o stranici"
+	"bluesky-page-info": "Info o stranici",
+	"bluesky-footer-tools": "Dodatni alati za stranice"
 }
