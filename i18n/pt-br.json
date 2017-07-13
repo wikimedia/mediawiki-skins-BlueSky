@@ -16,7 +16,7 @@
 	"bluesky-notifications-none": "Você não tem notificações neste momento.\nVisite sua [[$1|página de discussão]] para ver as mensagens anteriores.",
 	"bluesky-notifications-no-talk": "Visite sua [[$1|página de discussão]] para ver as mensagens anteriores.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Uma não lida|$1 não lidas}}",
-	"bluesky-pagelog": "Registos desta página",
+	"bluesky-pagelog": "Registroos desta página",
 	"bluesky-page": "Ferramentas de páginas",
 	"bluesky-admin": "Administrador",
 	"bluesky-page-edited": "Última edição da página em {{int:ago|$1}}",
