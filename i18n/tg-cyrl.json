@@ -4,5 +4,6 @@
 			"ToJack"
 		]
 	},
-	"bluesky-notifications-new-talk": "Шумо $1 {{PLURAL:$1|паёми|паёми}} муҳокимавии нав доред."
+	"bluesky-notifications-new-talk": "Шумо $1 {{PLURAL:$1|паёми|паёми}} муҳокимавии нав доред.",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Гурӯҳҳо]]"
 }
