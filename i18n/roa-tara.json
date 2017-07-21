@@ -4,7 +4,11 @@
 			"Joetaras"
 		]
 	},
+	"bluesky-editthis": "Cange sta pàgene",
+	"bluesky-viewsource": "'Ndruche 'a sorgende de sta pàgene",
 	"bluesky-navbar-edit": "Cange",
 	"bluesky-personaltools": "Profile",
-	"bluesky-messages": "Messàgge"
+	"bluesky-messages": "Messàgge",
+	"bluesky-toc-sections": "Seziune",
+	"bluesky-home": "Cáse"
 }
