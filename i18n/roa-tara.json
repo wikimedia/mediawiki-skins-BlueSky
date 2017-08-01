@@ -4,11 +4,18 @@
 			"Joetaras"
 		]
 	},
+	"bluesky-desc": "Skin ca se base sus 'a versione de mò (urteme 2013) d'u skin wikiHow",
 	"bluesky-editthis": "Cange sta pàgene",
 	"bluesky-viewsource": "'Ndruche 'a sorgende de sta pàgene",
 	"bluesky-navbar-edit": "Cange",
 	"bluesky-personaltools": "Profile",
 	"bluesky-messages": "Messàgge",
+	"bluesky-notifications-new-talk": "Tu è $1 {{PLURAL:$1|messàgge}} de 'ngazzaminde.",
+	"bluesky-notifications-none": "Non ge tìne notifiche jndr'à stu mumende.\nVèje sus 'a [[$1|pàgena de le 'ngazzaminde]] tune pe 'ndrucà le urteme messagge.",
+	"bluesky-notifications-no-talk": "Vèje sus 'a [[$1|pàgena de le 'ngazzaminde]] tune pe 'ndrucà le urteme messagge.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Une non lette|$1 non lette}}",
+	"bluesky-pagelog": "Archivije pe sta pàgene",
+	"bluesky-page": "Pàgene de le struminde",
 	"bluesky-admin": "Amministratore",
 	"bluesky-page-edited": "Urtema pàgene cangiate {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Urtema pàgene cangiate {{int:ago|$1}} da $2",
@@ -23,5 +30,6 @@
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categorije]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Pàggene de {{NAMESPACE}}]",
 	"bluesky-article-info": "'Mbormaziune sus 'a vôsce",
-	"bluesky-page-info": "'Mbormaziune d'a pàgene"
+	"bluesky-page-info": "'Mbormaziune d'a pàgene",
+	"bluesky-footer-tools": "Pàgene de le struminde extra"
 }
