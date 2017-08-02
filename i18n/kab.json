@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Belkacem77"
+		]
+	},
+	"bluesky-editthis": "Ẓreg asebter-agi",
+	"bluesky-viewsource": "Sken aɣbalu i usebter-agi",
+	"bluesky-navbar-edit": "Ẓreg",
+	"bluesky-personaltools": "Amaɣnu",
+	"bluesky-messages": "Iznan",
+	"bluesky-notifications-new-talk": "Ɣurk- $1 n {{PLURAL:$1|yizen|yiznan}}.",
+	"bluesky-notifications-none": "Ur ɣur-k ara ilɣa akka tura.\nRzu ar [[$1|usebter-ik n usqerdec]] akken ad twaliḍ iznan yezrin.",
+	"bluesky-notifications-no-talk": "Rzu ar [[$1|usebter-ik n usqerdec]] akken ad twaliḍ iznan yezrin."
+}
