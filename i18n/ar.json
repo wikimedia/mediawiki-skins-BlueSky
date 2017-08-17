@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mido"
+			"Mido",
+			"ديفيد"
 		]
 	},
+	"bluesky-desc": "برنامج مساعد على أساس النسخة الحالية (أواخر عام 2013) للبرنامج المساعد ويكي هاو",
 	"bluesky-editthis": "عدل هذه الصفحة",
 	"bluesky-viewsource": "اعرض مصدر هذه الصفحة",
 	"bluesky-navbar-edit": "عدل",
@@ -16,6 +18,9 @@
 	"bluesky-pagelog": "السجلات لهذه الصفحة",
 	"bluesky-page": "أدوات الصفحة",
 	"bluesky-admin": "إدارة",
+	"bluesky-page-edited": "آخر تحديث للصفحة {{int:ago|$1}}",
+	"bluesky-page-edited-user": "آخر تحديث للصفحة {{int:ago|$1}} بواسطة $2",
+	"duration-months": "$1 {{PLURAL:$1|شهر|أشهر}}",
 	"bluesky-toc-sections": "الأقسام",
 	"bluesky-home": "الصفحة الرئيسية",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|الصفحات الخاصة]]",
