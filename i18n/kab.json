@@ -4,6 +4,7 @@
 			"Belkacem77"
 		]
 	},
+	"bluesky-desc": "Acebbeḥ yebnan ɣef lqem amiran (n 32013) n ucebbeḥ wikiHow",
 	"bluesky-editthis": "Ẓreg asebter-agi",
 	"bluesky-viewsource": "Sken aɣbalu i usebter-agi",
 	"bluesky-navbar-edit": "Ẓreg",
@@ -11,5 +12,24 @@
 	"bluesky-messages": "Iznan",
 	"bluesky-notifications-new-talk": "Ɣurk- $1 n {{PLURAL:$1|yizen|yiznan}}.",
 	"bluesky-notifications-none": "Ur ɣur-k ara ilɣa akka tura.\nRzu ar [[$1|usebter-ik n usqerdec]] akken ad twaliḍ iznan yezrin.",
-	"bluesky-notifications-no-talk": "Rzu ar [[$1|usebter-ik n usqerdec]] akken ad twaliḍ iznan yezrin."
+	"bluesky-notifications-no-talk": "Rzu ar [[$1|usebter-ik n usqerdec]] akken ad twaliḍ iznan yezrin.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Yiwen ur yettaɣranunread|$1 ur yettwaɣran ara}}",
+	"bluesky-pagelog": "Lǧerrat i usebter-agi",
+	"bluesky-page": "Ifecka n isebtar",
+	"bluesky-admin": "Anedbal",
+	"bluesky-page-edited": "Asebter ibeddel tikelt taneggarut di {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Asnifel aneggaru n usebter di {{int:ago|$1}} sɣur $2",
+	"duration-months": "$1 {{PLURAL:$1|n wayyur|n wayyuren}}",
+	"bluesky-toc-sections": "Tigezmiyin",
+	"bluesky-home": "Agejdan",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Isebtar usligen]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Isebtar n usenfaṛ]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Isebtar n usqerdec n usenfaṛ]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Ifuyla]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Tineɣrufin]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Taggayin]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} isebtar n {{NAMESPACE}}]",
+	"bluesky-article-info": "Talɣut ɣef umagrad",
+	"bluesky-page-info": "Talɣut ɣef usebter",
+	"bluesky-footer-tools": "Ifecka nniḍen n usebter"
 }
