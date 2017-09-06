@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joedalton"
+		]
+	},
+	"bluesky-desc": "Tema baseret på den nuværende version (sent 2013) af wikiHows tema",
+	"bluesky-editthis": "Rediger denne side",
+	"bluesky-viewsource": "Vis kilden for denne side",
+	"bluesky-navbar-edit": "Rediger",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Beskeder",
+	"bluesky-notifications-new-talk": "Du har $1 ny(e) {{PLURAL:$1|besked|beskeder}}.",
+	"bluesky-notifications-none": "Du har ingen påmindelser på dette tidspunkt.\nBesøg din [[$1|diskussionsside]] for at se de tidligere beskeder.",
+	"bluesky-notifications-no-talk": "Besøg din [[$1|diskussionsside]] for at se tidligere beskeder.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|En ulæst|$1 ulæste}}",
+	"bluesky-pagelog": "Logge for denne side",
+	"bluesky-page": "Sideværktøjer",
+	"bluesky-admin": "Administrator",
+	"bluesky-page-edited": "Siden sidst redigeret {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Siden sidst redigeret {{int:ago|$1}} af $2",
+	"duration-months": "$1 {{PLURAL:$1|måned|måneder}}",
+	"bluesky-toc-sections": "Sektioner",
+	"bluesky-home": "Forside",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Specielle sider]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektsider]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Projektdiskusionssider]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Filer]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Skabeloner]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorier]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} sider]",
+	"bluesky-article-info": "Artikelinfo",
+	"bluesky-page-info": "Sideinfo",
+	"bluesky-footer-tools": "Ekstra sideværktøjer"
+}
