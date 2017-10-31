@@ -4,10 +4,11 @@
 			"...",
 			"Liuxinyu970226",
 			"Raymond",
-			"Robby"
+			"Robby",
+			"Umherirrender"
 		]
 	},
-	"skinname-bluesky": "{{optional}}",
+	"skinname-bluesky": "{{name}}",
 	"bluesky-desc": "{{desc|what=skin|name=bluesky|url=https://www.mediawiki.org/wiki/Skin:BlueSky}}",
 	"bluesky-editthis": "Edit this page link label in editing header dropdown\n{{Identical|Edit this page}}",
 	"bluesky-viewsource": "View source link label in editing header dropdown",
