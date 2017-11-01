@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"bluesky-editthis": "Нисъе хӀара агӀо",
+	"bluesky-viewsource": "Хьажа хӀоккху агӀона дӀадолалун йозане",
+	"bluesky-navbar-edit": "Нисъе",
+	"bluesky-personaltools": "Профиль",
+	"bluesky-messages": "Хаам",
+	"bluesky-notifications-new-talk": "Хьоьга беана $1 керла - {{PLURAL:$1|хаам}}.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|цхьаъ ешна йоцу|$1 ешна йоцурш}}",
+	"bluesky-pagelog": "ХӀокху агӀона тептарш",
+	"bluesky-page": "ГӀирсаш агӀонашна",
+	"bluesky-admin": "Куьйгалхой",
+	"bluesky-toc-sections": "Дакъош",
+	"bluesky-home": "Коьрта",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|къаьстина агӀонаш]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} агӀонан проектан]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Проектан дийцаре агӀо]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлаш]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|пространство имен=10}} кепаш]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категореш]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} агӀонаш]",
+	"bluesky-article-info": "Яззаман информаци",
+	"bluesky-page-info": "АгӀонан информаци",
+	"bluesky-footer-tools": "АгӀонан кхин тӀе гӀирсаш"
+}
