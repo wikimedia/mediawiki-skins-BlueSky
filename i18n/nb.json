@@ -4,6 +4,7 @@
 			"Jon Harald Søby"
 		]
 	},
+	"skinname-bluesky": "Blue Sky",
 	"bluesky-desc": "Drakt basert på den nåværende versjonen (sent 2013) av wikiHows drakt",
 	"bluesky-editthis": "Rediger denne siden",
 	"bluesky-viewsource": "Vis kilden for denne siden",
@@ -21,6 +22,7 @@
 	"bluesky-page-edited-user": "Siden sist redigert {{int:ago|$1}} av $2",
 	"duration-months": "$1 {{PLURAL:$1|måned|måneder}}",
 	"bluesky-toc-sections": "Seksjoner",
+	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Hjem",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Spesialsider]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Prosjektsider]",
