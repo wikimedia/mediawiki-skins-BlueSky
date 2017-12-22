@@ -32,7 +32,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$title = $skin->getTitle();
 		$request = $skin->getRequest();
 		$action = $request->getVal( 'action', 'view' );
-		if ( count( $request->getVal( 'diff' ) ) > 0 ) {
+		if ( count( $request->getVal( 'diff',[] ) ) > 0 ) {
 			$action = 'diff';
 		}
 		// We'll treat the mainpage like any other page if they're doing something besides looking at it
