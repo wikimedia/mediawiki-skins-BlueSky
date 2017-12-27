@@ -22,12 +22,6 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * Outputs the entire contents of the page
 	 */
 	public function execute() {
-		global $wgContLang, $wgHideInterlanguageLinks;
-
-		//get stupid tools pile; we'll dump these on the page throughout
-		$this->allTools = $this->getPageTools();
-
-		// All this so we know what view mode and stuff we're in...?
 		$skin = $this->getSkin();
 		$title = $skin->getTitle();
 		$request = $skin->getRequest();
@@ -35,387 +29,348 @@ class BlueSkyTemplate extends BaseTemplate {
 		if ( count( $request->getVal( 'diff',[] ) ) > 0 ) {
 			$action = 'diff';
 		}
+		$namespace = $title->getNamespace();
+		$user = $skin->getUser();
+		//get stupid tools pile; we'll dump these on the page throughout
+		$this->allTools = $this->getPageTools();
 		// We'll treat the mainpage like any other page if they're doing something besides looking at it
 		$this->isMainPage = ( $title->isMainPage() && $action == 'view' );
 
-		$namespace = $title->getNamespace();
-		$user = $skin->getUser();
+		// Variables out of the way; open html, body elements, etc
+		$html = $this->get( 'headelement' );
+		$html .= Html::openElement( 'div', [ 'id' => 'mw-wrapper' ] );
 
-		$this->html( 'headelement' );
-		?>
-		<div id="mw-wrapper">
-		<div id="header-outer">
-			<div class="wrapper-inner" id="header-inner">
-			<?php
+		// Page header
+		$html .= Html::rawElement( 'div', [ 'id' => 'header-outer' ],
+			Html::rawElement( 'div', [ 'class' => 'wrapper-inner', 'id' => 'header-inner' ],
 				// Logo block
-				echo $this->getBanner();
-				// Duh.
-				echo $this->getSearch();
+				$this->getBanner() .
+				$this->getSearch() .
 				// funky tabs
-				echo $this->getMiscNavigation( 'sidebar', 2, true );
-				$this->clear();
-			?>
-			</div>
-		</div>
-		<div class="wrapper-inner" id="main-outer">
-			<?php
-			if ( $this->data['sitenotice'] ) {
-				echo Html::rawElement(
+				$this->getMiscNavigation( 'sidebar', 2, true ) .
+				$this->getClear()
+			)
+		);
+
+		$html .= Html::openElement ( 'div', [ 'class' => 'wrapper-inner', 'id' => 'main-outer' ] );
+
+		if ( $this->data['sitenotice'] ) {
+			$html .= Html::rawElement(
+				'div',
+				[ 'id' => 'siteNotice' ],
+				$this->get( 'sitenotice' )
+			);
+		}
+
+		// Content header
+		if ( $namespace != NS_SPECIAL && !$this->isMainPage ) {
+			$html .= Html::rawElement( 'div', [ 'id' => 'content-nav' ],
+				Html::rawElement(
 					'div',
-					[ 'id' => 'siteNotice' ],
-					$this->get( 'sitenotice' )
+					[ 'id' => 'page-tools' ],
+					$this->getPageLinks()
+				) .
+				Html::rawElement(
+					'div',
+					[ 'id' => 'page-categories' ],
+					$this->getCategoryBreadcrumbs()
+				)
+			);
+			$html .= $this->getClear();
+			$html .= Html::openElement( 'div', [ 'id' => 'content-header' ] );
+			$html .= $this->getIndicators();
+			$html .= $this->getSpareEditLink();
+			$html .= Html::rawElement(
+				'h1',
+				[
+					'class' => 'firstHeading',
+					'lang' => $this->get( 'pageLanguage' )
+				],
+				$this->get( 'title' )
+			);
+
+			// contentSub
+			$html .= Html::openElement(
+				'div',
+				[ 'id' => 'contentSub' ]
+			);
+			if ( $this->data['subtitle'] ) {
+				$html .= Html::rawelement (
+					'p',
+					[],
+					$this->get( 'subtitle' )
 				);
 			}
-			?>
-			<?php
-			if ( $namespace != NS_SPECIAL && !$this->isMainPage ) {
-				echo Html::openElement( 'div', [ 'id' => 'content-nav' ] );
-				echo Html::rawElement(
+			if ( $this->data['undelete'] ) {
+				$html .= Html::rawelement (
+					'p',
+					[],
+					$this->get( 'undelete' )
+				);
+			}
+			$html .= Html::rawElement(
+				'div',
+				[ 'id' => 'last-edit' ],
+				$this->getPageLastEdit()
+			);
+			$html .= Html::closeElement( 'div' );
+
+			// ToC
+			$toc = $this->getToc();
+			if ( $toc != '' ) {
+				$html .= Html::rawElement(
+					'div',
+					[ 'id' => 'header-toc-wrapper' ],
+					Html::rawElement(
+						'div',
+						[ 'id' => 'header-toc' ],
+						Html::element(
+							'h2',
+							[ 'id' => 'header-toc-header' ],
+							$this->getMsg( 'bluesky-toc-sections' )->text()
+						) . $toc
+					)
+				);
+			}
+			$html .= Html::closeElement( 'div' );
+		}
+
+		$html .= Html::openElement( 'div', [ 'id' => 'content-block' ] );
+
+		// Alternate content header for special pages
+		if ( $namespace == NS_SPECIAL ) {
+			$html .= Html::openElement( 'div', [ 'id' => 'content-block-header' ] );
+
+			$html .= $this->getIndicators();
+			$html .= Html::rawElement(
+				'h1',
+				[
+					'class' => 'firstHeading',
+					'lang' => $this->get( 'pageLanguage' )
+				],
+				$this->get( 'title' )
+			);
+			$html .= Html::openElement(
+				'div',
+				[ 'id' => 'contentSub' ]
+			);
+
+			if ( $this->data['subtitle'] ) {
+				$html .= Html::rawelement (
+					'p',
+					[],
+					$this->get( 'subtitle' )
+				);
+			}
+			$html .= Html::closeElement( 'div' );
+			$html .= Html::closeElement( 'div' );
+		}
+
+		// Content
+		$html .= Html::rawElement( 'div', [ 'class' => 'mw-body', 'role' => 'main' ],
+			Html::rawElement( 'div', [ 'class' => 'mw-body-content', 'id' => 'bodyContent' ],
+				$this->get( 'bodytext' ) .
+				$this->getClear() .
+				Html::rawElement(
+					'div',
+					[ 'class' => 'printfooter' ],
+					$this->get( 'printfooter' )
+				)
+			)
+		);
+
+		// Footers and closing up
+		$html .= Html::closeElement( 'div' );
+
+		$html .= $this->getContentFooter();
+
+		$html .= $this->get( 'dataAfterContent' );
+
+		$html .= Html::closeElement( 'div' );
+
+		$html .= $this->getPageFooter();
+
+		$html .= Html::closeElement( 'div' );
+
+		// Required for RL to run
+		$html .= MWDebug::getDebugHTML( $this->getSkin()->getContext() );
+		$html .= $this->get( 'bottomscripts' );
+		$html .= $this->get( 'reporttime' );
+
+		$html .= Html::closeElement( 'body' );
+		$html .= Html::closeElement( 'html' );
+
+		// The unholy echo
+		echo $html;
+	}
+
+	/**
+	 * Page content footer
+	 *
+	 * @return string html
+	 */
+	private function getContentFooter() {
+		$skin = $this->getSkin();
+		$user = $skin->getUser();
+		$title = $skin->getTitle();
+		$namespace = $title->getNamespace();
+
+		// Add main page
+		$target = Skin::makeInternalOrExternalUrl( $this->getMsg( 'mainpage' )->inContentLanguage()->text() );
+		$link = Html::element(
+			'a',
+			[ 'href' => $target ],
+			$this->getMsg( 'mainpage-description' )->text()
+		);
+		$this->set( 'mainpage', $link );
+		$this->data['footerlinks']['places'][] = 'mainpage';
+
+		// Reverse order to put mainpage link at the beginning
+		$this->data['footerlinks']['places'] = array_reverse( $this->data['footerlinks']['places'] );
+
+		// Add login link if not logged in
+		if ( !$user->isLoggedIn() ) {
+			$link = Linker::link(
+				SpecialPage::getTitleFor( 'Userlogin' ),
+				$this->getMsg( 'login' )->text()
+			);
+			$this->set( 'login', $link );
+			$this->data['footerlinks']['places'][] = 'login';
+		}
+
+		$html = '';
+
+		// Footer info
+		$defaultFooter = $this->getFooterLinks();
+
+		$languages = $this->getInterLanguageLinks();
+		$catLinks = $skin->getCategoryLinks();
+		// normalise into string
+		$catLinks = $catLinks ? $catLinks : '';
+
+		$footerInfo = $catLinks . $languages;
+
+		if (
+			( $namespace != NS_SPECIAL ) &&
+			( $footerInfo !== '' || count( $this->allTools['page-tertiary'] ) > 0 )
+		) {
+			$html .= Html::openElement( 'div', [ 'id' => 'content-footer' ] );
+
+			if ( $namespace != NS_MAIN || $this->isMainPage ) {
+				$infoHeader = 'bluesky-page-info';
+			} else {
+				$infoHeader = 'bluesky-article-info';
+			}
+			$html .= Html::element(
+				'h2',
+				[],
+				$this->getMsg( $infoHeader )->text()
+			);
+
+			$footerTools = '';
+			$footerTools .= $this->getPortlet( [
+				'id' => 'p-page-footer-tools',
+				'class' => 'info',
+				'headerMessage' => 'bluesky-footer-tools',
+				'content' => $this->allTools['page-tertiary']
+			] );
+			if ( $this->isMainPage ) {
+				// Output the page edit/etc tools since we didn't above
+				$footerTools .= Html::rawElement(
 					'div',
 					[ 'id' => 'page-tools' ],
 					$this->getPageLinks()
 				);
-				echo Html::rawElement(
-					'div',
-					[ 'id' => 'page-categories' ],
-					$this->getCategoryBreadcrumbs()
-				);
-				echo Html::closeElement( 'div' );
-				$this->clear();
-			}
-			?>
-
-			<?php
-			if ( false /* is content-sidebar enabled in config? */ ) {
-				echo Html::rawElement (
-					'div',
-					[ 'id' => 'side-block' ],
-					'' // ????
-				);
-			}
-			if ( $namespace != NS_SPECIAL && !$this->isMainPage ) {
-				echo Html::openElement( 'div', [ 'id' => 'content-header' ] );
-				echo $this->getIndicators();
-				echo $this->getSpareEditLink();
-
-				echo Html::rawElement(
-					'h1',
-					[
-						'class' => 'firstHeading',
-						'lang' => $this->get( 'pageLanguage' )
-					],
-					$this->get( 'title' )
-				);
-				echo Html::openElement(
-					'div',
-					[ 'id' => 'contentSub' ]
-				);
-
-				if ( $this->data['subtitle'] ) {
-					echo Html::rawelement (
-						'p',
-						[],
-						$this->get( 'subtitle' )
-					);
-				}
-				if ( $this->data['undelete'] ) {
-					echo Html::rawelement (
-						'p',
-						[],
-						$this->get( 'undelete' )
-					);
-				}
-				echo Html::rawElement(
-					'div',
-					[ 'id' => 'last-edit' ],
-					$this->getPageLastEdit()
-				);
-
-				echo Html::closeElement( 'div' );
-
-				$toc = $this->getToc();
-				if ( $toc != '' ) {
-
-					$toc = Html::element(
-						'h2',
-						[ 'id' => 'header-toc-header' ],
-						$this->getMsg( 'bluesky-toc-sections' )->text()
-					) . $toc;
-					echo Html::openElement(
-						'div',
-						[ 'id' => 'header-toc-wrapper' ]
-					);
-					echo Html::rawElement(
-						'div',
-						[ 'id' => 'header-toc' ],
-						$toc
-					);
-					echo Html::closeElement( 'div' );
-				}
-				echo Html::closeElement( 'div' );
-			}
-			?>
-			<div id="content-block">
-			<?php
-			if ( $namespace == NS_SPECIAL ) {
-				echo Html::openElement( 'div', [ 'id' => 'content-block-header' ] );
-				echo $this->getIndicators();
-
-				echo Html::rawElement(
-					'h1',
-					[
-						'class' => 'firstHeading',
-						'lang' => $this->get( 'pageLanguage' )
-					],
-					$this->get( 'title' )
-				);
-				echo Html::openElement(
-					'div',
-					[ 'id' => 'contentSub' ]
-				);
-
-				if ( $this->data['subtitle'] ) {
-					echo Html::rawelement (
-						'p',
-						[],
-						$this->get( 'subtitle' )
-					);
-				}
-				echo Html::closeElement( 'div' );
-				echo Html::closeElement( 'div' );
-			}
-			?>
-			<div class="mw-body" role="main">
-				<div class="mw-body-content">
-					<?php
-					$this->html( 'bodycontent' );
-					$this->clear();
-
-					echo Html::rawElement(
-						'div',
-						[ 'class' => 'printfooter' ],
-						$this->get( 'printfooter' )
-					);
-					?>
-				</div>
-			</div>
-			</div>
-			<?php
-			$catLinks = $skin->getCategoryLinks();
-
-			// Get languages in a more usable fashion
-			// (as usual, $this->data['language_urls'] is dumb and hardcodes too many assumptions)
-			$languages = [];
-			if ( !$wgHideInterlanguageLinks ) {
-				foreach (  $skin->getOutput()->getLanguageLinks() as $blob ) {
-					$tmp = explode( ':', $blob, 2 );
-					$class = 'interwiki-' . $tmp[0];
-					$code = $tmp[0];
-					$iwTitleName = $tmp[1];
-					$iwTitle = Title::newFromText( $blob );
-					$inLanguage = $wgContLang->getCode();
-					$interwiki = $iwTitle->getInterwiki();
-					if ( Language::fetchLanguageName( $interwiki, $inLanguage ) != '' ) {
-						$language = Language::fetchLanguageName( $interwiki, $inLanguage );
-					} else {
-						$language = $blob;
-					}
-					$languages[] = [
-						'code' => $code,
-						'href' => $iwTitle->getFullURL(),
-						'text' => $iwTitleName,
-						'class' => $class,
-						'language' => $language
-					];
-				}
 			}
 
-			// Set up footer data
-			// Add main page
-			$target = Skin::makeInternalOrExternalUrl( $this->getMsg( 'mainpage' )->inContentLanguage()->text() );
-			$link = Html::element(
-				'a',
-				[ 'href' => $target ],
-				$this->getMsg( 'mainpage-description' )->text()
+			$html .= Html::rawElement(
+				'div',
+				[ 'id' => 'content-footer-main' ],
+				$footerInfo . $footerTools
 			);
-			$this->set( 'mainpage', $link );
-			$this->data['footerlinks']['places'][] = 'mainpage';
 
-			// Reverse order to put mainpage link at the beginning
-			$this->data['footerlinks']['places'] = array_reverse( $this->data['footerlinks']['places'] );
-
-			// Add login link if not logged in
-			if ( !$user->isLoggedIn() ) {
-				$link = Linker::link(
-					SpecialPage::getTitleFor( 'Userlogin' ),
-					$this->getMsg( 'login' )->text()
-				);
-				$this->set( 'login', $link );
-				$this->data['footerlinks']['places'][] = 'login';
-			}
-
-			// Footer info
-			$defaultFooter = $this->getFooterLinks();
-
-			if (
-				( $namespace != NS_SPECIAL ) &&
-				( $languages || $catLinks || count( $this->allTools['page-tertiary'] ) > 0 )
-			) {
-				echo Html::openElement( 'div', [ 'id' => 'content-footer' ] );
-
-				if ( $namespace != NS_MAIN || $this->isMainPage ) {
-					$infoHeader = 'bluesky-page-info';
-				} else {
-					$infoHeader = 'bluesky-article-info';
-				}
-				echo Html::element(
-					'h2',
-					[],
-					$this->getMsg( $infoHeader )->text()
-				);
-
-
-				$footerInfo = '';
-				if ( $catLinks ) {
-					$footerInfo .= $catLinks;
-				}
-				if ( $languages ) {
-					$footerInfo .= Html::openElement(
-						'div',
-						[ 'id' => 'mw-languages' ]
-					);
-					$footerInfo .= Html::element(
-						'span',
-						[ 'id' => 'otherlanguages-label' ],
-						$this->getMsg( 'otherlanguages' )->text()
-					);
-
-					$footerInfo .= Html::openElement( 'ul', [] );
-					foreach ( $languages as $langlink ) {
-						$footerInfo .= Html::rawElement(
-							'li',
-							[ 'class' => Sanitizer::escapeClass( $langlink['code'] ) ],
-							htmlspecialchars( trim( $langlink['language'] ) ) .
-							Html::element(
-								'a',
-								[
-									'href' => htmlspecialchars( $langlink['href'] ),
-									'class' => $langlink['class'] . ' interwiki'
-								],
-								$langlink['text']
-							)
-						);
-					}
-					$footerInfo .= Html::closeElement( 'ul' );
-
-					$footerInfo .= Html::closeElement( 'div' );
-				}
-
-				$footerTools = '';
-				$footerTools .= $this->getPortlet( [
-					'id' => 'p-page-footer-tools',
-					'class' => 'info',
-					'headerMessage' => 'bluesky-footer-tools',
-					'content' => $this->allTools['page-tertiary']
-				] );
-				if ( $this->isMainPage ) {
-					// Output the page edit/etc tools since we didn't above
-					$footerTools .= Html::rawElement(
-						'div',
-						[ 'id' => 'page-tools' ],
-						$this->getPageLinks()
-					);
-				}
-
-				echo Html::rawElement(
-					'div',
-					[ 'id' => 'content-footer-main' ],
-					$footerInfo . $footerTools
-				);
-
-				if ( isset( $defaultFooter['info'] ) ) {
-					echo Html::openElement( 'ul', [ 'id' => 'footer-info' ] );
-					foreach ( $defaultFooter['info'] as $key ) {
-						echo Html::rawElement(
-							'li',
-							[
-								'id' => 'footer-' . Sanitizer::escapeId( 'info-' . $key )
-							],
-							$this->get( $key )
-						);
-					}
-					echo Html::closeElement( '' );
-				}
-
-				echo Html::closeElement( 'div' );
-				$this->html( 'dataAfterContent' );
-			}
-			?>
-		</div>
-
-		<div id="mw-footer">
-		<div id="footer-inner" class="wrapper-inner">
-			<?php
-
-			foreach ( $defaultFooter as $category => $links ) {
-				if ( $category == 'info' ) {
-					continue;
-				}
-				echo Html::openElement(
-					'ul',
-					[
-						'id' => 'footer-' . Sanitizer::escapeId( $category ),
-						'role' => 'contentinfo'
-					]
-				);
-				foreach ( $links as $key ) {
-					echo Html::rawElement(
+			if ( isset( $defaultFooter['info'] ) ) {
+				$html .= Html::openElement( 'ul', [ 'id' => 'footer-info' ] );
+				foreach ( $defaultFooter['info'] as $key ) {
+					$html .= Html::rawElement(
 						'li',
 						[
-							'id' => 'footer-' . Sanitizer::escapeId( $category . '-' . $key )
+							'id' => 'footer-' . Sanitizer::escapeId( 'info-' . $key )
 						],
 						$this->get( $key )
 					);
 				}
-				echo Html::closeElement( 'ul' );
+				$html .= Html::closeElement( '' );
 			}
 
-			// Icon stuff - powered by, copyright, etc
-			echo Html::openElement(
+			$html .= Html::closeElement( 'div' );
+		}
+
+		return $html;
+	}
+
+	protected function getPageFooter() {
+		$skin = $this->getSkin();
+
+		$html = Html::openElement( 'div', [ 'id' => 'mw-footer' ] );
+		$html .= Html::openElement( 'div', [ 'id' => 'footer-inner', 'class' => 'wrapper-inner' ] );
+
+		$defaultFooter = $this->getFooterLinks();
+		foreach ( $defaultFooter as $category => $links ) {
+			if ( $category == 'info' ) {
+				continue;
+			}
+			$html .= Html::openElement(
 				'ul',
 				[
-					'id' => 'footer-icons',
-					'role' => 'contentinfo',
+					'id' => 'footer-' . Sanitizer::escapeId( $category ),
+					'role' => 'contentinfo'
 				]
 			);
-			foreach ( $this->getFooterIcons( 'icononly' ) as $blockName => $footerIcons ) {
-				echo Html::openElement(
+			foreach ( $links as $key ) {
+				$html .= Html::rawElement(
 					'li',
 					[
-						'id' => 'footer-' . Sanitizer::escapeId( $blockName ) . 'ico'
-					]
+						'id' => 'footer-' . Sanitizer::escapeId( $category . '-' . $key )
+					],
+					$this->get( $key )
 				);
-				foreach ( $footerIcons as $icon ) {
-					echo $skin->makeFooterIcon( $icon );
-				}
-				echo Html::closeElement( 'li' );
 			}
-			echo Html::closeElement( 'ul' );
-			$this->clear();
-			?>
-		</div>
-		</div>
+			$html .= Html::closeElement( 'ul' );
+		}
 
-		</div>
+		// Icon stuff - powered by, copyright, etc
+		$html .= Html::openElement(
+			'ul',
+			[
+				'id' => 'footer-icons',
+				'role' => 'contentinfo',
+			]
+		);
+		foreach ( $this->getFooterIcons( 'icononly' ) as $blockName => $footerIcons ) {
+			$html .= Html::openElement(
+				'li',
+				[
+					'id' => 'footer-' . Sanitizer::escapeId( $blockName ) . 'ico'
+				]
+			);
+			foreach ( $footerIcons as $icon ) {
+				$html .= $skin->makeFooterIcon( $icon );
+			}
+			$html .= Html::closeElement( 'li' );
+		}
+		$html .= Html::closeElement( 'ul' );
+		$html .= $this->getClear();
 
-		<?php $this->printTrail() ?>
-		</body></html>
+		$html .= Html::closeElement( 'div' );
+		$html .= Html::closeElement( 'div' );
 
-		<?php
+		return $html;
 	}
 
 	/**
 	 * Generates pile of all the tools
+	 * WHAT THE FUCK IS THIS
 	 *
 	 * @return array of arrays of each kind of tool
 	 */
@@ -843,7 +798,6 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 	}
 
-
 	/**
 	 * Get the edit menu if editable: edit page, whatlinkshere, page stats, relatedpages, wikidata item etc
 	 *
@@ -1011,6 +965,7 @@ class BlueSkyTemplate extends BaseTemplate {
 	/**
 	 * @param array $notes Notification HTML for each notification in an array
 	 * @param bool $newTalk Does the current user have new talk page messages?
+	 *
 	 * @return string HTML output
 	 */
 	private function formatNotifications( $notes, $newTalk ) {
@@ -1148,21 +1103,72 @@ class BlueSkyTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * Output interlanguage links block
+	 * Get languages string, if any interlanguages present
+	 * (As usual, $this->data['language_urls'] is dumb and hardcodes too many assumptions)
 	 *
-	 * @return string|null
+	 * @return string
 	 */
 	private function getInterlanguageLinks() {
-		if ( $this->data['language_urls'] ) {
-			$msgObj = $this->getMsg( 'otherlanguages' )->escaped();
-			return $this->getPortlet( [
-				'id' => 'p-lang',
-				'header' => $msgObj,
-				'generated' => false,
-				'content' => $this->data['language_urls']
-			] );
+		global $wgContLang, $wgHideInterlanguageLinks;
+
+		$skin = $this->getSkin();
+
+		$languages = [];
+		if ( !$wgHideInterlanguageLinks ) {
+			foreach (  $skin->getOutput()->getLanguageLinks() as $blob ) {
+				$tmp = explode( ':', $blob, 2 );
+				$class = 'interwiki-' . $tmp[0];
+				$code = $tmp[0];
+				$iwTitleName = $tmp[1];
+				$iwTitle = Title::newFromText( $blob );
+				$inLanguage = $wgContLang->getCode();
+				$interwiki = $iwTitle->getInterwiki();
+				if ( Language::fetchLanguageName( $interwiki, $inLanguage ) != '' ) {
+					$language = Language::fetchLanguageName( $interwiki, $inLanguage );
+				} else {
+					$language = $blob;
+				}
+				$languages[] = [
+					'code' => $code,
+					'href' => $iwTitle->getFullURL(),
+					'text' => $iwTitleName,
+					'class' => $class,
+					'language' => $language
+				];
+			}
 		}
-		return null;
+
+		$html = '';
+
+		if ( count( $languages ) > 0 ) {
+			$html .= Html::openElement( 'div', [ 'id' => 'mw-languages' ] );
+			$html .= Html::element(
+				'span',
+				[ 'id' => 'otherlanguages-label' ],
+				$this->getMsg( 'otherlanguages' )->text()
+			);
+
+			$html .= Html::openElement( 'ul', [] );
+			foreach ( $languages as $langlink ) {
+				$html .= Html::rawElement(
+					'li',
+					[ 'class' => Sanitizer::escapeClass( $langlink['code'] ) ],
+					htmlspecialchars( trim( $langlink['language'] ) ) .
+					Html::element(
+						'a',
+						[
+							'href' => htmlspecialchars( $langlink['href'] ),
+							'class' => $langlink['class'] . ' interwiki'
+						],
+						$langlink['text']
+					)
+				);
+			}
+			$html .= Html::closeElement( 'ul' );
+			$html .= Html::closeElement( 'div' );
+		}
+
+		return $html;
 	}
 
 	/**
@@ -1194,7 +1200,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			$this->getMsg( 'bluesky-home' )->text()
 		);
 
-		$html .= $this->getBCPointer();
+		$html .= $this->getBreadcrumbsPointer();
 
 		// figure out categories
 		// Get list from output if in view/edit/preview; otherwise get list from title
@@ -1251,7 +1257,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		// Do categories
 		if ( count( $allCats ) > 0 ) {
-			$html .= $this->getBCPointer();
+			$html .= $this->getBreadcrumbsPointer();
 
 			// SQL provided by your friendly neighbourhood Skizzers
 			// I honestly don't remember what this was for, but it was apparently needed to get the actually relevant ones
@@ -1301,7 +1307,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 			$html .= $catList;
 
-			// $html .= $this->getBCPointer();
+			// $html .= $this->getBreadcrumbsPointer();
 		}
 
 		// page
@@ -1311,7 +1317,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		return $html;
 	}
 
-	private function getBCPointer() {
+	private function getBreadcrumbsPointer() {
 		return Html::element(
 			'span',
 			[ 'class' => 'breadcrumbs-separator' ],
@@ -1319,7 +1325,11 @@ class BlueSkyTemplate extends BaseTemplate {
 		);
 	}
 
-	/* Gets all the category info, returns array of parsed normal and hidden catlink html */
+	/**
+	 * Get all the category info
+	 *
+	 * @return array of parsed normal and hidden catlink html
+	 */
 	private function getCategoryLinks() {
 		global $wgContLang;
 
@@ -1431,18 +1441,12 @@ class BlueSkyTemplate extends BaseTemplate {
 
 	/**
 	 * Make an extra edit link for the page header, or a refresh link for special pages
+	 * TODO implement?
 	 *
 	 * @return string HTML
 	 */
 	private function getSpareEditLink() {
 		return '';
-	}
-
-	/**
-	 * Outputs a css clear using the core visualClear class
-	 */
-	private function clear() {
-		echo '<div class="visualClear"></div>';
 	}
 
 	/**
