@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido"
+		]
+	},
+	"bluesky-personaltools": "Perfil",
+	"bluesky-messages": "Missatges",
+	"bluesky-pagelog": "Registres d’aquesta pàgina",
+	"bluesky-page": "Eines de la pàgina",
+	"duration-months": "$1 {{PLURAL:$1|mes|mesos}}",
+	"bluesky-toc-sections": "Seccions",
+	"bluesky-home": "Inici",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pàgines especials]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pàgines del projecte]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Pàgines de discussió de projecte]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Fitxers]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Plantilles]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categories]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} pàgines]",
+	"bluesky-article-info": "Informació de l’article",
+	"bluesky-page-info": "Informació de la pàgina",
+	"bluesky-footer-tools": "Eines addicionals de la pàgina"
+}
