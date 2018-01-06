@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Hex",
-			"Rcdeboer"
+			"Rcdeboer",
+			"Mar(c)"
 		]
 	},
 	"bluesky-desc": "Uiterlijk gebaseerd op de huidige versie (eind 2013) van wikiHow's uiterlijk",
@@ -11,8 +12,8 @@
 	"bluesky-navbar-edit": "Bewerken",
 	"bluesky-personaltools": "Profiel",
 	"bluesky-messages": "Berichten",
-	"bluesky-notifications-new-talk": "U heeft $1 {{PLURAL:$1|nieuw bericht|nieuwe berichten}} op uw overlegpagina.",
-	"bluesky-notifications-none": "U heeft geen meldingen op dit moment.\nBezoek uw [[$1|overlegpagina]] om eerdere berichten te bekijken.",
+	"bluesky-notifications-new-talk": "U hebt $1 {{PLURAL:$1|nieuw bericht|nieuwe berichten}} op uw overlegpagina.",
+	"bluesky-notifications-none": "U hebt geen meldingen op dit moment.\nBezoek uw [[$1|overlegpagina]] om eerdere berichten te bekijken.",
 	"bluesky-notifications-no-talk": "Bezoek uw [[$1|overlegpagina]] om eerdere berichten te bekijken.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Eén ongelezen|$1 ongelezen}}",
 	"bluesky-pagelog": "Logbestanden voor deze pagina",

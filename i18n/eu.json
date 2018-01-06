@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mikel Ibaiba"
+		]
+	},
+	"bluesky-editthis": "Orrialde hau aldatu",
+	"bluesky-viewsource": "Orrialde honetarako iturria ikusi",
+	"bluesky-navbar-edit": "Aldatu",
+	"bluesky-personaltools": "Profila",
+	"bluesky-messages": "Mezuak",
+	"bluesky-pagelog": "Orrialde honetarako saio hasierak",
+	"bluesky-page": "Orrialde tresnak",
+	"bluesky-admin": "Administratzalea",
+	"bluesky-page-edited": "Orria azkenengoz aldatua {{int:duela|$1}}",
+	"bluesky-toc-sections": "Atalak",
+	"bluesky-home": "Hasiera",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Orrialde bereziak]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Proiektu orriak]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Proiektu ezbaida orriak]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Fitxategiak]]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategoriak]]",
+	"bluesky-article-info": "Artikulu informazioa",
+	"bluesky-page-info": "Orri informazioa"
+}
