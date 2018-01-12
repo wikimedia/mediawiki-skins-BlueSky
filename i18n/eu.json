@@ -4,6 +4,7 @@
 			"Mikel Ibaiba"
 		]
 	},
+	"bluesky-desc": "wikiHow-ren azalaren gaur egungo bertsioan (2013ko amaiera) oinarritutako azala",
 	"bluesky-editthis": "Orrialde hau aldatu",
 	"bluesky-viewsource": "Orrialde honetarako iturria ikusi",
 	"bluesky-navbar-edit": "Aldatu",
@@ -13,13 +14,16 @@
 	"bluesky-page": "Orrialde tresnak",
 	"bluesky-admin": "Administratzalea",
 	"bluesky-page-edited": "Orria azkenengoz aldatua {{int:duela|$1}}",
+	"duration-months": "{{PLURAL: hilabete $1|$1 hilabete}}",
 	"bluesky-toc-sections": "Atalak",
 	"bluesky-home": "Hasiera",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Orrialde bereziak]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Proiektu orriak]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Proiektu ezbaida orriak]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Fitxategiak]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Proiektu orriak]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategoriak]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|izen-eremua={{NAMESPACENUMBER}}}} {{NAMESPACE}} orriak]",
 	"bluesky-article-info": "Artikulu informazioa",
 	"bluesky-page-info": "Orri informazioa",
 	"bluesky-footer-tools": "Orrialde gehigarriko tresnak"
