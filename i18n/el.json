@@ -1,13 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"GR"
+			"GR",
+			"Nikosgranturismogt"
 		]
 	},
+	"bluesky-editthis": "Επεξεργαστείτε αυτό το λήμμα",
+	"bluesky-viewsource": "Προβολή κώδικα για αυτή τη σελίδα",
+	"bluesky-navbar-edit": "Επεξεργασία",
 	"bluesky-personaltools": "Προφίλ",
 	"bluesky-messages": "Μηνύματα",
 	"bluesky-page": "Εργαλεία σελίδας",
 	"bluesky-admin": "Διαχείριση",
+	"bluesky-toc-sections": "Ενότητες",
+	"bluesky-home": "Αρχική",
 	"bluesky-article-info": "Πληροφορίες άρθρου",
 	"bluesky-page-info": "Πληροφορίες σελίδας",
 	"bluesky-footer-tools": "Πρόσθετα εργαλεία σελίδας"
