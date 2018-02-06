@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"1917 Ekim Devrimi",
-			"Gırd"
+			"Gırd",
+			"Mirzali"
 		]
 	},
 	"bluesky-desc": "mewcud versiyonê pak çermeyê Wikihow'i (2003 de)",
@@ -28,7 +29,7 @@
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Pela vatışê procey]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Dosyay]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Şabloni]",
-	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategoriy]]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategoriyi]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} perri]",
 	"bluesky-article-info": "Malumata wesiqa",
 	"bluesky-page-info": "Melumatê perre",
