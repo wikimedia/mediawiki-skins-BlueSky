@@ -52,7 +52,6 @@
 			}
 		},
 		"skins.bluesky.js": {
-			"position": "bottom",
 			"scripts": [
 				"resources/main.js"
 			]
