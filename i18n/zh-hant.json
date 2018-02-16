@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Cwlin0416",
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"Kly"
 		]
 	},
 	"bluesky-desc": "此外觀使用了目前版本 (2013 年後) 的 wikiHow 外觀為基礎。",
@@ -23,7 +24,7 @@
 	"duration-months": "$1 {{PLURAL:$1|月|月}}",
 	"bluesky-toc-sections": "章節",
 	"bluesky-home": "首頁",
-	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|特殊頁面]]",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|特定頁面]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} 專案頁面]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} 專案對話頁面]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|檔案]]",
