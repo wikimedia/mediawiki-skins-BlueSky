@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Prevodim"
+			"Prevodim",
+			"Acamicamacaraca"
 		]
 	},
 	"bluesky-desc": "Скин заснован на тренутној верзији (касна 2013) wikiHow скина",
@@ -10,9 +11,21 @@
 	"bluesky-navbar-edit": "Уреди",
 	"bluesky-personaltools": "Профил",
 	"bluesky-messages": "Поруке",
+	"bluesky-notifications-new-talk": "Имате $1 {{PLURAL:$1|нову поруку|нове поруке|нових порука}}.",
+	"bluesky-pagelog": "Дневници за ову страницу",
+	"bluesky-page": "Алатке за страницу",
 	"bluesky-admin": "Администратор",
+	"bluesky-page-edited": "Последња измена на страници извршена {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Последњу измену на страници извршио је $2 {{int:ago|$1}}",
+	"duration-months": "$1 {{PLURAL:$1|месец|месеца|месеци}}",
 	"bluesky-toc-sections": "Одељци",
 	"bluesky-home": "Почетна",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Посебне странице]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Пројекти]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Датотеке]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблони]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категорије]]",
 	"bluesky-article-info": "Информације о чланку",
-	"bluesky-page-info": "Информације о страници"
+	"bluesky-page-info": "Информације о страници",
+	"bluesky-footer-tools": "Додатне алатке за странице"
 }
