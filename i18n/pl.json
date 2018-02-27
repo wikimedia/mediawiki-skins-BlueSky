@@ -1,15 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chrumps"
+			"Chrumps",
+			"Woytecr"
 		]
 	},
 	"bluesky-editthis": "Edytuj tę stronę",
+	"bluesky-viewsource": "Zobacz kod źródłowy tej strony",
 	"bluesky-navbar-edit": "Edytuj",
 	"bluesky-personaltools": "Profil",
 	"bluesky-messages": "Wiadomości",
 	"bluesky-notifications-new-talk": "Masz $1 {{PLURAL:$1|nową wiadomość|nowe wiadomości|nowych wiadomości}} na stronie dyskusji.",
 	"bluesky-notifications-none": "Nie masz w tej chwili nowych powiadomień.\nOdwiedź swoją [[$1|stronę dyskusji]], aby zobaczyć wcześniejsze wiadomości.",
+	"bluesky-notifications-no-talk": "Wejdź na swoją [[$1|stronę dyskusji]], aby zobaczyć poprzednie wiadomości.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Jedno nieprzeczytane|$1 nieprzeczytane|$1 nieprzeczytanych}}",
 	"bluesky-pagelog": "Rejestry dla tej strony",
 	"bluesky-page": "Narzędzia strony",
