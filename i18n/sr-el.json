@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Zoranzoki21"
+		]
+	},
+	"bluesky-desc": "Skin zasnovan na trenutnoj verziji (kasna 2013) wikiHow skina",
+	"bluesky-editthis": "Uredi ovu stranicu",
+	"bluesky-viewsource": "Pogledaj izvor ove stranice",
+	"bluesky-navbar-edit": "Uredi",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Poruke",
+	"bluesky-notifications-new-talk": "Imate $1 {{PLURAL:$1|novu poruku|nove poruke|novih poruka}}.",
+	"bluesky-pagelog": "Dnevnici za ovu stranicu",
+	"bluesky-page": "Alatke za stranicu",
+	"bluesky-admin": "Administrator",
+	"bluesky-page-edited": "Poslednja izmena na stranici izvršena {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Poslednju izmenu na stranici izvršio je $2 {{int:ago|$1}}",
+	"duration-months": "$1 {{PLURAL:$1|mesec|meseca|meseci}}",
+	"bluesky-toc-sections": "Odeljci",
+	"bluesky-home": "Početna",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Posebne stranice]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projekti]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Datoteke]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Šabloni]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorije]]",
+	"bluesky-article-info": "Informacije o članku",
+	"bluesky-page-info": "Informacije o stranici",
+	"bluesky-footer-tools": "Dodatne alatke za stranice"
+}
