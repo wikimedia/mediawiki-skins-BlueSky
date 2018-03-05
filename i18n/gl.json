@@ -19,7 +19,7 @@
 	"bluesky-pagelog": "Rexistros desta páxina",
 	"bluesky-page": "Ferramentas de páxina",
 	"bluesky-admin": "Administrador",
-	"bluesky-page-edited": "A páxina editouse por última vez fai {{int:ago|$1}}",
+	"bluesky-page-edited": "A páxina editouse por última vez {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Última edición da páxina {{int:ago|$1}} por $2",
 	"duration-months": "$1 {{PLURAL: $1|mes|meses}}",
 	"bluesky-toc-sections": "Seccións",
