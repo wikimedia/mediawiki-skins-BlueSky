@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Strainu"
+		]
+	},
+	"bluesky-editthis": "Modificați această pagină",
+	"bluesky-navbar-edit": "Modificare",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Mesaje",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Unul necitit|$1 necitite}}",
+	"bluesky-pagelog": "Jurnalele acestei pagini",
+	"bluesky-page": "Unelte pentru pagini",
+	"bluesky-admin": "Administrator",
+	"duration-months": "$1 {{PLURAL:$1|lună|luni|de luni}}",
+	"bluesky-toc-sections": "Secțiuni",
+	"bluesky-home": "Acasă"
+}
