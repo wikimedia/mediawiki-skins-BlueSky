@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lizalizaufa"
+		]
+	},
+	"bluesky-editthis": "Ошо битте мөхәррирләргә",
+	"bluesky-viewsource": "Был биткә тәғәйен сығанаҡ тексты ҡарап алырға",
+	"bluesky-messages": "Хаттар",
+	"bluesky-notifications-new-talk": "Һеҙгә $1 яңы ток-{{PLURAL:$1|хат|хаттар}} бар.",
+	"bluesky-notifications-none": "Был мәлгә һеҙгә хат-хәбәр юҡ. Һуңғы хаттарҙы ҡарау өсөн үҙегеҙҙең [[$1|хәбәрләшеү бите]]  ҡарағыҙ.",
+	"bluesky-notifications-no-talk": "Һуңғы хаттарҙы уҡыу өсөн үҙегеҙҙең [[$1|хәбәрләшеү бите]] инегеҙ.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|бер уҡылмаған|$1 уҡылмаған}}",
+	"bluesky-pagelog": "Ошо бит өсөн журналдар",
+	"bluesky-page": "Бит ҡоралдары",
+	"bluesky-admin": "Хаким",
+	"bluesky-page-edited": "Бит һуңғы тапҡыр {{int:ago|$1}} мөхәррирләнде",
+	"bluesky-page-edited-user": "Бит һуңғы тапҡыр {{int:ago|$1}} мөхәррирләнде һәм $2",
+	"duration-months": "$1 {{PLURAL:$1|ай|}} элек",
+	"bluesky-home": "Баш биткә",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|махсус биттәр]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} биттең проекттары]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} проект буйынса фекер алышыу биттәре]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлдар]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl: Special: PrefixIndex | namespace = 10}} Ҡалыптар]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категориялар]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} биттәр]",
+	"bluesky-article-info": "Мәҡәлә тураһында",
+	"bluesky-page-info": "Бит тураһында",
+	"bluesky-footer-tools": "Биттең өҫтәлмә ҡоралдары"
+}
