@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Prevodim",
-			"Acamicamacaraca"
+			"Acamicamacaraca",
+			"BadDog"
 		]
 	},
 	"bluesky-desc": "Скин заснован на тренутној верзији (касна 2013) wikiHow скина",
@@ -12,6 +13,9 @@
 	"bluesky-personaltools": "Профил",
 	"bluesky-messages": "Поруке",
 	"bluesky-notifications-new-talk": "Имате $1 {{PLURAL:$1|нову поруку|нове поруке|нових порука}}.",
+	"bluesky-notifications-none": "Тренутно немате обавештења.\nПосетите своју [[$1|страницу за разговор]] да бисте видели раније поруке.",
+	"bluesky-notifications-no-talk": "Посетите своју [[$1|страницу за разговор]] да бисте видели раније поруке.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Једно непрочитано|$1 непрочитана|$1 непрочитаних}}",
 	"bluesky-pagelog": "Дневници за ову страницу",
 	"bluesky-page": "Алатке за страницу",
 	"bluesky-admin": "Администратор",
@@ -22,9 +26,11 @@
 	"bluesky-home": "Почетна",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Посебне странице]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Пројекти]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Странице за разговор пројекта]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Датотеке]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблони]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категорије]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страница]",
 	"bluesky-article-info": "Информације о чланку",
 	"bluesky-page-info": "Информације о страници",
 	"bluesky-footer-tools": "Додатне алатке за странице"
