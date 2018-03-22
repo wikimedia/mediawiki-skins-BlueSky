@@ -5,6 +5,7 @@
 			"Woytecr"
 		]
 	},
+	"bluesky-desc": "Skórka oparta na aktualnej wersji (koniec 2013 roku) skórki wikiHow",
 	"bluesky-editthis": "Edytuj tę stronę",
 	"bluesky-viewsource": "Zobacz kod źródłowy tej strony",
 	"bluesky-navbar-edit": "Edytuj",
@@ -21,6 +22,7 @@
 	"bluesky-page-edited-user": "Strona ostatnio edytowana {{int:ago|$1}} przez $2",
 	"duration-months": "$1 {{PLURAL:$1|miesiąc|miesiące|miesięcy}}",
 	"bluesky-toc-sections": "Sekcje",
+	"bluesky-home": "Start",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Strony specjalne]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Strony projektu]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Strony dyskusji projektu]",
