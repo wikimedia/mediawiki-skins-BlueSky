@@ -6,7 +6,7 @@
  */
 class SkinBlueSky extends SkinTemplate {
 	public $skinname = 'bluesky', $stylename = 'BlueSky',
-		$template = 'BlueSkyTemplate', $useHeadElement = true;
+		$template = 'BlueSkyTemplate';
 
 	/**
 	 * Add CSS via ResourceLoader
