@@ -25,7 +25,9 @@
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Toimintosivut]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektisivut]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Tiedostot]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} mallineet]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Luokat]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} sivut]",
 	"bluesky-article-info": "Artikkelin tiedot",
 	"bluesky-page-info": "Sivun tiedot"
 }
