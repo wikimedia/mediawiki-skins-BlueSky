@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Valtlait",
-			"Pyscowicz"
+			"Pyscowicz",
+			"01miki10"
 		]
 	},
+	"bluesky-desc": "Ulkoasu, joka perustuu wikiHow'n nykyiseen (loppuvuosi 2013) ulkoasuun",
 	"bluesky-editthis": "Muokkaa tätä sivua",
 	"bluesky-viewsource": "Näytä tämän sivun lähdekoodi",
 	"bluesky-navbar-edit": "Muokkaa",
@@ -24,6 +26,7 @@
 	"bluesky-home": "Koti",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Toimintosivut]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektisivut]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Projektin keskustelusivut]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Tiedostot]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} mallineet]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Luokat]]",
