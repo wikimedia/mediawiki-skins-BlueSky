@@ -10,6 +10,7 @@
 	"bluesky-personaltools": "Профиль",
 	"bluesky-messages": "Хат",
 	"bluesky-notifications-new-talk": "Сезнең $1 яңа {{PLURAL:$1|хатыгыз}} бар.",
+	"bluesky-notifications-none": "Әлегә хәбәрнамәләр юк. Соңгы язманы карау өчен [[$1|бәхәс битегезгә]] күчегез.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|бер укылмаган|$1 укылмаган}}",
 	"bluesky-pagelog": "Әлеге бит көндәлеге",
 	"bluesky-page": "Бит өчен кораллар",
