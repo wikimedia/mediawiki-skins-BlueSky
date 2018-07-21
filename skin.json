@@ -62,9 +62,9 @@
 		"remoteSkinPath": "BlueSky"
 	},
 	"AutoloadClasses": {
-		"SkinBlueSky": "BlueSky.skin.php",
-		"BlueSkyTemplate": "BlueSkyTemplate.php",
-		"BlueSkyHooks": "BlueSky.hooks.php"
+		"SkinBlueSky": "includes/BlueSky.skin.php",
+		"BlueSkyTemplate": "includes/BlueSkyTemplate.php",
+		"BlueSkyHooks": "includes/BlueSky.hooks.php"
 	},
 	"manifest_version": 1
 }
