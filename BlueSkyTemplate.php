@@ -26,7 +26,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$title = $skin->getTitle();
 		$request = $skin->getRequest();
 		$action = $request->getVal( 'action', 'view' );
-		if ( count( $request->getVal( 'diff',[] ) ) > 0 ) {
+		if ( $request->getVal( 'diff' ) !== null ) {
 			$action = 'diff';
 		}
 		$namespace = $title->getNamespace();
