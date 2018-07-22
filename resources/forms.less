@@ -8,15 +8,6 @@
 	color: @grey4;
 }
 
-/*
-	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:focus
-	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover
-	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:focus
-	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover
-	.oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
-	.oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus,
-*/
-
 #content-block {
 	#searchInput,
 	input[type="reset"],
@@ -31,7 +22,6 @@
 	input#wpTemplateSandboxPage,
 	input.mw-summary,
 	input.mw-input,
-	.mw-input input,
 	button,
 	textarea,
 	optgroup,
@@ -43,6 +33,7 @@
 	.oo-ui-textInputWidget.oo-ui-widget-enabled input,
 	.oo-ui-textInputWidget.oo-ui-widget-enabled textarea,
 	.oo-ui-textInputWidget input,
+	.mw-input input,
 	.oo-ui-textInputWidget textarea,
 	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button,
 	.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button,
@@ -79,6 +70,9 @@
 	input[type="radio"] {
 		min-height: 0;
 		padding: 0;
+		width: 1em;
+		height: 1em;
+		display: inline;
 	}
 	input[type="radio"] {
 		border-radius: 8px;
@@ -94,7 +88,6 @@
 	input#wpTemplateSandboxPage,
 	input.mw-summary,
 	textarea,
-	.mw-input input,
 	.mw-ui-input {
 		width: 80%
 	}
