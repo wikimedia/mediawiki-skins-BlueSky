@@ -6,7 +6,7 @@
 			"BadDog"
 		]
 	},
-	"bluesky-desc": "Скин заснован на тренутној верзији (касна 2013) wikiHow скина",
+	"bluesky-desc": "Тема заснована на тренутној верзији (касна 2013) wikiHow теме",
 	"bluesky-editthis": "Уреди ову страницу",
 	"bluesky-viewsource": "Погледај извор ове странице",
 	"bluesky-navbar-edit": "Уреди",
@@ -19,8 +19,8 @@
 	"bluesky-pagelog": "Дневници за ову страницу",
 	"bluesky-page": "Алатке за страницу",
 	"bluesky-admin": "Администратор",
-	"bluesky-page-edited": "Последња измена на страници извршена {{int:ago|$1}}",
-	"bluesky-page-edited-user": "Последњу измену на страници извршио је $2 {{int:ago|$1}}",
+	"bluesky-page-edited": "Последња измена на страници је извршена {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Последњу измену на страници је извршио $2 {{int:ago|$1}}",
 	"duration-months": "$1 {{PLURAL:$1|месец|месеца|месеци}}",
 	"bluesky-toc-sections": "Одељци",
 	"bluesky-home": "Почетна",
@@ -33,5 +33,5 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страница]",
 	"bluesky-article-info": "Информације о чланку",
 	"bluesky-page-info": "Информације о страници",
-	"bluesky-footer-tools": "Додатне алатке за странице"
+	"bluesky-footer-tools": "Додатне алатке за страницу"
 }
