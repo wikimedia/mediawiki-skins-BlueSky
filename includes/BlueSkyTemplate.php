@@ -1261,7 +1261,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 			// SQL provided by your friendly neighbourhood Skizzers
 			// I honestly don't remember what this was for, but it was apparently needed to get the actually relevant ones
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_REPLICA );
 			$res = $dbr->select(
 				[ 'page', 'page_props', 'category' ],
 				[ 'cat_title' ],
@@ -1362,7 +1362,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 
 			if ( count( $allCats ) > 0 ) {
-				$dbr = wfGetDB( DB_SLAVE );
+				$dbr = wfGetDB( DB_REPLICA );
 				$res = $dbr->select(
 					[ 'page', 'page_props', 'category' ],
 					[ 'cat_title' ],
@@ -1460,7 +1460,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$tocHTML = '';
 		if ( is_array( $wgBlueSkyTOC ) && count( $wgBlueSkyTOC ) > 0 ) {
-			if ( sizeof( $wgBlueSkyTOC ) > 6 ) {
+			if ( count( $wgBlueSkyTOC ) > 6 ) {
 				$tocHTML .= Html::openElement (
 					'div',
 					[ 'class' => 'toc-long' ]
