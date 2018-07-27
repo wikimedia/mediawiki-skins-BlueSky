@@ -492,7 +492,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		// Use different edit msg in header menu
 		if ( isset( $sortedPileOfTools['edit-menu']['edit'] ) ) {
-			$sortedPileOfTools['edit-menu']['edit']['text'] =  $this->getMsg( 'bluesky-editthis' )->text();
+			$sortedPileOfTools['edit-menu']['edit']['text'] = $this->getMsg( 'bluesky-editthis' )->text();
 		}
 
 		return $sortedPileOfTools;
@@ -625,7 +625,7 @@ class BlueSkyTemplate extends BaseTemplate {
 					$html .= Html::closeElement( 'div' );
 				}
 				if ( isset( $item['class'] ) ) {
-					$class =  'mw-portlet ' . $item['class'];
+					$class = 'mw-portlet ' . $item['class'];
 				} else {
 					$class = 'mw-portlet ' . $this->getRandomTabClass( $item['html'] );
 				}
@@ -1300,7 +1300,7 @@ class BlueSkyTemplate extends BaseTemplate {
 						continue;
 					}
 					$category = Linker::link( $titleSafe, $titleSafe->getText() );
-					$catList .=  '<li>' . $category . '</li>';
+					$catList .= '<li>' . $category . '</li>';
 				}
 				$catList .= '</ul>';
 			}
@@ -1400,7 +1400,7 @@ class BlueSkyTemplate extends BaseTemplate {
 							continue;
 						}
 						$category = Linker::link( $title, $title->getText() );
-						$catList .=  '<li>' . $category . '</li>';
+						$catList .= '<li>' . $category . '</li>';
 					}
 					$catList .= '</ul></li>';
 				}
@@ -1463,7 +1463,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				$tocHTML .= Html::openElement(
 					'div',
 					[ 'class' => 'toc-long' ]
-				) ;
+				);
 			} else {
 				$tocHTML .= Html::openElement(
 					'div',
