@@ -31,7 +31,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 		$namespace = $title->getNamespace();
 		$user = $skin->getUser();
-		//get stupid tools pile; we'll dump these on the page throughout
+		// get stupid tools pile; we'll dump these on the page throughout
 		$this->allTools = $this->getPageTools();
 		// We'll treat the mainpage like any other page if they're doing something besides looking at it
 		$this->isMainPage = ( $title->isMainPage() && $action == 'view' );
@@ -52,7 +52,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			)
 		);
 
-		$html .= Html::openElement ( 'div', [ 'class' => 'wrapper-inner', 'id' => 'main-outer' ] );
+		$html .= Html::openElement( 'div', [ 'class' => 'wrapper-inner', 'id' => 'main-outer' ] );
 
 		if ( $this->data['sitenotice'] ) {
 			$html .= Html::rawElement(
@@ -95,14 +95,14 @@ class BlueSkyTemplate extends BaseTemplate {
 				[ 'id' => 'contentSub' ]
 			);
 			if ( $this->data['subtitle'] ) {
-				$html .= Html::rawelement (
+				$html .= Html::rawelement(
 					'p',
 					[],
 					$this->get( 'subtitle' )
 				);
 			}
 			if ( $this->data['undelete'] ) {
-				$html .= Html::rawelement (
+				$html .= Html::rawelement(
 					'p',
 					[],
 					$this->get( 'undelete' )
@@ -156,7 +156,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			);
 
 			if ( $this->data['subtitle'] ) {
-				$html .= Html::rawelement (
+				$html .= Html::rawelement(
 					'p',
 					[],
 					$this->get( 'subtitle' )
@@ -405,7 +405,7 @@ class BlueSkyTemplate extends BaseTemplate {
 					// Because some moron though it'd be a good idea to use the (arbitrary) namespace name as the array key for the page tab, we have no idea what the key is here
 					$key = array_keys( $navBlock )[0];
 
-					if ( $namespace == NS_MAIN) {
+					if ( $namespace == NS_MAIN ) {
 						$sortedPileOfTools['page-primary'][$key]['text'] = $this->getMsg( 'article' )->text();
 					}
 
@@ -564,7 +564,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			]
 		);
 		// Site title and subtitle
-		$html .= Html::rawElement (
+		$html .= Html::rawElement(
 			'div',
 			[ 'id' => 'mw-wiki-bannertext' ],
 			Html::element(
@@ -606,7 +606,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		// parse lines into an array: strings of target, display, class
 		$lines = explode( "\n", $message );
 		$links = [];
-		foreach( $lines as $line ) {
+		foreach ( $lines as $line ) {
 			$item = $this->parseLine( $line );
 			// Cap max depth
 			$item['depth'] = $item['depth'] > $maxDepth ? $maxDepth : $item['depth'];
@@ -629,7 +629,6 @@ class BlueSkyTemplate extends BaseTemplate {
 				} else {
 					$class = 'mw-portlet ' . $this->getRandomTabClass( $item['html'] );
 				}
-
 
 				$html .= Html::openElement(
 					'div',
@@ -752,7 +751,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				// has both target and display text
 				$target = $this->getMsgOrDump( $text[0] );
 				if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $target ) ) {
-					$textContent = Linker::makeExternalLink (
+					$textContent = Linker::makeExternalLink(
 						$target,
 						$this->getMsgOrDump( $text[1] )
 					);
@@ -1076,11 +1075,11 @@ class BlueSkyTemplate extends BaseTemplate {
 
 				$formattedTS = null;
 
-				foreach( $spans as $span => $amount ) {
+				foreach ( $spans as $span => $amount ) {
 					if ( $amount < $timediff ) {
 						// Number of blah ago is rounded down
 						$number = floor( $timediff / $amount );
-						$formattedTS = $this->getMsg( 'duration-' . $span)->params( [ $number ] );
+						$formattedTS = $this->getMsg( 'duration-' . $span )->params( [ $number ] );
 
 						break;
 					}
@@ -1115,7 +1114,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$languages = [];
 		if ( !$wgHideInterlanguageLinks ) {
-			foreach (  $skin->getOutput()->getLanguageLinks() as $blob ) {
+			foreach ( $skin->getOutput()->getLanguageLinks() as $blob ) {
 				$tmp = explode( ':', $blob, 2 );
 				$class = 'interwiki-' . $tmp[0];
 				$code = $tmp[0];
@@ -1395,7 +1394,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 				if ( count( $normalCats ) > 0 ) {
 					$catList = '<li><ul id="catlist-top">';
-					foreach ( $normalCats as $category) {
+					foreach ( $normalCats as $category ) {
 						$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 						if ( !$title ) {
 							continue;
@@ -1461,12 +1460,12 @@ class BlueSkyTemplate extends BaseTemplate {
 		$tocHTML = '';
 		if ( is_array( $wgBlueSkyTOC ) && count( $wgBlueSkyTOC ) > 0 ) {
 			if ( count( $wgBlueSkyTOC ) > 6 ) {
-				$tocHTML .= Html::openElement (
+				$tocHTML .= Html::openElement(
 					'div',
 					[ 'class' => 'toc-long' ]
 				) ;
 			} else {
-				$tocHTML .= Html::openElement (
+				$tocHTML .= Html::openElement(
 					'div',
 					[ 'class' => 'toc-short' ]
 				);
