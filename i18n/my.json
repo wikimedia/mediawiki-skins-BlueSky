@@ -1,9 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ninjastrikers"
+			"Ninjastrikers",
+			"Dr Lotus Black"
 		]
 	},
+	"bluesky-editthis": "ဤစာမျက်နှာကို တည်းဖြတ်ရန်",
+	"bluesky-navbar-edit": "တည်းဖြတ်ရန်",
+	"bluesky-personaltools": "ပရိုဖိုင်",
+	"bluesky-messages": "မက်ဆေ့များ",
+	"bluesky-page": "စာမျက်နှာအတွက် ကိရိယာများ",
+	"bluesky-admin": "အက်ဒမင်",
+	"bluesky-home": "ပင်မ",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|အထူးစာမျက်နှာများ]]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ဖိုင်များ]]",
-	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} တမ်းပလိတ်များ]"
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} တမ်းပလိတ်များ]",
+	"bluesky-article-info": "ဆောင်းပါး အချက်အလက်",
+	"bluesky-page-info": "စာမျက်နှာ အချက်အလက်"
 }
