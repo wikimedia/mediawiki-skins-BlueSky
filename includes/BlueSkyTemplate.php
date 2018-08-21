@@ -95,14 +95,14 @@ class BlueSkyTemplate extends BaseTemplate {
 				[ 'id' => 'contentSub' ]
 			);
 			if ( $this->data['subtitle'] ) {
-				$html .= Html::rawelement(
+				$html .= Html::rawElement(
 					'p',
 					[],
 					$this->get( 'subtitle' )
 				);
 			}
 			if ( $this->data['undelete'] ) {
-				$html .= Html::rawelement(
+				$html .= Html::rawElement(
 					'p',
 					[],
 					$this->get( 'undelete' )
@@ -156,7 +156,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			);
 
 			if ( $this->data['subtitle'] ) {
-				$html .= Html::rawelement(
+				$html .= Html::rawElement(
 					'p',
 					[],
 					$this->get( 'subtitle' )
@@ -1010,7 +1010,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		);
 		$html .= Html::openElement( 'div', [ 'id' => 'search-inner' ] );
 		$html .= Html::hidden( 'title', htmlspecialchars( $this->get( 'searchtitle' ) ) );
-		$html .= Html::rawelement(
+		$html .= Html::rawElement(
 			'h3',
 			[],
 			Html::label( $this->getMsg( 'search' )->escaped(), 'searchInput' )
