@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"C.R."
+		]
+	},
+	"bluesky-desc": "Skin ca se basa ncopp' 'a verziona 'e mò (urdeme 2013) d' 'o skin wikiHow",
+	"bluesky-editthis": "Càgna chesta paggena",
+	"bluesky-viewsource": "Vide 'e sorgente pe' sta paggena",
+	"bluesky-navbar-edit": "Càgna",
+	"bluesky-personaltools": "Profilo",
+	"bluesky-messages": "Mmasciate",
+	"bluesky-notifications-new-talk": "Vuje avite $1 {{PLURAL:$1|mmasciate}} nove.",
+	"bluesky-pagelog": "Riggistre pe' sta paggena",
+	"bluesky-page": "Strumiente p' 'e paggene",
+	"bluesky-admin": "Ammenistratore",
+	"bluesky-page-edited": "Urdema pàggena cagnata {{int:ago|$1}}",
+	"bluesky-toc-sections": "Seziune",
+	"bluesky-home": "Prencepale",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pàggene speciale]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pàggene d' 'e pruggette]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|File]]"
+}
