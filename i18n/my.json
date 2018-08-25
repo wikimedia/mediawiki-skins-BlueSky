@@ -9,6 +9,7 @@
 	"bluesky-navbar-edit": "တည်းဖြတ်ရန်",
 	"bluesky-personaltools": "ပရိုဖိုင်",
 	"bluesky-messages": "မက်ဆေ့များ",
+	"bluesky-unread-notifications": "မဖတ်ရသေးသော {{PLURAL:$1|၁ ခု|$1 ခု}}",
 	"bluesky-page": "စာမျက်နှာအတွက် ကိရိယာများ",
 	"bluesky-admin": "အက်ဒမင်",
 	"bluesky-home": "ပင်မ",
