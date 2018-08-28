@@ -62,24 +62,31 @@
 	.navbar-edit {
 		.header-tab( 0 );
 	}
+
 	.navbar-user {
 		.header-tab( 1 );
 	}
+
 	.navbar-community {
 		.header-tab( 2 );
 	}
+
 	.navbar-grow {
 		.header-tab( 3 );
 	}
+
 	.navbar-view {
 		.header-tab( 4 );
 	}
+
 	.navbar-messages {
 		.header-tab( 5 );
 	}
+
 	.navbar-burger {
 		.header-tab( 6 );
 	}
+
 	.navbar-explore {
 		.header-tab( 7 );
 	}
@@ -89,11 +96,11 @@
 		// position: fixed;
 
 		&.collapsed-header {
+			.short-header();
+
 			#mw-sidebar .mw-portlet {
 				background-image: none;
 			}
-
-			.short-header();
 		}
 	}
 }
@@ -113,9 +120,11 @@
 		#p-editmenu h3 {
 			.header-tab( 0 );
 		}
+
 		#nested-main h2 {
 			.header-tab( 6 );
 		}
+
 		#nested-profile h2 {
 			.header-tab( 1 );
 		}

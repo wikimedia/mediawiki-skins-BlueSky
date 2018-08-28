@@ -895,12 +895,13 @@ class BlueSkyTemplate extends BaseTemplate {
 				}
 
 				// add view all link
-				$html .= '<div class="menu_message_morelink">';
-				$html .= Linker::link( $notificationsPage, $this->msg( 'more-notifications-link' )->plain() );
-				$html .= $unshown . '</div>';
+				$html .= Html::rawElement( 'div', [ 'class' => 'menu_message_morelink' ],
+					Linker::link( $notificationsPage, $this->msg( 'more-notifications-link' )->plain() ) .
+					$unshown
+				);
 			} else {
 				// no notifications
-				$html .= '<div class="menu_message_morelink">' . $this->msg( 'no-notifications' )->parse() . '</div>';
+				$html .= Html::rawElement( 'div', [ 'class' => 'menu_message_morelink' ], $this->msg( 'no-notifications' )->parse() );
 			}
 
 		} else {
@@ -949,11 +950,13 @@ class BlueSkyTemplate extends BaseTemplate {
 			$talkCount = 0;
 			if ( $user->getNewtalk() ) {
 				$talkCount = $this->getCount( 'user_newtalk' );
-				$msg = '<div class="note_row"><div class="note_icon_talk"></div>' .
+				$msg = Html::rawElement( 'div', [ 'class' => 'note_row' ],
+					Html::element( 'div', [ 'class' => 'note_icon_talk' ], '' ) .
 					Linker::link(
 						$user->getTalkPage(),
 						$this->getMsg( 'bluesky-notifications-new-talk' )->numParams( $talkCount )->parse()
-					) . '</div>';
+					)
+				);
 				$notes[] = $msg;
 				$newTalk = true;
 			} else {
@@ -1019,14 +1022,14 @@ class BlueSkyTemplate extends BaseTemplate {
 			// no line at the top
 			$html = preg_replace( '/note_row/', 'note_row first_note_row', $html, 1 );
 			if ( !$newTalk ) {
-				$html .= '<div class="note_row note_empty">' .
-					$this->getMsg( 'bluesky-notifications-no-talk', $talkPage )->parse() .
-					'</div>';
+				$html .= Html::rawElement( 'div', [ 'class' => [ 'note_row', 'note_empty' ] ],
+					$this->getMsg( 'bluesky-notifications-no-talk', $talkPage )->parse()
+				);
 			}
 		} else {
-			$html = '<div class="note_row note_empty">' .
-				$this->getMsg( 'bluesky-notifications-none', $talkPage )->parse() .
-				'</div>';
+			$html = Html::rawElement( 'div', [ 'class' => 'note_row note_empty' ],
+				$this->getMsg( 'bluesky-notifications-none', $talkPage )->parse()
+			);
 		}
 
 		return $html;
@@ -1333,16 +1336,16 @@ class BlueSkyTemplate extends BaseTemplate {
 
 			$catList = '';
 			if ( count( $normalCats ) > 0 ) {
-				$catList = '<ul id="catlist-top">';
+				$catList = Html::openElement( 'ul', [ 'id' => 'catlist-top' ] );
 				foreach ( $normalCats as $category ) {
 					$titleSafe = Title::makeTitleSafe( NS_CATEGORY, $category );
 					if ( !$titleSafe ) {
 						continue;
 					}
 					$category = Linker::link( $titleSafe, $titleSafe->getText() );
-					$catList .= '<li>' . $category . '</li>';
+					$catList .= Html::rawElement( 'li', [], $category );
 				}
-				$catList .= '</ul>';
+				$catList .= Html::closeElement( 'ul' );
 			}
 			$html .= $catList;
 
@@ -1433,16 +1436,18 @@ class BlueSkyTemplate extends BaseTemplate {
 				}
 
 				if ( count( $normalCats ) > 0 ) {
-					$catList = '<li><ul id="catlist-top">';
+					$catList = Html::openElement( 'li', [] );
+					$catList .= Html::openElement( 'ul', [ 'id' => 'catlist-top' ] );
 					foreach ( $normalCats as $category ) {
 						$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 						if ( !$title ) {
 							continue;
 						}
 						$category = Linker::link( $title, $title->getText() );
-						$catList .= '<li>' . $category . '</li>';
+						$catList .= Html::rawElement( 'li', [], $category );
 					}
-					$catList .= '</ul></li>';
+					$catList .= Html::closeElement( 'ul' );
+					$catList .= Html::closeElement( 'li' );
 				}
 			}
 			if ( $namespace == 0 ) {
@@ -1473,7 +1478,8 @@ class BlueSkyTemplate extends BaseTemplate {
 				$categoryOutput .= $catList;
 			}
 		}
-		$categoryOutput .= '<li id="bc-pagetitle">' . $page . '</li></ul>';
+		$categoryOutput .= Html::rawElement( 'li', [ 'id' => 'bc-pagetitle' ], $page );
+		$categoryOutput .= Html::closeElement( 'ul' );
 
 		return [ 'categories' => $categoryOutput, 'count' => $count ];
 	}

@@ -13,7 +13,7 @@ body {
 
 #mw-wrapper {
 	position: relative;
-	font-family: "Helvetica", "arial", sans-serif;
+	font-family: @fonts;
 	background: @grey6;
 }
 
@@ -64,15 +64,15 @@ body {
 	right: 1em;
 	width: 3em;
 	height: 2.125em;
-	color: #fff;
 	border: none;
 	background: transparent;
-	.background-image-svg('images/search.svg', 'images/search.png');
+	.background-image-svg( 'images/search.svg', 'images/search.png' );
 	background-repeat: no-repeat;
 	background-position: 50% 100%;
-	padding: .5em;
+	padding: 0.5em;
 	text-indent: -999999em;
 }
+
 #searchInput {
 	width: 100%;
 	background: transparent;
@@ -81,12 +81,14 @@ body {
 	height: 2em;
 	color: @nav-text-bright;
 	font-weight: bold;
+	font-family: @fonts;
 }
+
 #p-search {
 	width: 23em;
 	position: relative;
- // Random fallback number for total width of chunk; other width bits are all to make it fill this, whatever this is
- // ...wat?
+	// Random fallback number for total width of chunk; other width bits are all to make it fill this, whatever this is
+	// ...wat?
 
 	#search-inner {
 		padding-right: 4em;
@@ -95,18 +97,20 @@ body {
 
 div.suggestions {
 	z-index: 100000007;
-	font-family: "Helvetica", "arial", sans-serif;
+	font-family: @fonts;
 	margin-top: -2px;
 
 	.suggestions-results,
 	.suggestions-special {
 		border-color: @nav-dark;
 	}
+
 	.suggestions-special,
 	.suggestions-result {
-		padding: .35em 1.25em;
+		padding: 0.35em 1.25em;
 		background: @content-box;
 	}
+
 	.suggestions-result-current {
 		background: @nav-dark;
 		color: @nav-text-bright;
@@ -115,7 +119,7 @@ div.suggestions {
 
 #siteNotice {
 	margin: auto auto 1em;
-	padding: 0 .5em;
+	padding: 0 0.5em;
 	text-align: center;
 	border: solid 1px;
 	border-color: @nav-bright @nav-dark @nav-dark @nav-bright;
@@ -130,8 +134,8 @@ div.suggestions {
 
 #siteNotice {
 	border: solid 2px @nav-bright;
-	margin: .5em auto 1.5em;
-	padding: 0 .5em;
+	margin: 0.5em auto 1.5em;
+	padding: 0 0.5em;
 	text-align: center;
 	border-radius: 5px;
 	background: @grey7;
@@ -145,9 +149,11 @@ div.suggestions {
 		border-radius: 0 0 5px 5px;
 		border-top: solid 1px @grey6;
 	}
+
 	#content-block-header {
-		padding: 2em 1.5em .25em;
+		padding: 2em 1.5em 0.25em;
 	}
+
 	#content-block .firstHeading {
 		background: transparent;
 		margin: 0;
@@ -160,8 +166,8 @@ div.mw-warning-with-logexcerpt {
 	border: 1px solid @nav-bright;
 	border-style: solid none;
 	background: @grey7;
-	padding: .5em 1.5em 1em;
-	margin: 0 -1.5em .5em;
+	padding: 0.5em 1.5em 1em;
+	margin: 0 -1.5em 0.5em;
 }
 
 #side-block,
@@ -173,6 +179,7 @@ div.mw-warning-with-logexcerpt {
 	border-radius: 5px;
 	padding: 1.25em 1.5em;
 }
+
 #content-header {
 	background: @grey8;
 	margin-bottom: 1em;
@@ -180,23 +187,26 @@ div.mw-warning-with-logexcerpt {
 #side-block {
 	float: right;
 }
+
 #content-block {
 	background: @content-box;
 	padding: 0;
 }
 
 .mw-body {
-	h1, h2 {
-		.content-h2();
-	}
-	h1, h2, h3, h4, h5, h6 {
-		margin-top: 2em;
-	}
-
 	background: @grey8;
 	padding: 1.25em 1.5em;
 	border-radius: 5px;
+
+	h1, h2 {
+		.content-h2();
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin-top: 2em;
+	}
 }
+
 .mw-body-content {
 	padding-bottom: 1.5em;
 }
@@ -205,7 +215,7 @@ div.mw-warning-with-logexcerpt {
 #page-categories {
 	font-size: @small;
 	color: @grey4;
-	padding-bottom: .75em;
+	padding-bottom: 0.75em;
 }
 
 #contentSub {
@@ -217,6 +227,7 @@ div.mw-warning-with-logexcerpt {
 		color: @grey3;
 	}
 }
+
 #last-edit {
 	padding-left: 1.5em;
 	background-repeat: no-repeat;
@@ -232,18 +243,22 @@ div.mw-warning-with-logexcerpt {
 #page-tools ul {
 	display: inline-block;
 }
+
 #page-tools ul {
 	padding: 0;
 	margin: 0;
 	list-style: none;
 }
+
 #p-page-main li {
-	padding-right: .75em;
+	padding-right: 0.75em;
 }
+
 #content-nav #p-page-main li.selected a {
 	font-weight: bold;
 	color: @grey1;
 }
+
 #p-page-admin {
 	position: relative;
 
@@ -261,9 +276,11 @@ div.mw-warning-with-logexcerpt {
 			margin-bottom: -2em;
 		}
 	}
+
 	ul {
 		display: none;
 	}
+
 	.menu-block {
 		.menu-dropdown();
 
@@ -272,6 +289,7 @@ div.mw-warning-with-logexcerpt {
 		top: 1.5em;
 		white-space: normal;
 	}
+
 	&:hover {
 		cursor: pointer;
 
@@ -279,19 +297,20 @@ div.mw-warning-with-logexcerpt {
 			display: block;
 		}
 	}
+
 	a:hover {
 		text-decoration: none;
 	}
 }
 
 .firstHeading {
-	margin: .35em 0 0;
+	margin: 0.35em 0 0;
 	font-size: 1.8em;
 }
 
 .mw-indicators {
 	float: right;
-	margin-top: .25em;
+	margin-top: 0.25em;
 }
 
 pre {
@@ -307,13 +326,16 @@ a {
 		color: darken( desaturate( @a, 20% ), 3% );
 	}
 }
-a.new, .new a {
+
+a.new,
+.new a {
 	color: @a-new;
 
 	&:visited {
 		color: darken( desaturate( @a-new, 20% ), 3% );
 	}
 }
+
 #main-outer a:hover {
 	text-decoration: underline;
 }
@@ -346,27 +368,35 @@ a.new, .new a {
 			font-size: 1.15em;
 		}
 	}
+
 	h2 {
 		font-size: 1.5em;
 	}
+
 	h3 {
 		font-size: 1.45em;
 	}
+
 	h4 {
 		font-size: 1.25em;
 	}
+
 	h5 {
 		font-size: 1.15em;
 	}
+
 	h6 {
 		font-size: 1em;
 	}
+
 	dt {
 		margin-top: 1em;
 	}
+
 	dd {
 		margin-bottom: 1em;
 	}
+
 	.mw-changeslist-legend dd {
 		margin-bottom: 0;
 	}
@@ -379,15 +409,16 @@ h1, h2, h3, h4, h5, h6 {
 hr {
 	border: solid 1px;
 	border-style: solid none;
-	border-color: @nav-dark #fff @nav-bright;
+	border-color: @nav-dark @nav-text-bright @nav-bright;
 }
+
 .mw-changeslist-legend,
 .mw-body-content .mw-search-profile-tabs,
 .mw-body-content fieldset#mw-searchoptions,
 table.wikitable {
 	border: none;
-	color: #000;
-	background: #f6f6f6;
+	color: @body-text;
+	background: @grey7;
 	border: solid @nav-dark;
 	border-width: 1px 1px 1px;
 	padding: 1.25em 1.75em;
@@ -400,12 +431,12 @@ table.wikitable > tr > td,
 table.wikitable > * > tr > th,
 table.wikitable > * > tr > td {
 	border: 1px solid @nav-bright;
-	padding: .45em .5em .35em;
+	padding: 0.45em 0.5em 0.35em;
 }
 
 #preftoc,
 .mw-body-content .mw-search-profile-tabs {
-	padding: .25em .5em;
+	padding: 0.25em 0.5em;
 }
 
 #preftoc,
@@ -415,14 +446,16 @@ table.wikitable > * > tr > th {
 	border: solid 1px @nav-dark;
 	background: @nav-bg;
 }
+
 #preftoc li,
 .mw-body-content .mw-search-profile-tabs {
 	a {
 		color: @a;
 	}
+
 	&.selected a,
 	.current a {
-		color: #000;
+		color: @body-text;
 	}
 }
 
@@ -432,7 +465,7 @@ table.wikitable > * > tr > th {
 
 	li {
 		display: inline-block;
-		padding: .45em .5em .35em;
+		padding: 0.45em 0.5em 0.35em;
 	}
 }
 
@@ -449,8 +482,9 @@ table.wikitable > * > tr > th {
 #otherlanguages-label:after,
 #mw-languages .interwiki:before {
 	content: ':';
-	padding: 0 .25em 0 0;
+	padding: 0 0.25em 0 0;
 }
+
 #content-footer {
 	margin-top: 1em;
 
@@ -458,16 +492,18 @@ table.wikitable > * > tr > th {
 	#page-tools {
 		margin-top: 1em;
 	}
+
 	#p-page-main #ca-talk,
 	#p-page-main #ca-edit {
 		display: none;
 	}
 }
+
 #content-footer-main {
-	background: #fff;
-	border: solid 1px #f0f0f0;
-	border-style: solid none;
-	padding: .5em 1.5em 1em;
+	background: @grey8;
+	border-bottom: solid 1px @grey6;
+	border-top: solid 1px @grey6;
+	padding: 0.5em 1.5em 1em;
 	margin: 1em -1.5em 0;
 
 	ul {
@@ -480,7 +516,7 @@ table.wikitable > * > tr > th {
 #mw-normal-catlinks,
 #mw-hidden-catlinks,
 #mw-languages {
-	margin-top: .5em;
+	margin-top: 0.5em;
 
 	li {
 		display: inline;
@@ -499,27 +535,31 @@ table.wikitable > * > tr > th {
 #mw-hidden-catlinks ul {
 	display: inline;
 }
+
 #mw-normal-catlinks ul,
 #mw-hidden-catlinks ul {
 	&> li ~ li:before {
 		content: '\A•';
-		padding: 0 .25em;
+		padding: 0 0.25em;
 	}
 }
 
 #mw-languages li ~ li:before {
 	content: '\A•';
-	padding: 0 .25em;
+	padding: 0 0.25em;
 }
+
 #mw-normal-catlinks ul,
 #mw-hidden-catlinks,
 #mw-languages ul{
 	margin: 0 0 0 2em;
 }
+
 #mw-normal-catlinks ul,
 #mw-languages ul {
-	margin-top: .25em;
+	margin-top: 0.25em;
 }
+
 #footer-info {
 	font-size: @small;
 	color: @grey4;
@@ -531,17 +571,19 @@ table.wikitable > * > tr > th {
 // FOOTER
 
 #mw-footer {
-	color: #fff;
+	color: @nav-text-bright;
 	padding-bottom: 1em;
 
 	ul {
 		padding: 0;
-		margin: .5em 0 0;
+		margin: 0.5em 0 0;
 		list-style: none;
 	}
+
 	a {
-		color: #fff;
+		color: @nav-text-bright;
 	}
+
 	#footer-icons {
 		font-size: @small;
 		color: @a;
@@ -551,6 +593,7 @@ table.wikitable > * > tr > th {
 		}
 	}
 }
+
 #footer-icons li,
 #footer-places li {
 	display: inline;

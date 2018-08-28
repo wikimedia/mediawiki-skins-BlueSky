@@ -11,6 +11,8 @@
 @grey7: #f6f6f6;
 @grey8: #fff;
 
+@fonts: "Helvetica", "arial", sans-serif;
+
 // Content
 
 @body-text: #011;
@@ -59,9 +61,10 @@
 		margin: 0 -1.25em;
 
 		a {
-			padding: .3em 1.25em;
+			padding: 0.3em 1.25em;
 			display: block;
 		}
+
 		&:hover {
 			background: @nav-dark;
 
@@ -85,7 +88,7 @@
 		font-size: inherit;
 		background: @nav-dark;
 		color: @nav-text-bright;
-		padding: .75em 1.25em;
+		padding: 0.75em 1.25em;
 		margin: 1.5em -1.25em 0;
 	}
 
@@ -95,7 +98,7 @@
 }
 
 .header-tab( @offset: 4, @width-offset: 0 ) {
-	.background-image-svg('images/header-icons.svg', 'images/header-icons.png');
+	.background-image-svg( 'images/header-icons.svg', 'images/header-icons.png' );
 	background-repeat: no-repeat;
 	background-position: 13px + @width-offset 8px - @offset * 80;
 
@@ -131,7 +134,7 @@
 // Basics of mobile header and fixed header on desktop
 .short-header() {
 	#p-banner {
-		padding: .25em 0;
+		padding: 0.25em 0;
 		height: @short-header;
 		box-sizing: border-box;
 
@@ -141,8 +144,9 @@
 			float: left;
 		}
 	}
+
 	#p-wiki-title {
-		padding: .4em .5em;
+		padding: 0.4em 0.5em;
 		margin: 0;
 	}
 
@@ -160,18 +164,18 @@
 	background: @content-box;
 	border: solid 1px @grey6;
 	border-style: solid none;
-	margin: 1em -1em .75em;
-	padding: .85em 1em .75em;
+	margin: 1em -1em 0.75em;
+	padding: 0.85em 1em 0.75em;
 }
 
 .funk-toc {
 	font-weight: bold;
 	font-size: @small;
 	margin: 1em 0 0;
-	padding: .2em 0 0;
+	padding: 0.2em 0 0;
 
 	span {
-		margin-bottom: .25em;
+		margin-bottom: 0.25em;
 		display: inline-block;
 	}
 
@@ -188,6 +192,7 @@
 			margin-bottom: 0;
 		}
 	}
+
 	.toclevel-2,
 	.toclevel-3,
 	.toclevel-4,
@@ -196,18 +201,21 @@
 		font-weight: normal;
 		margin-left: 18px;
 	}
+
 	.toclevel-3,
 	.toclevel-4,
 	.toclevel-5,
 	.toclevel-6 {
 		font-size: 10px;
 	}
+
 	.toclevel-3:before,
 	.toclevel-4:before,
 	.toclevel-5:before,
 	.toclevel-6:before {
 		content: '(';
 	}
+
 	.toclevel-3:after,
 	.toclevel-4:after,
 	.toclevel-5:after,
@@ -220,8 +228,4 @@
 .hidden() {
 	position: absolute;
 	top: -9999px;
-}
-
-.hidden {
-	.hidden();
 }
