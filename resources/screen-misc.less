@@ -1,0 +1,157 @@
+@import 'variables.less';
+
+// handle collapse for menus on small desktop displays...
+
+// menu layout larger
+@media screen and ( min-width: 901px ) {
+
+	#mw-sidebar {
+		float: right;
+		border-right: 1px solid @nav-bright;
+		border-left: 1px solid @nav-dark;
+
+		h2 {
+			.hidden();
+		}
+
+		h3 {
+			.header-tab-formatting();
+		}
+
+		.nested-nav-block,
+		.nested-nav-block-body {
+			float: left;
+		}
+
+		.mw-portlet {
+			float: left;
+			position: relative;
+			display: inline-block;
+
+			h2, h3 {
+				margin: 0;
+			}
+
+			&:hover {
+				background-color: @nav-dark;
+
+				.menu-block {
+					display: block;
+				}
+			}
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.menu-block {
+			.menu-dropdown();
+			top: @tall-header;
+			right: 0;
+		}
+
+		#p-messages .menu-block {
+			width: 17em;
+			white-space: normal;
+		}
+	}
+
+	.navbar-edit {
+		.header-tab( 0 );
+	}
+	.navbar-user {
+		.header-tab( 1 );
+	}
+	.navbar-community {
+		.header-tab( 2 );
+	}
+	.navbar-grow {
+		.header-tab( 3 );
+	}
+	.navbar-view {
+		.header-tab( 4 );
+	}
+	.navbar-messages {
+		.header-tab( 5 );
+	}
+	.navbar-burger {
+		.header-tab( 6 );
+	}
+	.navbar-explore {
+		.header-tab( 7 );
+	}
+
+	// TODO Fixed banner scrolling down
+	#header-outer {
+		// position: fixed;
+
+		&.collapsed-header {
+			#mw-sidebar .mw-portlet {
+				background-image: none;
+			}
+
+			.short-header();
+		}
+	}
+}
+
+// menu layout smaller
+@media screen and ( min-width: 751px ) and ( max-width: 900px ) {
+	#mw-sidebar {
+		border-right: 1px solid @nav-bright;
+		border-left: 1px solid @nav-dark;
+
+		#p-editmenu,
+		.nested-nav-block {
+			float: left;
+			position: relative;
+		}
+
+		#p-editmenu h3 {
+			.header-tab( 0 );
+		}
+		#nested-main h2 {
+			.header-tab( 6 );
+		}
+		#nested-profile h2 {
+			.header-tab( 1 );
+		}
+
+		#p-editmenu h3,
+		.nested-nav-block h2 {
+			.header-tab-formatting();
+			text-indent: 0;
+			top: 0;
+			right: 0;
+
+			&:hover {
+				background-color: @nav-dark;
+			}
+		}
+
+		#p-editmenu .menu-block,
+		.nested-nav-block-body {
+			.hidden();
+			.menu-dropdown();
+		}
+
+		#p-editmenu:hover .menu-block,
+		.nested-nav-block:hover .nested-nav-block-body {
+			display: block;
+			top: 100%;
+			right: 0;
+		}
+
+		.nested-nav-block {
+			.nested-menu-dropdown();
+		}
+
+		#p-editmenu .menu-block {
+			margin: 0;
+			list-style: none;
+		}
+	}
+}

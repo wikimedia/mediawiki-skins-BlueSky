@@ -8,7 +8,7 @@
 	color: @grey4;
 }
 
-#content-block {
+.mw-body {
 	#searchInput,
 	input[type="reset"],
 	input[type="submit"]
@@ -48,6 +48,18 @@
 		border-radius: 2px;
 		box-sizing: border-box;
 	}
+	#searchInput,
+	input[name="user"],
+	input[name="mime"],
+	input[size$="0"],
+	input[type="text"],
+	input#wpTemplateSandboxPage,
+	input.mw-summary,
+	textarea,
+	.mw-input input,
+	.mw-ui-input {
+		width: 80%
+	}
 	select {
 		padding: .45em;
 		margin: .2em .2em .2em 0;
@@ -80,17 +92,7 @@
 	.oo-ui-actionFieldLayout-input {
 		padding-right: .25em;
 	}
-	#searchInput,
-	input[name="user"],
-	input[name="mime"],
-	input[size$="0"],
-	input[type="text"],
-	input#wpTemplateSandboxPage,
-	input.mw-summary,
-	textarea,
-	.mw-ui-input {
-		width: 80%
-	}
+
 	textarea,
 	.oo-ui-textInputWidget.oo-ui-iconElement textarea,
 	.oo-ui-textInputWidget.oo-ui-widget-enabled textarea,
@@ -142,9 +144,6 @@
 		display: block;
 	}
 
-	label {
-		padding: .75em 0 0;
-	}
 	.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 		padding: 0;
 	}

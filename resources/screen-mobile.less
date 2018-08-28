@@ -1,6 +1,156 @@
 /* Styles appear on displays 750 pixels wide and below */
 
-// @import "variables.less"; (Not used here)
+@import "variables.less";
+
+.short-header();
+
+#header-inner {
+	padding-left: 1em;
+}
+
+// search
+#searchInput {
+	.hidden()
+}
+.searchButton {
+	.background-image-svg('images/search-dark.svg', 'images/search-dark.png');
+
+	&:hover {
+		.background-image-svg('images/search.svg', 'images/search.png');
+	}
+}
+#p-search {
+	position: absolute;
+	top: .3em;
+	right: 6.5em;
+	width: auto;
+}
+#p-search:hover {
+	#searchInput {
+		position: initial;
+		padding-top: .5em;
+		height: 1.25em;
+	}
+
+	.searchButton {
+		.background-image-svg('images/search.svg', 'images/search.png');
+	}
+}
+
+// menu
+#p-editmenu {
+	.hidden();
+}
+
+.nested-nav-block-body {
+	.hidden();
+	.menu-dropdown();
+}
+
+.nested-nav-block {
+	.nested-menu-dropdown();
+	position: absolute;
+	top: 0;
+
+	&:hover .nested-nav-block-body {
+		display: block;
+		top: 100%;
+		right: 0;
+	}
+
+	h2 {
+		text-indent: -99999px;
+		width: 45px;
+		height: @short-header + 4px;
+		margin: -4px 0 0;
+	}
+}
+
+#nested-main {
+	right: 4.25em;
+
+	h2 {
+		.header-tab( 6, -20px );
+	}
+}
+#nested-profile {
+	right: 1em;
+
+	h2 {
+		.header-tab( 1, -20px );
+	}
+}
+
+// page layout
+
+#header-toc-wrapper,
+#page-categories {
+	.hidden();
+}
+
+.wrapper-inner {
+	padding: 1em 0;
+}
+#siteNotice,
+.ns-special .mw-body,
+#content-footer,
+#content-block,
+#content-header,
+.mw-body {
+	border-radius: 0;
+	border-right-width: 0;
+	border-left-width: 0;
+}
+
+#siteNotice {
+	margin-top: 0;
+}
+
+#siteNotice,
+#content-nav,
+#mw-footer {
+	padding: 0 1.5em;
+}
+
+#content-header {
+	margin-bottom: 0;
+	border-bottom: 0;
+	background: @content-box;
+	padding-top: .75em;
+	padding-bottom: .5em;
+}
+
+.toc {
+	.funk-toc();
+	.content-h2();
+	margin: 3em -1.875em 0;
+	padding: 1.5em 1.875em .5em;
+
+	h2 {
+		margin: 0 0 .5em;
+		background: transparent;
+		border: none;
+		display: inline-block;
+		padding: 0 1em 0 0;
+	}
+
+	.toctogglelabel {
+		margin: 0;
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	.tocnumber {
+		text-indent: -99999px;
+		line-height: 1;
+	}
+}
+
+#content-block .mw-editsection {
+	white-space: normal;
+}
 
 // Full-width thumbnails (to avoid having really squished text around them)
 div.thumb {
@@ -32,12 +182,22 @@ div.tleft {
 	margin: 0 auto .5em;
 }
 
+.thumbcaption {
+	font-size: 90%;
+	margin: 0 2em 2.5em;
+}
+.mw-content-rtl .thumbcaption,
+.mw-content-ltr .thumbcaption {
+	text-align: center
+}
+
 // Keep images from overflowing
 .mw-body-content a > img {
 	height: auto !important;
 	max-width: 100% !important;
 }
 
+#last-edit,
 .nomobile {
 	display: none;
 }

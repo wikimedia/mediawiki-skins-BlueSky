@@ -17,16 +17,39 @@ body {
 	background: @grey6;
 }
 
+#header-outer {
+	background-color: @nav-bg;
+	border-bottom: 1px solid @nav-dark;
+	position: relative;
+	width: 100%;
+}
+
+#header-inner {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
 #p-banner {
+	display: block;
+	color: @nav-text-bright;
+	text-shadow: 0px 1px 0px @nav-dark;
+	font-weight: bold;
+	text-transform: uppercase;
 
 	// Make logo image visible
 	// The class sets the background image from $wgLogo, but we still need to give it a size in order to show up
 	.mw-wiki-logo {
+		background-size: contain;
 		display: block;
 		content: '';
 		background-repeat: no-repeat;
 		background-position: 50% 50%;
+		float: left;
 	}
+}
+
+#p-wiki-title {
+	font-size: 130%;
 }
 
 .wrapper-inner {
@@ -36,19 +59,57 @@ body {
 }
 
 .searchButton {
-	margin: -2em -7em 0 1em;
-	width: 6em;
-	float: right;
+	position: absolute;
+	top: 0;
+	right: 1em;
+	width: 3em;
+	height: 2.125em;
+	color: #fff;
+	border: none;
+	background: transparent;
+	.background-image-svg('images/search.svg', 'images/search.png');
+	background-repeat: no-repeat;
+	background-position: 50% 100%;
+	padding: .5em;
+	text-indent: -999999em;
 }
 #searchInput {
 	width: 100%;
+	background: transparent;
+	border: none;
+	border-bottom: solid 2px @nav-text-bright;
+	height: 2em;
+	color: @nav-text-bright;
+	font-weight: bold;
 }
 #p-search {
 	width: 23em;
+	position: relative;
  // Random fallback number for total width of chunk; other width bits are all to make it fill this, whatever this is
+ // ...wat?
 
 	#search-inner {
-		padding-right: 8em;
+		padding-right: 4em;
+	}
+}
+
+div.suggestions {
+	z-index: 100000007;
+	font-family: "Helvetica", "arial", sans-serif;
+	margin-top: -2px;
+
+	.suggestions-results,
+	.suggestions-special {
+		border-color: @nav-dark;
+	}
+	.suggestions-special,
+	.suggestions-result {
+		padding: .35em 1.25em;
+		background: @content-box;
+	}
+	.suggestions-result-current {
+		background: @nav-dark;
+		color: @nav-text-bright;
 	}
 }
 
@@ -67,15 +128,170 @@ body {
 	word-wrap: break-word;
 }
 
+#siteNotice {
+	border: solid 2px @nav-bright;
+	margin: .5em auto 1.5em;
+	padding: 0 .5em;
+	text-align: center;
+	border-radius: 5px;
+	background: @grey7;
+}
+
 // Some content stuff
+
+
+.ns-special {
+	.mw-body {
+		border-radius: 0 0 5px 5px;
+		border-top: solid 1px @grey6;
+	}
+	#content-block-header {
+		padding: 2em 1.5em .25em;
+	}
+	#content-block .firstHeading {
+		background: transparent;
+		margin: 0;
+		padding: 0;
+		border: none;
+	}
+}
+
+div.mw-warning-with-logexcerpt {
+	border: 1px solid @nav-bright;
+	border-style: solid none;
+	background: @grey7;
+	padding: .5em 1.5em 1em;
+	margin: 0 -1.5em .5em;
+}
+
+#side-block,
+#content-header,
+#content-block,
+#content-footer {
+	background: @content-box;
+	border: 1px @content-box-outline solid;
+	border-radius: 5px;
+	padding: 1.25em 1.5em;
+}
+#content-header {
+	background: @grey8;
+	margin-bottom: 1em;
+}
+#side-block {
+	float: right;
+}
+#content-block {
+	background: @content-box;
+	padding: 0;
+}
+
+.mw-body {
+	h1, h2 {
+		.content-h2();
+	}
+	h1, h2, h3, h4, h5, h6 {
+		margin-top: 2em;
+	}
+
+	background: @grey8;
+	padding: 1.25em 1.5em;
+	border-radius: 5px;
+}
+.mw-body-content {
+	padding-bottom: 1.5em;
+}
+
+#page-tools,
+#page-categories {
+	font-size: @small;
+	color: @grey4;
+	padding-bottom: .75em;
+}
+
+#contentSub {
+	font-size: @small;
+	color: @grey4;
+	margin-top: 1em;
+
+	a {
+		color: @grey3;
+	}
+}
+#last-edit {
+	padding-left: 1.5em;
+	background-repeat: no-repeat;
+	background-position: 0 50%;
+	.background-image-svg( 'images/content-icons.svg', 'images/content-icons.png' );
+}
+
+#page-tools,
+#page-categories,
+#p-page-main,
+#p-page-admin,
+#p-page-main li,
+#page-tools ul {
+	display: inline-block;
+}
+#page-tools ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+#p-page-main li {
+	padding-right: .75em;
+}
+#content-nav #p-page-main li.selected a {
+	font-weight: bold;
+	color: @grey1;
+}
+#p-page-admin {
+	position: relative;
+
+	h3 {
+		font-size: 100%;
+		font-weight: normal;
+		margin: 0;
+		padding-right: 1.25em;
+		background-repeat: no-repeat;
+		background-position: 100% -2px;
+		.background-image-svg( 'images/arrow-down.svg', 'images/arrow-down.png' );
+
+		&:hover {
+			padding-bottom: 2em;
+			margin-bottom: -2em;
+		}
+	}
+	ul {
+		display: none;
+	}
+	.menu-block {
+		.menu-dropdown();
+
+		max-width: 12em;
+		left: 0;
+		top: 1.5em;
+		white-space: normal;
+	}
+	&:hover {
+		cursor: pointer;
+
+		.menu-block {
+			display: block;
+		}
+	}
+	a:hover {
+		text-decoration: none;
+	}
+}
+
 .firstHeading {
+	margin: .35em 0 0;
 	font-size: 1.8em;
-	margin-top: 0;
 }
 
 .mw-indicators {
 	float: right;
-	margin: 1.5em 0 0 1em;
+	margin-top: .25em;
 }
 
 pre {
@@ -120,7 +336,6 @@ a.new, .new a {
 #content-block {
 	h1, h2, h3, h4, h5, h6, dt {
 		line-height: 1.25;
-		margin: 1.5em 0 .5em;
 		font-weight: bold;
 	}
 
@@ -227,6 +442,119 @@ table.wikitable > * > tr > th {
 	background: @nav-bg;
 	border-top: solid 1px @nav-dark;
 	color: @nav-text-bright;
+}
+
+// CONTENT FOOTER
+
+#otherlanguages-label:after,
+#mw-languages .interwiki:before {
+	content: ':';
+	padding: 0 .25em 0 0;
+}
+#content-footer {
+	margin-top: 1em;
+
+	// Main page stuff
+	#page-tools {
+		margin-top: 1em;
+	}
+	#p-page-main #ca-talk,
+	#p-page-main #ca-edit {
+		display: none;
+	}
+}
+#content-footer-main {
+	background: #fff;
+	border: solid 1px #f0f0f0;
+	border-style: solid none;
+	padding: .5em 1.5em 1em;
+	margin: 1em -1.5em 0;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+}
+
+#mw-normal-catlinks,
+#mw-hidden-catlinks,
+#mw-languages {
+	margin-top: .5em;
+
+	li {
+		display: inline;
+	}
+}
+
+#p-page-footer-tools {
+	margin-top: 1em;
+
+	li {
+		display: inline-block;
+		margin-right: 1em;
+	}
+}
+
+#mw-hidden-catlinks ul {
+	display: inline;
+}
+#mw-normal-catlinks ul,
+#mw-hidden-catlinks ul {
+	&> li ~ li:before {
+		content: '\A•';
+		padding: 0 .25em;
+	}
+}
+
+#mw-languages li ~ li:before {
+	content: '\A•';
+	padding: 0 .25em;
+}
+#mw-normal-catlinks ul,
+#mw-hidden-catlinks,
+#mw-languages ul{
+	margin: 0 0 0 2em;
+}
+#mw-normal-catlinks ul,
+#mw-languages ul {
+	margin-top: .25em;
+}
+#footer-info {
+	font-size: @small;
+	color: @grey4;
+	padding: 0;
+	list-style: none;
+}
+
+
+// FOOTER
+
+#mw-footer {
+	color: #fff;
+	padding-bottom: 1em;
+
+	ul {
+		padding: 0;
+		margin: .5em 0 0;
+		list-style: none;
+	}
+	a {
+		color: #fff;
+	}
+	#footer-icons {
+		font-size: @small;
+		color: @a;
+
+		a {
+			color: darken( @a, 7% );
+		}
+	}
+}
+#footer-icons li,
+#footer-places li {
+	display: inline;
+	margin-right: 1em;
 }
 
 // hidden stuff

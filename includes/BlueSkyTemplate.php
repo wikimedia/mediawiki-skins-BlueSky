@@ -31,6 +31,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 		$namespace = $title->getNamespace();
 		$user = $skin->getUser();
+
 		// get stupid tools pile; we'll dump these on the page throughout
 		$this->allTools = $this->getPageTools();
 		// We'll treat the mainpage like any other page if they're doing something besides looking at it
@@ -594,11 +595,15 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * @return string HTML
 	 */
 	private function getMiscNavigation( $menu, $maxDepth = 3, $appendJunk = false ) {
-		$html = Html::openElement( 'div', [ 'id' => Sanitizer::escapeId( 'mw-' . $menu ) ] );
+		$html = Html::openElement( 'div', [ 'id' => Sanitizer::escapeId( 'mw-' . $menu ), 'class' => 'nested-nav' ] );
 
 		if ( $appendJunk ) {
 			$html .= $this->getEditMenu();
 		}
+
+		$html .= Html::openElement( 'div', [ 'class' => 'nested-nav-block', 'id' => 'nested-main' ] );
+		$html .= Html::rawElement( 'h2', [], $this->getMsg( 'bluesky-menu' ) );
+		$html .= Html::openElement( 'div', [ 'class' => 'nested-nav-block-body' ] );
 
 		$message = trim( wfMessage( $menu )->text() );
 		$previousLevel = 0;
@@ -669,10 +674,17 @@ class BlueSkyTemplate extends BaseTemplate {
 			$previousLevel = $item['depth'];
 		}
 		$html .= Html::closeElement( 'div' );
+		$html .= Html::closeElement( 'div' );
+		$html .= Html::closeElement( 'div' );
 
 		if ( $appendJunk ) {
-			$html .= $this->getProfile();
-			$html .= $this->getMessages();
+			$html .= Html::rawElement( 'div', [ 'class' => 'nested-nav-block', 'id' => 'nested-profile' ],
+				Html::rawElement( 'h2', [], $this->getMsg( 'bluesky-personaltools' ) ) .
+				Html::rawElement( 'div', [ 'class' => 'nested-nav-block-body' ],
+					$this->getProfile() .
+					$this->getMessages()
+				)
+			);
 		}
 
 		$html .= Html::closeElement( 'div' );
@@ -791,7 +803,7 @@ class BlueSkyTemplate extends BaseTemplate {
 	private function getMsgOrDump( $text ) {
 		if ( $this->getMsg( $text )->isDisabled() ) {
 			// not the name of a MediaWiki message
-			return htmlspecialchars( $text );
+			return $text;
 		} else {
 			return $this->getMsg( $text )->escaped();
 		}
@@ -959,6 +971,34 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 
 		return $box;
+	}
+
+	/**
+	 * Fetch the COUNT() of some entries in the given $table.
+	 *
+	 * @param string $table Database table name
+	 * @return int Amount of entries
+	 */
+	private function getCount( $table ) {
+		$user = $this->getSkin()->getUser();
+
+		if ( $user->getId() > 0 ) {
+			$field = 'user_id';
+			$id = $user->getId();
+		} else {
+			$field = 'user_ip';
+			$id = $user->getName();
+		}
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$count = (int)$dbr->selectField(
+			$table,
+			'COUNT(' . $field . ') AS count',
+			[ $field => $id ],
+			__METHOD__
+		);
+
+		return $count;
 	}
 
 	/**

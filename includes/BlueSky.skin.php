@@ -23,7 +23,8 @@ class SkinBlueSky extends SkinTemplate {
 
 		$out->addModuleStyles( [
 			'mediawiki.skinning.content.externallinks',
-			'skins.bluesky'
+			'skins.bluesky',
+			'skins.bluesky.misc'
 		] );
 		$out->addModules( [
 			'skins.bluesky.js'

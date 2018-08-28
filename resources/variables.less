@@ -31,6 +31,9 @@
 @nav-text: @a;
 @nav-text-bright: @grey8;
 
+@tall-header: 75px;
+@short-header: 45px;
+
 // ???
 
 @small: 80%;
@@ -67,10 +70,158 @@
 			}
 		}
 	}
+
+	ul {
+		display: block;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+}
+
+.nested-menu-dropdown() {
+	h3 {
+		font-weight: normal;
+		font-size: inherit;
+		background: @nav-dark;
+		color: @nav-text-bright;
+		padding: .75em 1.25em;
+		margin: 1.5em -1.25em 0;
+	}
+
+	.mw-portlet:first-child h3 {
+		margin-top: 0;
+	}
+}
+
+.header-tab( @offset: 4, @width-offset: 0 ) {
+	.background-image-svg('images/header-icons.svg', 'images/header-icons.png');
+	background-repeat: no-repeat;
+	background-position: 13px + @width-offset 8px - @offset * 80;
+
+	&:hover {
+		background-position: -97px + @width-offset 8px - @offset * 80;
+	}
+}
+
+.header-tab-formatting() {
+	display: block;
+	width: 80px;
+	height: @tall-header;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 48px 2px 0;
+	text-transform: uppercase;
+	color: @nav-text;
+	border-left: 1px solid @nav-bright;
+	border-right: 1px solid @nav-dark;
+	font-size: 10px;
+	font-weight: bold;
+	position: relative;
+	text-align: center;
+	cursor: pointer;
+	overflow: hidden;
+
+	&:hover {
+		color: @nav-text-bright;
+		border-left-color: @nav-dark;
+	}
+}
+
+// Basics of mobile header and fixed header on desktop
+.short-header() {
+	#p-banner {
+		padding: .25em 0;
+		height: @short-header;
+		box-sizing: border-box;
+
+		.mw-wiki-logo {
+			width: 35px;
+			height: 35px;
+			float: left;
+		}
+	}
+	#p-wiki-title {
+		padding: .4em .5em;
+		margin: 0;
+	}
+
+	#p-banner,
+	#p-banner div {
+		display: inline-block;
+	}
+
+	#p-banner div#p-sitesubtitle {
+		display: none;
+	}
+}
+
+.content-h2() {
+	background: @content-box;
+	border: solid 1px @grey6;
+	border-style: solid none;
+	margin: 1em -1em .75em;
+	padding: .85em 1em .75em;
+}
+
+.funk-toc {
+	font-weight: bold;
+	font-size: @small;
+	margin: 1em 0 0;
+	padding: .2em 0 0;
+
+	span {
+		margin-bottom: .25em;
+		display: inline-block;
+	}
+
+	.toclevel-1 {
+		display: block;
+		margin-left: 0;
+
+		> a > .tocnumber,
+		.toc-square {
+			display: inline-block;
+			height: 9px;
+			border-left: 9px solid @nav-bg;
+			padding-left: 5px;
+			margin-bottom: 0;
+		}
+	}
+	.toclevel-2,
+	.toclevel-3,
+	.toclevel-4,
+	.toclevel-5,
+	.toclevel-6 {
+		font-weight: normal;
+		margin-left: 18px;
+	}
+	.toclevel-3,
+	.toclevel-4,
+	.toclevel-5,
+	.toclevel-6 {
+		font-size: 10px;
+	}
+	.toclevel-3:before,
+	.toclevel-4:before,
+	.toclevel-5:before,
+	.toclevel-6:before {
+		content: '(';
+	}
+	.toclevel-3:after,
+	.toclevel-4:after,
+	.toclevel-5:after,
+	.toclevel-6:after {
+		content: ')';
+	}
 }
 
 // To hide objects, but keep them accessible for screen-readers
 .hidden() {
 	position: absolute;
 	top: -9999px;
+}
+
+.hidden {
+	.hidden();
 }

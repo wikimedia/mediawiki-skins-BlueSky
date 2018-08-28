@@ -6,7 +6,7 @@
 		]
 	},
 	"skinname-bluesky": "Blue Sky",
-	"bluesky-desc": "Skin based on the current version (late 2013) of wikiHow's skin",
+	"bluesky-desc": "Skin originally based on the current version of late 2013 of wikiHow's skin, with new features such as mobile support, better external extension interoperability, and themes.",
 	"bluesky-editthis": "Edit this page",
 	"bluesky-viewsource": "View source for this page",
 	"bluesky-navbar-edit": "Edit",
@@ -35,5 +35,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} pages]",
 	"bluesky-article-info": "Article info",
 	"bluesky-page-info": "Page info",
-	"bluesky-footer-tools": "Extra page tools"
+	"bluesky-footer-tools": "Extra page tools",
+	"bluesky-menu": "Menu"
 }

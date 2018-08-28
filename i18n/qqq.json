@@ -38,5 +38,6 @@
 	"bluesky-breadcrumbs-nsdefault": "Link for all other pages in category breadcrumbs",
 	"bluesky-article-info": "Header for article footer full of info",
 	"bluesky-page-info": "Header for article footer full of info on non-mainspace pages",
-	"bluesky-footer-tools": "Footer tools label"
+	"bluesky-footer-tools": "Footer tools label",
+	"bluesky-menu": "Label for the collapsed navigation menu on mobile/smaller displays"
 }
