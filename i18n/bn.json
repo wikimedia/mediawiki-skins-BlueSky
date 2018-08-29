@@ -28,5 +28,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}}টি {{NAMESPACE}} পাতা]",
 	"bluesky-article-info": "নিবন্ধের তথ্য",
 	"bluesky-page-info": "পাতার তথ্য",
-	"bluesky-footer-tools": "পৃষ্ঠার অতিরিক্ত সরঞ্জাম"
+	"bluesky-footer-tools": "পৃষ্ঠার অতিরিক্ত সরঞ্জাম",
+	"bluesky-menu": "মেনু"
 }

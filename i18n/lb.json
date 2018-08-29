@@ -32,5 +32,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} Säiten]",
 	"bluesky-article-info": "Artikel-Informatiounen",
 	"bluesky-page-info": "Säiten-Informatioun",
-	"bluesky-footer-tools": "Zousätzlech Handwierksgeschir fir Säiten"
+	"bluesky-footer-tools": "Zousätzlech Handwierksgeschir fir Säiten",
+	"bluesky-menu": "Menü"
 }

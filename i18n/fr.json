@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"Verdy p"
+			"Verdy p",
+			"Wladek92"
 		]
 	},
-	"bluesky-desc": "Habillage basé sur la version courante (de 2013) de l’habillage wikiHow",
+	"bluesky-desc": "Habillage basé à l'origine sur la version courante de 2013 de l’habillage wikiHow, avec de nouvelles fonctions telles que le support des mobiles, une meilleure interopérabilité des greffons externes, et des thèmes.",
 	"bluesky-editthis": "Modifier cette page",
 	"bluesky-viewsource": "Afficher la source de cette page",
 	"bluesky-navbar-edit": "Modifier",
@@ -32,5 +33,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Pages de {{NAMESPACE}}]",
 	"bluesky-article-info": "Information sur l’article",
 	"bluesky-page-info": "Information sur la page",
-	"bluesky-footer-tools": "Outils de page supplémentaires"
+	"bluesky-footer-tools": "Outils de page supplémentaires",
+	"bluesky-menu": "Menu"
 }

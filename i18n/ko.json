@@ -29,5 +29,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} 문서]",
 	"bluesky-article-info": "글에 대한 정보",
 	"bluesky-page-info": "문서 정보",
-	"bluesky-footer-tools": "추가 문서 도구"
+	"bluesky-footer-tools": "추가 문서 도구",
+	"bluesky-menu": "메뉴"
 }

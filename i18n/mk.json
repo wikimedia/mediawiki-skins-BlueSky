@@ -5,7 +5,7 @@
 		]
 	},
 	"skinname-bluesky": "Сино небо",
-	"bluesky-desc": "Руво според тековната верзија (крај на 2013 г.) на рувото на wikiHow's",
+	"bluesky-desc": "Руво според тековната верзија (крај на 2013 г.) на рувото на wikiHow, со нови можности како мобилна поддршка, подобра складност со надворешни додатоци и изгледи",
 	"bluesky-editthis": "Уреди ја страницава",
 	"bluesky-viewsource": "Извор на страницава",
 	"bluesky-navbar-edit": "Уреди",
@@ -33,5 +33,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страници]",
 	"bluesky-article-info": "Инфо за статијата",
 	"bluesky-page-info": "Инфо за страницата",
-	"bluesky-footer-tools": "Дополнителни алатки за страници"
+	"bluesky-footer-tools": "Дополнителни алатки за страници",
+	"bluesky-menu": "Мени"
 }

@@ -32,5 +32,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Σελίδες του {{NAMESPACE}}]",
 	"bluesky-article-info": "Πληροφορίες άρθρου",
 	"bluesky-page-info": "Πληροφορίες σελίδας",
-	"bluesky-footer-tools": "Πρόσθετα εργαλεία σελίδας"
+	"bluesky-footer-tools": "Πρόσθετα εργαλεία σελίδας",
+	"bluesky-menu": "Μενού"
 }

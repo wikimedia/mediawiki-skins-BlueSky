@@ -33,5 +33,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страница]",
 	"bluesky-article-info": "Информације о чланку",
 	"bluesky-page-info": "Информације о страници",
-	"bluesky-footer-tools": "Додатне алатке за страницу"
+	"bluesky-footer-tools": "Додатне алатке за страницу",
+	"bluesky-menu": "Мени"
 }

@@ -4,7 +4,7 @@
 			"Metalhead64"
 		]
 	},
-	"bluesky-desc": "Benutzeroberfläche, basierend auf der aktuellen Version (spätes 2013) der Benutzeroberfläche „wikiHow“.",
+	"bluesky-desc": "Benutzeroberfläche basierend auf der aktuellen Version der Benutzeroberfläche von wikiHow (spätes 2013) mit neuen Funktionen wie die Unterstützung für mobile Geräte, einer besseren Zusammenarbeitsfähigkeit für externe Erweiterungen und Farbschemen.",
 	"bluesky-editthis": "Diese Seite bearbeiten",
 	"bluesky-viewsource": "Quelltext für diese Seite betrachten",
 	"bluesky-navbar-edit": "Bearbeiten",
@@ -31,5 +31,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Seiten im Namensraum „{{NAMESPACE}}“]",
 	"bluesky-article-info": "Artikelinformationen",
 	"bluesky-page-info": "Seiteninformationen",
-	"bluesky-footer-tools": "Zusätzliche Seitenwerkzeuge"
+	"bluesky-footer-tools": "Zusätzliche Seitenwerkzeuge",
+	"bluesky-menu": "Menü"
 }

@@ -6,7 +6,7 @@
 			"Kly"
 		]
 	},
-	"bluesky-desc": "此外觀使用了目前版本 (2013 年後) 的 wikiHow 外觀為基礎。",
+	"bluesky-desc": "此外觀最初是以 wikiHow 外觀在 2013 年下旬後的目前版本為基礎，並添加帶有支援移動裝置、更好的外部擴充互用性、以及主題等新功能。",
 	"bluesky-editthis": "編輯此頁面",
 	"bluesky-viewsource": "檢視此頁面的原始碼",
 	"bluesky-navbar-edit": "編輯",
@@ -33,5 +33,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} 頁面]",
 	"bluesky-article-info": "文章資訊",
 	"bluesky-page-info": "頁面資訊",
-	"bluesky-footer-tools": "其他頁面工具"
+	"bluesky-footer-tools": "其他頁面工具",
+	"bluesky-menu": "選單"
 }

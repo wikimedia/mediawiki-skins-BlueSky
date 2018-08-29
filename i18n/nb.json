@@ -5,7 +5,7 @@
 		]
 	},
 	"skinname-bluesky": "Blue Sky",
-	"bluesky-desc": "Drakt basert på den nåværende versjonen (sent 2013) av wikiHows drakt",
+	"bluesky-desc": "Drakt basert på 2013-versjonen av wikiHows drakt, med nye funksjoner som mobilstøtte, bedre samhandling med eksterne utvidelser, og temaer.",
 	"bluesky-editthis": "Rediger denne siden",
 	"bluesky-viewsource": "Vis kilden for denne siden",
 	"bluesky-navbar-edit": "Rediger",
@@ -33,5 +33,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}}-sider]",
 	"bluesky-article-info": "Artikkelinfo",
 	"bluesky-page-info": "Sideinfo",
-	"bluesky-footer-tools": "Ekstra sideverktøy"
+	"bluesky-footer-tools": "Ekstra sideverktøy",
+	"bluesky-menu": "Meny"
 }

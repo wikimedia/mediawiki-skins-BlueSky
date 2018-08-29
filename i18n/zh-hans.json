@@ -4,7 +4,7 @@
 			"Liuxinyu970226"
 		]
 	},
-	"bluesky-desc": "基于wikiHow皮肤的当前版本（2013年下旬）的皮肤",
+	"bluesky-desc": "最初基于wikiHow皮肤的当前版本（2013年下旬）的皮肤，并带有诸如移动支持、更佳的外部扩展互用性及主题的新功能。",
 	"bluesky-editthis": "编辑本页",
 	"bluesky-viewsource": "查看该页面的源代码",
 	"bluesky-navbar-edit": "编辑",
@@ -31,5 +31,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}}页面]",
 	"bluesky-article-info": "条目信息",
 	"bluesky-page-info": "页面信息",
-	"bluesky-footer-tools": "额外页面工具"
+	"bluesky-footer-tools": "额外页面工具",
+	"bluesky-menu": "菜单"
 }
