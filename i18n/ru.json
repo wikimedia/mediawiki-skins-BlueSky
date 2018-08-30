@@ -4,7 +4,8 @@
 			"Irus",
 			"Okras",
 			"Kareyac",
-			"MaxBioHazard"
+			"MaxBioHazard",
+			"Vlad5250"
 		]
 	},
 	"bluesky-desc": "На основе кожа на текущей версии (конец 2013 года) из кожи компании по",
@@ -34,5 +35,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страницы]",
 	"bluesky-article-info": "Информация о статье",
 	"bluesky-page-info": "Информация о странице",
-	"bluesky-footer-tools": "Дополнительные инструменты страницы"
+	"bluesky-footer-tools": "Дополнительные инструменты страницы",
+	"bluesky-menu": "Меню"
 }

@@ -32,5 +32,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Старонкі прасторы назваў {{NAMESPACE}}]",
 	"bluesky-article-info": "Зьвесткі пра артыкул",
 	"bluesky-page-info": "Зьвесткі пра старонку",
-	"bluesky-footer-tools": "Дадатковыя інструмэнты старонкі"
+	"bluesky-footer-tools": "Дадатковыя інструмэнты старонкі",
+	"bluesky-menu": "Мэню"
 }
