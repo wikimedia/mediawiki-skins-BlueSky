@@ -4,7 +4,7 @@
 			"Xuacu"
 		]
 	},
-	"bluesky-desc": "Aspeutu basáu na versión actual (finales de 2013) del aspeutu wikiHow",
+	"bluesky-desc": "Aspeutu basáu na versión activa de finales de 2013 de la piel wikiHow, con funciones nueves como encontu pa móviles, meyor interacción con estensiones esternes y temes.",
 	"bluesky-editthis": "Editar esta páxina",
 	"bluesky-viewsource": "Ver el códigu d'esta páxina",
 	"bluesky-navbar-edit": "Editar",
@@ -31,5 +31,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Páxines de {{NAMESPACE}}]",
 	"bluesky-article-info": "Información del artículu",
 	"bluesky-page-info": "Información de la páxina",
-	"bluesky-footer-tools": "Ferramientes estra de páxina"
+	"bluesky-footer-tools": "Ferramientes estra de páxina",
+	"bluesky-menu": "Menú"
 }
