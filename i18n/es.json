@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Macofe"
+			"Macofe",
+			"Yllelder"
 		]
 	},
-	"bluesky-desc": "Apariencia basada en la versión actual (finales de 2013) de la apariencia wikiHow",
+	"bluesky-desc": "Skin originalmente basado en la versión actual de finales de 2013 de wikiHow's skin, con nuevas características como soporte para móviles, mejor interoperabilidad de extensiones externas y temas.",
 	"bluesky-editthis": "Editar esta página",
 	"bluesky-viewsource": "Ver el código de esta página",
 	"bluesky-navbar-edit": "Editar",
@@ -31,5 +32,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Páginas de {{NAMESPACE}}]",
 	"bluesky-article-info": "Información del artículo",
 	"bluesky-page-info": "Información de la página",
-	"bluesky-footer-tools": "Herramientas de página adicionales"
+	"bluesky-footer-tools": "Herramientas de página adicionales",
+	"bluesky-menu": "Menú"
 }
