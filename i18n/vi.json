@@ -32,5 +32,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} trang {{NAMESPACE}}]",
 	"bluesky-article-info": "Thông tin bài viết",
 	"bluesky-page-info": "Thông tin trang",
-	"bluesky-footer-tools": "Thêm công cụ trang"
+	"bluesky-footer-tools": "Thêm công cụ trang",
+	"bluesky-menu": "Trình đơn"
 }

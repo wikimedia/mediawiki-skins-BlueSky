@@ -4,7 +4,7 @@
 			"Hamilton Abreu"
 		]
 	},
-	"bluesky-desc": "Tema baseado na versão atual (fins de 2013) do tema wikiHow",
+	"bluesky-desc": "Tema baseado na versão atual (fins de 2013) do tema da wiki wikiHow, com funcionalidades novas como suporte de dispositivos móveis, melhor interoperabilidade de extensões externas e variantes.",
 	"bluesky-editthis": "Editar esta página",
 	"bluesky-viewsource": "Ver o código-fonte desta página",
 	"bluesky-navbar-edit": "Editar",
@@ -31,5 +31,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Páginas no espaço nominal {{NAMESPACE}}]",
 	"bluesky-article-info": "Informação do artigo",
 	"bluesky-page-info": "Informação da página",
-	"bluesky-footer-tools": "Ferramentas de página adicionais"
+	"bluesky-footer-tools": "Ferramentas de página adicionais",
+	"bluesky-menu": "Menu"
 }
