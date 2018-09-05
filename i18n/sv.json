@@ -5,7 +5,7 @@
 		]
 	},
 	"skinname-bluesky": "Blue Sky",
-	"bluesky-desc": "Utseende baserat på den aktuella versionen (slutet på 2013) av wikiHows utseende",
+	"bluesky-desc": "Utseendet baseras ursprungligen på den aktuella versionen av wikiHows utseende från slutet på 2013 med nya funktioner, t.ex. stöd för mobiler, bättre kompatibilitet med externa tillägg och teman.",
 	"bluesky-editthis": "Redigera denna sida",
 	"bluesky-viewsource": "Visa wikitexten för denna sida",
 	"bluesky-navbar-edit": "Redigera",
@@ -33,5 +33,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} sidor]",
 	"bluesky-article-info": "Artikelinformation",
 	"bluesky-page-info": "Sidinformation",
-	"bluesky-footer-tools": "Extra sidverktyg"
+	"bluesky-footer-tools": "Extra sidverktyg",
+	"bluesky-menu": "Meny"
 }
