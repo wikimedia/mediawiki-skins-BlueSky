@@ -4,7 +4,7 @@
 			"Piramidion"
 		]
 	},
-	"bluesky-desc": "Тема оформлення заснована на поточній версії (кінець 2013) теми wikiHow",
+	"bluesky-desc": "Тема оформлення початково заснована на поточній версії (кінець 2013) теми wikiHow із новими функціями, такими як підтримка мобільних пристроїв, краща сумісність із зовнішніми розширеннями, а також кольорові схеми.",
 	"bluesky-editthis": "Редагувати цю сторінку",
 	"bluesky-viewsource": "Переглянути код цієї сторінки",
 	"bluesky-navbar-edit": "Редагувати",
@@ -31,5 +31,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Сторінки простору назв {{NAMESPACE}}]",
 	"bluesky-article-info": "Інформація про статтю",
 	"bluesky-page-info": "Інформація про сторінку",
-	"bluesky-footer-tools": "Додаткові інструменти сторінки"
+	"bluesky-footer-tools": "Додаткові інструменти сторінки",
+	"bluesky-menu": "Меню"
 }
