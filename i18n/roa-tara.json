@@ -4,7 +4,7 @@
 			"Joetaras"
 		]
 	},
-	"bluesky-desc": "Skin ca se base sus 'a versione de mò (urteme 2013) d'u skin wikiHow",
+	"bluesky-desc": "Skin ca se basave a l'inizie sus 'a versione de mò d'u skin wikiHow d'u 2013, cu le funziune nuève cumme 'u supporte mobbile, l'inderoperabbilità de le estenziune de fore e le teme.",
 	"bluesky-editthis": "Cange sta pàgene",
 	"bluesky-viewsource": "'Ndruche 'a sorgende de sta pàgene",
 	"bluesky-navbar-edit": "Cange",
@@ -31,5 +31,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Pàggene de {{NAMESPACE}}]",
 	"bluesky-article-info": "'Mbormaziune sus 'a vôsce",
 	"bluesky-page-info": "'Mbormaziune d'a pàgene",
-	"bluesky-footer-tools": "Pàgene de le struminde extra"
+	"bluesky-footer-tools": "Pàgene de le struminde extra",
+	"bluesky-menu": "Menù"
 }
