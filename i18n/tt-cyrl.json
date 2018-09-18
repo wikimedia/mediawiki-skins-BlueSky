@@ -15,6 +15,8 @@
 	"bluesky-pagelog": "Әлеге бит көндәлеге",
 	"bluesky-page": "Бит өчен кораллар",
 	"bluesky-admin": "Идарәче",
+	"bluesky-page-edited": "Бит соңгы тапкыр {{int:ago|$1}} мөхәррирләнде",
+	"bluesky-page-edited-user": "Битне соңгы тапкыр {{int:ago|$1}} $2 мөхәррирләде",
 	"duration-months": "$1 {{PLURAL:$1|ай}} элек",
 	"bluesky-toc-sections": "Бүлекләр",
 	"bluesky-home": "Баш",
@@ -27,5 +29,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} битләр]",
 	"bluesky-article-info": "Мәкалә турында",
 	"bluesky-page-info": "Бит турында",
-	"bluesky-footer-tools": "Битнең өстәмә кораллары"
+	"bluesky-footer-tools": "Битнең өстәмә кораллары",
+	"bluesky-menu": "Меню"
 }
