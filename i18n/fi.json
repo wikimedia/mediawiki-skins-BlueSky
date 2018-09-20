@@ -32,5 +32,7 @@
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Luokat]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} sivut]",
 	"bluesky-article-info": "Artikkelin tiedot",
-	"bluesky-page-info": "Sivun tiedot"
+	"bluesky-page-info": "Sivun tiedot",
+	"bluesky-footer-tools": "Lisää sivutyökaluja",
+	"bluesky-menu": "Valikko"
 }
