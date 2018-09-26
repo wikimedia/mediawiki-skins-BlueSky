@@ -5,7 +5,7 @@
 			"StanProg"
 		]
 	},
-	"bluesky-desc": "Облик на базата на текущата версия (към края на 2013) на облика на „wikiHow“",
+	"bluesky-desc": "Облик първоначално създаден на базата на текущата версия към края на 2013 на облика на „wikiHow“, с нови възможности, като поддръжка на мобилни устройства, по-добра съвместимост с външни разширения и облици.",
 	"bluesky-editthis": "Редактиране на страницата",
 	"bluesky-viewsource": "Изходен код на страницата",
 	"bluesky-navbar-edit": "Редактиране",
@@ -32,5 +32,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страници]",
 	"bluesky-article-info": "Информация за статията",
 	"bluesky-page-info": "Информация за страницата",
-	"bluesky-footer-tools": "Допълнителни инструменти за страници"
+	"bluesky-footer-tools": "Допълнителни инструменти за страници",
+	"bluesky-menu": "Меню"
 }
