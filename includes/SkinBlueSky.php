@@ -24,7 +24,9 @@ class SkinBlueSky extends SkinTemplate {
 		$out->addModuleStyles( [
 			'mediawiki.skinning.content.externallinks',
 			'skins.bluesky',
-			'skins.bluesky.misc'
+			// Ensure that something is output even when the Theme extension is
+			// installed. It overrides this later on anyway.
+			'themeloader.skins.bluesky.blue'
 		] );
 		$out->addModules( [
 			'skins.bluesky.js'

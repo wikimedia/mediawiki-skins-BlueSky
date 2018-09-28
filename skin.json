@@ -14,6 +14,9 @@
 	"ValidSkinNames": {
 		"bluesky": "BlueSky"
 	},
+	"ThemeModules": {
+		"bluesky": [ "blue", "red", "green", "white", "grey" ]
+	},
 	"MessagesDirs": {
 		"SkinBlueSky": [
 			"i18n"
@@ -35,33 +38,40 @@
 				"resources/libraries/normalise.css": {
 					"media": "screen"
 				},
-				"resources/screen-common.less": {
-					"media": "screen"
-				},
-				"resources/forms.less": {
-					"media": "screen"
-				},
-				"resources/screen-desktop.less": {
-					"media": "screen and (min-width: 751px)"
-				},
-				"resources/screen-mobile.less": {
-					"media": "screen and (max-width: 750px)"
-				},
-				"resources/print.css": {
+				"resources/styles/print.css": {
 					"media": "print"
 				}
 			}
-		},
-		"skins.bluesky.misc": {
-			"targets": [ "desktop", "mobile" ],
-			"styles": [
-				"resources/screen-misc.less"
-			]
 		},
 		"skins.bluesky.js": {
 			"targets": [ "desktop" ],
 			"scripts": [
 				"resources/main.js"
+			]
+		},
+		"themeloader.skins.bluesky.blue": {
+			"styles": [
+				"resources/theme-blue.less"
+			]
+		},
+		"themeloader.skins.bluesky.green": {
+			"styles": [
+				"resources/theme-green.less"
+			]
+		},
+		"themeloader.skins.bluesky.red": {
+			"styles": [
+				"resources/theme-red.less"
+			]
+		},
+		"themeloader.skins.bluesky.white": {
+			"styles": [
+				"resources/theme-white.less"
+			]
+		},
+		"themeloader.skins.bluesky.grey": {
+			"styles": [
+				"resources/theme-grey.less"
 			]
 		}
 	},
