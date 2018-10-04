@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Joedalton"
+			"Joedalton",
+			"Saederup92"
 		]
 	},
 	"bluesky-desc": "Tema baseret på den nuværende version (sent 2013) af wikiHows tema",
@@ -31,5 +32,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} sider]",
 	"bluesky-article-info": "Artikelinfo",
 	"bluesky-page-info": "Sideinfo",
-	"bluesky-footer-tools": "Ekstra sideværktøjer"
+	"bluesky-footer-tools": "Ekstra sideværktøjer",
+	"bluesky-menu": "Menu"
 }

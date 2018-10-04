@@ -16,6 +16,7 @@
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|အထူးစာမျက်နှာများ]]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ဖိုင်များ]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} တမ်းပလိတ်များ]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|ကဏ္ဍများ]]",
 	"bluesky-article-info": "ဆောင်းပါး အချက်အလက်",
 	"bluesky-page-info": "စာမျက်နှာ အချက်အလက်"
 }
