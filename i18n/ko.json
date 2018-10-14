@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Ykhwong",
-			"Jerrykim306"
+			"Jerrykim306",
+			"Revi"
 		]
 	},
+	"bluesky-desc": "2013년 연말의 위키하우의 스킨을 기반으로 하여 모바일 기능, 더 나은 외부 확장기능 지원, 테마 등과 같은 추가 기능을 포함한 스킨",
 	"bluesky-editthis": "이 문서 편집하기",
 	"bluesky-viewsource": "이 문서의 원본 보기",
 	"bluesky-navbar-edit": "편집",
@@ -17,6 +19,8 @@
 	"bluesky-pagelog": "이 문서의 기록",
 	"bluesky-page": "문서 도구",
 	"bluesky-admin": "관리",
+	"bluesky-page-edited": "{{int:ago|$1}} 전에 마지막으로 편집함",
+	"bluesky-page-edited-user": "$2 사용자가 {{int:ago|$1}} 전에 마지막으로 편집함",
 	"duration-months": "$1{{PLURAL:$1|개월}} 전",
 	"bluesky-toc-sections": "부분",
 	"bluesky-home": "홈",
