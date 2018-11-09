@@ -3,10 +3,11 @@
 		"authors": [
 			"Hex",
 			"Rcdeboer",
-			"Mar(c)"
+			"Mar(c)",
+			"Mainframe98"
 		]
 	},
-	"bluesky-desc": "Uiterlijk gebaseerd op de huidige versie (eind 2013) van wikiHow's uiterlijk",
+	"bluesky-desc": "Uiterlijk gebaseerd op de huidige versie van eind 2013 van het uiterlijk van wikiHow, met nieuwe functionaliteit zoals ondersteuning voor mobiele apparaten, betere samenwerking met uitbreidingen en thema's.",
 	"bluesky-editthis": "Bewerk deze pagina",
 	"bluesky-viewsource": "Bekijk de bron van deze pagina",
 	"bluesky-navbar-edit": "Bewerken",
@@ -33,5 +34,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} pagina's]",
 	"bluesky-article-info": "Artikelinformatie",
 	"bluesky-page-info": "Pagina-informatie",
-	"bluesky-footer-tools": "Extra paginahulpmiddelen"
+	"bluesky-footer-tools": "Extra paginahulpmiddelen",
+	"bluesky-menu": "Menu"
 }
