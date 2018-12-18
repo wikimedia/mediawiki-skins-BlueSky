@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Geonuch"
+		]
+	},
+	"bluesky-desc": "สกินดั้งเดิมจากรุ่นปัจจุบันของช่วงปลายปี 2013 ของสกินวิกิฮาวด้วยคุณลักษณะใหม่ ๆ เช่น การสนับสนุนอุปกรณ์เคลื่อนที่ การทำงานร่วมกันของส่วนขยายภายนอกที่ดีขึ้น และธีม",
+	"bluesky-editthis": "แก้ไขหน้านี้",
+	"bluesky-viewsource": "ดูต้นฉบับสำหรับหน้านี้",
+	"bluesky-navbar-edit": "แก้ไข",
+	"bluesky-personaltools": "โปรไฟล์",
+	"bluesky-messages": "ข้อความ",
+	"bluesky-notifications-new-talk": "คุณมี $1 ใหม่ในหน้าคุย {{PLURAL:$1|ข้อความ|ข้อความ}}",
+	"bluesky-notifications-none": "คุณไม่มีการแจ้งความในเวลานี้\nเข้าชม[[$1|หน้าคุยของคุณ]]เพื่อดูข้อความที่ผ่านมา",
+	"bluesky-notifications-no-talk": "เข้าชม[[$1|หน้าคุย]]ของคุณเพื่อดูข้อความที่ผ่านมา",
+	"bluesky-unread-notifications": "{{PLURAL:$1|ยังไม่ได้อ่าน|$1 ไม่ได้อ่าน}}",
+	"bluesky-pagelog": "ปูมสำหรับหน้านี้",
+	"bluesky-page": "เครื่องมือหน้า",
+	"bluesky-admin": "ผู้ดูแล",
+	"bluesky-page-edited": "หน้าการแก้ไขล่าสุด {{int:ago|$1}}",
+	"bluesky-page-edited-user": "หน้าการแก้ไขล่าสุด {{int:ago|$1}} โดย $2",
+	"duration-months": "$1 {{PLURAL:$1|เดือน|เดือน}}",
+	"bluesky-toc-sections": "ส่วนย่อย",
+	"bluesky-home": "หน้าหลัก",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|หน้าพิเศษ]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} หน้าโครงการ]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} หน้าคุยโครงการ]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ไฟล์]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} แม่แบบ]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|หมวดหมู่]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} \nหน้า {{NAMESPACE}}]",
+	"bluesky-article-info": "ข้อมูลบทความ",
+	"bluesky-page-info": "ข้อมูลหน้า",
+	"bluesky-footer-tools": "เครื่องมือหน้าเพิ่มเติม",
+	"bluesky-menu": "เมนู"
+}
