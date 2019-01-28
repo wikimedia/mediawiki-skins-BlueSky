@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"William Surya Permana"
+		]
+	},
+	"bluesky-desc": "Kulit ini awalnya dibuat berdasarkan versi terkini dari kulit wikiHow pada akhir 2013 dengan fitur baru seperti dukungan seluler, interoperabilitas pengaya eksternal yang lebih baik, dan tema.",
+	"bluesky-editthis": "Sunting halaman ini",
+	"bluesky-viewsource": "Lihat sumber halaman ini",
+	"bluesky-navbar-edit": "Sunting",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Pesan",
+	"bluesky-notifications-new-talk": "Anda memiliki $1 {{PLURAL:$1|pesan}} pembicaraan baru.",
+	"bluesky-notifications-none": "Anda tidak memiliki pemberitahuan saat ini.\nKunjungi [[$1|halaman pembicaraan]] Anda untuk melihat pesan-pesan terdahulu.",
+	"bluesky-notifications-no-talk": "Kunjungi [[$1|halaman pembicaraan]] Anda untuk melihat pesan-pesan terdahulu.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Satu belum dibaca|$1 belum dibaca}}",
+	"bluesky-pagelog": "Log untuk halaman ini",
+	"bluesky-page": "Peralatan halaman",
+	"bluesky-admin": "Pengurus",
+	"bluesky-page-edited": "Halaman terakhir disunting {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Halaman terakhir disunting {{int:ago|$1}} oleh $2",
+	"duration-months": "$1 {{PLURAL:$1|bulan}}",
+	"bluesky-toc-sections": "Bagian",
+	"bluesky-home": "Beranda",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Halaman istimewa]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Halaman proyek]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Halaman pembicaraan proyek]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Berkas]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Templat]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategori]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Halaman {{NAMESPACE}}]",
+	"bluesky-article-info": "Info artikel",
+	"bluesky-page-info": "Info halaman",
+	"bluesky-footer-tools": "Peralatan halaman ekstra",
+	"bluesky-menu": "Menu"
+}

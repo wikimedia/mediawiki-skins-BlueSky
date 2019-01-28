@@ -3,7 +3,8 @@
 		"authors": [
 			"1917 Ekim Devrimi",
 			"Gırd",
-			"Mirzali"
+			"Mirzali",
+			"Orbot707"
 		]
 	},
 	"bluesky-desc": "mewcud versiyonê pak çermeyê Wikihow'i (2003 de)",
@@ -33,5 +34,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} perri]",
 	"bluesky-article-info": "Malumata wesiqa",
 	"bluesky-page-info": "Melumatê perre",
-	"bluesky-footer-tools": "Tayna hacetê pele"
+	"bluesky-footer-tools": "Tayna hacetê pele",
+	"bluesky-menu": "Menu"
 }
