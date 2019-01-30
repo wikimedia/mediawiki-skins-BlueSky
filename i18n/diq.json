@@ -28,7 +28,7 @@
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Perê hısusiy]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pella proceyan]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Pela vatışê procey]",
-	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Dosyay]]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Dosyeyi]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Şabloni]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategoriyi]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} perri]",
