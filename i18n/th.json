@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Geonuch"
+			"Geonuch",
+			"Aefgh39622"
 		]
 	},
 	"bluesky-desc": "สกินดั้งเดิมจากรุ่นปัจจุบันของช่วงปลายปี 2013 ของสกินวิกิฮาวด้วยคุณลักษณะใหม่ ๆ เช่น การสนับสนุนอุปกรณ์เคลื่อนที่ การทำงานร่วมกันของส่วนขยายภายนอกที่ดีขึ้น และธีม",
@@ -9,9 +10,9 @@
 	"bluesky-viewsource": "ดูต้นฉบับสำหรับหน้านี้",
 	"bluesky-navbar-edit": "แก้ไข",
 	"bluesky-personaltools": "โปรไฟล์",
-	"bluesky-messages": "สาร",
-	"bluesky-notifications-new-talk": "คุณมี $1 ใหม่ในหน้าคุย {{PLURAL:$1|สาร|สาร}}",
-	"bluesky-notifications-none": "คุณไม่มีการแจ้งความในเวลานี้\nเข้าชม[[$1|หน้าคุยของคุณ]]เพื่อดูข้อความที่ผ่านมา",
+	"bluesky-messages": "ข้อความ",
+	"bluesky-notifications-new-talk": "คุณมี{{PLURAL:$1|ข้อความ}}พูดคุยใหม่ $1 ข้อความ",
+	"bluesky-notifications-none": "คุณไม่มีการแจ้งเตือนในขณะนี้\nเข้าชม[[$1|หน้าพูดคุยของคุณ]]เพื่อดูข้อความที่ผ่านมา",
 	"bluesky-notifications-no-talk": "เข้าชม[[$1|หน้าคุย]]ของคุณเพื่อดูข้อความที่ผ่านมา",
 	"bluesky-unread-notifications": "{{PLURAL:$1|ยังไม่ได้อ่าน|$1 ไม่ได้อ่าน}}",
 	"bluesky-pagelog": "ปูมสำหรับหน้านี้",
