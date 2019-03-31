@@ -33,6 +33,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} 頁面]",
 	"bluesky-article-info": "條目資訊",
 	"bluesky-page-info": "頁面資訊",
-	"bluesky-footer-tools": "其他頁面工具",
+	"bluesky-footer-tools": "額外頁面工具",
 	"bluesky-menu": "選單"
 }
