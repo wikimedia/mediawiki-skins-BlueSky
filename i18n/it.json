@@ -9,14 +9,22 @@
 	"bluesky-navbar-edit": "Modifica",
 	"bluesky-personaltools": "Profilo",
 	"bluesky-messages": "Messaggi",
+	"bluesky-notifications-new-talk": "Hai $1 {{PLURAL:$1|nuovo messaggio|nuovi messaggi}} nella pagina di discussione.",
+	"bluesky-notifications-none": "Non hai notifiche al momento.\nVisita la tua [[$1|pagina di discussione]] per vedere i vecchi messaggi.",
+	"bluesky-notifications-no-talk": "Visita la tua [[$1|pagina di discussione]] per vedere i vecchi messaggi.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Uno non letto|$1 non letti}}",
 	"bluesky-pagelog": "Registri per questa pagina",
 	"duration-months": "$1 {{PLURAL:$1|mese|mesi}}",
 	"bluesky-toc-sections": "Sezioni",
 	"bluesky-home": "Pagina principale",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pagine speciali]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pagine di progetto]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Pagine di discussione progetto]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|File]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Template]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categorie]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Pagine {{NAMESPACE}}]",
 	"bluesky-article-info": "Informazioni sulla voce",
-	"bluesky-page-info": "Informazioni sulla pagina"
+	"bluesky-page-info": "Informazioni sulla pagina",
+	"bluesky-menu": "Menu"
 }
