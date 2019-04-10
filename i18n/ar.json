@@ -24,6 +24,7 @@
 	"bluesky-page-edited-user": "آخر تحديث للصفحة {{int:ago|$1}} بواسطة $2",
 	"duration-months": "$1 {{PLURAL:$1|شهر|أشهر}}",
 	"bluesky-toc-sections": "الأقسام",
+	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "الصفحة الرئيسية",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|الصفحات الخاصة]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} صفحات المشروع]",
