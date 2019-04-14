@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Otokoume"
+			"Otokoume",
+			"珍庵"
 		]
 	},
 	"bluesky-desc": "現在の wikiHow のスキンに基づいたスキン",
@@ -30,5 +31,6 @@
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|カテゴリ]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}}ページ]",
 	"bluesky-article-info": "記事情報",
-	"bluesky-page-info": "ページ情報"
+	"bluesky-page-info": "ページ情報",
+	"bluesky-menu": "メニュー"
 }
