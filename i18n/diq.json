@@ -33,7 +33,7 @@
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategoriyi]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} perri]",
 	"bluesky-article-info": "Malumata wesiqa",
-	"bluesky-page-info": "Melumatê perre",
+	"bluesky-page-info": "Melumatê pele",
 	"bluesky-footer-tools": "Tayna hacetê pele",
 	"bluesky-menu": "Menu"
 }
