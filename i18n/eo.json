@@ -1,0 +1,33 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mirin"
+		]
+	},
+	"bluesky-editthis": "Redakti ĉi tiun paĝon",
+	"bluesky-viewsource": "Vidi la fonton de ĉi tiu paĝo",
+	"bluesky-navbar-edit": "Redakti",
+	"bluesky-personaltools": "Profilo",
+	"bluesky-messages": "Mesaĝoj",
+	"bluesky-notifications-new-talk": "Vi havas $1 {{PLURAL:$1|novan mesaĝon|novajn mesaĝojn}} ĉe diskutpaĝo.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Unu nelegita|$1 nelegitaj}}",
+	"bluesky-pagelog": "Protokoloj pri ĉi tiu paĝo",
+	"bluesky-page": "Paĝaj iloj",
+	"bluesky-admin": "Administrado",
+	"bluesky-page-edited": "Paĝo estas laste redaktita {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Paĝo estas laste redaktita {{int:ago|$1}} de $2",
+	"duration-months": "$1 {{PLURAL:$1|monato|monatoj}}",
+	"bluesky-toc-sections": "Paragrafoj",
+	"bluesky-home": "Ĉefpaĝo",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Specialaj paĝoj]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektaj paĝoj]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Projektaj diskutpaĝoj]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Dosieroj]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Ŝablonoj]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorioj]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Paĝojn en {{NAMESPACE}}]",
+	"bluesky-article-info": "Informo pri artikolo",
+	"bluesky-page-info": "Informo pri paĝo",
+	"bluesky-footer-tools": "Pliaj paĝaj iloj",
+	"bluesky-menu": "Menuo"
+}
