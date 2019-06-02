@@ -4,12 +4,15 @@
 			"Mirin"
 		]
 	},
+	"bluesky-desc": "Etoso, originale bazita de la etoso de wikiHow je malfrua 2013, kun novaj trajtoj kiel subtenado de poŝaparatoj, pli bona kunfunkciado kun eksteraj kromprogramoj, kaj agordeblo.",
 	"bluesky-editthis": "Redakti ĉi tiun paĝon",
 	"bluesky-viewsource": "Vidi la fonton de ĉi tiu paĝo",
 	"bluesky-navbar-edit": "Redakti",
 	"bluesky-personaltools": "Profilo",
 	"bluesky-messages": "Mesaĝoj",
 	"bluesky-notifications-new-talk": "Vi havas $1 {{PLURAL:$1|novan mesaĝon|novajn mesaĝojn}} ĉe diskutpaĝo.",
+	"bluesky-notifications-none": "Vi ne havas aktualajn sciigojn nun.\nVizitu vian [[$1|diskutpaĝon]] por malaktualaj mesaĝoj.",
+	"bluesky-notifications-no-talk": "Vizitu vian [[$1|diskutpaĝon]] por vidi malaktualajn mesaĝojn.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Unu nelegita|$1 nelegitaj}}",
 	"bluesky-pagelog": "Protokoloj pri ĉi tiu paĝo",
 	"bluesky-page": "Paĝaj iloj",
