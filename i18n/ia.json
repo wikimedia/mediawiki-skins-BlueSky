@@ -31,5 +31,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Paginas de {{NAMESPACE}}]",
 	"bluesky-article-info": "Information sur le articulo",
 	"bluesky-page-info": "Information sur le pagina",
-	"bluesky-footer-tools": "Additional instrumentos de pagina"
+	"bluesky-footer-tools": "Additional instrumentos de pagina",
+	"bluesky-menu": "Menu"
 }
