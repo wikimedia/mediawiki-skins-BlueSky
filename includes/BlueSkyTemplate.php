@@ -521,7 +521,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$content .= Html::element(
 			'h3',
 			[],
-			isset( $box['headerMessage'] ) ? $this->getMsg( $box['headerMessage'] )->escaped() : htmlspecialchars( $box['header'] )
+			isset( $box['headerMessage'] ) ? $this->getMsg( $box['headerMessage'] )->text() : $box['header']
 		);
 		if ( is_array( $box['content'] ) ) {
 			$content .= Html::openElement( 'ul', [ 'class' => 'menu-block' ] );
@@ -571,11 +571,11 @@ class BlueSkyTemplate extends BaseTemplate {
 			Html::element(
 				'div',
 				[ 'id' => 'p-wiki-title' ],
-				$this->getMsg( 'sitetitle' )->escaped()
+				$this->getMsg( 'sitetitle' )->text()
 			) . Html::element(
 				'div',
 				[ 'id' => 'p-sitesubtitle' ],
-				wfMessage( 'sitesubtitle' )->escaped()
+				wfMessage( 'sitesubtitle' )->text()
 			)
 		);
 		$html .= Html::closeElement( 'a' );
@@ -1045,18 +1045,18 @@ class BlueSkyTemplate extends BaseTemplate {
 		$html .= Html::openElement(
 			'form',
 			[
-				'action' => htmlspecialchars( $this->get( 'wgScript' ) ),
+				'action' => $this->get( 'wgScript' ),
 				'role' => 'search',
 				'class' => 'mw-portlet',
 				'id' => 'p-search'
 			]
 		);
 		$html .= Html::openElement( 'div', [ 'id' => 'search-inner' ] );
-		$html .= Html::hidden( 'title', htmlspecialchars( $this->get( 'searchtitle' ) ) );
+		$html .= Html::hidden( 'title', $this->get( 'searchtitle' ) );
 		$html .= Html::rawElement(
 			'h3',
 			[],
-			Html::label( $this->getMsg( 'search' )->escaped(), 'searchInput' )
+			Html::label( $this->getMsg( 'search' )->text(), 'searchInput' )
 		);
 		$html .= $this->makeSearchInput( [ 'id' => 'searchInput' ] );
 		$html .= $this->makeSearchButton( 'go', [ 'id' => 'searchGoButton', 'class' => 'searchButton' ] );
@@ -1199,7 +1199,7 @@ class BlueSkyTemplate extends BaseTemplate {
 					Html::element(
 						'a',
 						[
-							'href' => htmlspecialchars( $langlink['href'] ),
+							'href' => $langlink['href'],
 							'class' => $langlink['class'] . ' interwiki'
 						],
 						$langlink['text']
