@@ -575,7 +575,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			) . Html::element(
 				'div',
 				[ 'id' => 'p-sitesubtitle' ],
-				wfMessage( 'sitesubtitle' )->text()
+				$this->getMsg( 'sitesubtitle' )->text()
 			)
 		);
 		$html .= Html::closeElement( 'a' );
@@ -605,7 +605,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$html .= Html::rawElement( 'h2', [], $this->getMsg( 'bluesky-menu' ) );
 		$html .= Html::openElement( 'div', [ 'class' => 'nested-nav-block-body' ] );
 
-		$message = trim( wfMessage( $menu )->text() );
+		$message = trim( $this->getMsg( $menu )->text() );
 		$previousLevel = 0;
 
 		// parse lines into an array: strings of target, display, class
