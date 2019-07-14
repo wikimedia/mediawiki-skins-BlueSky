@@ -13,7 +13,7 @@
 	"bluesky-notifications-new-talk": "Tu è $1 {{PLURAL:$1|messàgge}} de 'ngazzaminde.",
 	"bluesky-notifications-none": "Non ge tìne notifiche jndr'à stu mumende.\nVèje sus 'a [[$1|pàgena de le 'ngazzaminde]] tune pe 'ndrucà le urteme messagge.",
 	"bluesky-notifications-no-talk": "Vèje sus 'a [[$1|pàgena de le 'ngazzaminde]] tune pe 'ndrucà le urteme messagge.",
-	"bluesky-unread-notifications": "{{PLURAL:$1|Une non lette|$1 non lette}}",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Une|$1}} non lette",
 	"bluesky-pagelog": "Archivije pe sta pàgene",
 	"bluesky-page": "Pàgene de le struminde",
 	"bluesky-admin": "Amministratore",
