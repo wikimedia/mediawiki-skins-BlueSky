@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80"
+			"Amire80",
+			"Steeve815"
 		]
 	},
 	"bluesky-desc": "עיצוב שמבוסס על הגרסה הנוכחית (שלהי 2013) של העיצוב של wikiHow",
@@ -31,5 +32,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} דפי {{NAMESPACE}}]",
 	"bluesky-article-info": "מידע על הערך",
 	"bluesky-page-info": "מידע על הדף",
-	"bluesky-footer-tools": "כלי דף נוספים"
+	"bluesky-footer-tools": "כלי דף נוספים",
+	"bluesky-menu": "תפריט"
 }
