@@ -1,25 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ильнар"
+			"Ильнар",
+			"Ерней"
 		]
 	},
 	"bluesky-editthis": "Бу битне үзгәртү",
 	"bluesky-viewsource": "Бу битнең чыганак текстын карау",
 	"bluesky-navbar-edit": "Үзгәртү",
 	"bluesky-personaltools": "Профиль",
-	"bluesky-messages": "Хат",
+	"bluesky-messages": "Хәбәрләр",
 	"bluesky-notifications-new-talk": "Сезнең $1 яңа {{PLURAL:$1|хатыгыз}} бар.",
 	"bluesky-notifications-none": "Әлегә хәбәрнамәләр юк. Соңгы язманы карау өчен [[$1|бәхәс битегезгә]] күчегез.",
-	"bluesky-unread-notifications": "{{PLURAL:$1|бер укылмаган|$1 укылмаган}}",
-	"bluesky-pagelog": "Әлеге бит көндәлеге",
+	"bluesky-notifications-no-talk": "Соңгы хәбәрләр күрү өчен үзегезнең [[$1|бәхәс битегезне]] карап бару.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Бер генә укылмаган|$1 укылмаган}}",
+	"bluesky-pagelog": "Бу бит өчен көндәлекләр",
 	"bluesky-page": "Бит өчен кораллар",
 	"bluesky-admin": "Идарәче",
 	"bluesky-page-edited": "Бит соңгы тапкыр {{int:ago|$1}} мөхәррирләнде",
 	"bluesky-page-edited-user": "Битне соңгы тапкыр {{int:ago|$1}} $2 мөхәррирләде",
 	"duration-months": "$1 {{PLURAL:$1|ай}} элек",
 	"bluesky-toc-sections": "Бүлекләр",
-	"bluesky-home": "Баш",
+	"bluesky-home": "Баш бит",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Махсус битләр]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Проект битләре]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Проект бәхәсе битләре]",
