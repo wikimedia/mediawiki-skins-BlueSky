@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"C.R."
+			"C.R.",
+			"Ruthven"
 		]
 	},
 	"bluesky-desc": "Skin ca se basa ncopp' 'a verziona 'e mò (urdeme 2013) d' 'o skin wikiHow",
@@ -11,7 +12,7 @@
 	"bluesky-personaltools": "Profilo",
 	"bluesky-messages": "Mmasciate",
 	"bluesky-notifications-new-talk": "Vuje avite $1 {{PLURAL:$1|mmasciate}} nove.",
-	"bluesky-pagelog": "Riggistre pe' sta paggena",
+	"bluesky-pagelog": "Riggistre pe sta paggena",
 	"bluesky-page": "Strumiente p' 'e paggene",
 	"bluesky-admin": "Ammenistratore",
 	"bluesky-page-edited": "Urdema pàggena cagnata {{int:ago|$1}}",
