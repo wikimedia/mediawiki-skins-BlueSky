@@ -10,7 +10,7 @@
 	"bluesky-navbar-edit": "Үзгәртү",
 	"bluesky-personaltools": "Профиль",
 	"bluesky-messages": "Хәбәрләр",
-	"bluesky-notifications-new-talk": "Сезнең $1 яңа {{PLURAL:$1|хатыгыз}} бар.",
+	"bluesky-notifications-new-talk": "Сезнең $1 яңа гәп-{{PLURAL:$1|хәбәрегез}} бар.",
 	"bluesky-notifications-none": "Әлегә хәбәрнамәләр юк. Соңгы язманы карау өчен [[$1|бәхәс битегезгә]] күчегез.",
 	"bluesky-notifications-no-talk": "Соңгы хәбәрләр күрү өчен үзегезнең [[$1|бәхәс битегезне]] карап бару.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Бер генә укылмаган|$1 укылмаган}}",
