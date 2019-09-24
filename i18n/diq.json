@@ -19,7 +19,7 @@
 	"bluesky-unread-notifications": "{{PLURAL:$1|jew nêwaneya |$1 nêwaneyay}}",
 	"bluesky-pagelog": "Qeydkerdışê ena pele",
 	"bluesky-page": "Aletê pele",
-	"bluesky-admin": "Admin",
+	"bluesky-admin": "İdarekar",
 	"bluesky-page-edited": "Tewr vurnayışo peyên {{int:ago| $1}}",
 	"bluesky-page-edited-user": "Tewr vurnayışo peyên {{int:ago| $1}} $2 ra biyo",
 	"duration-months": "{{PLURAL:$1|aşm|aşmi}}",
