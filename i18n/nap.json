@@ -5,20 +5,28 @@
 			"Ruthven"
 		]
 	},
-	"bluesky-desc": "Skin ca se basa ncopp' 'a verziona 'e mò (urdeme 2013) d' 'o skin wikiHow",
+	"bluesky-desc": "Skin ca se basa ncopp' 'a verziona 'e mò (urdema 'e 2013) d' 'o skin wikiHow, cu nu cuofeno 'e robbe nnove, comm' 'o suppuorto cellulare, megl'interoperabilità e themes.",
 	"bluesky-editthis": "Càgna chesta paggena",
 	"bluesky-viewsource": "Vide 'e sorgente pe' sta paggena",
 	"bluesky-navbar-edit": "Càgna",
 	"bluesky-personaltools": "Profilo",
 	"bluesky-messages": "Mmasciate",
 	"bluesky-notifications-new-talk": "Vuje avite $1 {{PLURAL:$1|mmasciate}} nove.",
+	"bluesky-notifications-none": "Nun tiene notifiche mò.\nVaje ncopp' 'a [[$1|paggena 'e chiàcchiera]] pe' puté veré 'e mmasciate viecchie.",
+	"bluesky-notifications-no-talk": "Vaje ncopp' 'a [[$1|paggena 'e chiàcchiera]] pe' puté vedé 'e mmasciate viecchie.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Una nun liggiuta|$1 nun liggiute}}",
 	"bluesky-pagelog": "Riggistre pe sta paggena",
 	"bluesky-page": "Strumiente p' 'e paggene",
 	"bluesky-admin": "Ammenistratore",
 	"bluesky-page-edited": "Urdema pàggena cagnata {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Urdema pàggena cagnata {{int:ago|$1}} 'a $2",
+	"duration-months": "$1 {{PLURAL:$1|mese|mise}}",
 	"bluesky-toc-sections": "Seziune",
 	"bluesky-home": "Prencepale",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pàggene speciale]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pàggene d' 'e pruggette]",
-	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|File]]"
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Pàggene 'e chiàcchiera 'e pruggetto]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|File]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Mudelle]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categurie]]"
 }
