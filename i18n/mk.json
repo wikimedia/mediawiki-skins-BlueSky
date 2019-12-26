@@ -28,7 +28,7 @@
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Проектни страници]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Проектни разговорни страници]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Податотека]]",
-	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблони]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Предлошки]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категорија]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страници]",
 	"bluesky-article-info": "Инфо за статијата",
