@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Oromoo"
+		]
+	},
+	"bluesky-editthis": "Fuula kana gulaali",
+	"bluesky-navbar-edit": "Gulaali",
+	"bluesky-personaltools": "Galmee",
+	"bluesky-messages": "Ergaawwan",
+	"bluesky-notifications-none": "ammatti yaadachiisa hin qabdu.\nErgaawwan dabaraniif [[$1|fuula haasaa]] ke daawwadhu.",
+	"bluesky-notifications-no-talk": "Ergaawwan dabaraniif [[$1|fuula haasaa]] ke daawwadhu.",
+	"bluesky-pagelog": "Fuula kanaaf galmeewwan",
+	"bluesky-page": "Meeshaalee fuulaa",
+	"bluesky-admin": "Bulchaa",
+	"bluesky-toc-sections": "Kutaalee",
+	"bluesky-home": "Wirtuu",
+	"bluesky-article-info": "Odeefannoo barruu",
+	"bluesky-page-info": "odeefannoo fuulaa",
+	"bluesky-menu": "Baafata"
+}
