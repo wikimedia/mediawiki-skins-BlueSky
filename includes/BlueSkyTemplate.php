@@ -817,9 +817,20 @@ class BlueSkyTemplate extends BaseTemplate {
 	private function getEditMenu() {
 		$skin = $this->getSkin();
 		$title = $skin->getTitle();
+		$user = $skin->getUser();
 
-		if ( !$title->userCan( 'edit' ) ) {
-			return '';
+		if ( class_exists( 'MediaWiki\Permissions\PermissionManager' ) ) {
+			// MW 1.33+
+			if ( !\MediaWiki\MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->userCan( 'edit', $user, $title )
+			) {
+				return '';
+			}
+		} else {
+			if ( !$title->userCan( 'edit' ) ) {
+				return '';
+			}
 		}
 
 		return $this->getPortlet( [
