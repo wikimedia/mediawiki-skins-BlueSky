@@ -30,7 +30,7 @@
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Şablonlar]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategoriler]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} sayfaları]",
-	"bluesky-article-info": "Makale bilgisi",
+	"bluesky-article-info": "Madde bilgisi",
 	"bluesky-page-info": "Sayfa bilgisi",
 	"bluesky-footer-tools": "Ekstra sayfa araçları",
 	"bluesky-menu": "Menü"
