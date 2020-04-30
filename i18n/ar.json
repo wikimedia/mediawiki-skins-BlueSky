@@ -15,7 +15,7 @@
 	"bluesky-messages": "رسائل",
 	"bluesky-notifications-new-talk": "لديك $1 {{PLURAL:$1|رسالة|رسائل}} جديدة.",
 	"bluesky-notifications-none": "ليس لديك إشعارات الآن.\nزُر [[$1|صفحة نقاشك]] لترى الرسائل السابقة.",
-	"bluesky-notifications-no-talk": "زُر [[$1|صفحة نقاشك]] لترى الرسائل السابقة.",
+	"bluesky-notifications-no-talk": "زر [[$1|صفحة نقاشك]] لترى الرسائل السابقة.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|رسالة واحدة غير مقروءة|$1 غير مقروءة}}",
 	"bluesky-pagelog": "السجلات لهذه الصفحة",
 	"bluesky-page": "أدوات الصفحة",
