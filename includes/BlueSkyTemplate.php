@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * BaseTemplate class for the BlueSky skin
  *
@@ -821,7 +824,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		if ( class_exists( 'MediaWiki\Permissions\PermissionManager' ) ) {
 			// MW 1.33+
-			if ( !\MediaWiki\MediaWikiServices::getInstance()
+			if ( !MediaWikiServices::getInstance()
 				->getPermissionManager()
 				->userCan( 'edit', $user, $title )
 			) {
@@ -959,7 +962,16 @@ class BlueSkyTemplate extends BaseTemplate {
 
 			// Talk messages
 			$talkCount = 0;
-			if ( $user->getNewtalk() ) {
+
+			if ( class_exists( 'MediaWiki\User\TalkPageNotificationManager' ) ) {
+				// MW 1.35+
+				$userHasNewMessages = MediaWikiServices::getInstance()
+					->getTalkPageNotificationManager()->userHasNewMessages( $user );
+			} else {
+				$userHasNewMessages = $user->getNewtalk();
+			}
+
+			if ( $userHasNewMessages ) {
 				$talkCount = $this->getCount( 'user_newtalk' );
 				$msg = Html::rawElement( 'div', [ 'class' => 'note_row' ],
 					Html::element( 'div', [ 'class' => 'note_icon_talk' ], '' ) .
