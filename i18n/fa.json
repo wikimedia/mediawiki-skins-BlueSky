@@ -31,5 +31,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} صفحات {{NAMESPACE}}]",
 	"bluesky-article-info": "اطلاعات مقاله",
 	"bluesky-page-info": "اطلاعات صفحه",
-	"bluesky-footer-tools": "ابزاهای بیشتر صفحه"
+	"bluesky-footer-tools": "ابزاهای بیشتر صفحه",
+	"bluesky-menu": "منو"
 }
