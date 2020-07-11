@@ -505,6 +505,7 @@ class BlueSkyTemplate extends BaseTemplate {
 	/**
 	 * Assembles a single sidebar portlet of any kind (monobook style)
 	 *
+	 * @param array $box
 	 * @return string portlet
 	 */
 	private function getPortlet( $box ) {
@@ -1113,7 +1114,6 @@ class BlueSkyTemplate extends BaseTemplate {
 	/**
 	 * Output the "Page last edited X days Y hours ago" string for pages in content namespaces.
 	 *
-	 * @param Title $title
 	 * @return string "edited X ago" string on success, empty string on failure
 	 */
 	private function getPageLastEdit() {

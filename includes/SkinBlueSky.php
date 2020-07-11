@@ -11,7 +11,7 @@ class SkinBlueSky extends SkinTemplate {
 	/**
 	 * Add CSS via ResourceLoader
 	 *
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	public function initPage( OutputPage $out ) {
 		parent::initPage( $out );
@@ -34,7 +34,7 @@ class SkinBlueSky extends SkinTemplate {
 	}
 
 	/**
-	 * @param $out OutputPage
+	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
