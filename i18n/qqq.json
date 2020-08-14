@@ -29,7 +29,7 @@
 	"bluesky-breadcrumb-pointer": "{{optional}}\n\n Just flip it or something for rtl languages?",
 	"bluesky-home": "Home page link in category breadcrumbs\n{{Identical|Home}}",
 	"bluesky-breadcrumbs-nsspecial": "Link for special pages in category breadcrumbs",
-	"bluesky-breadcrumbs-nsmain": "Link for mainspace pages in category breadcrumbs",
+	"bluesky-breadcrumbs-nsmain": "{{notranslate}}\nLink for mainspace pages in category breadcrumbs",
 	"bluesky-breadcrumbs-nsproject": "Link for project pages in category breadcrumbs",
 	"bluesky-breadcrumbs-nsproject-talk": "Link for pages in category breadcrumbs",
 	"bluesky-breadcrumbs-nsfile": "Link for file pages in category breadcrumbs\n{{Identical|File}}",
