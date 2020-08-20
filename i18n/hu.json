@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tacsipacsi"
+		]
+	},
+	"bluesky-editthis": "Lap szerkesztése",
+	"bluesky-viewsource": "A lap forráskódjának megtekintése",
+	"bluesky-navbar-edit": "Szerkesztés",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Üzenetek",
+	"bluesky-notifications-new-talk": "$1 új vitalapi üzeneted van.",
+	"bluesky-notifications-none": "Jelenleg nincs új üzeneted.\nLátogasd meg a [[$1|vitalapodat]] a régebbi üzenetek megtekintéséhez.",
+	"bluesky-notifications-no-talk": "Látogasd meg a [[$1|vitalapodat]] a régebbi üzenetek megtekintéséhez.",
+	"bluesky-unread-notifications": "$1 olvasatlan",
+	"bluesky-admin": "Admin",
+	"bluesky-toc-sections": "Szakaszok",
+	"bluesky-home": "Kezdőlap",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Speciális lapok]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektlapok]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Projektvitalapok]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Fájlok]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Sablonok]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategóriák]]",
+	"bluesky-article-info": "Szócikkinformációk",
+	"bluesky-page-info": "Lapinformációk",
+	"bluesky-menu": "Menü"
+}
