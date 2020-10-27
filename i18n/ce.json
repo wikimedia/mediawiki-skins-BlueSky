@@ -22,7 +22,7 @@
 	"bluesky-home": "Коьрта",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|къаьстина агӀонаш]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} агӀонан проектан]",
-	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Проектан дийцаре агӀо]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Проектан дийцарийн агӀо]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлаш]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|пространство имен=10}} кепаш]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категореш]]",
