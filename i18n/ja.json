@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Omotecho",
 			"Otokoume",
 			"Yusuke1109",
 			"珍庵"
@@ -33,5 +34,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}}ページ]",
 	"bluesky-article-info": "記事情報",
 	"bluesky-page-info": "ページ情報",
+	"bluesky-footer-tools": "その他のページツール",
 	"bluesky-menu": "メニュー"
 }
