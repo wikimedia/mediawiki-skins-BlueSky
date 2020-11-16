@@ -9,6 +9,7 @@
 			"Vlad5250"
 		]
 	},
+	"skinname-bluesky": "Blue Sky",
 	"bluesky-desc": "Тема, основанная на текущей версии темы wikiHow конца 2013 года, с новыми функциями, такими как поддержка мобильных устройств, улучшенная совместимость с внешними расширениями и темами.",
 	"bluesky-editthis": "Отредактировать эту страницу",
 	"bluesky-viewsource": "Просмотр исходного текста для этой страницы",
@@ -26,6 +27,7 @@
 	"bluesky-page-edited-user": "Страница последний раз редактировалось {{int:ago|$1}} и $2",
 	"duration-months": "$1 {{PLURAL:$1|месяц|месяца|месяцев}} назад",
 	"bluesky-toc-sections": "Разделы",
+	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Главная",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|особые страницы]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} проекта страницы]",
