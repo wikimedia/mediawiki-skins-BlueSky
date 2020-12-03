@@ -1,9 +1,6 @@
 /* Common styling for the BlueSky skin */
 
-@import "variables.less";
-
 // Page layout
-
 body {
 	background: @nav-bg;
 	color: @body-text;
@@ -66,7 +63,7 @@ body {
 	height: 2.125em;
 	border: none;
 	background: transparent;
-	.background-image-svg( 'images/search.svg', 'images/search.png' );
+	background-image: url( 'images/search.svg' );
 	background-repeat: no-repeat;
 	background-position: 50% 100%;
 	padding: 0.5em;
@@ -243,7 +240,7 @@ div.mw-warning-with-logexcerpt {
 	padding-left: 1.5em;
 	background-repeat: no-repeat;
 	background-position: 0 50%;
-	.background-image-svg( 'images/content-icons.svg', 'images/content-icons.png' );
+	background-image: url( 'images/content-icons.svg');
 }
 
 #page-tools,
@@ -280,7 +277,7 @@ div.mw-warning-with-logexcerpt {
 		padding-right: 1.25em;
 		background-repeat: no-repeat;
 		background-position: 100% -2px;
-		.background-image-svg( 'images/arrow-down.svg', 'images/arrow-down.png' );
+		background-image: url( 'images/arrow-down.svg' );
 
 		&:hover {
 			padding-bottom: 2em;

@@ -11,7 +11,7 @@ class BlueSkyHooks {
 	 */
 	public static function wfTOCCrap( OutputPage &$out, ParserOutput $parserOutput ) {
 		global $wgBlueSkyTOC;
-		$wgBlueSkyTOC = $parserOutput->mSections;
+		$wgBlueSkyTOC = $parserOutput->getSections();
 
 		return true;
 	}

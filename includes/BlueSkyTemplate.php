@@ -299,7 +299,7 @@ class BlueSkyTemplate extends BaseTemplate {
 					$html .= Html::rawElement(
 						'li',
 						[
-							'id' => 'footer-' . Sanitizer::escapeId( 'info-' . $key )
+							'id' => 'footer-' . Sanitizer::escapeIdForAttribute( 'info-' . $key )
 						],
 						$this->get( $key )
 					);
@@ -327,7 +327,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			$html .= Html::openElement(
 				'ul',
 				[
-					'id' => 'footer-' . Sanitizer::escapeId( $category ),
+					'id' => 'footer-' . Sanitizer::escapeIdForAttribute( $category ),
 					'role' => 'contentinfo'
 				]
 			);
@@ -335,7 +335,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				$html .= Html::rawElement(
 					'li',
 					[
-						'id' => 'footer-' . Sanitizer::escapeId( $category . '-' . $key )
+						'id' => 'footer-' . Sanitizer::escapeIdForAttribute( $category . '-' . $key )
 					],
 					$this->get( $key )
 				);
@@ -355,7 +355,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			$html .= Html::openElement(
 				'li',
 				[
-					'id' => 'footer-' . Sanitizer::escapeId( $blockName ) . 'ico'
+					'id' => 'footer-' . Sanitizer::escapeIdForAttribute( $blockName ) . 'ico'
 				]
 			);
 			foreach ( $footerIcons as $icon ) {
@@ -424,7 +424,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 
 		// Get other tools (toolbox in sidebar in vector/monobook)
-		$pileOfTools = array_merge( $pileOfTools, $this->getToolbox() );
+		$pileOfTools = array_merge( $pileOfTools, $this->data['sidebar']['TOOLBOX'] );
 		if ( $namespace != NS_SPECIAL ) {
 			$pileOfTools['pagelog'] = [
 				'text' => $this->getMsg( 'bluesky-pagelog' )->escaped(),
@@ -519,7 +519,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			[
 				'role' => 'navigation',
 				'class' => $class,
-				'id' => Sanitizer::escapeId( $box['id'] )
+				'id' => Sanitizer::escapeIdForAttribute( $box['id'] )
 			] + Linker::tooltipAndAccesskeyAttribs( $box['id'] )
 		);
 		$content .= Html::element(
@@ -599,7 +599,7 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * @return string HTML
 	 */
 	private function getMiscNavigation( $menu, $maxDepth = 3, $appendJunk = false ) {
-		$html = Html::openElement( 'div', [ 'id' => Sanitizer::escapeId( 'mw-' . $menu ), 'class' => 'nested-nav' ] );
+		$html = Html::openElement( 'div', [ 'id' => Sanitizer::escapeIdForAttribute( 'mw-' . $menu ), 'class' => 'nested-nav' ] );
 
 		if ( $appendJunk ) {
 			$html .= $this->getEditMenu();
@@ -761,7 +761,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		// Special case: '-' for empty targets
 		if ( $text[0] == '-' ) {
 			$textContent = $this->getMsgOrDump( $text[1] );
-			$item['id'] = Sanitizer::escapeId( $text[1] );
+			$item['id'] = Sanitizer::escapeIdForAttribute( $text[1] );
 		} else {
 			if ( isset( $text[1] ) ) {
 				// has both target and display text
@@ -777,11 +777,11 @@ class BlueSkyTemplate extends BaseTemplate {
 						$this->getMsgOrDump( $text[1] )
 					);
 				}
-				$item['id'] = Sanitizer::escapeId( $text[1] );
+				$item['id'] = Sanitizer::escapeIdForAttribute( $text[1] );
 			} else {
 				// only display; no target
 				$textContent = $this->getMsgOrDump( $text[0] );
-				$item['id'] = Sanitizer::escapeId( $text[0] );
+				$item['id'] = Sanitizer::escapeIdForAttribute( $text[0] );
 			}
 		}
 		if ( isset( $text[2] ) ) {
@@ -948,54 +948,43 @@ class BlueSkyTemplate extends BaseTemplate {
 
 	/**
 	 * Get all notifications for the current user.
+	 * TODO: Actually use echo here if available - see Tempo maybe as an example?
 	 *
 	 * @return array [ HTML output, total amount of all notifications, has new User_talk messages? ]
 	 */
 	private function getNotifications() {
-		global $wgMemc;
-
 		$user = $this->getSkin()->getUser();
-		$memKey = wfMemcKey( 'notification_box_' . $user->getId() );
-		$box = $wgMemc->get( $memKey );
+		$notes = [];
 
-		if ( !is_array( $box ) ) {
-			$notes = [];
+		// Talk messages
+		$talkCount = 0;
 
-			// Talk messages
-			$talkCount = 0;
-
-			if ( class_exists( 'MediaWiki\User\TalkPageNotificationManager' ) ) {
-				// MW 1.35+
-				$userHasNewMessages = MediaWikiServices::getInstance()
-					->getTalkPageNotificationManager()->userHasNewMessages( $user );
-			} else {
-				$userHasNewMessages = $user->getNewtalk();
-			}
-
-			if ( $userHasNewMessages ) {
-				$talkCount = $this->getCount( 'user_newtalk' );
-				$msg = Html::rawElement( 'div', [ 'class' => 'note_row' ],
-					Html::element( 'div', [ 'class' => 'note_icon_talk' ], '' ) .
-					Linker::link(
-						$user->getTalkPage(),
-						$this->getMsg( 'bluesky-notifications-new-talk' )->numParams( $talkCount )->parse()
-					)
-				);
-				$notes[] = $msg;
-				$newTalk = true;
-			} else {
-				$newTalk = false;
-			}
-
-			// Kudos (fan mail) and Thumbs Up removed for the time being due to
-			// being rather wikiHow-specific and generally the way how it was
-			// done was ugly. Hooks, people; use hooks instead of hard-coding
-			// things!
-
-			$totalCount = $talkCount;
-
-			$box = [ $notes, $totalCount, $newTalk ];
+		if ( class_exists( 'MediaWiki\User\TalkPageNotificationManager' ) ) {
+			// MW 1.35+
+			$userHasNewMessages = MediaWikiServices::getInstance()
+				->getTalkPageNotificationManager()->userHasNewMessages( $user );
+		} else {
+			$userHasNewMessages = $user->getNewtalk();
 		}
+
+		if ( $userHasNewMessages ) {
+			$talkCount = $this->getCount( 'user_newtalk' );
+			$msg = Html::rawElement( 'div', [ 'class' => 'note_row' ],
+				Html::element( 'div', [ 'class' => 'note_icon_talk' ], '' ) .
+				Linker::link(
+					$user->getTalkPage(),
+					$this->getMsg( 'bluesky-notifications-new-talk' )->numParams( $talkCount )->parse()
+				)
+			);
+			$notes[] = $msg;
+			$newTalk = true;
+		} else {
+			$newTalk = false;
+		}
+
+		$totalCount = $talkCount;
+
+		$box = [ $notes, $totalCount, $newTalk ];
 
 		return $box;
 	}

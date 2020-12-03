@@ -1,7 +1,5 @@
 /* Styles appear on displays 750 pixels wide and below */
 
-@import "variables.less";
-
 .short-header();
 
 #header-inner {
@@ -14,10 +12,10 @@
 }
 
 .searchButton {
-	.background-image-svg( 'images/search-dark.svg', 'images/search-dark.png' );
+	background-image: url( 'images/search-dark.svg' );
 
 	&:hover {
-		.background-image-svg( 'images/search.svg', 'images/search.png' );
+		background-image: url( 'images/search.svg' );
 	}
 }
 
@@ -36,7 +34,7 @@
 	}
 
 	.searchButton {
-		.background-image-svg( 'images/search.svg', 'images/search.png' );
+		background-image: url( 'images/search.svg' );
 	}
 }
 
