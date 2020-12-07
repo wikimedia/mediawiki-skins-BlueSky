@@ -1391,8 +1391,10 @@ class BlueSkyTemplate extends BaseTemplate {
 	private function getCategoryLinks() {
 		global $wgContLang;
 
-		$namespace = $this->getSkin()->getTitle()->getNamespace();
-		$page = Linker::link( $this->getSkin()->getTitle(), $this->getSkin()->getTitle()->getSubpageText() );
+		$skin = $this->getSkin();
+		$skTitle = $skin->getTitle();
+		$namespace = $skTitle->getNamespace();
+		$page = Linker::link( $skTitle, $skTitle->getSubpageText() );
 		$categoryOutput = '';
 		$normalCats = [];
 		$count = 0;
@@ -1403,15 +1405,15 @@ class BlueSkyTemplate extends BaseTemplate {
 		} else {
 			/* It's categorisable; get lists of categories and hidden categories */
 			/* Get list from output if in preview; otherwise get list from title */
-			if ( in_array( $this->getSkin()->getRequest()->getVal( 'action' ), [ 'submit', 'view', 'edit' ] ) ) {
+			if ( in_array( $skin->getRequest()->getVal( 'action' ), [ 'submit', 'view', 'edit' ] ) ) {
 				$allCats = [];
-				$allCats2 = $this->getSkin()->getOutput()->GetCategories();
+				$allCats2 = $skin->getOutput()->GetCategories();
 				foreach ( $allCats2 as $displayName ) {
 					$title = Title::makeTitleSafe( NS_CATEGORY, $displayName );
 					$allCats[] = $title->getDBkey();
 				}
 			} else {
-				$allCats = array_keys( $this->getSkin()->getTitle()->getParentCategories() );
+				$allCats = array_keys( $skTitle->getParentCategories() );
 
 				foreach ( $allCats as $i => $catName ) {
 					$len = strlen( $wgContLang->getNsText( NS_CATEGORY ) . ':' );
