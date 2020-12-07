@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * BaseTemplate class for the BlueSky skin
@@ -1111,11 +1112,13 @@ class BlueSkyTemplate extends BaseTemplate {
 		$html = '';
 
 		if ( $title->exists() ) {
-			$revision = Revision::newFromTitle( $title );
-			if ( $revision instanceof Revision ) {
-
+			$revision = MediaWikiServices::getInstance()->getRevisionLookup()->getRevisionByTitle( $title );
+			if ( $revision instanceof RevisionRecord ) {
 				$timestamp = wfTimestamp( TS_UNIX, $revision->getTimestamp() );
-				// Normally we'd just call Language::formatTimePeriod or something at this point, but none of the relevant functions in core seem to actually work. So we'll just reimplement our own by getting the number of seconds difference between the UNIX timestamps.
+				// Normally we'd just call Language::formatTimePeriod or something at this
+				// point, but none of the relevant functions in core seem to actually work.
+				// So we'll just reimplement our own by getting the number of seconds
+				// difference between the UNIX timestamps.
 				$timediff = time() - $timestamp;
 
 				// numbers of seconds in each span
@@ -1140,12 +1143,13 @@ class BlueSkyTemplate extends BaseTemplate {
 					}
 				}
 
-				$author = $revision->getUserText();
+				$author = $revision->getUser();
 				// Check if IP
 
-				// Pick the correct message depending on if the current user can access the revision's last author's name or not (hey, it could be RevisionDeleted, as Revision::getUserText()'s documentation states)
-				if ( $author ) {
-					$userLink = Linker::userLink( $revision->getUser(), $revision->getUserText() );
+				// Pick the correct message depending on if the current user can access the
+				// revision's last author's name or not (hey, it could be RevisionDeleted, in which case $author is null)
+				if ( $author !== null ) {
+					$userLink = Linker::userLink( $author->getId(), $author->getName() );
 					$html = $this->getMsg( 'bluesky-page-edited-user' )->params( $formattedTS )->rawParams( $userLink );
 				} else {
 					$html = $this->getMsg( 'bluesky-page-edited' )->params( [ $formattedTS ] );
