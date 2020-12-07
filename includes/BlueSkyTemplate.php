@@ -1167,19 +1167,21 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * @return string
 	 */
 	private function getInterlanguageLinks() {
-		global $wgContLang, $wgHideInterlanguageLinks;
+		global $wgHideInterlanguageLinks;
 
 		$skin = $this->getSkin();
 
 		$languages = [];
 		if ( !$wgHideInterlanguageLinks ) {
+			$services = MediaWikiServices::getInstance();
+			$contLang = $services->getContentLanguage();
 			foreach ( $skin->getOutput()->getLanguageLinks() as $blob ) {
 				$tmp = explode( ':', $blob, 2 );
 				$class = 'interwiki-' . $tmp[0];
 				$code = $tmp[0];
 				$iwTitleName = $tmp[1];
 				$iwTitle = Title::newFromText( $blob );
-				$inLanguage = $wgContLang->getCode();
+				$inLanguage = $contLang->getCode();
 				$interwiki = $iwTitle->getInterwiki();
 				if ( Language::fetchLanguageName( $interwiki, $inLanguage ) != '' ) {
 					$language = Language::fetchLanguageName( $interwiki, $inLanguage );
@@ -1235,8 +1237,6 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * @return string portlet
 	 */
 	private function getCategoryBreadcrumbs() {
-		global $wgContLang;
-
 		$skin = $this->getSkin();
 		$title = $skin->getTitle();
 		$namespace = $title->getNamespace();
@@ -1270,10 +1270,11 @@ class BlueSkyTemplate extends BaseTemplate {
 				$allCats[] = $safeTitle->getDBkey();
 			}
 		} else {
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			$allCats = array_keys( $title->getParentCategories() );
 			// Horrible backwards parsing
 			foreach ( $allCats as $i => $catName ) {
-				$len = strlen( $wgContLang->getNsText( NS_CATEGORY ) . ':' );
+				$len = strlen( $contLang->getNsText( NS_CATEGORY ) . ':' );
 				$allCats[$i] = substr( $catName, $len );
 			}
 		}
@@ -1389,8 +1390,6 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * @return array of parsed normal and hidden catlink html
 	 */
 	private function getCategoryLinks() {
-		global $wgContLang;
-
 		$skin = $this->getSkin();
 		$skTitle = $skin->getTitle();
 		$namespace = $skTitle->getNamespace();
@@ -1414,9 +1413,10 @@ class BlueSkyTemplate extends BaseTemplate {
 				}
 			} else {
 				$allCats = array_keys( $skTitle->getParentCategories() );
+				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 				foreach ( $allCats as $i => $catName ) {
-					$len = strlen( $wgContLang->getNsText( NS_CATEGORY ) . ':' );
+					$len = strlen( $contLang->getNsText( NS_CATEGORY ) . ':' );
 					$allCats[$i] = substr( $catName, $len );
 				}
 			}
