@@ -1,6 +1,6 @@
 {
 	"name": "BlueSky",
-	"version": "1.6.0",
+	"version": "1.7.0",
 	"author": [
 		"wikiHow",
 		"Jack Phoenix",
@@ -12,7 +12,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "skin",
 	"requires": {
-		"MediaWiki": ">=1.35.0"
+		"MediaWiki": ">=1.36.0"
 	},
 	"ValidSkinNames": {
 		"bluesky": {
@@ -23,9 +23,11 @@
 					"name": "bluesky",
 					"responsive": "true",
 					"styles": [
-						"mediawiki.skinning.content.externallinks",
 						"skins.bluesky",
 						"themeloader.skins.bluesky.blue"
+					],
+					"scripts": [
+						"skins.bluesky.js"
 					]
 				}
 			]
@@ -51,6 +53,11 @@
 		"skins.bluesky": {
 			"targets": [ "desktop", "mobile" ],
 			"class": "ResourceLoaderSkinModule",
+			"features": {
+				"content-links": true,
+				"logo": true,
+				"legacy": true
+			},
 			"styles": {
 				"resources/libraries/normalise.css": {
 					"media": "screen"
