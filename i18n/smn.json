@@ -1,10 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			"Seipinne",
 			"Yupik"
 		]
 	},
 	"bluesky-editthis": "Mute taam siijđo",
+	"bluesky-navbar-edit": "Mute",
+	"bluesky-messages": "Viestah",
+	"bluesky-admin": "Haldâšeijee",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Luokah]]",
+	"bluesky-page-info": "Siijđo tiäđuh",
 	"bluesky-menu": "Valjiittâh"
 }
