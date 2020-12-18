@@ -16,8 +16,8 @@
 	},
 	"ValidSkinNames": {
 		"bluesky": {
+			"class": "SkinTemplate",
 			"displayname": "BlueSky",
-			"class": "SkinBlueSky",
 			"args": [
 				{
 					"name": "bluesky",
@@ -28,7 +28,8 @@
 					],
 					"scripts": [
 						"skins.bluesky.js"
-					]
+					],
+					"template": "BlueSkyTemplate"
 				}
 			]
 		}
@@ -104,7 +105,6 @@
 		"remoteSkinPath": "BlueSky"
 	},
 	"AutoloadClasses": {
-		"SkinBlueSky": "includes/SkinBlueSky.php",
 		"BlueSkyTemplate": "includes/BlueSkyTemplate.php",
 		"BlueSkyHooks": "includes/BlueSkyHooks.php"
 	},
