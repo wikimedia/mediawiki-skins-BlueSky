@@ -1,0 +1,3 @@
+# BlueSky
+BlueSky skin is a modern, scalable and attractive skin for MediaWiki, based on [wikiHow](https://www.mediawiki.org/wiki/WikiHow)'s third redesign (which was introduced in autumn 2013). It was written by [Jack Phoenix](https://www.mediawiki.org/wiki/User:Jack_Phoenix), mentored by [Emufarmers](https://www.mediawiki.org/wiki/User:Emufarmers) and [Isarra](https://www.mediawiki.org/wiki/User:Isarra), as a part of [Summer of Code 2014](https://www.mediawiki.org/wiki/Summer_of_Code_2014). The skin is based on work done by Reuben Smith, Bebeth Steudel, Gershon Bialer and others for wikiHow.
+For more information [click here](https://www.mediawiki.org/wiki/Skin:BlueSky).
