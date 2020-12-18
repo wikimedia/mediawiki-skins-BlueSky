@@ -234,7 +234,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$this->data['footerlinks']['places'] = array_reverse( $this->data['footerlinks']['places'] );
 
 		// Add login link if not logged in
-		if ( !$user->isLoggedIn() ) {
+		if ( !$user->isRegistered() ) {
 			$link = Linker::link(
 				SpecialPage::getTitleFor( 'Userlogin' ),
 				$this->getMsg( 'login' )->text()
@@ -580,7 +580,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			) . Html::element(
 				'div',
 				[ 'id' => 'p-sitesubtitle' ],
-				$this->getMsg( 'sitesubtitle' )->text()
+				$this->getMsg( 'sitesubtitle' )->inContentLanguage()->text()
 			)
 		);
 		$html .= Html::closeElement( 'a' );
@@ -870,7 +870,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$user = $this->getSkin()->getUser();
 
 		if ( is_callable( [ ApiEchoNotifications::class, 'getNotifications' ] )
-			&& $user->isLoggedIn()
+			&& $user->isRegistered()
 		) {
 			$maxNotesShown = 5;
 			// FIXME update this to the newer Echo API
