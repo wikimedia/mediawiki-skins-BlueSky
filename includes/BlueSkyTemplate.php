@@ -511,7 +511,7 @@ class BlueSkyTemplate extends BaseTemplate {
 	 */
 	private function getPortlet( $box ) {
 		if ( !isset( $box['content'] ) || !$box['content'] ) {
-			return;
+			return '';
 		}
 
 		$class = isset( $box['class'] ) ? 'mw-portlet ' . $box['class'] : 'mw-portlet';
