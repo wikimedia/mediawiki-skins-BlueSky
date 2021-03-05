@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bikarhêner",
 			"George Animal"
 		]
 	},
@@ -11,7 +12,9 @@
 	"bluesky-page": "Amûrên rûpelê",
 	"bluesky-admin": "Rêveber",
 	"duration-months": "$1 {{PLURAL:$1|meh}}",
+	"bluesky-toc-sections": "Beş",
 	"bluesky-home": "Destpêk",
 	"bluesky-article-info": "Agahiyên gotarê",
-	"bluesky-page-info": "Agahiyên rûpelê"
+	"bluesky-page-info": "Agahiyên rûpelê",
+	"bluesky-menu": "Menû"
 }
