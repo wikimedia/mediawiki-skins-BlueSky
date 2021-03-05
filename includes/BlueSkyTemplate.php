@@ -824,18 +824,11 @@ class BlueSkyTemplate extends BaseTemplate {
 		$title = $skin->getTitle();
 		$user = $skin->getUser();
 
-		if ( class_exists( 'MediaWiki\Permissions\PermissionManager' ) ) {
-			// MW 1.33+
-			if ( !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userCan( 'edit', $user, $title )
-			) {
-				return '';
-			}
-		} else {
-			if ( !$title->userCan( 'edit' ) ) {
-				return '';
-			}
+		if ( !MediaWikiServices::getInstance()
+			->getPermissionManager()
+			->userCan( 'edit', $user, $title )
+		) {
+			return '';
 		}
 
 		return $this->getPortlet( [
@@ -960,13 +953,8 @@ class BlueSkyTemplate extends BaseTemplate {
 		// Talk messages
 		$talkCount = 0;
 
-		if ( class_exists( 'MediaWiki\User\TalkPageNotificationManager' ) ) {
-			// MW 1.35+
-			$userHasNewMessages = MediaWikiServices::getInstance()
-				->getTalkPageNotificationManager()->userHasNewMessages( $user );
-		} else {
-			$userHasNewMessages = $user->getNewtalk();
-		}
+		$userHasNewMessages = MediaWikiServices::getInstance()
+			->getTalkPageNotificationManager()->userHasNewMessages( $user );
 
 		if ( $userHasNewMessages ) {
 			$talkCount = $this->getCount( 'user_newtalk' );
