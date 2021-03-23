@@ -4,5 +4,6 @@
 			"Eleassar"
 		]
 	},
-	"bluesky-home": "Domov"
+	"bluesky-home": "Domov",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Predloge]"
 }
