@@ -19,7 +19,7 @@
 	"bluesky-page-edited": "Kacané dibesut pungkasan {{int:ago|$1}}",
 	"duration-months": "$1 {{PLURAL:$1|wulan}}",
 	"bluesky-toc-sections": "Pérangan",
-	"bluesky-home": "Tepas",
+	"bluesky-home": "Pendhapa",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Kaca mirunggan]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Kaca proyèk]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Berkas]]",
