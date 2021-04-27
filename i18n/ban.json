@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chinamoonroll"
+		]
+	},
+	"bluesky-desc": "Kulit puniki pamabah nyané kakardi mawit versi pinih anyar saking kulit wikiHow ring ungkur 2013 antuk pawigunaan anyar sekadi dukungan sélulér, interopérabilitas pengaya éksternal sané langkung becik, miwah tema.",
+	"bluesky-editthis": "Uah kaca puniki",
+	"bluesky-viewsource": "Cingak wit antuk kaca puniki",
+	"bluesky-navbar-edit": "Uah",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Séwala",
+	"bluesky-notifications-new-talk": "Ida madué $1 {{PLURAL:$1|séwala}} pabligbagan anyar.",
+	"bluesky-notifications-none": "Ida nénten madué paingetan sané mangkin.\nRauhin [[$1|pabligbagan]] Ida antuk nyingakin séwala sadurungné.",
+	"bluesky-notifications-no-talk": "Rauhin [[$1|pabligbagan]] Ida antuk nyingakin séwala sadurungné.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Asiki tan kawacén|$1 tan kawacén}}",
+	"bluesky-pagelog": "Log antuk kaca puniki",
+	"bluesky-page": "Piranti kaca",
+	"bluesky-admin": "Pangurus",
+	"bluesky-page-edited": "Kaca pinih ungkur kauahin {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Kaca pinih ungkur kauahin {{int:ago|$1}} olih $2",
+	"duration-months": "$1 {{PLURAL:$1|sasih}}",
+	"bluesky-toc-sections": "Wagian",
+	"bluesky-home": "Umah",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Kaca kusus]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Kaca proyèk]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Kaca pabligbagan proyék]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Berkas]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Mal]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategori]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Kaca {{NAMESPACE}}]",
+	"bluesky-article-info": "Pidarta suratan",
+	"bluesky-page-info": "Pidarta kaca",
+	"bluesky-footer-tools": "Piranti kaca liyanan",
+	"bluesky-menu": "Menu"
+}
