@@ -707,13 +707,13 @@ class BlueSkyTemplate extends BaseTemplate {
 	 */
 	private function getRandomTabClass( $seed ) {
 		switch ( hexdec( sha1( $seed )[0] ) % 4 ) {
-			 case 0:
+			case 0:
 				return 'navbar-grow';
-			 case 1:
+			case 1:
 				return 'navbar-view';
-			 case 2:
+			case 2:
 				return 'navbar-explore';
-			 case 3:
+			case 3:
 				return 'navbar-community';
 		}
 	}
