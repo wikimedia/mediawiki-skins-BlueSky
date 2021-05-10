@@ -4,9 +4,9 @@
 			"Умар"
 		]
 	},
-	"bluesky-editthis": "Нисъе хӀара агӀо",
+	"bluesky-editthis": "Нисйе хӀара агӀо",
 	"bluesky-viewsource": "Хьажа хӀоккху агӀона дӀадолалун йозане",
-	"bluesky-navbar-edit": "Нисъе",
+	"bluesky-navbar-edit": "Нисйе",
 	"bluesky-personaltools": "Профиль",
 	"bluesky-messages": "Хаам",
 	"bluesky-notifications-new-talk": "Хьоьга беана $1 керла - {{PLURAL:$1|хаам}}.",
@@ -27,7 +27,7 @@
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|пространство имен=10}} кепаш]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категореш]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} агӀонаш]",
-	"bluesky-article-info": "Яззаман информаци",
+	"bluesky-article-info": "Йаззаман информаци",
 	"bluesky-page-info": "АгӀонан информаци",
 	"bluesky-footer-tools": "АгӀонан кхин тӀе гӀирсаш"
 }
