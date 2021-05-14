@@ -12,7 +12,7 @@
 	"bluesky-notifications-new-talk": "Хьоьга беана $1 керла - {{PLURAL:$1|хаам}}.",
 	"bluesky-notifications-no-talk": "Хьажа хьайн [[$1|дийцаре агӀоне]], тӀеххьара беанчу хаамашка хьажархьама.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|цхьаъ ешна йоцу|$1 ешна йоцурш}}",
-	"bluesky-pagelog": "ХӀокху агӀона тептарш",
+	"bluesky-pagelog": "ХӀокху агӀонан тептарш",
 	"bluesky-page": "ГӀирсаш агӀонашна",
 	"bluesky-admin": "Куьйгалхой",
 	"bluesky-page-edited": "АгӀона тӀеххьара хийцамаш бина {{int:ago|$1}}",
