@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"DDPAT",
 			"Piramidion"
 		]
 	},
@@ -23,8 +24,8 @@
 	"bluesky-toc-sections": "Розділи",
 	"bluesky-home": "Головна",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Спеціальні сторінки]]",
-	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Сторінки проекту]",
-	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Сторінки обговорення проекту]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Сторінки проєкту]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Сторінки обговорення проєкту]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файли]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблони]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категорії]]",
