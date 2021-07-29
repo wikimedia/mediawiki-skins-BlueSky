@@ -4,6 +4,7 @@
 			"Ajeje Brazorf"
 		]
 	},
+	"duration-months": "$1 {{PLURAL:$1|misi|misi}}",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|File]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Template]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Catigurìi]]"
