@@ -5,6 +5,7 @@
 			"Piramidion"
 		]
 	},
+	"skinname-bluesky": "Блакитне небо",
 	"bluesky-desc": "Тема оформлення початково заснована на поточній версії (кінець 2013) теми wikiHow із новими функціями, такими як підтримка мобільних пристроїв, краща сумісність із зовнішніми розширеннями, а також кольорові схеми.",
 	"bluesky-editthis": "Редагувати цю сторінку",
 	"bluesky-viewsource": "Переглянути код цієї сторінки",
@@ -22,6 +23,7 @@
 	"bluesky-page-edited-user": "Сторінку востаннє відредаговано {{int:ago|$1}} $2",
 	"duration-months": "$1 {{PLURAL:$1|місяць|місяці|місяців}}",
 	"bluesky-toc-sections": "Розділи",
+	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Головна",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Спеціальні сторінки]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Сторінки проєкту]",
