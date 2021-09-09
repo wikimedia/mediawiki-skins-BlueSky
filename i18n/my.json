@@ -6,17 +6,24 @@
 		]
 	},
 	"bluesky-editthis": "ဤစာမျက်နှာကို တည်းဖြတ်ရန်",
+	"bluesky-viewsource": "ဤစာမျက်နှာအတွက် ရင်းမြစ်ကို ကြည့်ရန်",
 	"bluesky-navbar-edit": "တည်းဖြတ်ရန်",
 	"bluesky-personaltools": "ပရိုဖိုင်",
 	"bluesky-messages": "မက်ဆေ့များ",
 	"bluesky-unread-notifications": "မဖတ်ရသေးသော {{PLURAL:$1|၁ ခု|$1 ခု}}",
+	"bluesky-pagelog": "ဤစာမျက်နှာအတွက် မှတ်တမ်းများ",
 	"bluesky-page": "စာမျက်နှာအတွက် ကိရိယာများ",
 	"bluesky-admin": "အက်ဒမင်",
+	"bluesky-page-edited": "စာမျက်နှာနောက်ဆုံးတည်းဖြတ်မှု {{$1|int:အကြာက}}",
+	"bluesky-page-edited-user": "$2 က {{$1|int:အကြာက}} စာမျက်နှာနောက်ဆုံးတည်းဖြတ်ခဲ့သည်",
+	"duration-months": "$1 {{PLURAL:$1|လ|လများ}}",
+	"bluesky-toc-sections": "အပိုင်းများ",
 	"bluesky-home": "ပင်မ",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|အထူးစာမျက်နှာများ]]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ဖိုင်များ]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} တမ်းပလိတ်များ]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|ကဏ္ဍများ]]",
 	"bluesky-article-info": "ဆောင်းပါး အချက်အလက်",
-	"bluesky-page-info": "စာမျက်နှာ အချက်အလက်"
+	"bluesky-page-info": "စာမျက်နှာ အချက်အလက်",
+	"bluesky-menu": "မီးနူး"
 }
