@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"JSantos",
 			"Joao Xavier"
 		]
 	},
@@ -10,5 +11,6 @@
 	"bluesky-admin": "Administrero",
 	"bluesky-home": "Komenco",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Arkivi]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Shabloni]",
 	"bluesky-breadcrumbs-nscategory": "[[Specala:Kategorio|Kategorii]]"
 }
