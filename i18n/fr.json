@@ -7,6 +7,7 @@
 			"Wladek92"
 		]
 	},
+	"skinname-bluesky": "Blue Sky",
 	"bluesky-desc": "Habillage basé à l’origine sur la version en vigueur fin 2013 de l’habillage wikiHow, avec de nouvelles fonctions telles que la prise en charge des mobiles, une meilleure interopérabilité des greffons externes et des thèmes.",
 	"bluesky-editthis": "Modifier cette page",
 	"bluesky-viewsource": "Afficher la source de cette page",
@@ -20,10 +21,11 @@
 	"bluesky-pagelog": "Traces pour cette page",
 	"bluesky-page": "Outils de page",
 	"bluesky-admin": "Admin",
-	"bluesky-page-edited": "Page modifiée pour la dernière fois {{int:ago|}}$1",
-	"bluesky-page-edited-user": "Page modifiée pour la dernière fois {{int:ago|}}$1 par $2",
+	"bluesky-page-edited": "Page modifiée pour la dernière fois {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Page modifiée pour la dernière fois {{int:ago|$1}} par $2",
 	"duration-months": "$1 mois{{PLURAL:$1|}}",
 	"bluesky-toc-sections": "Sections",
+	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Accueil",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pages spéciales]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pages du projet]",
@@ -32,8 +34,8 @@
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Modèles]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Catégories]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Pages de {{NAMESPACE}}]",
-	"bluesky-article-info": "Information sur l’article",
-	"bluesky-page-info": "Information sur la page",
+	"bluesky-article-info": "Informations sur l’article",
+	"bluesky-page-info": "Informations sur la page",
 	"bluesky-footer-tools": "Outils de page supplémentaires",
 	"bluesky-menu": "Menu"
 }

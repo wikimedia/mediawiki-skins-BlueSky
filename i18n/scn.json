@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ajeje Brazorf"
+		]
+	},
+	"bluesky-editthis": "Cancia sta pàggina",
+	"bluesky-navbar-edit": "Cancia",
+	"bluesky-personaltools": "Prufilu",
+	"bluesky-messages": "Missaggi",
+	"duration-months": "$1 {{PLURAL:$1|misi}}",
+	"bluesky-home": "Pàggina principali",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pàggini spiciali]]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|File]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Template]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Catigurìi]]",
+	"bluesky-article-info": "Nfurmazzioni supra la vuci",
+	"bluesky-page-info": "Nfurmazzioni supra la pàggina",
+	"bluesky-menu": "Menu"
+}

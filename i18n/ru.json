@@ -5,9 +5,11 @@
 			"Kareyac",
 			"MaxBioHazard",
 			"Okras",
-			"Vlad5250"
+			"Vlad5250",
+			"Helpau"
 		]
 	},
+	"skinname-bluesky": "Blue Sky",
 	"bluesky-desc": "Тема, основанная на текущей версии темы wikiHow конца 2013 года, с новыми функциями, такими как поддержка мобильных устройств, улучшенная совместимость с внешними расширениями и темами.",
 	"bluesky-editthis": "Отредактировать эту страницу",
 	"bluesky-viewsource": "Просмотр исходного текста для этой страницы",
@@ -15,7 +17,7 @@
 	"bluesky-personaltools": "Профиль",
 	"bluesky-messages": "Сообщений",
 	"bluesky-notifications-new-talk": "У вас есть $1 новое ток - {{PLURAL:$1|сообщение|сообщения}}.",
-	"bluesky-notifications-none": "У вас нет уведомления в это время.\nПосетить ваш [[$1|странице обсуждения]], чтобы увидеть последние сообщения.",
+	"bluesky-notifications-none": "В Вас нету сообщений в это время.\nПосетите Вашу [[$1|страницу обсуждений]], чтобы увидеть последние сообщении.",
 	"bluesky-notifications-no-talk": "Посетить ваш [[$1|странице обсуждения]], чтобы увидеть последние сообщения.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|один непрочитанный|$1 непрочитанные}}",
 	"bluesky-pagelog": "Журналы для этой страницы",
@@ -25,6 +27,7 @@
 	"bluesky-page-edited-user": "Страница последний раз редактировалось {{int:ago|$1}} и $2",
 	"duration-months": "$1 {{PLURAL:$1|месяц|месяца|месяцев}} назад",
 	"bluesky-toc-sections": "Разделы",
+	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Главная",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|особые страницы]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} проекта страницы]",
