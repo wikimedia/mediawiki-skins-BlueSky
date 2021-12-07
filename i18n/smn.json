@@ -9,6 +9,7 @@
 	"bluesky-navbar-edit": "Mute",
 	"bluesky-messages": "Viestah",
 	"bluesky-admin": "Haldâšeijee",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Myenstereh]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Luokah]]",
 	"bluesky-page-info": "Siijđo tiäđuh",
 	"bluesky-menu": "Valjiittâh"

@@ -5,7 +5,8 @@
 			"Liuxinyu970226",
 			"Raymond",
 			"Robby",
-			"Umherirrender"
+			"Umherirrender",
+			"Amire80"
 		]
 	},
 	"skinname-bluesky": "{{name}}",
@@ -26,7 +27,7 @@
 	"bluesky-page-edited-user": "Last edited note in article header, with user\n\nParameters:\n* $1 - formatted timestamp\n* $2 link to user",
 	"duration-months": "Appended to a number of months in the last edited <span> ago notice\n{{Identical|Month}}",
 	"bluesky-toc-sections": "ToC sections label for header\n{{Identical|Section}}",
-	"bluesky-breadcrumb-pointer": "{{optional}}\n\n Just flip it or something for rtl languages?",
+	"bluesky-breadcrumb-pointer": "{{optional}}\n\nDon't translate this to right-to-left languages just for the direction. It will be flipped automatically.",
 	"bluesky-home": "Home page link in category breadcrumbs\n{{Identical|Home}}",
 	"bluesky-breadcrumbs-nsspecial": "Link for special pages in category breadcrumbs",
 	"bluesky-breadcrumbs-nsmain": "{{notranslate}}\nLink for mainspace pages in category breadcrumbs",

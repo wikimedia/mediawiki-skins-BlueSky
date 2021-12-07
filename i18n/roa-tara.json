@@ -4,6 +4,7 @@
 			"Joetaras"
 		]
 	},
+	"skinname-bluesky": "Blue Sky",
 	"bluesky-desc": "Skin ca se basave a l'inizie sus 'a versione de mò d'u skin wikiHow d'u 2013, cu le funziune nuève cumme 'u supporte mobbile, l'inderoperabbilità de le estenziune de fore e le teme.",
 	"bluesky-editthis": "Cange sta pàgene",
 	"bluesky-viewsource": "'Ndruche 'a sorgende de sta pàgene",
@@ -21,6 +22,7 @@
 	"bluesky-page-edited-user": "Urtema pàgene cangiate {{int:ago|$1}} da $2",
 	"duration-months": "$1 {{PLURAL:$1|mese|mise}}",
 	"bluesky-toc-sections": "Seziune",
+	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Cáse",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pàggene speciale]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pàggene de le pruggette]",

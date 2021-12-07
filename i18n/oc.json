@@ -1,10 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cedric31"
+			"Cedric31",
+			"Nicolas Eynaud"
 		]
 	},
+	"bluesky-editthis": "Modificar aquesta pagina",
+	"bluesky-viewsource": "Veire la fònt d'aquesta pagina",
+	"bluesky-navbar-edit": "Modificar",
+	"bluesky-personaltools": "Perfieu",
+	"bluesky-messages": "Messatges",
 	"bluesky-notifications-new-talk": "Avètz $1 {{PLURAL:$1|novèl messatge|novèls messatges}} de discussion.",
 	"bluesky-notifications-none": "Avètz pas cap de notificacion pel moment.\nVisitatz vòstra [[$1|pagina de discussion]] per veire los ancians messatges.",
-	"bluesky-notifications-no-talk": "Visitar vòstra [[$1|pagina de discussion]] per veire los ancians messatges."
+	"bluesky-notifications-no-talk": "Visitar vòstra [[$1|pagina de discussion]] per veire los ancians messatges.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Un non legit|$1 non legit}}",
+	"bluesky-page": "Otís de la pagina",
+	"bluesky-admin": "Admin",
+	"bluesky-page-edited": "Darriera modificacion de la pagina {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Darriera modificacion de la pagina {{int:ago|$1}} per $2",
+	"duration-months": "$1{{PLURAL:$1|mes|mes}}",
+	"bluesky-toc-sections": "Seccions",
+	"bluesky-home": "Acuèlh",
+	"bluesky-breadcrumbs-nsspecial": "[Special:SpecialPages|Paginas especialas]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Paginas dau projècte]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Fichièrs]]"
 }
