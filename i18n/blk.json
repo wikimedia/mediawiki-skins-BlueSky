@@ -1,9 +1,29 @@
 {
 	"@metadata": {
 		"authors": [
-			"咽頭べさ"
+			"咽頭べさ",
+			"Khun Kt"
 		]
 	},
+	"bluesky-editthis": "မွဉ်းဖျင် လိတ်မဲ့ငါယို",
+	"bluesky-viewsource": "ထွား လိတ်မဲ့ငါယိုအတာႏ အရွီးအခိုႏ",
+	"bluesky-navbar-edit": "မွဉ်းဖျင်",
+	"bluesky-personaltools": "ပရိုဖုဲင်",
 	"bluesky-messages": "မဲက်သေ့ဖိုင်ႏ",
+	"bluesky-unread-notifications": "ဟော်ꩻဗာႏဒွိုန်း အဝ်ႏ{{PLURAL:$1|၁ ဗာႏ|$1 ဗာႏ}}",
+	"bluesky-pagelog": "လိတ်မဲ့ငါယိုတာႏ မုဲင်တန်ꩻဖိုင်ႏ",
+	"bluesky-page": "လိတ်မဲ့ငါ ကိရိယာႏ",
+	"bluesky-admin": "အဲတ်မဉ်",
+	"bluesky-page-edited": "အဆုဲင်ꩻသွတ်ꩻ မွဉ်းဖျင်ခါꩻလိတ်မဲ့ငါနဝ်ꩻ {{$1|int:ကာႏ}}",
+	"bluesky-page-edited-user": "$2 အဆုဲင်ꩻသွတ်ꩻ မွဉ်းဖျင်ခါꩻလဲဉ်းလိတ်မဲ့ငါ {{$1|int:ကာႏ}}",
+	"duration-months": "$1 {{PLURAL:$1|လာ|လာဖိုင်ႏ}}",
+	"bluesky-toc-sections": "အကွို့ꩻဖိုင်ႏ",
+	"bluesky-home": "ဗဟိုႏ",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|လိတ်မဲ့ငါတဲးဝါးဖိုင်ႏ]]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ဖုဲင်ဖိုင်ႏ]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} တမ်းပလေက်ဖိုင်ႏ]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|ကဏ္ဍဖိုင်ႏ]]",
+	"bluesky-article-info": "ရောမ်ဖြုဲင်ꩻခရာႏအချက်အလျက်",
+	"bluesky-page-info": "လိတ်မဲ့ငါခရာႏအချက်အလျက်",
 	"bluesky-menu": "မီနူး"
 }
