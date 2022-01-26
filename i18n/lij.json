@@ -1,8 +1,37 @@
 {
 	"@metadata": {
 		"authors": [
-			"S4b1nuz E.656"
+			"S4b1nuz E.656",
+			"N. Longo"
 		]
 	},
-	"bluesky-navbar-edit": "Modìfica"
+	"bluesky-desc": "Quésta skin a l'êa iniçialménte bazâ in sce l'atoâle versción, da fìn do 2013, da skin de wikiHow, con nêuve fonçionalitæ cómme o supòrto mòbile, 'na mêgio interoperabilitæ de estenscioìn estèrne e di têmi.",
+	"bluesky-editthis": "Modìfica quésta pàgina",
+	"bluesky-viewsource": "Véddi a vivàgna de quésta pàgina",
+	"bluesky-navbar-edit": "Modìfica",
+	"bluesky-personaltools": "Profî",
+	"bluesky-messages": "Mesàggi",
+	"bluesky-notifications-new-talk": "Ti t'æ {{PLURAL:$1|nêuvo mesàggio|nêuvi mesàggi}} inta pàgina de discusción.",
+	"bluesky-notifications-none": "Ti no t'æ de notìfiche pe òua.\nVìxita a tò [[$1|pàgina de discusción]] pe védde i vêgi mesàggi.",
+	"bluesky-notifications-no-talk": "Vìxita a tò [[$1|pàgina de discusción]] pe védde i vêgi mesàggi.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Un da lêze|$1 no lezûi}}",
+	"bluesky-pagelog": "Regìstri de quésta pàgina",
+	"bluesky-page": "Struménti pàgina",
+	"bluesky-admin": "Aministratô",
+	"bluesky-page-edited": "Pàgina modificâ l'ùrtima vòtta {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Pàgina modificâ l'ùrtima vòtta {{int:ago|$1}} da $2",
+	"duration-months": "$1 {{PLURAL:$1|méize|méixi}}",
+	"bluesky-toc-sections": "Seçioìn",
+	"bluesky-home": "Pàgina prinçipâ",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pàgine speciâli]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pàgine de progètto]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Pàgine de discusción progètto]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|File]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Template]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categorîe]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Pàgine {{NAMESPACE}}]",
+	"bluesky-article-info": "Informaçioìn in sciâ vôxe",
+	"bluesky-page-info": "Informaçioìn in sciâ pàgina",
+	"bluesky-footer-tools": "Âtri struménti pàgina",
+	"bluesky-menu": "Menù"
 }
