@@ -352,7 +352,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				'role' => 'contentinfo',
 			]
 		);
-		foreach ( $this->getFooterIcons( 'icononly' ) as $blockName => $footerIcons ) {
+		foreach ( $this->get('footericons') as $blockName => $footerIcons ) {
 			$html .= Html::openElement(
 				'li',
 				[
