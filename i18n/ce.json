@@ -16,7 +16,7 @@
 	"bluesky-page": "ГӀирсаш агӀонашна",
 	"bluesky-admin": "Куьйгалхой",
 	"bluesky-page-edited": "АгӀонан тӀаьххьара хийцамаш бина {{int:ago|$1}}",
-	"bluesky-page-edited-user": "АгӀонан тӀеххьара хийцамаш бина {{int:ago|$1}} а, $2 а",
+	"bluesky-page-edited-user": "АгӀонан тӀаьххьара хийцамаш бина {{int:ago|$1}} а, $2 а",
 	"duration-months": "$1 {{PLURAL:$1|бутт}} хьалха",
 	"bluesky-toc-sections": "Дакъош",
 	"bluesky-home": "Коьрта",
