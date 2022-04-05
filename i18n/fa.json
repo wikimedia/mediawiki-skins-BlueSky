@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Beginneruser",
 			"Reza1615"
 		]
 	},
@@ -23,12 +24,12 @@
 	"bluesky-toc-sections": "بخش‌ها",
 	"bluesky-home": "خانه",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|صفحه‌های ویژه]]",
-	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} صفحات پروژه]",
-	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=4}} صفحات بحث پروژه]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} صفحه‌های پروژه]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=4}} صفحه‌های بحث پروژه]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|فایل‌ها]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} الگوها]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|رده‌‌ها]]",
-	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} صفحات {{NAMESPACE}}]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} صفحه‌های {{NAMESPACE}}]",
 	"bluesky-article-info": "اطلاعات مقاله",
 	"bluesky-page-info": "اطلاعات صفحه",
 	"bluesky-footer-tools": "ابزاهای بیشتر صفحه",
