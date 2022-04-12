@@ -14,7 +14,7 @@
 	"bluesky-unread-notifications": "{{PLURAL:$1|цхьаъ ешна йоцу|$1 ешна йоцурш}}",
 	"bluesky-pagelog": "ХӀокху агӀонан тептарш",
 	"bluesky-page": "ГӀирсаш агӀонашна",
-	"bluesky-admin": "Куьйгалхой",
+	"bluesky-admin": "Админ",
 	"bluesky-page-edited": "АгӀонан тӀаьххьара хийцамаш бина {{int:ago|$1}}",
 	"bluesky-page-edited-user": "АгӀонан тӀаьххьара хийцамаш бина {{int:ago|$1}} а, $2 а",
 	"duration-months": "$1 {{PLURAL:$1|бутт}} хьалха",
