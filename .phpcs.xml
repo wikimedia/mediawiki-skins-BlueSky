@@ -5,6 +5,7 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
+		<exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent" />
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php"/>
