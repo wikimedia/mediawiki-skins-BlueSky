@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fulup"
+			"Fulup",
+			"Huñvreüs",
+			"Y-M D"
 		]
 	},
 	"bluesky-editthis": "Kemmañ ar bajenn-mañ",
@@ -10,6 +12,26 @@
 	"bluesky-personaltools": "Profil",
 	"bluesky-messages": "Kemennadennoù",
 	"bluesky-notifications-new-talk": "$1 {{PLURAL:$1|gaozeadenn nevez|kaozeadenn nevez}} hoc'h eus.",
+	"bluesky-notifications-none": "N’ho peus evezhiadenn ebet evit poent.\nKit d’ho [[$1|pajenn gaozeal]] evit gwelout kemennadennoù paseet.",
+	"bluesky-notifications-no-talk": "Kit d’ho [[$1|pajenn gaozeal]] evit gwelout kemennadennoù paseet.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Unan|$1}} anlennet",
+	"bluesky-pagelog": "Marilhoù evit ar bajenn-mañ",
+	"bluesky-page": "Ostilhoù evit ar pajennoù",
 	"bluesky-admin": "Merourien",
-	"bluesky-home": "Degemer"
+	"bluesky-page-edited": "Pajenn kemmet evit ar wech diwezhañ {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Pajenn kemmet evit ar wech diwezhañ {{int:ago|$1}} gant $2",
+	"duration-months": "$1 {{PLURAL:$1|miz}}",
+	"bluesky-toc-sections": "Rannoù",
+	"bluesky-home": "Degemer",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pajennoù dibar]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pajennoù ar raktres]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pajennoù kaozeal ar raktres]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Restroù]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Patrom]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Rummadoù]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Pajennoù {{NAMESPACE}}]",
+	"bluesky-article-info": "Titouroù diwar-benn ar pennad",
+	"bluesky-page-info": "Titouroù diwar-benn ar bajenn",
+	"bluesky-footer-tools": "Benvegoù pajenn ouzhpenn",
+	"bluesky-menu": "Lañser"
 }
