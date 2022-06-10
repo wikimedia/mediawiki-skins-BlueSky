@@ -42,8 +42,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$this->isMainPage = ( $title->isMainPage() && $action == 'view' );
 
 		// Variables out of the way; open html, body elements, etc
-		$html = $this->get( 'headelement' );
-		$html .= Html::openElement( 'div', [ 'id' => 'mw-wrapper' ] );
+		$html = Html::openElement( 'div', [ 'id' => 'mw-wrapper' ] );
 
 		// Page header
 		$html .= Html::rawElement( 'div', [ 'id' => 'header-outer' ],
@@ -197,14 +196,6 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$html .= Html::closeElement( 'div' );
 
-		// Required for RL to run
-		$html .= MWDebug::getDebugHTML( $this->getSkin()->getContext() );
-		$html .= $this->get( 'bottomscripts' );
-		$html .= $this->get( 'reporttime' );
-
-		$html .= Html::closeElement( 'body' );
-		$html .= Html::closeElement( 'html' );
-
 		// The unholy echo
 		echo $html;
 	}
@@ -352,7 +343,17 @@ class BlueSkyTemplate extends BaseTemplate {
 				'role' => 'contentinfo',
 			]
 		);
-		foreach ( $this->getFooterIcons( 'icononly' ) as $blockName => $footerIcons ) {
+
+		$footericons = $this->get( 'footericons' );
+		foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
+			foreach ( $footerIconsBlock as $footerIconKey => $footerIcon ) {
+				if ( !isset( $footerIcon['src'] ) ) {
+						unset( $footerIconsBlock[$footerIconKey] );
+				}
+			}
+		}
+
+		foreach ( $footericons as $blockName => $footerIcons ) {
 			$html .= Html::openElement(
 				'li',
 				[
