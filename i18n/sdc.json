@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"F Samaritani",
 			"Jun Misugi"
 		]
 	},
@@ -9,5 +10,7 @@
 	"bluesky-personaltools": "Profiru",
 	"bluesky-messages": "Imbasciaddi",
 	"bluesky-page": "Isthrumenti di pàgina",
-	"bluesky-home": "Pàgina prinzipari"
+	"bluesky-admin": "Ammin",
+	"bluesky-home": "Pàgina prinzipari",
+	"bluesky-menu": "Menu"
 }
