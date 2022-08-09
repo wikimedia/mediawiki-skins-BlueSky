@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Suniltheblue",
-			"पर्वत सुबेदी"
+			"पर्वत सुबेदी",
+			"Bada Kaji"
 		]
 	},
+	"bluesky-admin": "प्रबन्धक",
 	"bluesky-page-edited": "पृष्ठलाई अन्तिम पटक सम्पादन {{int:ago|$1}}",
 	"bluesky-page-edited-user": "$2 द्वारा पृष्ठलाई अन्तिम पटक सम्पादन {{int:ago|$1}} मा गरियो",
 	"bluesky-home": "गृह"
