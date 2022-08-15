@@ -5,6 +5,7 @@
 		]
 	},
 	"bluesky-navbar-edit": "Uredi",
+	"bluesky-toc-sections": "Razdelki",
 	"bluesky-home": "Domov",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Predloge]"
 }
