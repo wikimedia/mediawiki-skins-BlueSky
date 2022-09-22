@@ -5,6 +5,7 @@
 		]
 	},
 	"bluesky-navbar-edit": "Uredi",
+	"duration-months": "$1 {{PLURAL:$1|mesec|meseca|meseci|mesecev}}",
 	"bluesky-toc-sections": "Razdelki",
 	"bluesky-home": "Domov",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Predloge]"
