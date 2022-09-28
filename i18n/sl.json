@@ -4,8 +4,29 @@
 			"Eleassar"
 		]
 	},
+	"bluesky-desc": "Preobleka, prvotno zasnovana na trenutni različici preobleke wikiHow s konca leta 2013, z novimi funkcijami, kot so podpora za mobilne naprave, boljša interoperabilnost zunanjih razširitev in teme.",
+	"bluesky-editthis": "Uredi stran",
+	"bluesky-viewsource": "Ogled vira za to stran",
 	"bluesky-navbar-edit": "Uredi",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Sporočila",
+	"bluesky-pagelog": "Dnevniki za to stran",
+	"bluesky-page": "Orodja strani",
+	"bluesky-admin": "Administrator",
+	"bluesky-page-edited": "Stran nazadnje urejena {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Stran je zadnji urejal/a $2 {{int:ago|$1}}",
+	"duration-months": "$1 {{PLURAL:$1|mesec|meseca|meseci|mesecev}}",
 	"bluesky-toc-sections": "Razdelki",
 	"bluesky-home": "Domov",
-	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Predloge]"
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Posebne strani]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektne strani]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Projektne pogovorne strani]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Datoteke]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Predloge]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorije]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} strani]",
+	"bluesky-article-info": "Podatki o članku",
+	"bluesky-page-info": "Podatki o strani",
+	"bluesky-footer-tools": "Dodatna orodja strani",
+	"bluesky-menu": "Meni"
 }
