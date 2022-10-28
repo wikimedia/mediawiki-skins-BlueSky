@@ -10,8 +10,9 @@
 	"bluesky-personaltools": "Профиль",
 	"bluesky-messages": "Хаам",
 	"bluesky-notifications-new-talk": "Хьоьга беана $1 керла - {{PLURAL:$1|хаам}}.",
+	"bluesky-notifications-none": "ХӀокху хан хьан хаам бац.\nТӀаьххьара хааме хьаажа [[$1|дийцарийн агӀонга]] гӀо.",
 	"bluesky-notifications-no-talk": "Хьажа хьайн [[$1|дийцарийн агӀоне]], тӀеххьара беанчу хаамашка хьажархьама.",
-	"bluesky-unread-notifications": "{{PLURAL:$1|цхьаъ ешна йоцу|$1 ешна йоцурш}}",
+	"bluesky-unread-notifications": "{{PLURAL:$1|цхьаъ йешна йоцу|$1 йешна йоцурш}}",
 	"bluesky-pagelog": "ХӀокху агӀонан тептарш",
 	"bluesky-page": "ГӀирсаш агӀонашна",
 	"bluesky-admin": "Админ",
@@ -29,5 +30,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} агӀонаш]",
 	"bluesky-article-info": "Йаззаман информаци",
 	"bluesky-page-info": "АгӀонан информаци",
-	"bluesky-footer-tools": "АгӀонан кхин тӀе гӀирсаш"
+	"bluesky-footer-tools": "АгӀонан кхин тӀе гӀирсаш",
+	"bluesky-menu": "Меню"
 }
