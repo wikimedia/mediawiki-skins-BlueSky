@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"Սերգեյ Սաֆարյան"
 		]
 	},
 	"bluesky-editthis": "Խմբագրել այս էջը",
@@ -9,7 +10,7 @@
 	"bluesky-messages": "Հաղորդագրություններ",
 	"bluesky-page": "Էջի գործիքներ",
 	"bluesky-admin": "Ադմին",
-	"duration-months": "$1 {{PLURAL:$1|ամիս|ամիսներ}}",
+	"duration-months": "$1 {{PLURAL:$1|ամիս}}",
 	"bluesky-toc-sections": "Բաժիններ",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Կատեգորիաներ]]",
 	"bluesky-page-info": "Էջի տվյալներ"
