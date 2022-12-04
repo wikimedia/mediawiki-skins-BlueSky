@@ -120,7 +120,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			$html .= Html::closeElement( 'div' );
 
 			// ToC
-			$toc = $this->getToc();
+			$toc = $this->getToC();
 			if ( $toc != '' ) {
 				$html .= Html::rawElement(
 					'div',
@@ -239,7 +239,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		// Footer info
 		$defaultFooter = $this->getFooterLinks();
 
-		$languages = $this->getInterLanguageLinks();
+		$languages = $this->getInterlanguageLinks();
 		$catLinks = $skin->getCategoryLinks();
 		// normalise into string
 		$catLinks = $catLinks ? $catLinks : '';
@@ -1253,7 +1253,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		// Get list from output if in view/edit/preview; otherwise get list from title
 		if ( in_array( $skin->getRequest()->getVal( 'action' ), [ 'submit', 'view', 'edit' ] ) ) {
 			$allCats = [];
-			$allCats2 = $skin->getOutput()->GetCategories();
+			$allCats2 = $skin->getOutput()->getCategories();
 			foreach ( $allCats2 as $displayName ) {
 				$safeTitle = Title::makeTitleSafe( NS_CATEGORY, $displayName );
 				$allCats[] = $safeTitle->getDBkey();
@@ -1395,7 +1395,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			/* Get list from output if in preview; otherwise get list from title */
 			if ( in_array( $skin->getRequest()->getVal( 'action' ), [ 'submit', 'view', 'edit' ] ) ) {
 				$allCats = [];
-				$allCats2 = $skin->getOutput()->GetCategories();
+				$allCats2 = $skin->getOutput()->getCategories();
 				foreach ( $allCats2 as $displayName ) {
 					$title = Title::makeTitleSafe( NS_CATEGORY, $displayName );
 					$allCats[] = $title->getDBkey();
