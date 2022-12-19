@@ -11,7 +11,7 @@
 	"bluesky-messages": "Хаам",
 	"bluesky-notifications-new-talk": "Хьоьга беана $1 керла - {{PLURAL:$1|хаам}}.",
 	"bluesky-notifications-none": "ХӀокху хан хьан хаам бац.\nТӀаьххьара хааме хьаажа [[$1|дийцарийн агӀонга]] гӀо.",
-	"bluesky-notifications-no-talk": "Хьажа хьайн [[$1|дийцарийн агӀоне]], тӀеххьара беанчу хаамашка хьажархьама.",
+	"bluesky-notifications-no-talk": "Хьажа хьайн [[$1|дийцарийн агӀоне]], тӀаьхьара беанчу хаамашка хьажархьама.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|цхьаъ йешна йоцу|$1 йешна йоцурш}}",
 	"bluesky-pagelog": "ХӀокху агӀонан тептарш",
 	"bluesky-page": "ГӀирсаш агӀонашна",
