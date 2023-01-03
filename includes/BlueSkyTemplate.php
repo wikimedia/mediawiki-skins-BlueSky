@@ -1164,6 +1164,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		if ( !$wgHideInterlanguageLinks ) {
 			$services = MediaWikiServices::getInstance();
 			$contLang = $services->getContentLanguage();
+			$languageNameUtils = $services->getLanguageNameUtils();
 			foreach ( $skin->getOutput()->getLanguageLinks() as $blob ) {
 				$tmp = explode( ':', $blob, 2 );
 				$class = 'interwiki-' . $tmp[0];
@@ -1172,8 +1173,9 @@ class BlueSkyTemplate extends BaseTemplate {
 				$iwTitle = Title::newFromText( $blob );
 				$inLanguage = $contLang->getCode();
 				$interwiki = $iwTitle->getInterwiki();
-				if ( Language::fetchLanguageName( $interwiki, $inLanguage ) != '' ) {
-					$language = Language::fetchLanguageName( $interwiki, $inLanguage );
+				$languageName = $languageNameUtils->getLanguageName( $interwiki, $inLanguage );
+				if ( $languageName != '' ) {
+					$language = $languageName;
 				} else {
 					$language = $blob;
 				}
