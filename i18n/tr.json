@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
-			"Vito Genovese"
+			"Vito Genovese",
+			"Rapsar"
 		]
 	},
 	"bluesky-desc": "Başlangıçta, vikinasıl'ın görünümün şu anki sürümüne dayanan, mobil destek, daha iyi harici uzantı birlikte çalışabilirliği ve temalar gibi yeni özelliklere dayanan görünümdür.",
-	"bluesky-editthis": "Bu sayfayı düzenle",
+	"bluesky-editthis": "Bu sayfayı değiştir",
 	"bluesky-viewsource": "Bu sayfanın kaynağını görüntüle",
-	"bluesky-navbar-edit": "Düzenle",
+	"bluesky-navbar-edit": "Değiştir",
 	"bluesky-personaltools": "Profil",
 	"bluesky-messages": "Mesajlar",
 	"bluesky-notifications-new-talk": "$1 yeni tartışma {{PLURAL:$1|mesajınız|mesajınız}} var.",
