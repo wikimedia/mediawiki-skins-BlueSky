@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Kizule"
 		]
 	},
 	"bluesky-desc": "Tema originalno zasnovana na trenutnoj verziji teme wikiHow-a iz kasne 2013, sa novim funkcijama poput podrške za mobilne uređaje, boljom međuoperativnošću i temama.",
@@ -14,7 +15,7 @@
 	"bluesky-notifications-none": "Trenutno nemate obaveštenja.\nPosetite svoju [[$1|stranicu za razgovor]] da biste videli ranije poruke.",
 	"bluesky-notifications-no-talk": "Posetite svoju [[$1|stranicu za razgovor]] da biste videli ranije poruke.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Jedno nepročitano|$1 nepročitana|$1 nepročitanih}}",
-	"bluesky-pagelog": "Evidencije ove stranice",
+	"bluesky-pagelog": "Dnevnici ove stranice",
 	"bluesky-page": "Alatke za stranicu",
 	"bluesky-admin": "Administrator",
 	"bluesky-page-edited": "Poslednja izmena na stranici je izvršena {{int:ago|$1}}",
