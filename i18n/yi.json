@@ -4,5 +4,8 @@
 			"Pacha Tchernof"
 		]
 	},
+	"bluesky-admin": "אַדמיניסטראַטאָר",
+	"duration-months": "$1 {{PLURAL:$1|מאָנאַט|מאָנאַטן}}",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} מוסטערן]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|קאַטעגאָריעס]]"
 }
