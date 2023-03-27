@@ -8,5 +8,6 @@
 	"bluesky-editthis": "Rievdat dán siiddu",
 	"bluesky-viewsource": "Čájet dán siiddu gáldokoda",
 	"bluesky-navbar-edit": "Rievdat",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Fiillat]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Mállet]"
 }
