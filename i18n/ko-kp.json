@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Delim"
+		]
+	},
+	"bluesky-editthis": "이 문서 편집하기",
+	"bluesky-viewsource": "이 문서의 원본 보기",
+	"bluesky-navbar-edit": "편집",
+	"bluesky-messages": "통보문",
+	"bluesky-notifications-new-talk": "$1개의 새로운 토론 {{PLURAL:$1|통보문}}이 있습니다.",
+	"bluesky-toc-sections": "부분"
+}
