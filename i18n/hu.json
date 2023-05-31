@@ -1,28 +1,36 @@
 {
 	"@metadata": {
 		"authors": [
+			"Krisztina",
 			"Tacsipacsi"
 		]
 	},
-	"bluesky-editthis": "Lap szerkesztése",
+	"bluesky-editthis": "Oldal szerkesztése",
 	"bluesky-viewsource": "A lap forráskódjának megtekintése",
 	"bluesky-navbar-edit": "Szerkesztés",
 	"bluesky-personaltools": "Profil",
 	"bluesky-messages": "Üzenetek",
-	"bluesky-notifications-new-talk": "$1 új vitalapi üzeneted van.",
-	"bluesky-notifications-none": "Jelenleg nincs új üzeneted.\nLátogasd meg a [[$1|vitalapodat]] a régebbi üzenetek megtekintéséhez.",
-	"bluesky-notifications-no-talk": "Látogasd meg a [[$1|vitalapodat]] a régebbi üzenetek megtekintéséhez.",
+	"bluesky-notifications-new-talk": "$1 új vitalapi üzenete van.",
+	"bluesky-notifications-none": "Jelenleg nincs új üzenete.\nLátogassa meg a [[$1|vitalapot]] a régebbi üzenetek megtekintéséhez.",
+	"bluesky-notifications-no-talk": "Látogassa meg a [[$1|vitalapot]] a régebbi üzenetek megtekintéséhez.",
 	"bluesky-unread-notifications": "$1 olvasatlan",
+	"bluesky-pagelog": "Oldal logok",
+	"bluesky-page": "Oldal eszközök",
 	"bluesky-admin": "Admin",
+	"bluesky-page-edited": "Oldal legutóbb frissítve {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Oldal legutóbb szerkesztve {{int:ago|$1}} általa $2",
+	"duration-months": "$1 kutya",
 	"bluesky-toc-sections": "Szakaszok",
 	"bluesky-home": "Kezdőlap",
-	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Speciális lapok]]",
-	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektlapok]",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Speciális oldalak]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektoldalak]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Projektvitalapok]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Fájlok]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Sablonok]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategóriák]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} oldalak]",
 	"bluesky-article-info": "Szócikkinformációk",
-	"bluesky-page-info": "Lapinformációk",
+	"bluesky-page-info": "Oldal információ",
+	"bluesky-footer-tools": "Extra oldal eszközök",
 	"bluesky-menu": "Menü"
 }
