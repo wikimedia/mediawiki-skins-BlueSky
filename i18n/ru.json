@@ -6,7 +6,8 @@
 			"Kareyac",
 			"MaxBioHazard",
 			"Okras",
-			"Vlad5250"
+			"Vlad5250",
+			"BerryAVGN"
 		]
 	},
 	"skinname-bluesky": "Blue Sky",
@@ -16,10 +17,10 @@
 	"bluesky-navbar-edit": "Править",
 	"bluesky-personaltools": "Профиль",
 	"bluesky-messages": "Сообщений",
-	"bluesky-notifications-new-talk": "У вас есть $1 новое ток - {{PLURAL:$1|сообщение|сообщения}}.",
-	"bluesky-notifications-none": "В Вас нету сообщений в это время.\nПосетите Вашу [[$1|страницу обсуждений]], чтобы увидеть последние сообщении.",
-	"bluesky-notifications-no-talk": "Посетить ваш [[$1|странице обсуждения]], чтобы увидеть последние сообщения.",
-	"bluesky-unread-notifications": "{{PLURAL:$1|один непрочитанный|$1 непрочитанные}}",
+	"bluesky-notifications-new-talk": "У вас есть $1 новое обсуждение - {{PLURAL:$1|сообщение|сообщения}}.",
+	"bluesky-notifications-none": "В вас нету сообщений сейчас.\nПосетите вашу [[$1|страницу обсуждений]], чтобы увидеть последние сообщения.",
+	"bluesky-notifications-no-talk": "Посетите вашу [[$1|страницу обсуждения]], чтобы увидеть последние сообщения.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|одно непрочитанное|$1 непрочитанные|$1 непрочитанных}}",
 	"bluesky-pagelog": "Журналы для этой страницы",
 	"bluesky-page": "Инструменты для страниц",
 	"bluesky-admin": "Админ",
@@ -33,7 +34,7 @@
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} проекта страницы]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Страницы обсуждения проекта]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлы]]",
-	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|пространство имен=10}} шаблоны]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблоны]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категории]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страницы]",
 	"bluesky-article-info": "Информация о статье",
