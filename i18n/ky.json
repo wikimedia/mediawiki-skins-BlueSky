@@ -5,6 +5,7 @@
 		]
 	},
 	"bluesky-editthis": "Бул баракты түзөтүү",
+	"duration-months": "$1 {{PLURAL:$1|ай}}",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлдар]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|аталыш мейкиндиги=10}} калыптар]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категориялар]]"
