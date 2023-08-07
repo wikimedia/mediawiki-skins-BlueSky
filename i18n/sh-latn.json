@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"bluesky-desc": "Tema originalno zasnovana na trenutnoj verziji (iz kasne 2013.) teme wikiHow-a, sa novim funkcijama poput podrške za mobilne uređaje, boljom međuoperativnošću i temama",
+	"bluesky-editthis": "Uredi ovu stranicu",
+	"bluesky-viewsource": "Izvor ove stranice",
+	"bluesky-navbar-edit": "Uredi",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Poruke",
+	"bluesky-notifications-new-talk": "Imate $1 {{PLURAL:$1|novu poruku|nove poruke|novih poruka}}.",
+	"bluesky-notifications-none": "Trenutno nemate obavještenja.\nPosjetite svoju [[$1|razgovornu stranicu]] da biste vidjeli ranije poruke.",
+	"bluesky-notifications-no-talk": "Posjetite svoju [[$1|razgovornu stranicu]] da biste vidjeli ranije poruke.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Jedno nepročitano|$1 nepročitana|$1 nepročitano}}",
+	"bluesky-pagelog": "Evidencija stranice",
+	"bluesky-page": "Alati za stranice",
+	"bluesky-admin": "Admin",
+	"bluesky-page-edited": "Posljednja izmjena ove stranice izvršena je {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Posljednju izmjenu ove stranice izvršio je $2 {{int:ago|$1}}",
+	"duration-months": "$1 {{PLURAL:$1|mjesec|mjeseca|mjeseci}}",
+	"bluesky-toc-sections": "Podnaslovi",
+	"bluesky-home": "Početna",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Posebne stranice]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektne stranice]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Projektne razgovorne stranice]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Datoteke]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Šabloni]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorije]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} stranica]",
+	"bluesky-article-info": "Info o članku",
+	"bluesky-page-info": "Info o stranici",
+	"bluesky-footer-tools": "Dodatni alati za stranice",
+	"bluesky-menu": "Meni"
+}
