@@ -5,6 +5,7 @@
 		]
 	},
 	"bluesky-editthis": "Бул баракты түзөтүү",
+	"bluesky-navbar-edit": "Түзөтүү",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Бир окулбаган|$1 окулбаган}}",
 	"bluesky-admin": "Администратор",
 	"duration-months": "$1 {{PLURAL:$1|ай}}",
