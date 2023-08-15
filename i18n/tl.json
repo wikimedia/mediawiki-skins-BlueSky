@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Emem.calist"
+			"Emem.calist",
+			"Jojit fb"
 		]
 	},
 	"bluesky-editthis": "baguhin itong pahina",
 	"bluesky-viewsource": "Tingnan ang pinagmulan nitong pahina",
 	"bluesky-navbar-edit": "Palitan/Baguhin",
 	"bluesky-notifications-no-talk": "Bisitahin ang iyong [[$1|salita-pahina]] para makita ang mga huling mensahe.",
-	"bluesky-home": "Pinagmulan"
+	"bluesky-home": "Pinagmulan",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Mga kategorya]]"
 }
