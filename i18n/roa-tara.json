@@ -22,7 +22,6 @@
 	"bluesky-page-edited-user": "Urtema pàgene cangiate {{int:ago|$1}} da $2",
 	"duration-months": "$1 {{PLURAL:$1|mese|mise}}",
 	"bluesky-toc-sections": "Seziune",
-	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Cáse",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pàggene speciale]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pàggene de le pruggette]",

@@ -22,7 +22,6 @@
 	"bluesky-page-edited-user": "पृष्ठ का अंतिम सम्पादन {{int:ago|$1}} को $2 ने किया है।",
 	"duration-months": "$1 {{PLURAL:$1|महीना|महीने}}",
 	"bluesky-toc-sections": "अनुभाग",
-	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "घर",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|विशेष पृष्ठ]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} परियोजना पृष्ठ]",

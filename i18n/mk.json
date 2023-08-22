@@ -22,7 +22,6 @@
 	"bluesky-page-edited-user": "Последната промена на страницава е извршена {{int:ago|$1}} од $2",
 	"duration-months": "$1 {{PLURAL:$1|месец|месеци}}",
 	"bluesky-toc-sections": "Оддели",
-	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Почетна",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Службени страници]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Проектни страници]",

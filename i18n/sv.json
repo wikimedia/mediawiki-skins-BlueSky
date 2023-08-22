@@ -22,7 +22,6 @@
 	"bluesky-page-edited-user": "Sidan redigerades senast {{int:ago|$1}} av $2",
 	"duration-months": "$1 {{PLURAL:$1|månad|månader}}",
 	"bluesky-toc-sections": "Avsnitt",
-	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Hem",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Specialsidor]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Projektsidor]",
