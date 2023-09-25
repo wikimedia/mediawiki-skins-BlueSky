@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"bluesky-desc": "Тема оригинално заснована на тренутној верзији (из касне 2013.) теме wikiHow-а, са новим функцијама попут подршке за мобилне уређаје, бољом међуоперативношћу и темама",
+	"bluesky-editthis": "Уреди ову страницу",
+	"bluesky-viewsource": "Извор ове странице",
+	"bluesky-navbar-edit": "Уреди",
+	"bluesky-personaltools": "Профил",
+	"bluesky-messages": "Поруке",
+	"bluesky-notifications-new-talk": "Имате $1 {{PLURAL:$1|нову поруку|нове поруке|нових порука}}.",
+	"bluesky-notifications-none": "Тренутно немате обавјештења.\nПосјетите своју [[$1|страницу за разговор]] да бисте видјели раније поруке.",
+	"bluesky-notifications-no-talk": "Посјетите своју [[$1|страницу за разговор]] да бисте видјели раније поруке.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Једно непрочитано|$1 непрочитана|$1 непрочитаних}}",
+	"bluesky-pagelog": "Дневници ове странице",
+	"bluesky-page": "Алатке за страницу",
+	"bluesky-admin": "Админ",
+	"bluesky-page-edited": "Последња измена на страници је извршена {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Последњу измјену на страници је извршио $2 {{int:ago|$1}}",
+	"duration-months": "$1 {{PLURAL:$1|мјесец|мјесеца|мјесеци}}",
+	"bluesky-toc-sections": "Одељци",
+	"bluesky-home": "Почетна",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Посебне странице]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Пројектне странице]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Пројектне странице за разговор]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Датотеке]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблони]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категорије]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} страница]",
+	"bluesky-article-info": "Инфо о чланку",
+	"bluesky-page-info": "Инфо о страници",
+	"bluesky-footer-tools": "Додатне алатке за страницу",
+	"bluesky-menu": "Мени"
+}
