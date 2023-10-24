@@ -32,7 +32,7 @@
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Şabloni]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategoriyi]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} perri]",
-	"bluesky-article-info": "Malumata wesiqa",
+	"bluesky-article-info": "Malumatê meqaleyi",
 	"bluesky-page-info": "Melumatê pele",
 	"bluesky-footer-tools": "Tayna hacetê pele",
 	"bluesky-menu": "Menu"
