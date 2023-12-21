@@ -23,6 +23,12 @@ class BlueSkyTemplate extends BaseTemplate {
 	protected $isMainPage;
 
 	/**
+	 * How many notifications does the user have?
+	 * @var int
+	 */
+	private $notifications_count = 0;
+
+	/**
 	 * Outputs the entire contents of the page
 	 */
 	public function execute() {
