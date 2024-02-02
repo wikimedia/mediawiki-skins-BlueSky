@@ -53,7 +53,7 @@
 	},
 	"ResourceModules": {
 		"skins.bluesky": {
-			"class": "ResourceLoaderSkinModule",
+			"class": "MediaWiki\\ResourceLoader\\SkinModule",
 			"features": {
 				"content-links": true,
 				"logo": true,
