@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Lizalizaufa",
-			"З. ӘЙЛЕ"
+			"З. ӘЙЛЕ",
+			"Bashkorttan"
 		]
 	},
 	"bluesky-editthis": "Был битте мөхәррирләргә",
@@ -10,7 +11,7 @@
 	"bluesky-messages": "Хәбәрҙәр",
 	"bluesky-notifications-new-talk": "Һеҙгә $1 яңы фекер алышыу - {{PLURAL:$1|хәбәр}} бар.",
 	"bluesky-notifications-none": "Әлеге мәлгә һеҙгә хәбәр юҡ. Һуңғы хәбәрҙәрҙе күреү өсөн үҙегеҙҙең [[$1|фекер алышыу битен]]  ҡарағыҙ.",
-	"bluesky-notifications-no-talk": "Һуңғы хәбәрҙәрҙе уҡыу өсөн үҙегеҙҙең [[$1|фекер алышыу битенә]] инегеҙ.",
+	"bluesky-notifications-no-talk": "Һуңғы хәбәрҙәрҙе уҡыу өсөн [[$1|әңгәмә]] битегеҙгә инегеҙ.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|бер уҡылмаған|$1 уҡылмаған}}",
 	"bluesky-pagelog": "Ошо бит өсөн журналдар",
 	"bluesky-page": "Бит ҡоралдары",
