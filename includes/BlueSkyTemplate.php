@@ -925,12 +925,12 @@ class BlueSkyTemplate extends BaseTemplate {
 			if ( class_exists( 'Notifications' ) ) {
 				$ret = Notifications::loadNotifications();
 				if ( is_array( $ret ) ) {
-					list( $html, $this->notifications_count ) = $ret;
+					[ $html, $this->notifications_count ] = $ret;
 				}
 			} else {
 				// the wikiHow notifications ext. isn't installed either,
 				// so we essentially reimplement its logic here
-				list( $notes, $count, $newTalk ) = $this->getNotifications();
+				[ $notes, $count, $newTalk ] = $this->getNotifications();
 				$html = $this->formatNotifications( $notes, $newTalk );
 				$this->notifications_count = $count;
 			}
