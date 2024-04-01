@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Къарачайлы"
+		]
+	},
+	"bluesky-desc": "2013-чи джылны wikiHow темасыны тамалында этилген тема, джангы функциялары бла, сёз ючюн, мобил дагъан, тыш кенгериуле эмда темала бла маджал келишиу.",
+	"bluesky-editthis": "Бу бетни тюзет",
+	"bluesky-viewsource": "Бу бетни къайнагъын кёргюз",
+	"bluesky-navbar-edit": "Тюзет",
+	"bluesky-personaltools": "Профиль",
+	"bluesky-messages": "Билдириуле",
+	"bluesky-notifications-new-talk": "$1 джангы сюзюу {{PLURAL:$1|билдириуюгюз}} барды.",
+	"bluesky-notifications-none": "Бусагъатда чырт бир билдириуюгюз джокъду.\nОзгъанда билдириулени кёрюр ючюн [[$1|сюзюу бетигизге]] киригиз.",
+	"bluesky-notifications-no-talk": "Озгъанда билдирулеригизни кёрюр ючюн [[$1|сюзюу бетигизге]] киригиз.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Бир окъулмагъан|$1 окъулмагъан}}",
+	"bluesky-pagelog": "Бу бет ючюн джурналла",
+	"bluesky-page": "Бет адырла",
+	"bluesky-admin": "Админ",
+	"bluesky-page-edited": "Эм ахыр бетни тюзетилгени {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Эм ахыр кере бетни {{int:ago|$1}} тюзетген $2",
+	"duration-months": "$1 {{PLURAL:$1|ай}}",
+	"bluesky-toc-sections": "Бёлюмле",
+	"bluesky-home": "Баш бет",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Энчи бетле]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} проект бетле]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Проектни сюзюу бетлери]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файлла]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Шаблонла]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Категорияла]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} бетле]",
+	"bluesky-article-info": "Статья билги",
+	"bluesky-page-info": "Бетни информациясы",
+	"bluesky-footer-tools": "Экстра бет адырла",
+	"bluesky-menu": "Меню"
+}
