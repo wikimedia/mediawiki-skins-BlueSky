@@ -6,12 +6,13 @@
 			"Dj"
 		]
 	},
+	"bluesky-desc": "A felület eredetileg a wikiHow felületének 2013 végén készült verzióján alapult, új funkciókkal, például mobiltámogatással, jobb külső bővítmények együttműködési képességével és témákkal.",
 	"bluesky-editthis": "Lap szerkesztése",
 	"bluesky-viewsource": "A lap forráskódjának megtekintése",
 	"bluesky-navbar-edit": "Szerkesztés",
 	"bluesky-personaltools": "Profil",
 	"bluesky-messages": "Üzenetek",
-	"bluesky-notifications-new-talk": "$1 új vitalapi üzeneted van.",
+	"bluesky-notifications-new-talk": "$1 új vitalapi {{PLURAL:$1|üzeneted}} van.",
 	"bluesky-notifications-none": "Jelenleg nincs új üzeneted.\nLátogasd meg a [[$1|vitalapodat]] a régebbi üzenetek megtekintéséhez.",
 	"bluesky-notifications-no-talk": "Látogasd meg a [[$1|vitalapodat]] a régebbi üzenetek megtekintéséhez.",
 	"bluesky-unread-notifications": "$1 olvasatlan",
@@ -20,7 +21,7 @@
 	"bluesky-admin": "Admin",
 	"bluesky-page-edited": "Oldal legutóbb frissítve {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Oldal legutóbb szerkesztve {{int:ago|$1}} általa $2",
-	"duration-months": "$1 hónap",
+	"duration-months": "$1 {{PLURAL:$1|hónap}}",
 	"bluesky-toc-sections": "Szakaszok",
 	"bluesky-home": "Kezdőlap",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Speciális lapok]]",
