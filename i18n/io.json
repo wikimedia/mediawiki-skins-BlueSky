@@ -10,11 +10,13 @@
 	"bluesky-personaltools": "Profilo",
 	"bluesky-messages": "Mesaji",
 	"bluesky-notifications-none": "Vu havas nula avizi nun.\nVizitez vua [[$1|diskuto-pagino]] por lektar antea mesaji.",
+	"bluesky-page": "Utensili di pagino",
 	"bluesky-admin": "Administrero",
 	"duration-months": "$1 {{PLURAL:$1|monato|monati}}",
 	"bluesky-home": "Komenco",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Arkivi]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Shabloni]",
 	"bluesky-breadcrumbs-nscategory": "[[Specala:Kategorii|Kategorii]]",
-	"bluesky-page-info": "Informo pri ca pagino"
+	"bluesky-page-info": "Informo pri ca pagino",
+	"bluesky-footer-tools": "Plusa utensili por pagino"
 }
