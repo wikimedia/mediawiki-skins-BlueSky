@@ -20,7 +20,6 @@
 	"bluesky-admin": "ניהול",
 	"bluesky-page-edited": "הדף נערך {{int:ago|$1}}",
 	"bluesky-page-edited-user": "הדף נערך {{int:ago|$1}} על־ידי $2",
-	"duration-months": "{{PLURAL:$1|חודש|חודשיים|$1 חודשים}}",
 	"bluesky-toc-sections": "פרקים",
 	"bluesky-home": "דף הבית",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|דפים מיוחדים]]",

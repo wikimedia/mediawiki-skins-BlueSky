@@ -19,7 +19,6 @@
 	"bluesky-admin": "Pengurus",
 	"bluesky-page-edited": "Halaman terakhir disunting {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Halaman terakhir disunting {{int:ago|$1}} oleh $2",
-	"duration-months": "$1 {{PLURAL:$1|bulan}}",
 	"bluesky-toc-sections": "Bagian",
 	"bluesky-home": "Beranda",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Halaman istimewa]]",

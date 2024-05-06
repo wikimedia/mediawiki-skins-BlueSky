@@ -21,7 +21,6 @@
 	"bluesky-admin": "관리",
 	"bluesky-page-edited": "{{int:ago|$1}} 전에 마지막으로 편집함",
 	"bluesky-page-edited-user": "$2 사용자가 {{int:ago|$1}} 전에 마지막으로 편집함",
-	"duration-months": "$1{{PLURAL:$1|개월}} 전",
 	"bluesky-toc-sections": "부분",
 	"bluesky-home": "홈",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|특수 문서]]",

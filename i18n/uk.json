@@ -22,7 +22,6 @@
 	"bluesky-admin": "Адмін",
 	"bluesky-page-edited": "Сторінку востаннє відредаговано {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Сторінку востаннє відредаговано {{int:ago|$1}} $2",
-	"duration-months": "$1 {{PLURAL:$1|місяць|місяці|місяців}}",
 	"bluesky-toc-sections": "Розділи",
 	"bluesky-home": "Головна",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Спеціальні сторінки]]",

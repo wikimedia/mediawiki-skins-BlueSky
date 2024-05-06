@@ -20,7 +20,6 @@
 	"bluesky-admin": "Ammenistratore",
 	"bluesky-page-edited": "Urdema pàggena cagnata {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Urdema pàggena cagnata {{int:ago|$1}} 'a $2",
-	"duration-months": "$1 {{PLURAL:$1|mese|mise}}",
 	"bluesky-toc-sections": "Seziune",
 	"bluesky-home": "Prencepale",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pàggene speciale]]",

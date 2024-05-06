@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Გიო ოქრო",
-			"Იო ოქრო"
-		]
-	},
-	"duration-months": "$1 {{PLURAL:$1|თვე|თვე}}"
-}

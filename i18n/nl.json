@@ -22,7 +22,6 @@
 	"bluesky-admin": "Beheerder",
 	"bluesky-page-edited": "Pagina laatst bewerkt {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Pagina laatst bewerkt {{int:ago|$1}} door $2",
-	"duration-months": "$1 {{PLURAL:$1|maand|maanden}}",
 	"bluesky-toc-sections": "Secties",
 	"bluesky-home": "Startpagina",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Speciale pagina's]]",

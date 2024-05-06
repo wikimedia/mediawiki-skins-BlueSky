@@ -20,7 +20,6 @@
 	"bluesky-admin": "Admin",
 	"bluesky-page-edited": "Siden sist redigert {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Siden sist redigert {{int:ago|$1}} av $2",
-	"duration-months": "$1 {{PLURAL:$1|måned|måneder}}",
 	"bluesky-toc-sections": "Seksjoner",
 	"bluesky-home": "Hjem",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Spesialsider]]",

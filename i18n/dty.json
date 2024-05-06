@@ -13,7 +13,6 @@
 	"bluesky-admin": "व्यवस्थापक",
 	"bluesky-page-edited": "छाड्डीबार पन्ना सम्पादन {{int:ago|$1}}",
 	"bluesky-page-edited-user": "छाड्डीबार पन्ना सम्पादन {{int:ago|$1}}मी $2 हताँ",
-	"duration-months": "$1 {{PLURAL:$1|मैना|मैनाअन}}",
 	"bluesky-toc-sections": "अनुभागअन",
 	"bluesky-home": "घर",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} परियोजना पन्नाअन]",

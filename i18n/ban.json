@@ -19,7 +19,6 @@
 	"bluesky-admin": "Pangurus",
 	"bluesky-page-edited": "Kaca pinih ungkur kauahin {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Kaca pinih ungkur kauahin {{int:ago|$1}} olih $2",
-	"duration-months": "$1 {{PLURAL:$1|sasih}}",
 	"bluesky-toc-sections": "Wagian",
 	"bluesky-home": "Umah",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Kaca kusus]]",

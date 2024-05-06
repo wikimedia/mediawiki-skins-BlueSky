@@ -20,7 +20,6 @@
 	"bluesky-admin": "Merourien",
 	"bluesky-page-edited": "Pajenn kemmet evit ar wech diwezhañ {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Pajenn kemmet evit ar wech diwezhañ {{int:ago|$1}} gant $2",
-	"duration-months": "$1 {{PLURAL:$1|miz}}",
 	"bluesky-toc-sections": "Rannoù",
 	"bluesky-home": "Degemer",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pajennoù dibar]]",

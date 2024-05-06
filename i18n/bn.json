@@ -16,7 +16,6 @@
 	"bluesky-admin": "প্রশাসক",
 	"bluesky-page-edited": "পাতা {{int:ago|$1}} সর্বশেষ সম্পাদিত",
 	"bluesky-page-edited-user": "পাতা $2 দ্বারা {{int:ago|$1}} সর্বশেষ সম্পাদিত",
-	"duration-months": "$1 {{PLURAL:$1|মাস}}",
 	"bluesky-toc-sections": "অনুচ্ছেদসমূহ",
 	"bluesky-home": "প্রধান পাতা",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|বিশেষ পাতাসমূহ]]",

@@ -20,7 +20,6 @@
 	"bluesky-admin": "प्रबन्धक",
 	"bluesky-page-edited": "पृष्ठ का अंतिम सम्पादन {{int:ago|$1}} को हुआ है।",
 	"bluesky-page-edited-user": "पृष्ठ का अंतिम सम्पादन {{int:ago|$1}} को $2 ने किया है।",
-	"duration-months": "$1 {{PLURAL:$1|महीना|महीने}}",
 	"bluesky-toc-sections": "अनुभाग",
 	"bluesky-home": "घर",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|विशेष पृष्ठ]]",

@@ -18,7 +18,6 @@
 	"bluesky-admin": "ადმინი",
 	"bluesky-page-edited": "ხასჷლაშ ეკონია რედაქტირაფაშ ბორჯიː {{int:ago|$1}}",
 	"bluesky-page-edited-user": "ხასჷლაშ ეკონია რედაქტირაფაშ ბორჯიː {{int:ago|$1}} დო $2",
-	"duration-months": "$1 {{PLURAL:$1|თუთაშ}} კინოხი",
 	"bluesky-toc-sections": "გიმნართეფი",
 	"bluesky-home": "დუდხასჷლაშა",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|გიშაკერზაფილი ხასჷლეფი]]",

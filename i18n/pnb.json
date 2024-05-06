@@ -1,8 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Abbas dhothar"
-		]
-	},
-	"duration-months": "$1 {{PLURAL:$1|مہینہ|مہینے}}"
-}

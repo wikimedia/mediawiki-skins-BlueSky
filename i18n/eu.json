@@ -19,7 +19,6 @@
 	"bluesky-admin": "Administratzalea",
 	"bluesky-page-edited": "Orria azkenengoz aldatua {{int:duela|$1}}",
 	"bluesky-page-edited-user": "Orria azkenengoz aldatua {{int:duela|$1}} $2-ren eskutik",
-	"duration-months": "{{PLURAL: hilabete $1|$1 hilabete}}",
 	"bluesky-toc-sections": "Atalak",
 	"bluesky-home": "Hasiera",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Orrialde bereziak]]",

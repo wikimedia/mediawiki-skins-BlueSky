@@ -22,7 +22,6 @@
 	"bluesky-admin": "Administrator",
 	"bluesky-page-edited": "Strona ostatnio edytowana {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Strona ostatnio edytowana {{int:ago|$1}} przez $2",
-	"duration-months": "$1 {{PLURAL:$1|miesiąc|miesiące|miesięcy}}",
 	"bluesky-toc-sections": "Sekcje",
 	"bluesky-home": "Start",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Strony specjalne]]",

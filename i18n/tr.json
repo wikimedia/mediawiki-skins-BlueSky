@@ -21,7 +21,6 @@
 	"bluesky-admin": "Yönetici",
 	"bluesky-page-edited": "En son düzenlenen sayfa {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Sayfa en son {{int:ago|$1}} düzenleme yapan $2",
-	"duration-months": "$1 {{PLURAL:$1|ay|ay}}",
 	"bluesky-toc-sections": "Bölümler",
 	"bluesky-home": "Anasayfa",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Özel sayfalar]]",

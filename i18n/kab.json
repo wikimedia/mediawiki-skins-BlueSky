@@ -19,7 +19,6 @@
 	"bluesky-admin": "Anedbal",
 	"bluesky-page-edited": "Asebter ibeddel tikelt taneggarut di {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Asnifel aneggaru n usebter di {{int:ago|$1}} sɣur $2",
-	"duration-months": "$1 {{PLURAL:$1|n wayyur|n wayyuren}}",
 	"bluesky-toc-sections": "Tigezmiyin",
 	"bluesky-home": "Agejdan",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Isebtar usligen]]",

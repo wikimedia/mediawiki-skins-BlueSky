@@ -14,7 +14,6 @@
 	"bluesky-notifications-no-talk": "Visita la tua [[$1|pagina di discussione]] per vedere i vecchi messaggi.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Uno non letto|$1 non letti}}",
 	"bluesky-pagelog": "Registri per questa pagina",
-	"duration-months": "$1 {{PLURAL:$1|mese|mesi}}",
 	"bluesky-toc-sections": "Sezioni",
 	"bluesky-home": "Pagina principale",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pagine speciali]]",

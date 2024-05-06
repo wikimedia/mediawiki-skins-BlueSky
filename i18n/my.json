@@ -16,7 +16,6 @@
 	"bluesky-admin": "အက်ဒမင်",
 	"bluesky-page-edited": "စာမျက်နှာနောက်ဆုံးတည်းဖြတ်မှု {{$1|int:အကြာက}}",
 	"bluesky-page-edited-user": "$2 က {{$1|int:အကြာက}} စာမျက်နှာနောက်ဆုံးတည်းဖြတ်ခဲ့သည်",
-	"duration-months": "$1 {{PLURAL:$1|လ|လများ}}",
 	"bluesky-toc-sections": "အပိုင်းများ",
 	"bluesky-home": "ပင်မ",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|အထူးစာမျက်နှာများ]]",

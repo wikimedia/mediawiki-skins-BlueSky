@@ -19,7 +19,6 @@
 	"bluesky-admin": "Админ",
 	"bluesky-page-edited": "Последња измена на страници је извршена {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Последњу измјену на страници је извршио $2 {{int:ago|$1}}",
-	"duration-months": "$1 {{PLURAL:$1|мјесец|мјесеца|мјесеци}}",
 	"bluesky-toc-sections": "Одељци",
 	"bluesky-home": "Почетна",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Посебне странице]]",

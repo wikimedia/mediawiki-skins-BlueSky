@@ -22,7 +22,6 @@
 	"bluesky-admin": "管理者",
 	"bluesky-page-edited": "頁面最後編輯於 {{int:ago|$1}}",
 	"bluesky-page-edited-user": "頁面最後由 $2 編輯於 {{int:ago|$1}}",
-	"duration-months": "$1 {{PLURAL:$1|月}}",
 	"bluesky-toc-sections": "章節",
 	"bluesky-home": "首頁",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|特定頁面]]",

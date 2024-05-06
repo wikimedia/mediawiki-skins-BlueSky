@@ -16,7 +16,6 @@
 	"bluesky-admin": "Mpandrindra",
 	"bluesky-page-edited": "Novaina farany tamin'i {{int:ago|$1}}",
 	"bluesky-page-edited-user": "$2 no nanova farany tamin'ny {{int:ago|$1}}",
-	"duration-months": "$1{{PLURAL:$1|}} volana",
 	"bluesky-toc-sections": "Fizarana",
 	"bluesky-home": "Fandraisana",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pejy manokana]]",

@@ -19,7 +19,6 @@
 	"bluesky-admin": "Admin",
 	"bluesky-page-edited": "Ultime modification {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Ultime modification {{int:ago|$1}} per $2",
-	"duration-months": "$1 {{PLURAL:$1|mense|menses}}",
 	"bluesky-toc-sections": "Sectiones",
 	"bluesky-home": "Initio",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Paginas special]]",

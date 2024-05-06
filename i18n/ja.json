@@ -22,7 +22,6 @@
 	"bluesky-admin": "管理ツール",
 	"bluesky-page-edited": "最終更新: {{int:ago|$1}}",
 	"bluesky-page-edited-user": "$2 による最終更新: {{int:ago|$1}}",
-	"duration-months": "$1{{PLURAL:$1|ヶ月}}",
 	"bluesky-toc-sections": "節",
 	"bluesky-home": "ホーム",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|特別ページ]]",

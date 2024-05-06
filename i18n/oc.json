@@ -18,7 +18,6 @@
 	"bluesky-admin": "Admin",
 	"bluesky-page-edited": "Darriera modificacion de la pagina {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Darriera modificacion de la pagina {{int:ago|$1}} per $2",
-	"duration-months": "$1{{PLURAL:$1|mes|mes}}",
 	"bluesky-toc-sections": "Seccions",
 	"bluesky-home": "Acuèlh",
 	"bluesky-breadcrumbs-nsspecial": "[Special:SpecialPages|Paginas especialas]]",

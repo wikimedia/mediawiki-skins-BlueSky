@@ -19,7 +19,6 @@
 	"bluesky-admin": "管理员",
 	"bluesky-page-edited": "页面上次编辑于{{int:ago|$1}}",
 	"bluesky-page-edited-user": "页面上次由$2编辑于{{int:ago|$1}}",
-	"duration-months": "$1个{{PLURAL:$1|月}}",
 	"bluesky-toc-sections": "章节",
 	"bluesky-home": "首页",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|特殊页面]]",

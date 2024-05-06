@@ -21,7 +21,6 @@
 	"bluesky-admin": "Admin",
 	"bluesky-page-edited": "Oldal legutóbb frissítve {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Oldal legutóbb szerkesztve {{int:ago|$1}} általa $2",
-	"duration-months": "$1 {{PLURAL:$1|hónap}}",
 	"bluesky-toc-sections": "Szakaszok",
 	"bluesky-home": "Kezdőlap",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Speciális lapok]]",

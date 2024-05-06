@@ -19,7 +19,6 @@
 	"bluesky-admin": "Administrado",
 	"bluesky-page-edited": "Paĝo estas laste redaktita {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Paĝo estas laste redaktita {{int:ago|$1}} de $2",
-	"duration-months": "$1 {{PLURAL:$1|monato|monatoj}}",
 	"bluesky-toc-sections": "Paragrafoj",
 	"bluesky-home": "Ĉefpaĝo",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Specialaj paĝoj]]",

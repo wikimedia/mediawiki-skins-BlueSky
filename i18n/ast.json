@@ -19,7 +19,6 @@
 	"bluesky-admin": "Almin",
 	"bluesky-page-edited": "Última edición de la páxina {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Última edición de la páxina {{int:ago|$1}} por $2",
-	"duration-months": "hai $1 {{PLURAL:$1|mes|meses}}",
 	"bluesky-toc-sections": "Seiciones",
 	"bluesky-home": "Entamu",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Páxines especiales]]",

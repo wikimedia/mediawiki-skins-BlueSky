@@ -21,7 +21,6 @@
 	"bluesky-admin": "Διαχείριση",
 	"bluesky-page-edited": "Η σελίδα επεξεργάστηκε για τελευταία φορά πριν {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Η σελίδα επεξεργάστηκε στις {{int:ago|$1}} από τον $2",
-	"duration-months": "$1 {{PLURAL:$1|μήνας|μήνες}}",
 	"bluesky-toc-sections": "Ενότητες",
 	"bluesky-home": "Αρχική",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Ειδικές σελίδες]]",

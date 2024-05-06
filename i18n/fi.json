@@ -23,7 +23,6 @@
 	"bluesky-admin": "Ylläpitäjä",
 	"bluesky-page-edited": "Sivua viimeksi muokattu {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Sivua viimeksi muokattu {{int:ago|$1}} käyttäjä $2",
-	"duration-months": "$1 {{PLURAL:$1|kuukausi|kuukautta}}",
 	"bluesky-toc-sections": "Osuudet",
 	"bluesky-home": "Koti",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Toimintosivut]]",

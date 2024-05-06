@@ -20,7 +20,6 @@
 	"bluesky-admin": "Admin",
 	"bluesky-page-edited": "Säit fir d'lescht geännert {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Säit fir d'lescht geännert {{int:ago|$1}} vum $2",
-	"duration-months": "{{PLURAL:$1|ee Mount|$1 Méint}}",
 	"bluesky-toc-sections": "Abschnitter",
 	"bluesky-home": "Haaptsäit",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Spezialsäiten]]",

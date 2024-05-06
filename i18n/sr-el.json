@@ -20,7 +20,6 @@
 	"bluesky-admin": "Administrator",
 	"bluesky-page-edited": "Poslednja izmena na stranici je izvršena {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Poslednju izmenu na stranici je izvršio $2 {{int:ago|$1}}",
-	"duration-months": "$1 {{PLURAL:$1|mesec|meseca|meseci}}",
 	"bluesky-toc-sections": "Odeljci",
 	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Početna",

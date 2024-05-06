@@ -1,8 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"PiefPafPier"
-		]
-	},
-	"duration-months": "$1 {{PLURAL:$1|moanne}}"
-}

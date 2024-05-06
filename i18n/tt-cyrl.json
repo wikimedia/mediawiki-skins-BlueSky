@@ -19,7 +19,6 @@
 	"bluesky-admin": "Идарәче",
 	"bluesky-page-edited": "Бит соңгы тапкыр {{int:ago|$1}} үзгәртелде",
 	"bluesky-page-edited-user": "Битне соңгы тапкыр {{int:ago|$1}} $2 үзгәртте",
-	"duration-months": "$1 {{PLURAL:$1|ай}} элек",
 	"bluesky-toc-sections": "Бүлекләр",
 	"bluesky-home": "Баш бит",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Махсус битләр]]",

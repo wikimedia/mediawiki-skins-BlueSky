@@ -19,7 +19,6 @@
 	"bluesky-admin": "Verwaltung",
 	"bluesky-page-edited": "Seite zuletzt bearbeitet {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Seite zuletzt bearbeitet {{int:ago|$1}} von $2",
-	"duration-months": "{{PLURAL:$1|Ein Monat|$1 Monate}}",
 	"bluesky-toc-sections": "Abschnitte",
 	"bluesky-home": "Start",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Spezialseiten]]",

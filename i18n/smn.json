@@ -20,7 +20,6 @@
 	"bluesky-admin": "Haldâšeijee",
 	"bluesky-page-edited": "Siijđo hämmejum moonnâm tove {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Siijđo hammim moonnâm tove {{int:ago|$1}} kevttee $2",
-	"duration-months": "$1 {{PLURAL:$1|mánuppaje|mánuppaje|mánuppaje|mánuppaijeed}}",
 	"bluesky-home": "Päikki",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Toimâsiijđoh]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Proojeektsiijđoh]",
