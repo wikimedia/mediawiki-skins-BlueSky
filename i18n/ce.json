@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Исмаил Садуев",
 			"Умар"
 		]
 	},
-	"bluesky-editthis": "Нисйе хӀара агӀо",
+	"bluesky-editthis": "ХӀара агӀо нисйан",
 	"bluesky-viewsource": "Хьажа хӀокху агӀонан дӀадолалун йозане",
-	"bluesky-navbar-edit": "Нисйе",
+	"bluesky-navbar-edit": "Нисйан",
 	"bluesky-personaltools": "Профиль",
 	"bluesky-messages": "Хаам",
 	"bluesky-notifications-new-talk": "Хьоьга беана $1 керла - {{PLURAL:$1|хаам}}.",
@@ -16,8 +17,8 @@
 	"bluesky-pagelog": "ХӀокху агӀонан тептарш",
 	"bluesky-page": "ГӀирсаш агӀонашна",
 	"bluesky-admin": "Админ",
-	"bluesky-page-edited": "АгӀонан тӀаьххьара хийцамаш бина {{int:ago|$1}}",
-	"bluesky-page-edited-user": "АгӀонан тӀаьххьара хийцамаш бина {{int:ago|$1}} а, $2 а",
+	"bluesky-page-edited": "АгӀо тӀаьххьара нисйина {{int:ago|$1}}",
+	"bluesky-page-edited-user": "АгӀо тӀаьххьара нисйина {{int:ago|$1}} а, $2 а",
 	"bluesky-toc-sections": "Дакъош",
 	"bluesky-home": "Коьрта",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|къаьстина агӀонаш]]",
