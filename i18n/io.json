@@ -10,6 +10,7 @@
 	"bluesky-personaltools": "Profilo",
 	"bluesky-messages": "Mesaji",
 	"bluesky-notifications-none": "Vu havas nula avizi nun.\nVizitez vua [[$1|diskuto-pagino]] por lektar antea mesaji.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|1|$1}} ne-lektita",
 	"bluesky-page": "Utensili di pagino",
 	"bluesky-admin": "Administrero",
 	"duration-months": "$1 {{PLURAL:$1|monato|monati}}",
