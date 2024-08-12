@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Aefgh39622",
+			"Ekminarin",
 			"Geonuch"
 		]
 	},
@@ -9,7 +10,7 @@
 	"bluesky-editthis": "แก้ไขหน้านี้",
 	"bluesky-viewsource": "ดูต้นฉบับสำหรับหน้านี้",
 	"bluesky-navbar-edit": "แก้ไข",
-	"bluesky-personaltools": "โปรไฟล์",
+	"bluesky-personaltools": "โพรไฟล์",
 	"bluesky-messages": "ข้อความ",
 	"bluesky-notifications-new-talk": "คุณมี{{PLURAL:$1|ข้อความ}}พูดคุยใหม่ $1 ข้อความ",
 	"bluesky-notifications-none": "คุณไม่มีการแจ้งเตือนในขณะนี้\nเข้าชม[[$1|หน้าพูดคุยของคุณ]]เพื่อดูข้อความที่ผ่านมา",
