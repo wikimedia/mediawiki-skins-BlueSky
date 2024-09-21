@@ -1002,7 +1002,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			$id = $user->getName();
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 		$count = (int)$dbr->selectField(
 			$table,
 			'COUNT(' . $field . ') AS count',
@@ -1317,7 +1317,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 			// SQL provided by your friendly neighbourhood Skizzers
 			// I honestly don't remember what this was for, but it was apparently needed to get the actually relevant ones
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 			$res = $dbr->select(
 				[ 'page', 'page_props', 'category' ],
 				[ 'cat_title' ],
@@ -1419,7 +1419,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			}
 
 			if ( count( $allCats ) > 0 ) {
-				$dbr = wfGetDB( DB_REPLICA );
+				$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
 				$res = $dbr->select(
 					[ 'page', 'page_props', 'category' ],
 					[ 'cat_title' ],
