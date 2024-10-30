@@ -21,7 +21,7 @@
 	"bluesky-page-edited-user": "Эм ахыр кере бетни {{int:ago|$1}} тюзетген $2",
 	"duration-months": "$1 {{PLURAL:$1|ай}}",
 	"bluesky-toc-sections": "Бёлюмле",
-	"bluesky-home": "Баш бет",
+	"bluesky-home": "Тамал бет",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Энчи бетле]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} проект бетле]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Проектни сюзюу бетлери]",
