@@ -24,7 +24,6 @@
 	"bluesky-page-edited-user": "Última edição da página em {{int:ago|$1}} por $2",
 	"duration-months": "$1 {{PLURAL:$1|mês|meses}}",
 	"bluesky-toc-sections": "Seções",
-	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Início",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Páginas especiais]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Páginas do projeto]",

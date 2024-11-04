@@ -13,7 +13,6 @@
 	"bluesky-page-edited-user": "Sahifa oxirgi marta {{int:avval|$1}} $2 tomonidan tahrirlandi",
 	"duration-months": "$1 {{PLURAL:$1|oy|oylar}}",
 	"bluesky-toc-sections": "Bo‘limlar",
-	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Maxsus sahifalar]]",
 	"bluesky-menu": "Menyu"
 }

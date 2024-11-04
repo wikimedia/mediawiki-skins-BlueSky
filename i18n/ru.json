@@ -28,7 +28,6 @@
 	"bluesky-page-edited-user": "Страница последний раз редактировалось {{int:ago|$1}} и $2",
 	"duration-months": "$1 {{PLURAL:$1|месяц|месяца|месяцев}} назад",
 	"bluesky-toc-sections": "Разделы",
-	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Главная",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|особые страницы]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} проекта страницы]",

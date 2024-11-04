@@ -23,7 +23,6 @@
 	"bluesky-page-edited-user": "Последњу измену на страници је извршио $2 {{int:ago|$1}}",
 	"duration-months": "$1 {{PLURAL:$1|месец|месеца|месеци}}",
 	"bluesky-toc-sections": "Одељци",
-	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Почетна",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Посебне странице]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Пројекти]",
