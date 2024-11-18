@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cabal"
+		]
+	},
+	"bluesky-editthis": "ਇਹ ਸਫ਼ਾ ਸੋਧੋ",
+	"bluesky-viewsource": "ਇਸ ਸਫ਼ੇ ਲਈ ਸਰੋਤ ਵੇਖੋ",
+	"bluesky-navbar-edit": "ਸੋਧੋ",
+	"bluesky-messages": "ਸੁਨੇਹੇ",
+	"bluesky-page": "ਸਫ਼ੇ ਦੇ ਸੰਦ",
+	"bluesky-admin": "ਪ੍ਰਬੰਧਕ",
+	"bluesky-page-edited": "ਸਫ਼ਾ ਆਖਰੀ ਵਾਰ ਸੋਧਿਆ ਗਿਆ {{int:ago| $1 }}",
+	"bluesky-page-edited-user": "$2 ਵੱਲੋਂ ਸਫ਼ਾ ਆਖਰੀ ਵਾਰ ਸੋਧਿਆ ਗਿਆ {{int:ago|$1}}",
+	"bluesky-toc-sections": "ਭਾਗ",
+	"bluesky-home": "ਘਰ",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|ਖ਼ਾਸ ਸਫ਼ੇ]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} ਪ੍ਰੋਜੈਕਟ ਸਫ਼ੇ]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} ਪ੍ਰੋਜੈਕਟ ਗੱਲਬਾਤ ਸਫ਼ੇ]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ਫਾਇਲਾਂ]]"
+}
