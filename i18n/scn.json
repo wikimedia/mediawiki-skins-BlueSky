@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ajeje Brazorf"
+			"Ajeje Brazorf",
+			"GianAntonucci"
 		]
 	},
 	"bluesky-editthis": "Cancia sta pàggina",
@@ -14,7 +15,7 @@
 	"bluesky-page": "Strummenta pàggina",
 	"bluesky-page-edited": "Ùrtimu canciamentu dâ pàggina {{int:ago|$1}}",
 	"bluesky-toc-sections": "Sizzioni",
-	"bluesky-home": "Pàggina principali",
+	"bluesky-home": "Pàggina mastra",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Pàggini spiciali]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Pàggini di pruggettu]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Pàggini di discussioni pruggettu]",
