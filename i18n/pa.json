@@ -19,7 +19,7 @@
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} ਪ੍ਰੋਜੈਕਟ ਸਫ਼ੇ]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} ਪ੍ਰੋਜੈਕਟ ਗੱਲਬਾਤ ਸਫ਼ੇ]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ਫਾਇਲਾਂ]]",
-	"bluesky-breadcrumbs-nscategory": "[[Special:ਸ਼੍ਰੇਣੀਆਂ|ਸ਼੍ਰੇਣੀਆਂ]]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|ਸ਼੍ਰੇਣੀਆਂ]]",
 	"bluesky-article-info": "ਲੇਖ ਜਾਣਕਾਰੀ",
 	"bluesky-page-info": "ਸਫ਼ੇ ਦੀ ਜਾਣਕਾਰੀ",
 	"bluesky-footer-tools": "ਵਾਧੂ ਸਫ਼ਾ ਸੰਦ"
