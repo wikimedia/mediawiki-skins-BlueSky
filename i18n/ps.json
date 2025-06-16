@@ -3,8 +3,22 @@
 		"authors": [
 			"Amjad Khan",
 			"Baloch Khan",
-			"Af420"
+			"Af420",
+			"شاه زمان پټان"
 		]
 	},
-	"bluesky-navbar-edit": "سمول"
+	"bluesky-editthis": "دا مخ سمول",
+	"bluesky-viewsource": "د دې مخ سرچينه کتل",
+	"bluesky-navbar-edit": "سمول",
+	"bluesky-personaltools": "پېژنيال",
+	"bluesky-messages": "پيغامونه",
+	"bluesky-pagelog": "د دې مخ يادښتونه",
+	"bluesky-page": "مخ‌ توکي",
+	"bluesky-admin": "پازوال",
+	"bluesky-toc-sections": "برخې",
+	"bluesky-home": "کور",
+	"bluesky-article-info": "ليکنې مالومات",
+	"bluesky-page-info": "مخ مالومات",
+	"bluesky-footer-tools": "زياتي مخ توکي",
+	"bluesky-menu": "غوره‌نۍ"
 }
