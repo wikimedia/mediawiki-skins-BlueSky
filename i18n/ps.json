@@ -3,8 +3,36 @@
 		"authors": [
 			"Af420",
 			"Amjad Khan",
-			"Baloch Khan"
+			"Baloch Khan",
+			"شاه زمان پټان"
 		]
 	},
-	"bluesky-navbar-edit": "سمول"
+	"bluesky-desc": "دا پوښۍ د ويکي‌هاو ۲۰۱۳ پوښۍ د وروستۍ بل‌بڼې پر بنسټ جوړه شوې، چې د نوو ځانگړتياوو لکه موبايل ملاتړ، بهرنۍ پراختيايي غبرگون او شاليد لرونکې ده.",
+	"bluesky-editthis": "دا مخ سمول",
+	"bluesky-viewsource": "د دې مخ سرچينه کتل",
+	"bluesky-navbar-edit": "سمول",
+	"bluesky-personaltools": "پېژنيال",
+	"bluesky-messages": "پيغامونه",
+	"bluesky-notifications-new-talk": "تاسو په خپل خبرو اترو کې $1 {{PLURAL:$1| نوی پيغام|نوي پيغامونه}} لرئ.",
+	"bluesky-notifications-none": "وسمهال تاسو هېڅ خبرتيا نهٔ لرئ.\nد پخوانيو پيغامونو کتلو لپاره خپل [[$1|خبرو اترو مخ]] ته ورشئ.",
+	"bluesky-notifications-no-talk": "د پخوانيو پيغامونو کتلو لپاره خپل [[$1|خبرو اترو مخ]] ته ورشئ.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|يو نالوستی|$1 نالوستي}}",
+	"bluesky-pagelog": "د دې مخ يادښتونه",
+	"bluesky-page": "مخ‌ توکي",
+	"bluesky-admin": "پازوال",
+	"bluesky-page-edited": "د مخ وروستی سمون {{int:ago|$1}}",
+	"bluesky-page-edited-user": "مخ وروستی سمون {{int:ago|$1}} د $2 له خوا شوی",
+	"bluesky-toc-sections": "برخې",
+	"bluesky-home": "کور",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|ځانگړي مخونه]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} پروژې مخونه]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} پروژې خبرو اترو مخونه]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|دوتنې]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} کينډۍ]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|وېشنيزې]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} مخونه]",
+	"bluesky-article-info": "ليکنې مالومات",
+	"bluesky-page-info": "مخ مالومات",
+	"bluesky-footer-tools": "زياتي مخ توکي",
+	"bluesky-menu": "غوره‌نۍ"
 }
