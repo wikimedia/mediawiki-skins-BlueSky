@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\ParserOutput;
+
 class BlueSkyHooks {
 
 	/**
