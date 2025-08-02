@@ -1,12 +1,18 @@
 <?php
 
 use MediaWiki\Html\Html;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\Linker;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\Utils\UrlUtils;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * BaseTemplate class for the BlueSky skin
@@ -33,11 +39,31 @@ class BlueSkyTemplate extends BaseTemplate {
 	 */
 	private $notifications_count = 0;
 
+	private IConnectionProvider $connectionProvider;
+	private Language $contentLanguage;
+	private LanguageNameUtils $languageNameUtils;
+	private LinkRenderer $linkRenderer;
+	private PermissionManager $permissionManager;
+	private RevisionLookup $revisionLookup;
+	private TalkPageNotificationManager $talkPageNotificationManager;
+	private UrlUtils $urlUtils;
+
 	/**
 	 * Outputs the entire contents of the page
 	 */
 	public function execute() {
+		/** @var $skin SkinBlueSky */
 		$skin = $this->getSkin();
+
+		$this->connectionProvider = $skin->connectionProvider;
+		$this->contentLanguage = $skin->contentLanguage;
+		$this->languageNameUtils = $skin->languageNameUtils;
+		$this->linkRenderer = $skin->linkRenderer;
+		$this->permissionManager = $skin->permissionManager;
+		$this->revisionLookup = $skin->revisionLookup;
+		$this->talkPageNotificationManager = $skin->talkPageNotificationManager;
+		$this->urlUtils = $skin->urlUtils;
+
 		$title = $skin->getTitle();
 		$request = $skin->getRequest();
 		$action = $request->getVal( 'action', 'view' );
@@ -237,7 +263,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		// Add login link if not logged in
 		if ( !$user->isRegistered() ) {
-			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+			$link = $this->linkRenderer->makeLink(
 				SpecialPage::getTitleFor( 'Userlogin' ),
 				$this->getMsg( 'login' )->text()
 			);
@@ -779,13 +805,13 @@ class BlueSkyTemplate extends BaseTemplate {
 			if ( isset( $text[1] ) ) {
 				// has both target and display text
 				$target = $this->getMsgOrDump( $text[0], false );
-				if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $target ) ) {
+				if ( preg_match( '/^(?i:' . $this->urlUtils->validProtocols() . ')/', $target ) ) {
 					$html = Linker::makeExternalLink(
 						$target,
 						$this->getMsgOrDump( $text[1], false )
 					);
 				} else {
-					$html = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+					$html = $this->linkRenderer->makeLink(
 						Title::newFromText( $target ),
 						$this->getMsgOrDump( $text[1], false )
 					);
@@ -838,10 +864,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$title = $skin->getTitle();
 		$user = $skin->getUser();
 
-		if ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userCan( 'edit', $user, $title )
-		) {
+		if ( !$this->permissionManager->userCan( 'edit', $user, $title ) ) {
 			return '';
 		}
 
@@ -905,7 +928,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				$this->notifications_count = $notifUser->getNotificationCount();
 
 				if ( $this->notifications_count > $maxNotesShown ) {
-					$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+					$link = $this->linkRenderer->makeLink(
 						$notificationsPage,
 						new HtmlArmor(
 							$this->msg( 'parentheses' )->rawParams(
@@ -921,7 +944,7 @@ class BlueSkyTemplate extends BaseTemplate {
 				}
 
 				// add view all link
-				$viewAllLink = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+				$viewAllLink = $this->linkRenderer->makeLink(
 					$notificationsPage,
 					$this->msg( 'more-notifications-link' )->plain()
 				);
@@ -973,14 +996,13 @@ class BlueSkyTemplate extends BaseTemplate {
 		// Talk messages
 		$talkCount = 0;
 
-		$userHasNewMessages = MediaWikiServices::getInstance()
-			->getTalkPageNotificationManager()->userHasNewMessages( $user );
+		$userHasNewMessages = $this->talkPageNotificationManager->userHasNewMessages( $user );
 
 		if ( $userHasNewMessages ) {
 			$talkCount = $this->getCount( 'user_newtalk' );
 			$msg = Html::rawElement( 'div', [ 'class' => 'note_row' ],
 				Html::element( 'div', [ 'class' => 'note_icon_talk' ], '' ) .
-				MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+				$this->linkRenderer->makeLink(
 					$user->getTalkPage(),
 					new HtmlArmor(
 						$this->getMsg( 'bluesky-notifications-new-talk' )->numParams( $talkCount )->parse()
@@ -1017,7 +1039,7 @@ class BlueSkyTemplate extends BaseTemplate {
 			$id = $user->getName();
 		}
 
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$dbr = $this->connectionProvider->getReplicaDatabase();
 		$count = (int)$dbr->selectField(
 			$table,
 			'COUNT(' . $field . ') AS count',
@@ -1122,7 +1144,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$html = '';
 
 		if ( $title->exists() ) {
-			$revision = MediaWikiServices::getInstance()->getRevisionLookup()->getRevisionByTitle( $title );
+			$revision = $this->revisionLookup->getRevisionByTitle( $title );
 			if ( $revision instanceof RevisionRecord ) {
 				$timestamp = wfTimestamp( TS_UNIX, $revision->getTimestamp() );
 				// Normally we'd just call Language::formatTimePeriod or something at this
@@ -1183,18 +1205,15 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		$languages = [];
 		if ( !$wgHideInterlanguageLinks ) {
-			$services = MediaWikiServices::getInstance();
-			$contLang = $services->getContentLanguage();
-			$languageNameUtils = $services->getLanguageNameUtils();
 			foreach ( $skin->getOutput()->getLanguageLinks() as $blob ) {
 				$tmp = explode( ':', $blob, 2 );
 				$class = 'interwiki-' . $tmp[0];
 				$code = $tmp[0];
 				$iwTitleName = $tmp[1];
 				$iwTitle = Title::newFromText( $blob );
-				$inLanguage = $contLang->getCode();
+				$inLanguage = $this->contentLanguage->getCode();
 				$interwiki = $iwTitle->getInterwiki();
-				$languageName = $languageNameUtils->getLanguageName( $interwiki, $inLanguage );
+				$languageName = $this->languageNameUtils->getLanguageName( $interwiki, $inLanguage );
 				if ( $languageName != '' ) {
 					$language = $languageName;
 				} else {
@@ -1282,11 +1301,10 @@ class BlueSkyTemplate extends BaseTemplate {
 				$allCats[] = $safeTitle->getDBkey();
 			}
 		} else {
-			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 			$allCats = array_keys( $title->getParentCategories() );
 			// Horrible backwards parsing
 			foreach ( $allCats as $i => $catName ) {
-				$len = strlen( $contLang->getNsText( NS_CATEGORY ) . ':' );
+				$len = strlen( $this->contentLanguage->getNsText( NS_CATEGORY ) . ':' );
 				$allCats[$i] = substr( $catName, $len );
 			}
 		}
@@ -1332,7 +1350,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 			// SQL provided by your friendly neighbourhood Skizzers
 			// I honestly don't remember what this was for, but it was apparently needed to get the actually relevant ones
-			$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+			$dbr = $this->connectionProvider->getReplicaDatabase();
 			$res = $dbr->select(
 				[ 'page', 'page_props', 'category' ],
 				[ 'cat_title' ],
@@ -1371,7 +1389,7 @@ class BlueSkyTemplate extends BaseTemplate {
 					if ( !$titleSafe ) {
 						continue;
 					}
-					$category = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+					$category = $this->linkRenderer->makeLink(
 						$titleSafe,
 						$titleSafe->getText()
 					);
@@ -1408,7 +1426,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$skin = $this->getSkin();
 		$skTitle = $skin->getTitle();
 		$namespace = $skTitle->getNamespace();
-		$page = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+		$page = $this->linkRenderer->makeLink(
 			$skTitle,
 			$skTitle->getSubpageText()
 		);
@@ -1431,16 +1449,15 @@ class BlueSkyTemplate extends BaseTemplate {
 				}
 			} else {
 				$allCats = array_keys( $skTitle->getParentCategories() );
-				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 				foreach ( $allCats as $i => $catName ) {
-					$len = strlen( $contLang->getNsText( NS_CATEGORY ) . ':' );
+					$len = strlen( $this->contentLanguage->getNsText( NS_CATEGORY ) . ':' );
 					$allCats[$i] = substr( $catName, $len );
 				}
 			}
 
 			if ( count( $allCats ) > 0 ) {
-				$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+				$dbr = $this->connectionProvider->getReplicaDatabase();
 				$res = $dbr->select(
 					[ 'page', 'page_props', 'category' ],
 					[ 'cat_title' ],
@@ -1479,7 +1496,7 @@ class BlueSkyTemplate extends BaseTemplate {
 						if ( !$title ) {
 							continue;
 						}
-						$category = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+						$category = $this->linkRenderer->makeLink(
 							$title,
 							$title->getText()
 						);

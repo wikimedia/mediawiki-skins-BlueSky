@@ -16,7 +16,17 @@
 	},
 	"ValidSkinNames": {
 		"bluesky": {
-			"class": "SkinTemplate",
+			"class": "SkinBlueSky",
+			"services": [
+				"ConnectionProvider",
+				"ContentLanguage",
+				"LanguageNameUtils",
+				"LinkRenderer",
+				"PermissionManager",
+				"RevisionLookup",
+				"TalkPageNotificationManager",
+				"UrlUtils"
+			],
 			"displayname": "BlueSky",
 			"args": [
 				{
@@ -110,6 +120,7 @@
 		"remoteSkinPath": "BlueSky"
 	},
 	"AutoloadClasses": {
+		"SkinBlueSky": "includes/SkinBlueSky.php",
 		"BlueSkyTemplate": "includes/BlueSkyTemplate.php",
 		"BlueSkyHooks": "includes/BlueSkyHooks.php"
 	},
