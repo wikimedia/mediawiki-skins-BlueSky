@@ -226,7 +226,7 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		// Add login link if not logged in
 		if ( !$user->isRegistered() ) {
-			$link = Linker::link(
+			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 				SpecialPage::getTitleFor( 'Userlogin' ),
 				$this->getMsg( 'login' )->text()
 			);
@@ -762,27 +762,27 @@ class BlueSkyTemplate extends BaseTemplate {
 
 		// Special case: '-' for empty targets
 		if ( $text[0] == '-' ) {
-			$textContent = $this->getMsgOrDump( $text[1] );
+			$html = $this->getMsgOrDump( $text[1] );
 			$item['id'] = Sanitizer::escapeIdForAttribute( $text[1] );
 		} else {
 			if ( isset( $text[1] ) ) {
 				// has both target and display text
-				$target = $this->getMsgOrDump( $text[0] );
+				$target = $this->getMsgOrDump( $text[0], false );
 				if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $target ) ) {
-					$textContent = Linker::makeExternalLink(
+					$html = Linker::makeExternalLink(
 						$target,
-						$this->getMsgOrDump( $text[1] )
+						$this->getMsgOrDump( $text[1], false )
 					);
 				} else {
-					$textContent = Linker::link(
+					$html = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 						Title::newFromText( $target ),
-						$this->getMsgOrDump( $text[1] )
+						$this->getMsgOrDump( $text[1], false )
 					);
 				}
 				$item['id'] = Sanitizer::escapeIdForAttribute( $text[1] );
 			} else {
 				// only display; no target
-				$textContent = $this->getMsgOrDump( $text[0] );
+				$html = $this->getMsgOrDump( $text[0] );
 				$item['id'] = Sanitizer::escapeIdForAttribute( $text[0] );
 			}
 		}
@@ -794,7 +794,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		$item['html'] = Html::rawElement(
 			'span',
 			[ 'class' => 'menu-item' ],
-			$textContent
+			$html
 		);
 		return $item;
 	}
@@ -804,14 +804,16 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * Gets the mw message for the string if exists and parses, or just dumps the string
 	 *
 	 * @param string $text
+	 * @param bool $escape whether to escape the text returned
 	 * @return string
 	 */
-	private function getMsgOrDump( $text ) {
+	private function getMsgOrDump( $text, bool $escape = true ) {
 		if ( $this->getMsg( $text )->isDisabled() ) {
 			// not the name of a MediaWiki message
-			return $text;
+			return $escape ? htmlspecialchars( $text ) : $text;
 		} else {
-			return $this->getMsg( $text )->escaped();
+			$message = $this->getMsg( $text );
+			return $escape ? $message->escaped() : $message->text();
 		}
 	}
 
@@ -892,22 +894,28 @@ class BlueSkyTemplate extends BaseTemplate {
 				$this->notifications_count = $notifUser->getNotificationCount();
 
 				if ( $this->notifications_count > $maxNotesShown ) {
-					$unshown = '<br />' . Linker::link(
+					$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 						$notificationsPage,
-						$this->msg( 'parentheses',
-							$this->msg( 'bluesky-unread-notifications' )->numParams(
-								( $this->notifications_count - $maxNotesShown )
+						new HtmlArmor(
+							$this->msg( 'parentheses' )->rawParams(
+								$this->msg( 'bluesky-unread-notifications' )
+									->numParams( ( $this->notifications_count - $maxNotesShown ) )
+									->parse()
 							)->parse()
-						)->text()
+						)
 					);
+					$unshown = '<br />' . $link;
 				} else {
 					$unshown = '';
 				}
 
 				// add view all link
+				$viewAllLink = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+					$notificationsPage,
+					$this->msg( 'more-notifications-link' )->plain()
+				);
 				$html .= Html::rawElement( 'div', [ 'class' => 'menu_message_morelink' ],
-					Linker::link( $notificationsPage, $this->msg( 'more-notifications-link' )->plain() ) .
-					$unshown
+					$viewAllLink . $unshown
 				);
 			} else {
 				// no notifications
@@ -961,9 +969,11 @@ class BlueSkyTemplate extends BaseTemplate {
 			$talkCount = $this->getCount( 'user_newtalk' );
 			$msg = Html::rawElement( 'div', [ 'class' => 'note_row' ],
 				Html::element( 'div', [ 'class' => 'note_icon_talk' ], '' ) .
-				Linker::link(
+				MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
 					$user->getTalkPage(),
-					$this->getMsg( 'bluesky-notifications-new-talk' )->numParams( $talkCount )->parse()
+					new HtmlArmor(
+						$this->getMsg( 'bluesky-notifications-new-talk' )->numParams( $talkCount )->parse()
+					)
 				)
 			);
 			$notes[] = $msg;
@@ -1348,7 +1358,10 @@ class BlueSkyTemplate extends BaseTemplate {
 					if ( !$titleSafe ) {
 						continue;
 					}
-					$category = Linker::link( $titleSafe, $titleSafe->getText() );
+					$category = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+						$titleSafe,
+						$titleSafe->getText()
+					);
 					$catList .= Html::rawElement( 'li', [], $category );
 				}
 				$catList .= Html::closeElement( 'ul' );
@@ -1382,7 +1395,10 @@ class BlueSkyTemplate extends BaseTemplate {
 		$skin = $this->getSkin();
 		$skTitle = $skin->getTitle();
 		$namespace = $skTitle->getNamespace();
-		$page = Linker::link( $skTitle, $skTitle->getSubpageText() );
+		$page = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+			$skTitle,
+			$skTitle->getSubpageText()
+		);
 		$categoryOutput = '';
 		$normalCats = [];
 		$count = 0;
@@ -1450,7 +1466,10 @@ class BlueSkyTemplate extends BaseTemplate {
 						if ( !$title ) {
 							continue;
 						}
-						$category = Linker::link( $title, $title->getText() );
+						$category = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+							$title,
+							$title->getText()
+						);
 						$catList .= Html::rawElement( 'li', [], $category );
 					}
 					$catList .= Html::closeElement( 'ul' );
