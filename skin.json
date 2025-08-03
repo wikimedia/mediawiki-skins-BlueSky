@@ -56,10 +56,13 @@
 	"config": {
 		"BlueSkyTOC": ""
 	},
+	"HookHandlers": {
+		"main": {
+			"class": "BlueSkyHooks"
+		}
+	},
 	"Hooks": {
-		"OutputPageParserOutput": [
-			"BlueSkyHooks::wfTOCCrap"
-		]
+		"OutputPageParserOutput": "main"
 	},
 	"ResourceModules": {
 		"skins.bluesky": {

@@ -3,19 +3,19 @@
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\ParserOutput;
 
-class BlueSkyHooks {
+class BlueSkyHooks implements
+	\MediaWiki\Output\Hook\OutputPageParserOutputHook
+{
 
 	/**
 	 * Shamelessly stolen from brickimedia's refreshed skin
 	 * Currently: https://github.com/Brickimedia/Refreshed/blob/master/Refreshed.skin.php#L72
-	 * @param OutputPage &$out
+	 * @param OutputPage $out
 	 * @param ParserOutput $parserOutput
-	 * @return bool
+	 * @return void
 	 */
-	public static function wfTOCCrap( OutputPage &$out, ParserOutput $parserOutput ) {
+	public function onOutputPageParserOutput( $out, $parserOutput ): void {
 		global $wgBlueSkyTOC;
 		$wgBlueSkyTOC = $parserOutput->getSections();
-
-		return true;
 	}
 }
