@@ -4,6 +4,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionLookup;
@@ -1199,12 +1200,10 @@ class BlueSkyTemplate extends BaseTemplate {
 	 * @return string
 	 */
 	private function getInterlanguageLinks() {
-		global $wgHideInterlanguageLinks;
-
 		$skin = $this->getSkin();
 
 		$languages = [];
-		if ( !$wgHideInterlanguageLinks ) {
+		if ( !$this->config->get( MainConfigNames::HideInterlanguageLinks ) ) {
 			foreach ( $skin->getOutput()->getLanguageLinks() as $blob ) {
 				$tmp = explode( ':', $blob, 2 );
 				$class = 'interwiki-' . $tmp[0];
