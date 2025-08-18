@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"Yueman"
 		]
 	},
 	"bluesky-editthis": "改呢版",
 	"bluesky-viewsource": "睇呢頁嘅源碼",
 	"bluesky-navbar-edit": "改",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|檔案]]",
 	"bluesky-page-info": "呢頁明細"
 }
