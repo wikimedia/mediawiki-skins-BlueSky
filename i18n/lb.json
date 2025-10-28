@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Les Meloures",
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
 	"bluesky-desc": "Interface den op der aktueller Versioun (spéit am Joer 2013) vum wikiHow Interface baséiert, mat neie Funktiounen, wéi de'Ënnerstëtzung fir mobilt Internet, besser Interoperabilitéit mat externen Erweiderungen a Faarfduerstellungen.",
@@ -30,7 +31,7 @@
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategorien]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} Säiten]",
 	"bluesky-article-info": "Artikel-Informatiounen",
-	"bluesky-page-info": "Säiten-Informatioun",
+	"bluesky-page-info": "Säiten-Informatiounen",
 	"bluesky-footer-tools": "Zousätzlech Handwierksgeschir fir Säiten",
 	"bluesky-menu": "Menü"
 }
