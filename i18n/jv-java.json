@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bennylin"
+		]
+	},
+	"bluesky-editthis": "ꦧꦼꦱꦸꦠ꧀ꦏꦕ​ꦲꦶꦏꦶ",
+	"bluesky-viewsource": "ꦢꦼꦊꦁ​ꦱꦸꦩ꧀ꦧꦼꦂ​ꦏꦕ​ꦲꦶꦏꦶ",
+	"bluesky-navbar-edit": "ꦧꦼꦱꦸꦠ꧀",
+	"bluesky-personaltools": "ꦥꦿꦺꦴꦥ꦳ꦶꦭ꧀",
+	"bluesky-messages": "ꦭꦪꦁ",
+	"bluesky-notifications-new-talk": "ꦱꦩ꧀ꦥꦺꦪꦤ꧀ꦢꦸꦮꦺ꧇$1꧇{{PLURAL:$1|ꦭꦪꦁ}}​ꦲꦚꦂ.",
+	"bluesky-pagelog": "ꦕꦠꦼꦠ꧀ꦠꦤ꧀ꦏꦁꦒꦺꦴ​ꦏꦕ​ꦲꦶꦏꦶ",
+	"bluesky-page": "ꦥꦶꦫꦤ꧀ꦠꦶ​ꦏꦕ",
+	"bluesky-admin": "ꦥꦤꦠ",
+	"bluesky-toc-sections": "ꦧꦒꦺꦪꦤ꧀",
+	"bluesky-home": "ꦥꦼꦤ꧀ꦝꦥ",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|ꦏꦕ​ꦩꦶꦫꦸꦁꦒꦤ꧀]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} ꦏꦕ​ꦥꦿꦺꦴꦪꦺꦏ꧀]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} ꦏꦕ​ꦉꦩ꧀ꦧꦸꦒ꧀ꦒꦤ꧀ꦥꦿꦺꦴꦪꦺꦏ꧀]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|ꦧꦼꦂꦏꦱ꧀]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=4}} ꦕꦶꦛꦏꦤ꧀]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|ꦏꦠꦺꦒꦺꦴꦫꦶ]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} ꦏꦕ​{{NAMESPACE}}]",
+	"bluesky-article-info": "ꦏꦠꦼꦫꦁꦔꦤ꧀​ꦄꦂꦠꦶꦏꦼꦭ꧀",
+	"bluesky-page-info": "ꦏꦠꦼꦫꦁꦔꦤ꧀ꦏꦕ",
+	"bluesky-footer-tools": "ꦥꦶꦫꦤ꧀ꦠꦶ​ꦏꦕ​ꦠꦩ꧀ꦧꦃꦲꦤ꧀",
+	"bluesky-menu": "ꦩꦼꦤꦸ"
+}
