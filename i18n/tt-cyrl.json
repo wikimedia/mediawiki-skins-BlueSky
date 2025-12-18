@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ерней",
-			"Ильнар"
+			"Ильнар",
+			"Ильгиз"
 		]
 	},
 	"bluesky-editthis": "Бу битне үзгәртү",
@@ -25,7 +26,7 @@
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Проект битләре]",
 	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Проект бәхәсе битләре]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Файллар]]",
-	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|исемнәр мәйданы=10}} Калыплар]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Калыплар]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Төркемнәр]]",
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} битләр]",
 	"bluesky-article-info": "Мәкалә турында",
