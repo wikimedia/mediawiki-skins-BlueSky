@@ -3,9 +3,11 @@
 		"authors": [
 			"BaRaN6161 TURK",
 			"Rapsar",
-			"Vito Genovese"
+			"Vito Genovese",
+			"HakanIST"
 		]
 	},
+	"skinname-bluesky": "Blue Sky",
 	"bluesky-desc": "Başlangıçta, vikinasıl'ın görünümün şu anki sürümüne dayanan, mobil destek, daha iyi harici uzantı birlikte çalışabilirliği ve temalar gibi yeni özelliklere dayanan görünümdür.",
 	"bluesky-editthis": "Bu sayfayı değiştir",
 	"bluesky-viewsource": "Bu sayfanın kaynağını görüntüle",
@@ -22,6 +24,7 @@
 	"bluesky-page-edited": "En son düzenlenen sayfa {{int:ago|$1}}",
 	"bluesky-page-edited-user": "Sayfa en son {{int:ago|$1}} düzenleme yapan $2",
 	"bluesky-toc-sections": "Bölümler",
+	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "Anasayfa",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Özel sayfalar]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Proje sayfaları]",
