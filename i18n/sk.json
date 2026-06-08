@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"skinname-bluesky": "Blue Sky",
+	"bluesky-desc": "Téma vzhľadu pôvodne založená na verzii témy wikiHow z konca roka 2013, s novými funkciami ako podpora mobilov, lepšia spolupráca s externými rozšíreniami a témy.",
+	"bluesky-editthis": "Upraviť túto stránku",
+	"bluesky-viewsource": "Zobraziť zdroj tejto stránky",
+	"bluesky-navbar-edit": "Upraviť",
+	"bluesky-personaltools": "Profil",
+	"bluesky-messages": "Správy",
+	"bluesky-notifications-new-talk": "Máte $1 {{PLURAL:$1|novú diskusnú správu|nové diskusné správy|nových diskusných správ}}.",
+	"bluesky-notifications-none": "Momentálne nemáte žiadne upozornenia.\nStaršie správy nájdete na svojej [[$1|diskusnej stránke]].",
+	"bluesky-notifications-no-talk": "Staršie správy nájdete na svojej [[$1|diskusnej stránke]].",
+	"bluesky-unread-notifications": "{{PLURAL:$1|Jedno neprečítané|$1 neprečítané|$1 neprečítaných}}",
+	"bluesky-pagelog": "Protokoly tejto stránky",
+	"bluesky-page": "Nástroje stránky",
+	"bluesky-admin": "Admin",
+	"bluesky-page-edited": "Stránka naposledy upravená {{int:ago|$1}}",
+	"bluesky-page-edited-user": "Stránka naposledy upravená {{int:ago|$1}} používateľom $2",
+	"bluesky-toc-sections": "Sekcie",
+	"bluesky-breadcrumb-pointer": "»",
+	"bluesky-home": "Domov",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Špeciálne stránky]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Stránky projektu]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Diskusné stránky projektu]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Súbory]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Šablóny]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Kategórie]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} Stránky {{NAMESPACE}}]",
+	"bluesky-article-info": "Informácie o článku",
+	"bluesky-page-info": "Informácie o stránke",
+	"bluesky-footer-tools": "Ďalšie nástroje stránky",
+	"bluesky-menu": "Menu"
+}
