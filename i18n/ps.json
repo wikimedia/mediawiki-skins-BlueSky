@@ -23,6 +23,7 @@
 	"bluesky-page-edited": "د مخ وروستی سمون {{int:ago|$1}}",
 	"bluesky-page-edited-user": "مخ وروستی سمون {{int:ago|$1}} د $2 له خوا شوی",
 	"bluesky-toc-sections": "برخې",
+	"bluesky-breadcrumb-pointer": "»",
 	"bluesky-home": "کور",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|ځانگړي مخونه]]",
 	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} پروژې مخونه]",
