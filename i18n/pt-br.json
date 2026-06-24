@@ -3,7 +3,8 @@
 		"authors": [
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"EGobi"
 		]
 	},
 	"skinname-bluesky": "Blue Sky",
@@ -25,8 +26,8 @@
 	"bluesky-toc-sections": "Seções",
 	"bluesky-home": "Início",
 	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|Páginas especiais]]",
-	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Páginas do projeto]",
-	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Páginas de discussão do projeto]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} Páginas de projeto]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} Páginas de discussão de projeto]",
 	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|Arquivos]]",
 	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} Predefinições]",
 	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|Categorias]]",
