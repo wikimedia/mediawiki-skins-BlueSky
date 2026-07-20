@@ -14,7 +14,7 @@
 	"bluesky-messages": "Messagen",
 	"bluesky-notifications-new-talk": "Dir hutt {{PLURAL:$1|een neien Diskussiouns-Message|$1 nei Diskussiouns-Messagen}}.",
 	"bluesky-notifications-none": "Dir hutt elo keng Notifikatiounen.\nBesicht Är [[$1|Diskussiounssäit]] fir vireg Messagen ze gesinn.",
-	"bluesky-notifications-no-talk": "Besicht Är [[$1|Diskussiounssäit]]fir déi al Messagen ze gesinn.",
+	"bluesky-notifications-no-talk": "Besicht Är [[$1|Diskussiounssäit]], fir al Messagen ze gesinn.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|eng net geliesen|$1 net geliesen}}",
 	"bluesky-pagelog": "Logbicher fir dës Säit",
 	"bluesky-page": "Handwierksgeschir fir Säiten",
