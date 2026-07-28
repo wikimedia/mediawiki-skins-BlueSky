@@ -1,0 +1,34 @@
+{
+	"@metadata": {
+		"authors": [
+			"ऐक्टिवेटेड्"
+		]
+	},
+	"bluesky-editthis": "ई पन्ना सम्पादित करथिन",
+	"bluesky-viewsource": "ई पन्नाके स्रोत देखथिन",
+	"bluesky-navbar-edit": "सम्पादित करथिन",
+	"bluesky-personaltools": "प्रोफाइल",
+	"bluesky-messages": "सन्देश",
+	"bluesky-notifications-new-talk": "अपने भिजुन $1 {{PLURAL:$1|नया}} वार्ता सन्देश {{PLURAL:$1|हे}} ।",
+	"bluesky-notifications-none": "ई घड़ी कौनो सूचना नै हे ।\nपुरान सन्देशके देखेला अपन [[$1|वार्ता पन्ना]] पर जैथिन ।",
+	"bluesky-notifications-no-talk": "पुरान सन्देशके देखेला अपन [[$1|वार्ता पन्ना]] पर जैथिन ।",
+	"bluesky-unread-notifications": "{{PLURAL:$1|एक अनपढ़ल|$1 अनपढ़ल}}",
+	"bluesky-pagelog": "ई पन्नाके सूचिका",
+	"bluesky-page": "पन्ना उपकरण",
+	"bluesky-admin": "प्रबन्धक",
+	"bluesky-page-edited": "पन्नाके अन्तिम सम्पादन {{int:ago|$1}} के भेलै ।",
+	"bluesky-page-edited-user": "पन्नाके अन्तिम सम्पादन {{int:ago|$1}} के $2 कैलन ।",
+	"bluesky-toc-sections": "अनुभाग",
+	"bluesky-home": "मुख्यपन्ना",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|विशेष पन्ना]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} परियोजना पन्ना]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} परियोजना वार्ता पन्ना]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|सञ्चिका]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} साँचा]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|श्रेणी]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} पन्ना]",
+	"bluesky-article-info": "लेख जानकारी",
+	"bluesky-page-info": "पन्ना जानकारी",
+	"bluesky-footer-tools": "अतिरिक्त पन्ना उपकरण",
+	"bluesky-menu": "मेनू"
+}
