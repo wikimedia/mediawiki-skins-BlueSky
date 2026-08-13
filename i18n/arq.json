@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bachounda"
+		]
+	},
+	"bluesky-desc": "تصميم (سكين) مبني في الأصل على النسخة الحالية ديال نهاية 2013 من تصميم wikiHow، مع مزايا جديدة بحال الدعم للجوال، وتوافق أحسن مع الإضافات الخارجية، وثيمات.",
+	"bluesky-editthis": "بدّل هاد الـصفحه",
+	"bluesky-viewsource": "شوف المصدر نتاع هاد الصفحة",
+	"bluesky-navbar-edit": "بدّل",
+	"bluesky-personaltools": "المعلومات الشخصيه",
+	"bluesky-messages": "رساله",
+	"bluesky-notifications-new-talk": "عندك $1 {{PLURAL:$1|رسالة جديدة|رسائل جديدة}} في صفحة النقاش.",
+	"bluesky-notifications-none": "ما عندكش إشعارات في هاد الوقت.\nزور [[$1|صفحة النقاش]] ديالك باش تشوف الرسائل اللي فاتو.",
+	"bluesky-notifications-no-talk": "زور [[$1|صفحة النقاش]] ديالك باش تشوف الرسائل اللي فاتو.",
+	"bluesky-unread-notifications": "{{PLURAL:$1|واحد غير مقروء|$1 غير مقروءين}}",
+	"bluesky-pagelog": "السجلات لهذه الصفحة",
+	"bluesky-page": "أدوات الصفحه",
+	"bluesky-admin": "إدارة",
+	"bluesky-page-edited": "آخر تعديل على الصفحة كان {{int:ago|$1}}",
+	"bluesky-page-edited-user": "آخر تحديث للصفحة {{int:ago|$1}} بواسطة $2",
+	"bluesky-toc-sections": "الأقسام",
+	"bluesky-home": "اللوله",
+	"bluesky-breadcrumbs-nsspecial": "[[Special:SpecialPages|صفحات خاصة]]",
+	"bluesky-breadcrumbs-nsproject": "[{{fullurl:Special:PrefixIndex|namespace=4}} صفحات المشروع]",
+	"bluesky-breadcrumbs-nsproject-talk": "[{{fullurl:Special:PrefixIndex|namespace=5}} صفحات نقاش المشروع]",
+	"bluesky-breadcrumbs-nsfile": "[[Special:ListFiles|الملفات]]",
+	"bluesky-breadcrumbs-nstemplate": "[{{fullurl:Special:PrefixIndex|namespace=10}} القوالب]",
+	"bluesky-breadcrumbs-nscategory": "[[Special:Categories|التصنيفات]]",
+	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} صفحات {{NAMESPACE}}]",
+	"bluesky-article-info": "معلومات المقالة",
+	"bluesky-page-info": "معلومات الصفحة",
+	"bluesky-footer-tools": "أدوات إضافية للصفحة",
+	"bluesky-menu": "القائمة"
+}
