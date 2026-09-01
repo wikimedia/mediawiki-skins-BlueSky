@@ -4,7 +4,8 @@
 			"Af420",
 			"Amjad Khan",
 			"Baloch Khan",
-			"شاه زمان پټان"
+			"شاه زمان پټان",
+			"باران"
 		]
 	},
 	"bluesky-desc": "دا پوښۍ د ويکي‌هاو ۲۰۱۳ پوښۍ د وروستۍ بل‌بڼې پر بنسټ جوړه شوې، چې د نوو ځانگړتياوو لکه موبايل ملاتړ، بهرنۍ پراختيايي غبرگون او شاليد لرونکې ده.",
@@ -14,7 +15,7 @@
 	"bluesky-personaltools": "پېژنيال",
 	"bluesky-messages": "پيغامونه",
 	"bluesky-notifications-new-talk": "تاسو په خپل خبرو اترو کې $1 {{PLURAL:$1| نوی پيغام|نوي پيغامونه}} لرئ.",
-	"bluesky-notifications-none": "وسمهال تاسو هېڅ خبرتيا نهٔ لرئ.\nد پخوانيو پيغامونو کتلو لپاره خپل [[$1|خبرو اترو مخ]] ته ورشئ.",
+	"bluesky-notifications-none": "وسمهال تاسو هېڅ خبرتيا نه لرئ.\nد پخوانيو پيغامونو کتلو لپاره خپل [[$1|خبرو اترو مخ]] ته ورشئ.",
 	"bluesky-notifications-no-talk": "د پخوانيو پيغامونو کتلو لپاره خپل [[$1|خبرو اترو مخ]] ته ورشئ.",
 	"bluesky-unread-notifications": "{{PLURAL:$1|يو نالوستی|$1 نالوستي}}",
 	"bluesky-pagelog": "د دې مخ يادښتونه",
@@ -34,6 +35,6 @@
 	"bluesky-breadcrumbs-nsdefault": "[{{fullurl:Special:PrefixIndex|namespace={{NAMESPACENUMBER}}}} {{NAMESPACE}} مخونه]",
 	"bluesky-article-info": "ليکنې مالومات",
 	"bluesky-page-info": "مخ مالومات",
-	"bluesky-footer-tools": "زياتي مخ توکي",
+	"bluesky-footer-tools": "زياتي مخ کارتوکي",
 	"bluesky-menu": "غوره‌نۍ"
 }
