@@ -7,8 +7,15 @@
 			"बडा काजी"
 		]
 	},
+	"bluesky-navbar-edit": "सम्पादन",
+	"bluesky-personaltools": "प्रोफाइल",
+	"bluesky-messages": "सन्देश",
 	"bluesky-admin": "प्रबन्धक",
 	"bluesky-page-edited": "पृष्ठलाई अन्तिम पटक सम्पादन {{int:ago|$1}}",
 	"bluesky-page-edited-user": "$2 द्वारा पृष्ठलाई अन्तिम पटक सम्पादन {{int:ago|$1}} मा गरियो",
-	"bluesky-home": "गृह"
+	"bluesky-toc-sections": "खण्डहरू",
+	"bluesky-home": "गृह",
+	"bluesky-article-info": "लेख जानकारी",
+	"bluesky-page-info": "पृष्ठ जानकारी",
+	"bluesky-menu": "मेनु"
 }
