@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kaszeba"
+			"Kaszeba",
+			"Terrus38"
 		]
 	},
-	"bluesky-editthis": "Editëjë nã starnã",
+	"bluesky-editthis": "Edituj nã starnã",
 	"bluesky-viewsource": "Òbôczë zdrojowi tekst ti starnë",
 	"bluesky-navbar-edit": "Editëjë",
 	"bluesky-personaltools": "Profil",
