@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eleassar"
+			"Eleassar",
+			"Upwinxp"
 		]
 	},
 	"skinname-bluesky": "Modro nebo",
@@ -11,7 +12,7 @@
 	"bluesky-navbar-edit": "Uredi",
 	"bluesky-personaltools": "Profil",
 	"bluesky-messages": "Sporočila",
-	"bluesky-notifications-new-talk": "Na vaši pogovorni strani imate $1 {{PLURAL:$1|novo sporočilo|novi sporočili|nova sporočila|novih sporočil}}.",
+	"bluesky-notifications-new-talk": "Na pogovorni strani imate $1 {{PLURAL:$1|novo sporočilo|novi sporočili|nova sporočila|novih sporočil}}.",
 	"bluesky-notifications-none": "Trenutno nimate obvestil.\nČe si želite ogledati pretekla sporočila, obiščite vašo [[$1|pogovorno stran]].",
 	"bluesky-notifications-no-talk": "Za ogled preteklih sporočil obiščite vašo [[$1|pogovorno stran]].",
 	"bluesky-unread-notifications": "{{PLURAL:$1|Eno neprebrano|$1 neprebrani|$1 neprebrana|$1 neprebranih}}",
