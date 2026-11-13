@@ -209,7 +209,9 @@ class BlueSkyTemplate extends BaseTemplate {
 		}
 
 		// Content
-		$html .= Html::rawElement( 'div', [ 'class' => 'mw-body', 'role' => 'main' ],
+		$html .= Html::rawElement(
+			'div',
+			[ 'class' => 'mw-body', 'role' => 'main', 'data-mw-ve-target-container' => true ],
 			Html::rawElement( 'div', [ 'class' => 'mw-body-content', 'id' => 'bodyContent' ],
 				$this->get( 'bodytext' ) .
 				$this->getClear() .
@@ -479,6 +481,7 @@ class BlueSkyTemplate extends BaseTemplate {
 		// This is really dumb, but there is no sane way to do this. So we'll just go through all of them and pick out the ones we know we want for any given block. Note that this completely screws over any extensions that add new ones.
 		foreach ( $pileOfTools as $navKey => $navBlock ) {
 			if ( in_array( $navKey, [
+				've-edit',
 				'edit',
 				'viewsource'
 			] ) ) {
@@ -534,8 +537,9 @@ class BlueSkyTemplate extends BaseTemplate {
 			$sortedPileOfTools[$currentSet][$navKey] = $navBlock;
 		}
 
-		// Use different edit msg in header menu
-		if ( isset( $sortedPileOfTools['edit-menu']['edit'] ) ) {
+		// Use different edit msg in header menu if VE is disabled
+		if ( isset( $sortedPileOfTools['edit-menu']['edit'] )
+			&& !isset( $sortedPileOfTools['edit-menu']['ve-edit'] ) ) {
 			$sortedPileOfTools['edit-menu']['edit']['text'] = $this->getMsg( 'bluesky-editthis' )->text();
 		}
 
